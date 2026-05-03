@@ -1,0 +1,3 @@
+[submodule "knowledge-base"]
+	branch = main
+	update = merge

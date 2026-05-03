@@ -1,0 +1,42 @@
+# =============================================================================
+# Workspace .gitignore
+# =============================================================================
+
+# --- Backups (không bao giờ commit, sync sang Google Drive) ---
+backups/
+
+# --- API keys & secrets ---
+ai-labs/resource/api-keys/.env
+**/.env
+*.pem
+*.key
+
+# --- Obsidian (workspace state per-machine) ---
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/workspaces.json
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# --- Editor ---
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- Logs ---
+*.log
+
+# --- LƯU Ý ---
+# KHÔNG ignore knowledge-base/ — đó là submodule, Git track riêng qua .gitmodules
