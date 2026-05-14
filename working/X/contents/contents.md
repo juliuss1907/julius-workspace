@@ -1,0 +1,3 @@
+[[articles]]
+[[posts]]
+[[threads]]

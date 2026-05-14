@@ -1,0 +1,94 @@
+Kế thừa 2 tầng — Giải thích từ đầu
+🧠 Bắt đầu bằng hình ảnh thực tế
+Hãy nghĩ theo kiểu phân loại sinh vật:
+
+
+
+Động vật          ← tầng 1 (ông nội)
+    └── Chó       ← tầng 2 (cha)
+          └── Chó Husky  ← tầng 3 (con)
+Quy tắc: Con kế thừa tất cả từ cha. Cha kế thừa tất cả từ ông nội. → Tức là con tự động có mọi thứ của cả cha lẫn ông nội.
+
+📦 Dịch sang Python — từng bước
+Bước 1: Class ông nội
+python
+
+
+class DongVat:
+    def __init__(self, ten):
+        self.ten = ten
+
+    def an(self):
+        print(f"{self.ten} đang ăn")
+Bước 2: Class cha kế thừa ông nội
+python
+
+
+class Cho(DongVat):
+    def __init__(self, ten, giong):
+        super().__init__(ten)   # ← gọi DongVat.__init__
+        self.giong = giong
+
+    def sua(self):
+        print(f"{self.ten} sủa: Gâu gâu!")
+Lúc này Cho có:
+
+
+
+✅ self.ten      (từ DongVat)
+✅ an()          (từ DongVat)
+✅ self.giong    (của riêng Cho)
+✅ sua()         (của riêng Cho)
+Bước 3: Class con kế thừa cha
+python
+
+
+class ChoHusky(Cho):
+    def __init__(self, ten):
+        super().__init__(ten, "Husky")  # ← gọi Cho.__init__
+        self.mau_long = "trắng xám"
+
+    def chay(self):
+        print(f"{self.ten} chạy rất nhanh!")
+Lúc này ChoHusky có:
+
+
+
+✅ self.ten       (từ DongVat, qua Cho)
+✅ an()           (từ DongVat, qua Cho)
+✅ self.giong     (từ Cho)
+✅ sua()          (từ Cho)
+✅ self.mau_long  (của riêng ChoHusky)
+✅ chay()         (của riêng ChoHusky)
+python
+
+
+# Test
+h = ChoHusky("Milo")
+h.an()     # Milo đang ăn       ← method của DongVat
+h.sua()    # Milo sủa: Gâu gâu! ← method của Cho
+h.chay()   # Milo chạy rất nhanh! ← method của ChoHusky
+🔑 Điểm mấu chốt: super() gọi ai?
+super() luôn gọi class cha trực tiếp — không nhảy cóc.
+
+
+
+ChoHusky → super() → Cho → super() → DongVat
+python
+
+
+class ChoHusky(Cho):
+    def __init__(self, ten):
+        super().__init__(ten, "Husky")
+        #     ↑
+        #     Gọi Cho.__init__ — KHÔNG gọi DongVat.__init__
+        #     Nhưng Cho.__init__ sẽ tự gọi DongVat.__init__
+
+Dây chuyền xảy ra tự động:
+
+ChoHusky.__init__
+    → super().__init__  [gọi Cho.__init__]
+        → super().__init__  [gọi DongVat.__init__]
+            → self.ten = ten  ✅
+        → self.giong = giong  ✅
+    → self.mau_long = "trắng xám"  ✅

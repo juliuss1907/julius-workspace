@@ -196,16 +196,15 @@ fi
 # =============================================================================
 echo "📦 [6/7] Tạo tasks/..."
 
-mkdir -p tasks/scheduled
-mkdir -p tasks/processing
-mkdir -p tasks/approved
-
+# Tasks
+mkdir -p tasks/{scheduled,processing,approved,inbox}
 touch_if_missing "tasks/TASK_TEMPLATE.md"
 touch_if_missing "tasks/TASK_SKILL.md"
 touch_if_missing "tasks/tasks.md"
 touch_if_missing "tasks/scheduled/scheduled.md"
 touch_if_missing "tasks/processing/processing.md"
 touch_if_missing "tasks/approved/approved.md"
+touch_if_missing "tasks/inbox/inbox.md"
 
 # =============================================================================
 # 7. BACKUPS/  (không commit, chỉ tạo folder local)

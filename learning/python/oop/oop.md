@@ -1,0 +1,2 @@
+- [[knowlegde]]
+- [[python/oop/practice/practice|practice]]

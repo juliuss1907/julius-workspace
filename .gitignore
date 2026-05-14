@@ -40,3 +40,15 @@ venv/
 
 # --- LƯU Ý ---
 # KHÔNG ignore knowledge-base/ — đó là submodule, Git track riêng qua .gitmodules
+
+# Obsidian vault settings (machine-specific)
+.obsidian/
+**/.obsidian/
+.smart-env/
+**/.smart-env/
+
+# Obsidian vault settings (machine-specific)
+.obsidian/
+**/.obsidian/
+.smart-env/
+**/.smart-env/
