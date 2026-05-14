@@ -52,3 +52,6 @@ venv/
 **/.obsidian/
 .smart-env/
 **/.smart-env/
+
+# Knowledge-base (managed separately)
+knowledge-base/

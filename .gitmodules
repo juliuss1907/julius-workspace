@@ -1,5 +1,0 @@
-[submodule "knowledge-base"]
-	path = knowledge-base
-	url = git@github.com:juliuss1907/knowledge-base.git
-	branch = main
-	update = merge
