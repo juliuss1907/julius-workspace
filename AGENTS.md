@@ -93,6 +93,9 @@ Each nested file **inherits** this global file and may override specific rules.
 | `backups/` | ❌ Do not touch (gitignored) |
 | `ai-labs/resource/` | 🚫 NEVER read or write under any condition |
 | `personal/` | 🚫 FORBIDDEN — Julius's private folder, agents must never access |
+| `.hermes/MEMORY.md` | ✅ APPEND-ONLY — Markus logs significant interactions |
+| `.hermes/HEARTBEAT.md` | ✅ READ + WRITE — Markus updates during health checks |
+
 
 ### Knowledge Base Access Protocol
 
