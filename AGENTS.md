@@ -92,6 +92,7 @@ Each nested file **inherits** this global file and may override specific rules.
 | `.hermes/SOUL.md` | 🔒 READ-ONLY — Julius defines this |
 | `backups/` | ❌ Do not touch (gitignored) |
 | `ai-labs/resource/` | 🚫 NEVER read or write under any condition |
+| `personal/` | 🚫 FORBIDDEN — Julius's private folder, agents must never access |
 
 ### Knowledge Base Access Protocol
 
@@ -244,6 +245,7 @@ Awaiting your approval to push.
 | 8 | Install global packages (`npm install -g`, `pip install --user`) without asking |
 | 9 | Create new top-level folders in workspace root — escalate first (Section 9) |
 | 10 | Bypass nested AGENTS.md — always honor domain-specific overrides |
+| 11 | Access personal/ folder — read, write, list, or reference files inside |
 
 ---
 
