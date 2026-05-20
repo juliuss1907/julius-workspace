@@ -85,16 +85,20 @@ Each nested file **inherits** this global file and may override specific rules.
 | `learning/` | ✅ READ + WRITE |
 | `working/` | ✅ READ + WRITE |
 | `ai-labs/` | ✅ READ + WRITE |
+| `ai-labs/resource/skills/` | ✅ READ + WRITE (skills library) |
+| `ai-labs/resource/prompts/` | ✅ READ + WRITE |
+| `ai-labs/resource/personas/` | ✅ READ + WRITE |
+| `ai-labs/resource/mcps/` | ✅ READ + WRITE |
+| `ai-labs/resource/plugins/` | ✅ READ + WRITE |
 | `tasks/` | ✅ READ + WRITE |
-| `.hermes/MEMORY.md` | ✅ APPEND-ONLY — do not rewrite history |
-| `knowledge-base/` | 🔒 READ-ONLY — never write or delete |
-| `.hermes/IDENTITY.md` | 🔒 READ-ONLY — Julius defines this |
-| `.hermes/SOUL.md` | 🔒 READ-ONLY — Julius defines this |
+| `.hermes/MEMORY.md` | ✅ APPEND-ONLY |
+| `knowledge-base/` | 🔒 READ-ONLY |
+| `.hermes/IDENTITY.md` | 🔒 READ-ONLY |
+| `.hermes/SOUL.md` | 🔒 READ-ONLY |
+| `personal/` | 🚫 FORBIDDEN |
 | `backups/` | ❌ Do not touch (gitignored) |
-| `ai-labs/resource/` | 🚫 NEVER read or write under any condition |
-| `personal/` | 🚫 FORBIDDEN — Julius's private folder, agents must never access |
-| `.hermes/MEMORY.md` | ✅ APPEND-ONLY — Markus logs significant interactions |
-| `.hermes/HEARTBEAT.md` | ✅ READ + WRITE — Markus updates during health checks |
+| `ai-labs/resource/api-keys/` | 🚫 FORBIDDEN — contains credentials |
+| `ai-labs/resource/api-keys/.env` | 🚫 NEVER read or write |
 
 
 ### Knowledge Base Access Protocol
@@ -116,7 +120,7 @@ When you start a task in a subdirectory, follow this load order:
 2. Walk from the task path up to root, loading every `AGENTS.md` you encounter
 3. **Nearer files override farther files** — the `AGENTS.md` closest to the task wins on conflicts
 
-**Example** — task in `working/Coin68/content/drafts/belo.md`:
+**Example** — task in `working/Coin68/contents/drafts/belo.md`:
 
 ```
 workspace/AGENTS.md          → global rules
@@ -171,9 +175,9 @@ Task files in `tasks/` are **pointers**, not content holders. Output content liv
 ✅ **Correct:**
 ```
 tasks/processing/coin68-belo-article-ddl-15-01-2026.md
-  └── frontmatter: target: working/Coin68/content/drafts/belo.md
+  └── frontmatter: target: working/Coin68/contents/drafts/belo.md
 
-working/Coin68/content/drafts/belo.md
+working/Coin68/contents/drafts/belo.md
   └── actual article content
 ```
 
@@ -284,18 +288,18 @@ When you encounter ambiguity or a decision that would violate the rules above, *
 
 **Example A — Domain detection**
 > Task: "Write a thread about Layer 2 scaling for X"
-> Action: Detect domain = `working/X/`. Load `workspace/AGENTS.md` + `working/X/AGENTS.md`. Reference `ai-labs/resource/skills/thread-writer/SKILL.md`. Write output to `working/X/content/thread-layer2-scaling.md`. Update task status. Propose push to Julius.
+> Action: Detect domain = `working/X/`. Load `workspace/AGENTS.md` + `working/X/AGENTS.md`. Reference `ai-labs/resource/skills/thread-writer/SKILL.md`. Write output to `working/X/contents/thread-layer2-scaling.md`. Update task status. Propose push to Julius.
 
 **Example B — Knowledge Base read-only**
 > Task: "Write an article about MEV using insights from KB"
-> Action: Read `knowledge-base/wiki/concepts/mev.md` for context (READ-ONLY). Write the article to `working/Coin68/content/drafts/mev-explained.md`. Do NOT write back to KB.
+> Action: Read `knowledge-base/wiki/concepts/mev.md` for context (READ-ONLY). Write the article to `working/Coin68/contents/drafts/mev-explained.md`. Do NOT write back to KB.
 
 **Example C — Escalation triggered**
 > Task: "Update the brand guideline for Coin68"
 > Action: No file matches "brand guideline" in `working/Coin68/`. Stop. Write to `tasks/inbox/escalation-2026-05-03-1430.md`: "Does this go in `working/Coin68/context/coin68.md` or a new file `brand-guideline.md`?"
 
 **Example D — Push proposal**
-> Task: just finished writing `working/Coin68/content/drafts/belo.md`. Local commit done.
+> Task: just finished writing `working/Coin68/contents/drafts/belo.md`. Local commit done.
 > Action: Send to Julius's channel:
 > ```
 > [PUSH PROPOSAL]

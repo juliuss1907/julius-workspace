@@ -26,7 +26,7 @@ Julius's voice: `working/Coin68/context/julius.md`
 
 Coin68 has many categories beyond a fixed set. The published index file maintains the canonical list:
 
-**📌 Required step before writing**: Read `working/Coin68/content/published/published.md` to identify the category that fits the current task.
+**📌 Required step before writing**: Read `working/Coin68/contents/published/published.md` to identify the category that fits the current task.
 
 ### Rules
 - ✅ READ the index to find an existing category match
@@ -44,16 +44,16 @@ After identifying a matching category:
 
 | Input | Output location |
 |---|---|
-| Source material (URL, PDF, project docs) | `working/Coin68/content/drafts/<project-slug>.md` |
-| Reference articles | Read from `working/Coin68/content/published/` (read-only — Julius publishes) |
+| Source material (URL, PDF, project docs) | `working/Coin68/contents/drafts/<project-slug>.md` |
+| Reference articles | Read from `working/Coin68/contents/published/` (read-only — Julius publishes) |
 | Templates (charts, comparison tables) | Read from `working/Coin68/assets/templates/` |
-| Category index | Read from `working/Coin68/content/published/published.md` |
+| Category index | Read from `working/Coin68/contents/published/published.md` |
 
 ### Workflow rule
 **Hermes writes ONLY to `drafts/`.** Julius edits drafts and manually moves to `published/` after final review. Hermes MUST NOT write to `published/` under any circumstances.
 
 ### Image handling
-Image insertion is handled exclusively by Julius post-draft. Hermes does NOT touch images for Coin68 content (see Section 7).
+Image insertion is handled exclusively by Julius post-draft. Hermes does NOT touch images for Coin68 contents (see Section 7).
 
 ---
 
@@ -80,7 +80,7 @@ Crypto-native English terms have priority over forced Vietnamese translation:
 When Hermes receives a Coin68 task:
 
 1. **Load TASK_SKILL** from `tasks/TASK_SKILL.md` (lifecycle methodology)
-2. **Read category index** at `working/Coin68/content/published/published.md` — identify matching category for the project
+2. **Read category index** at `working/Coin68/contents/published/published.md` — identify matching category for the project
 3. **Identify article type** from task description: news / review / deep-dive
 4. **Load the corresponding skill** from `ai-labs/resource/skills/`:
    - News-style article → `article-writer/SKILL.md`
@@ -89,7 +89,7 @@ When Hermes receives a Coin68 task:
 5. **Read brand + voice context**: `context/coin68.md` + `context/julius.md`
 6. **Read 2-3 reference articles** from the matched category in `published/` for voice/structure
 7. **Execute the skill's workflow** (e.g., for review-style articles, the skill may enforce a multi-step process: source analysis → outline → draft, with checkpoints between steps)
-8. **Write draft to** `working/Coin68/content/drafts/<project-slug>.md`
+8. **Write draft to** `working/Coin68/contents/drafts/<project-slug>.md`
 9. **Append `kiểm chứng` block** at the end of the draft listing what's verified vs. needs verification
 10. **Notify Julius** for approval
 
@@ -126,7 +126,7 @@ If a Coin68-specific skill is later created at `ai-labs/resource/skills/coin68-w
 > Task: "Write review article about Belo project"
 > Action:
 > 1. Load `tasks/TASK_SKILL.md` for lifecycle handling
-> 2. Read `working/Coin68/content/published/published.md` → find Belo fits the `perpdex` category
+> 2. Read `working/Coin68/contents/published/published.md` → find Belo fits the `perpdex` category
 > 3. Article type = review → load `ai-labs/resource/skills/article-writer/SKILL.md`
 > 4. Read `context/coin68.md` + `context/julius.md`
 > 5. Read 2-3 reference perpdex articles from `published/`

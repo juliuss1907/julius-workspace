@@ -19,6 +19,8 @@ YYYY-MM-DD HH:mm | [CATEGORY] | Entry
 ## Log
 
 2026-05-04 15:45 | MILESTONE | Initialized as Markus. Identity and Soul defined. Ready to assist Julius.
+2026-05-18 08:30 | MILESTONE | Moved config home to /home/julius/julius-workspace/.hermes/. Reloaded identity from SOUL.md and IDENTITY.md.
+2026-05-18 08:30 | LEARNING | User addressed me as "Markus" — I initially failed to recognize my own name. Identity now properly loaded.
 
 ---
 

@@ -1,0 +1,12 @@
+{
+  "id": "20260518-085348-pre-update",
+  "timestamp": "20260518-085348",
+  "label": "pre-update",
+  "file_count": 3,
+  "total_size": 39367,
+  "files": {
+    "config.yaml": 13315,
+    ".env": 23701,
+    "auth.json": 2351
+  }
+}

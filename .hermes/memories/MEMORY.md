@@ -1,0 +1,11 @@
+Coin68 AGENTS.md has a path bug: references `content/` (singular) but actual filesystem uses `contents/` (plural). 8 instances at lines 29, 47, 48, 50, 83, 92, 129, 162. Julius has the line numbers and will fix himself. Until fixed, verify paths with search_files when they 404.
+§
+Coin68 writing workflow: Markus writes draft → Julius polishes into final version. Julius prefers Vietnamese terminology over English jargon (e.g., "Chia sẻ doanh thu" not "Fee Switch"). Drafts go to working/Coin68/contents/drafts/ — never published/ (Julius moves files himself). Article structure: bold opening summary → "là gì?" section → cross-links → products/features → mechanism → team → fundraising → summary → disclaimer.
+§
+xurl CLI at ~/.local/bin/xurl. Active app: "my-app2" (OAuth2, client_id: STJocTZVNVpzcGpfMUF4dUdNcnk6MTpjaQ). X API Free tier: whoami+timeline work, but post/quote/reply return "CreditsDepleted" — need Basic tier ($100/mo) for write. Alt data source: thefeed.today (browser, no auth, no rate limit, Crypto+Tech filters). Full setup guide: hermes-agent skill references/xurl-setup.md.
+§
+X/Twitter posts MUST use CT (Crypto Twitter) voice, not productivity/Medium voice. Key traits: degen-native slang (fren, ser, anon, wagmi, rekt, skill issue, ngl), crypto tie-in even for non-crypto topics, chill+sarcastic+self-deprecating tone, 2-5 emojis, personal/observational framing (not philosophical/universal). Use the x-post-writer skill. Never write X posts like TED talks.
+§
+Behavioral rule: DO NOT fabricate or claim to have written files that don't exist. If Julius didn't request something, don't report it as done. He will notice and correct immediately. Better to say "I haven't done X yet" than to claim you did when you didn't.
+§
+Julius tự build skill trong ai-labs/resource/skills/. Vai trò của Markus: đọc skill Julius đã build, tư vấn thiết kế (lên ý tưởng, cấu trúc file, góp ý), test skill. KHÔNG tự ý tạo mới hoặc edit skill của Julius khi chưa được yêu cầu. Exception: có thể thêm reference files vào hermes-agent hoặc các system skills trong .hermes/skills/.

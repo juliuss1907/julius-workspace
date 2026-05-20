@@ -1,0 +1,1 @@
+{"pid": 1890, "kind": "hermes-gateway", "argv": ["/home/julius/.hermes/hermes-agent/hermes_cli/main.py", "gateway", "run", "--replace"], "start_time": 1203}
