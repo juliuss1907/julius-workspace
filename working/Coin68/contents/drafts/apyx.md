@@ -1,12 +1,12 @@
 ---
-title: "Apyx là gì? Tìm hiểu về giao thức Dividend-Backed Stablecoin đầu tiên"
-source: "https://coin68.com/apyx-la-gi/"
+title: Apyx là gì? Tìm hiểu về giao thức Dividend-Backed Stablecoin đầu tiên
+source: https://coin68.com/apyx-la-gi/
 published:
 created: 2026-05-18
-description: "Apyx là giao thức Dividend-Backed Stablecoin (DBS) đầu tiên, kết nối dòng tiền cổ tức từ preferred equity của các Digital Asset Treasury (DAT) vào DeFi thông qua hai tài sản apxUSD và apyUSD."
+description: Apyx là giao thức Dividend-Backed Stablecoin (DBS) đầu tiên, kết nối dòng tiền cổ tức từ preferred equity của các Digital Asset Treasury (DAT) vào DeFi thông qua hai tài sản apxUSD và apyUSD.
 tags:
-  - "stablecoin"
-  - "defi"
+  - stablecoin
+  - defi
 ---
 
 **Apyx là giao thức Dividend-Backed Stablecoin (DBS) đầu tiên trên thị trường, xây dựng cầu nối giữa dòng tiền cổ tức từ thị trường vốn truyền thống và hệ sinh thái tài chính phi tập trung (DeFi). Hãy cùng Coin68 tìm hiểu về dự án này qua bài viết dưới đây.**

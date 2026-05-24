@@ -1,0 +1,92 @@
+# {{ topic }} — Báo cáo Nghiên cứu
+
+**Ngày:** {{ date }}  
+**Nguồn:** {{ metadata.tweet_count }} tweet, {{ metadata.web_source_count }} bài viết  
+**Mô hình:** {{ metadata.model }}
+
+---
+
+{% if executive_summary %}
+## Tóm tắt
+
+{{ executive_summary }}
+
+{% endif %}
+
+{% if key_metrics and (key_metrics.volume or key_metrics.funding or key_metrics.market_share) %}
+## Chỉ số chính
+
+{% if key_metrics.volume %}**Khối lượng:** {{ key_metrics.volume }}{% endif %}
+{% if key_metrics.market_share %}**Thị phần:** {{ key_metrics.market_share }}{% endif %}
+{% if key_metrics.funding %}**Gọi vốn:** {{ key_metrics.funding }}{% endif %}
+{% if key_metrics.user_growth %}**Người dùng:** {{ key_metrics.user_growth }}{% endif %}
+
+{% endif %}
+
+{% if market_landscape %}
+## Bức tranh Thị trường
+
+**Dẫn đầu:**
+{% for leader in market_landscape.leaders %}
+- {{ leader }}
+{% endfor %}
+
+**Thử thách:**
+{% for challenger in market_landscape.challengers %}
+- {{ challenger }}
+{% endfor %}
+
+{% if market_landscape.total_addressable_market %}
+**TAM:** {{ market_landscape.total_addressable_market }}
+{% endif %}
+
+{% endif %}
+
+{% if deep_analysis %}
+## Phân tích Sâu
+
+{{ deep_analysis }}
+
+{% endif %}
+
+{% if emerging_trends and emerging_trends|length > 0 %}
+## Xu hướng Nổi bật
+
+{% for trend in emerging_trends %}
+{{ loop.index }}. {{ trend }}
+
+{% endfor %}
+
+{% endif %}
+
+{% if contrarian_views and contrarian_views|length > 0 %}
+## Quan điểm Trái chiều
+
+{% for view in contrarian_views %}
+- {{ view }}
+
+{% endfor %}
+
+{% endif %}
+
+{% if information_gaps and information_gaps|length > 0 %}
+## Khoảng trống Thông tin
+
+{% for gap in information_gaps %}
+- {{ gap }}
+{% endfor %}
+
+{% endif %}
+
+{% if alpha_signals and alpha_signals|length > 0 %}
+## Tín hiệu Alpha
+
+{% for signal in alpha_signals %}
+- {{ signal }}
+{% endfor %}
+
+{% endif %}
+
+---
+
+*X-Research v1.0.0*

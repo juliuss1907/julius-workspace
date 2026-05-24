@@ -1,0 +1,787 @@
+{
+  "date": "20-05-2026",
+  "runtime": 120.7,
+  "total_accounts": 15,
+  "total_tweets": 68,
+  "breaking_news": [
+    {
+      "id": "2057023855328199096",
+      "author": "xiaaweb3",
+      "text": "$Solana is starting to crack.\n\nI\u2019m watching funding flip negative while most people still pretend this is just another healthy pullback.\n\nWhen futures traders stop paying for longs, I know confidence is fading faster than the charts show.\n\nA potential move to $78 suddenly doesn\u2019t look crazy anymore, especially after SOL failed to hold key momentum levels.\n\nI think the market got too comfortable with the \u201cSolana always bounces\u201d narrative.\n\nThe dangerous part is that retail still looks late to the",
+      "likes": 378,
+      "retweets": 23,
+      "replies": 74,
+      "views": 28809,
+      "engagement": 475,
+      "created_at": "2026-05-20T09:01:19+00:00"
+    }
+  ],
+  "funding": [
+    {
+      "amount": "$50M",
+      "project": "variational_io",
+      "text": "Peer-to-peer derivatives trading platform @variational_io raised $50M in a Series A funding round led by @dragonfly_xyz, with participation from @BainCapCrypto, @cbventures.",
+      "source": "Crypto_Dealflow",
+      "id": "2057098456552919308"
+    },
+    {
+      "amount": "$30M",
+      "project": "catena_labs",
+      "text": "AI-native financial infrastructure @catena_labs raised $30M in a Series A funding round led by @AcrewCapital, @a16zcrypto, with participation from @BreyerCap, @generalcatalyst, @QEDInvestors, @oakhcft, @IDGCapital, @cbventures.",
+      "source": "Crypto_Dealflow",
+      "id": "2057086486470603065"
+    },
+    {
+      "amount": "$4.4M",
+      "project": "sortedwallet",
+      "text": "Lightweight mobile-friendly wallet @sortedwallet raised $4.4M in a Seed funding round led by @tether, @gnosisdao, with participation from @movement_xyz.",
+      "source": "Crypto_Dealflow",
+      "id": "2057076962590327276"
+    },
+    {
+      "amount": "$8M",
+      "project": "checkercorp",
+      "text": "Stablecoin infrastructure startup @checkercorp raised $8M in a Seed funding round from @galaxyhq, @hiFramework, @bitso, @TheDFSLab, @OnigiriVC, @EV3ventures, @snzholding.",
+      "source": "Crypto_Dealflow",
+      "id": "2056826789742149907"
+    },
+    {
+      "amount": "$3.5M",
+      "project": "ouinex",
+      "text": "Crypto exchange platform @ouinex raised $3.5M in a Private funding round.",
+      "source": "Crypto_Dealflow",
+      "id": "2056760832072024373"
+    }
+  ],
+  "kol_by_tier": {
+    "T1": [
+      {
+        "id": "2056937818988154985",
+        "author": "naval",
+        "text": "We\u2019re searching for permanent satisfaction with an impermanent mind in an impermanent world.",
+        "likes": 7366,
+        "retweets": 911,
+        "replies": 493,
+        "views": 224869,
+        "engagement": 8770,
+        "created_at": "2026-05-20T03:19:26+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057060133604139257",
+        "author": "naval",
+        "text": "The latest IQ test involves data centers and water.",
+        "likes": 4030,
+        "retweets": 310,
+        "replies": 310,
+        "views": 153397,
+        "engagement": 4650,
+        "created_at": "2026-05-20T11:25:28+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057062903111434286",
+        "author": "naval",
+        "text": "What you really want is a challenge at the edge of your capability.",
+        "likes": 3859,
+        "retweets": 455,
+        "replies": 303,
+        "views": 97629,
+        "engagement": 4617,
+        "created_at": "2026-05-20T11:36:29+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057059290553155741",
+        "author": "naval",
+        "text": "If it\u2019s not one of the best books you\u2019ve ever read, don\u2019t read it.",
+        "likes": 3355,
+        "retweets": 168,
+        "replies": 380,
+        "views": 178625,
+        "engagement": 3903,
+        "created_at": "2026-05-20T11:22:07+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2056992175318073477",
+        "author": "VitalikButerin",
+        "text": "Short-term things being done to shift Ethereum toward native privacy:\n\n* AA + FOCIL (makes privacy protocol txs, among many other things, first-class with strong inclusion guarantees)\n* Keyed nonces: \n* Access-layer work (Kohaku, private reads...)",
+        "likes": 1156,
+        "retweets": 135,
+        "replies": 285,
+        "views": 183336,
+        "engagement": 1576,
+        "created_at": "2026-05-20T06:55:26+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2056905392475550108",
+        "author": "RaoulGMI",
+        "text": "The Economic Singularity in a nutshell",
+        "likes": 599,
+        "retweets": 63,
+        "replies": 13,
+        "views": 62797,
+        "engagement": 675,
+        "created_at": "2026-05-20T01:10:35+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057061635131351043",
+        "author": "naval",
+        "text": "The water is just a fig leaf. Really, they hate AI.",
+        "likes": 434,
+        "retweets": 8,
+        "replies": 65,
+        "views": 35854,
+        "engagement": 507,
+        "created_at": "2026-05-20T11:31:26+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057027628788269457",
+        "author": "nero_eth",
+        "text": "Ethereum is about to fundamentally change how blocks are executed. With the upcoming Glamsterdam hardfork, it's shipping EIP-7928: Block-level Access Lists, a proposal that brings parallelization to the EVM.\n\nHere's a short explainer of what it is, how it works, and why it's a big deal for scaling.\n\nLet's start from the top. Alongside EIP-7732 (ePBS), EIP-7928 is the execution-layer (EL) headliner for Glamsterdam. Like ePBS, the main focus has been scaling Ethereum, though both proposals come wi",
+        "likes": 307,
+        "retweets": 67,
+        "replies": 13,
+        "views": 13627,
+        "engagement": 387,
+        "created_at": "2026-05-20T09:16:19+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057075933668905338",
+        "author": "LynAldenContact",
+        "text": "The audiobook of The Stolguard Incident is now available!\n\nDual-narrated by the fantastic Carla and Walker, we went all-out on the production for this:",
+        "likes": 123,
+        "retweets": 11,
+        "replies": 19,
+        "views": 19559,
+        "engagement": 153,
+        "created_at": "2026-05-20T12:28:15+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2056926064404738548",
+        "author": "KyleSamani",
+        "text": "I am the dev team",
+        "likes": 103,
+        "retweets": 3,
+        "replies": 23,
+        "views": 12888,
+        "engagement": 129,
+        "created_at": "2026-05-20T02:32:44+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2056907267211976861",
+        "author": "KyleSamani",
+        "text": "trying to get in touch with sales team at TRM labs, can someone connect me please",
+        "likes": 53,
+        "retweets": 1,
+        "replies": 17,
+        "views": 28307,
+        "engagement": 71,
+        "created_at": "2026-05-20T01:18:02+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057084604406731098",
+        "author": "StaniKulechov",
+        "text": "What\u2019s next for DeFi lending.\n\nAave will win.",
+        "likes": 60,
+        "retweets": 3,
+        "replies": 6,
+        "views": 4463,
+        "engagement": 69,
+        "created_at": "2026-05-20T13:02:43+00:00",
+        "tier": "T1"
+      }
+    ]
+  },
+  "top_kols": [
+    {
+      "id": "2056937818988154985",
+      "author": "naval",
+      "text": "We\u2019re searching for permanent satisfaction with an impermanent mind in an impermanent world.",
+      "likes": 7366,
+      "retweets": 911,
+      "replies": 493,
+      "views": 224869,
+      "engagement": 8770,
+      "created_at": "2026-05-20T03:19:26+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057060133604139257",
+      "author": "naval",
+      "text": "The latest IQ test involves data centers and water.",
+      "likes": 4030,
+      "retweets": 310,
+      "replies": 310,
+      "views": 153397,
+      "engagement": 4650,
+      "created_at": "2026-05-20T11:25:28+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057062903111434286",
+      "author": "naval",
+      "text": "What you really want is a challenge at the edge of your capability.",
+      "likes": 3859,
+      "retweets": 455,
+      "replies": 303,
+      "views": 97629,
+      "engagement": 4617,
+      "created_at": "2026-05-20T11:36:29+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057059290553155741",
+      "author": "naval",
+      "text": "If it\u2019s not one of the best books you\u2019ve ever read, don\u2019t read it.",
+      "likes": 3355,
+      "retweets": 168,
+      "replies": 380,
+      "views": 178625,
+      "engagement": 3903,
+      "created_at": "2026-05-20T11:22:07+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2056992175318073477",
+      "author": "VitalikButerin",
+      "text": "Short-term things being done to shift Ethereum toward native privacy:\n\n* AA + FOCIL (makes privacy protocol txs, among many other things, first-class with strong inclusion guarantees)\n* Keyed nonces: \n* Access-layer work (Kohaku, private reads...)",
+      "likes": 1156,
+      "retweets": 135,
+      "replies": 285,
+      "views": 183336,
+      "engagement": 1576,
+      "created_at": "2026-05-20T06:55:26+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2056905392475550108",
+      "author": "RaoulGMI",
+      "text": "The Economic Singularity in a nutshell",
+      "likes": 599,
+      "retweets": 63,
+      "replies": 13,
+      "views": 62797,
+      "engagement": 675,
+      "created_at": "2026-05-20T01:10:35+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057061635131351043",
+      "author": "naval",
+      "text": "The water is just a fig leaf. Really, they hate AI.",
+      "likes": 434,
+      "retweets": 8,
+      "replies": 65,
+      "views": 35854,
+      "engagement": 507,
+      "created_at": "2026-05-20T11:31:26+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057027628788269457",
+      "author": "nero_eth",
+      "text": "Ethereum is about to fundamentally change how blocks are executed. With the upcoming Glamsterdam hardfork, it's shipping EIP-7928: Block-level Access Lists, a proposal that brings parallelization to the EVM.\n\nHere's a short explainer of what it is, how it works, and why it's a big deal for scaling.\n\nLet's start from the top. Alongside EIP-7732 (ePBS), EIP-7928 is the execution-layer (EL) headliner for Glamsterdam. Like ePBS, the main focus has been scaling Ethereum, though both proposals come wi",
+      "likes": 307,
+      "retweets": 67,
+      "replies": 13,
+      "views": 13627,
+      "engagement": 387,
+      "created_at": "2026-05-20T09:16:19+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057075933668905338",
+      "author": "LynAldenContact",
+      "text": "The audiobook of The Stolguard Incident is now available!\n\nDual-narrated by the fantastic Carla and Walker, we went all-out on the production for this:",
+      "likes": 123,
+      "retweets": 11,
+      "replies": 19,
+      "views": 19559,
+      "engagement": 153,
+      "created_at": "2026-05-20T12:28:15+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2056926064404738548",
+      "author": "KyleSamani",
+      "text": "I am the dev team",
+      "likes": 103,
+      "retweets": 3,
+      "replies": 23,
+      "views": 12888,
+      "engagement": 129,
+      "created_at": "2026-05-20T02:32:44+00:00",
+      "tier": "T1"
+    }
+  ],
+  "narratives": [
+    {
+      "topic": "solana",
+      "count": 10,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "CoinMarketCap",
+          "text": "LATEST: \ud83d\ude93 Two American men were arrested in Japan after allegedly entering the zoo enclosure of viral monkey Punch to promote a Solana meme coin.",
+          "id": "2056945805223674293",
+          "likes": 910,
+          "retweets": 118
+        },
+        {
+          "author": "xiaaweb3",
+          "text": "$Solana is starting to crack.\n\nI\u2019m watching funding flip negative while most people still pretend this is just another healthy pullback.\n\nWhen futures traders stop paying for longs, I know confidence is fading faster than the charts show.\n\nA potential move to $78 suddenly doesn\u2019t look crazy anymore, especially after SOL failed to hold key momentum levels.\n\nI think the market got too comfortable with the \u201cSolana always bounces\u201d narrative.\n\nThe dangerous part is that retail still looks late to the",
+          "id": "2057023855328199096",
+          "likes": 378,
+          "retweets": 23
+        },
+        {
+          "author": "ZenithTON",
+          "text": "12 hours ago, Telegram joked about buying Zuck \"in the metaverse.\"\n\nThe trenches ran it on two chains. 12 hours later:\n\nSolana (ZUCC): more traders, more volume, 43k transactions. Already down 65% in the last hour.\n\nTON (80): fewer traders, less volume. But 10x the market cap, still green and still going.\n\nSolana had the bigger casino. TON had the better trade.\n\nThis is the difference people miss. Solana memecoins are pure PVP. Fast in, fast out, and the meme is dead before most people even noti",
+          "id": "2056983946647482537",
+          "likes": 189,
+          "retweets": 25
+        },
+        {
+          "author": "SolanaFloor",
+          "text": "BREAKING: Morgan Stanley just filed an amended application for its Solana ETF, with $MSOL listed as the proposed ticker.",
+          "id": "2057074409756852522",
+          "likes": 178,
+          "retweets": 23
+        },
+        {
+          "author": "gumsays",
+          "text": "The State of Solana\n\nTL;DR\n\n$SOL down 33% QoQ to $83.\n\nOn-chain activity hit new highs: 112.6M daily non-vote transactions, up 50% QoQ.\n\nSolana dApp revenue remained high at $342M despite the bear market.\n\nPumpFun, Axiom, Phantom and Jupiter generated the most revenue.\n\nRWAs grew 43%.\n\nDeFi TVL down 22% mostly due to SOL price action.\n\nStablecoin market cap new ATH at $15B.\n\nPayments and institutional adoption expanded, with activity involving firms such as Visa, Stripe, Worldpay, Western Union,",
+          "id": "2057052647849394640",
+          "likes": 156,
+          "retweets": 13
+        }
+      ]
+    },
+    {
+      "topic": "hyperliquid",
+      "count": 9,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "arkham",
+          "text": "THIS GUY IS TWAPPING $15 MILLION $HYPE\n\nThis address 0xf605 deposited a total of $19M USDC to Hyperliquid in the past 4 hours and has initiated TWAP buys for $15M of spot HYPE over the next ~7-8 hours.\n\nSo far he has purchased $2.9M HYPE.",
+          "id": "2057076575087288634",
+          "likes": 304,
+          "retweets": 27
+        },
+        {
+          "author": "DegenerateNews",
+          "text": "BREAKING: hyperliquid:native SURPASSES $50",
+          "id": "2057079392568844561",
+          "likes": 244,
+          "retweets": 16
+        },
+        {
+          "author": "vikktorrrre",
+          "text": "> be Jeff Yan (Hyperliquid)\n\n> Hail from Palo Alto. \n> Really good at physics and math.\n> Wins gold medal in world competition.\n> Goes to Harvard. Studies math and computer science.\n> Works at a big company. Uses computers to buy and sell thousands of stocks per second.\n\n> 2019: Moves to Puerto Rico with $10,000.\n> Starts his own crypto trading business (Chameleon Trading).\n> Makes huge money. Like thousands of percent growth every year.\n> By age 27, he's rich enough to never work again.\n\n> 2022",
+          "id": "2057069805027442955",
+          "likes": 134,
+          "retweets": 5
+        },
+        {
+          "author": "HYPERDailyTK",
+          "text": "Hyperliquid is growing insanely fast right now. They're straight up eating into the market share of big CEXs like Binance, and even making traditional exchanges like CME and NYSE nervous.\n\nOn-chain everything, full transparency, no bullshit hidden liquidations \u2014 traders are clearly loving it and moving their volume over. The old centralized players are starting to feel the pressure for a reason.\n\nThis shift is happening quicker than most people expected. The future of trading isn't coming... it'",
+          "id": "2056943674752442553",
+          "likes": 170,
+          "retweets": 18
+        },
+        {
+          "author": "DegenerateNews",
+          "text": "BREAKING: hyperliquid:native IS NOW UP OVER 110% THIS YEAR - OUTPERFORMING bitcoin:native, $ETH, $XRP, solana:So11111111111111111111111111111111111111112, $BNB, $DOGE AND $COIN (@coinbase), WHICH ARE ALL DOWN DOUBLE DIGITS YTD",
+          "id": "2057097342793244963",
+          "likes": 84,
+          "retweets": 10
+        }
+      ]
+    },
+    {
+      "topic": "base",
+      "count": 8,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "Giooton",
+          "text": "This is so gay.\n\nBase spent millions pushing AI agents and took the #1 spot.\n\nNow imagine what @durov can do for the-open-network:native with AI agents, beyond just Telegram updates.\n\nThere are only three AI-based memes on TON and all of them are still sitting below a $350k market cap.\n\nTeleclaw: $312k\nCocoon: $250k\nMira: $70k\n\nAI narrative on TON is still extremely early.",
+          "id": "2057021769324671259",
+          "likes": 80,
+          "retweets": 9
+        },
+        {
+          "author": "DegenerateNews",
+          "text": "BREAKING: hyperliquid:native IS NOW UP OVER 110% THIS YEAR - OUTPERFORMING bitcoin:native, $ETH, $XRP, solana:So11111111111111111111111111111111111111112, $BNB, $DOGE AND $COIN (@coinbase), WHICH ARE ALL DOWN DOUBLE DIGITS YTD",
+          "id": "2057097342793244963",
+          "likes": 84,
+          "retweets": 10
+        },
+        {
+          "author": "supraEVM",
+          "text": "EARLY ALPHAs \n\n\u25fc\ufe0f @morfimarkets \n\nMorfi Markets is a Solana-based opinion market platform where people trade on \u201cShould this happen?\u201d instead of \u201cWill this happen?\u201d\n\nUnlike prediction markets like Polymarket that rely on facts/oracles, Morfi focuses on subjective debates (culture, sports, politics, music, ethics), where outcomes are decided by community consensus.\n\nThe goal is to bring opinion-based trading onchain and crowd-fund its Solana launch while rewarding early users. It might be related",
+          "id": "2056876614022037848",
+          "likes": 46,
+          "retweets": 5
+        },
+        {
+          "author": "magersih",
+          "text": "yang mau memahami @base biar tidak tergocek dalam aped suatu token, bisa baca ini ya tapi bahasa inggris.",
+          "id": "2057071203156705429",
+          "likes": 47,
+          "retweets": 2
+        },
+        {
+          "author": "0xldb",
+          "text": "bsc\u7684\u571f\u72d7\u53c8\u53d8\u6210\u7a33\u5b9a\u5e01\u4e86\uff0c\u5f88\u591a\u4eba\u8bf4\u5927\u7684\u8981\u6765\u4e86\u3002\n\n\u6211\u89c9\u5f97\u6240\u8c13\u7684\u5927\u7684\uff0c\u5927\u6982\u7387\u8fd8\u662f\u4ece\u4e0a\u5e01\u7684\u89d2\u5ea6\u53bb\u64cd\u4f5c\u3002\n\n\u56e0\u4e3a\u5982\u679c\u4e8c\u5723\u53d1\u65b0\u7684\u6897\uff0c\u5f88\u96be\u8dd1\u51fa\u9ad8\u5ea6\uff0c\u6bd5\u7adf\u76ee\u524d\u7ade\u4e89\u592a\u6fc0\u70c8\u4e86\uff0csol\u3001\u4e3b\u7f51\u3001base\u90fd\u5728\u5438\u5f15\u6ce8\u610f\u529b\uff0c\u573a\u5185\u5c31\u8fd9\u70b9\u8d44\u91d1\uff0c\u60f3\u8981\u65b0\u7684\u5171\u8bc6\u51fa\u6765\uff0c\u592a\u96be\u4e86\u3002\n\n\u8fd9\u4e5f\u662f\u4e3a\u4ec0\u4e48\u6700\u8fd1\u8001\u5e01\u90fd\u4f5c\u5996\u7684\u539f\u56e0\uff0c\u56e0\u4e3a\u6709\u5171\u8bc6\u57fa\u7840\uff0c\u597d\u62c9\u76d8\uff0c\u6bd4\u5982trol\u3001buttcoin\u3001aeon\u7b49\u3002\n\n\u5982\u679c\u65b0\u4e0a\u5e01\u7684\u65b9\u5f0f\uff0c\u57fa\u672c\u53ef\u4ee5\u9501\u5b9a\u662f\u4e2d\u6587meme\u7684\u73b0\u8d27\u6216\u8005\u5408\u7ea6\uff0c\u8fd9\u6837\u7684\u52a8\u9759\u624d\u5927\u3002\n\n\u53ea\u4e0d\u8fc7\u8e0f\u9a6c\u548c\u9f99\u867e\u7684\u70ed\u5ea6\u6bd4\u8f83\u4e00\u822c\u4e86\u3002\u5176\u4ed6\u7684\u96ea\u7403\u3001\u54c8\u57fa\u7c73\u3001fom\u3001\u718a\u732b\u5934\u3001\u5171\u5efa\u3001virus\u793e\u533a\u90fd\u8fd8\u6bd4\u8f83\u706b\u70ed\u3002\n\n\u4e0d\u77e5\u9053\u5e01\u5b89\u4f1a\u600e\u4e48\u505a\u3002",
+          "id": "2056918104090063218",
+          "likes": 17,
+          "retweets": 0
+        }
+      ]
+    },
+    {
+      "topic": "bitcoin",
+      "count": 7,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "BitcoinMagazine",
+          "text": "JUST IN: \ud83c\uddfa\ud83c\uddf8 South Carolina Governor signs bill into law that permits businesses to use Bitcoin &amp; crypto for transactions and prohibits the government from transacting in a CBDC \ud83d\udc4f",
+          "id": "2057077581485089258",
+          "likes": 894,
+          "retweets": 165
+        },
+        {
+          "author": "Bitcoin",
+          "text": "$77,384.56\n\n#Bitcoin",
+          "id": "2057080316850733393",
+          "likes": 514,
+          "retweets": 92
+        },
+        {
+          "author": "CoinMarketCap",
+          "text": "LATEST: \ud83d\udcca The Zcash Foundation ended Q1 with $36.69M in liquid assets and just $817K in operating expenses, holding $21M in ZEC and $12.6M in cash and USDC, plus smaller amounts of Bitcoin and ETH.",
+          "id": "2056961659604816302",
+          "likes": 317,
+          "retweets": 51
+        },
+        {
+          "author": "DegenerateNews",
+          "text": "BREAKING: hyperliquid:native IS NOW UP OVER 110% THIS YEAR - OUTPERFORMING bitcoin:native, $ETH, $XRP, solana:So11111111111111111111111111111111111111112, $BNB, $DOGE AND $COIN (@coinbase), WHICH ARE ALL DOWN DOUBLE DIGITS YTD",
+          "id": "2057097342793244963",
+          "likes": 84,
+          "retweets": 10
+        },
+        {
+          "author": "BTCtreasuries",
+          "text": "JUST IN: David Bailey's #Bitcoin treasury company Nakamoto $NAKA just announced a 1-for-40 reverse stock split, effective May 22, to meet Nasdaq's minimum bid price requirement for continued listing.",
+          "id": "2057090101432504525",
+          "likes": 53,
+          "retweets": 5
+        }
+      ]
+    },
+    {
+      "topic": "aptos",
+      "count": 7,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "Aptos",
+          "text": "The Move Prover formally verifies smart contracts on Aptos, mathematically proving code works as designed before it ever touches mainnet.\n\nBuilt into the stack, first-party formal verification\u2014native to Aptos.",
+          "id": "2056917858026958965",
+          "likes": 477,
+          "retweets": 52
+        },
+        {
+          "author": "stan_ngx",
+          "text": "Aptos' Move Prover: Stronger Smart Contracts\n\nThe Move Prover's verification is fully comprehensive and holds for all possible inputs and global states\n\nBecause the verification process is fast and highly automated, it can be seamlessly integrated into standard developer workflows\n\nThis type of formal verification is already built-in at @Aptos. All thanks to @AptosLabs",
+          "id": "2057017671636627948",
+          "likes": 40,
+          "retweets": 4
+        },
+        {
+          "author": "Defi_Warhol",
+          "text": "AI makes finding smart contract bugs dirt cheap.\n\nIf attackers can use AI to find bugs faster, it makes sense that builders can use AI-assisted verification before deployment.\n\nThis is where the Move Prover from @Aptos comes into play.\n\nMove Prover checks whether a contract actually follows the rules developers wrote for it. The new updates make that process fast enough to use during normal development, not just before launch:\n\n\u2192 AI helps write the specs\n\u2192 Math checks whether the code follows th",
+          "id": "2057076887013454207",
+          "likes": 20,
+          "retweets": 3
+        },
+        {
+          "author": "FriyoyoFm",
+          "text": "Move on @Aptos  stands out because it doesn\u2019t rely on testing alone.\n\nWith the Move Specification Language (MSL), developers can define exactly how smart contracts should behave, when they should fail, and what conditions must always remain true.\n\nThen the Move Prover mathematically verifies the code across all possible states and inputs.\n\nNot just writing smart contracts.\nWriting guarantees.",
+          "id": "2056991807674740916",
+          "likes": 2,
+          "retweets": 0
+        },
+        {
+          "author": "imkientrinh",
+          "text": "@stan_ngx @UnchainedSummit @AeternumInc @Aptos my idol",
+          "id": "2056992314573414578",
+          "likes": 1,
+          "retweets": 0
+        }
+      ]
+    },
+    {
+      "topic": "sui",
+      "count": 6,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "HakResearch",
+          "text": "SUI C\u00d3 TH\u1ec2 TR\u1ede TH\u00c0NH SOL TI\u1ebeP THEO KH\u00d4NG?\n\nKh\u00f4ng th\u1ec3 ph\u1ee7 nh\u1eadn @SuiNetwork l\u00e0 m\u1ed9t trong nh\u1eefng Layer 1 th\u00e0nh c\u00f4ng nh\u1ea5t trong chu k\u00ec v\u1eeba qua. V\u00e0 trong th\u1eddi \u0111i\u1ec3m hi\u1ec7n t\u1ea1i Sui Network v\u1eabn \u0111ang mi\u1ec7t m\u00e0i t\u00ecm ki\u1ebfm Product Market Fit c\u1ee7a ri\u00eang m\u00ecnh nh\u01b0:\n\n1\u20e3 Th\u00e1ng 3/2026, @SuiFoundation \u0111\u00e3 h\u1ee3p t\u00e1c v\u1edbi Bridge (c\u00f4ng ty stablecoin \u0111\u01b0\u1ee3c Stripe mua l\u1ea1i) \u0111\u1ec3 ch\u00ednh th\u1ee9c cho ra m\u1eaft Native Stablecoin $USDsui v\u1edbi m\u1ed9t s\u1ed1 c\u00e1c \u0111\u1eb7c \u0111i\u1ec3m nh\u01b0:\n\n- Peg 1 - 1 v\u1edbi $USD, \u0111\u01b0\u1ee3c h\u1ed7 tr\u1ee3 b\u1edfi tr\u00e1i phi\u1ebfu ch\u00ednh ph\u1ee7 M\u1ef9, ti\u1ec1n m\u1eb7t & c\u00e1c ",
+          "id": "2056908613697122759",
+          "likes": 48,
+          "retweets": 3
+        },
+        {
+          "author": "HakResearch",
+          "text": "PH\u00c2N T\u00cdCH $SUI TOKENOMICS & \u0110I\u1ec2M \u0110\u00c1NG L\u01afU \u00dd\n\n$SUI \u0111\u00e3 b\u01b0\u1edbc qua giai \u0111o\u1ea1n kh\u00f3 kh\u0103n nh\u1ea5t \u0111\u1ed1i v\u1edbi m\u1ecdi token \u0111\u00f3 ch\u00ednh l\u00e0 vi\u1ec7c m\u1edf kho\u00e1 ho\u00e0n to\u00e0n cho VCs v\u00e0 c\u0169ng g\u1ea7n h\u1ebft cho \u0111\u1ed9i ng\u0169 ph\u00e1t tri\u1ec3n. M\u1ed9t s\u1ed1 g\u00f3c nh\u00ecn m\u00ecnh th\u1ea5y l\u00e0:\n\n- FDV hi\u1ec7n t\u1ea1i c\u1ee7a $SUI \u0111ang l\u00e0 kho\u1ea3ng 10 - 15 t\u1ef7 \u0111\u00f4 trong khi \u0111\u00f3 ph\u00e2n b\u1ed5 cho VCs \u0111\u00e3 tr\u1ea3 h\u1ebft & t\u1ea5t c\u1ea3 \u0111\u1ec1u c\u00f3 l\u1eddi th\u1eadm ch\u00ed l\u00e0 l\u1eddi r\u1ea5t nhi\u1ec1u nh\u01b0ng $SUI l\u1ea1i kh\u00f4ng gi\u1ea3m qu\u00e1 nhi\u1ec1u th\u00ec v\u1edbi m\u00ecnh \u0111\u00e2y l\u00e0 m\u1ed9t t\u00edn hi\u1ec7u t\u1ed1t.\n\n- V\u1edbi vi\u1ec7c ph\u00e2n b\u1ed5 cho \u0111\u1ed9i ng\u0169 c\u0169ng b\u01b0\u1edbc qua m\u1ed9t ph\u1ea7n l\u1edbn nh\u01b0ng $SUI",
+          "id": "2056908623826342145",
+          "likes": 10,
+          "retweets": 0
+        },
+        {
+          "author": "HakResearch",
+          "text": "NH\u1eeeNG V\u1ea4N \u0110\u1ec0 \u0110\u1ed0I V\u1edaI H\u1ec6 SINH TH\u00c1I SUI NETWORK\n\nTheo quan \u0111i\u1ec3m c\u1ee7a c\u00e1 nh\u00e2n m\u00ecnh th\u00ec nh\u00ecn qua th\u00ec ch\u00fang ta th\u1ea5y Sui Network & Sui Foudation kh\u00e1 t\u00edch c\u1ef1c trong vi\u1ec7c x\u00e2y d\u1ef1ng m\u1ed9t h\u1ec7 sinh th\u00e1i v\u1eefng m\u1ea1nh, \u0111a d\u1ea1ng v\u00e0 ph\u00f9 h\u1ee3p t\u1eeb c\u00e1 nh\u00e2n t\u1edbi t\u1ed5 ch\u1ee9c. \n\nTuy nhi\u00ean, m\u00ecnh th\u1ea5y c\u00f3 v\u1ea5n \u0111\u1ec1 l\u1edbn \u0111\u1ed1i v\u1edbi h\u1ec7 sinh th\u00e1i Sui sau m\u1ed9t th\u1eddi gian d\u00e0i quan s\u00e1t:\n\n1\u20e3 Kh\u00f4ng b\u1eaft \u0111\u01b0\u1ee3c Narrative trong giai \u0111o\u1ea1n qua\n\nM\u1ed9t \u0111i\u1ec1u duy nh\u1ea5t m\u00e0 h\u1ec7 sinh th\u00e1i Sui Network l\u00e0m c\u1ef1c k\u00ec t\u1ed1t trong xu h\u01b0\u1edbng v\u1eeba r\u1ed3i \u0111\u00f3 ch\u00ednh l\u00e0 Airdrop v\u1edbi $DEEP ",
+          "id": "2056908619510341729",
+          "likes": 5,
+          "retweets": 0
+        },
+        {
+          "author": "n1stake",
+          "text": "Stakers are here?! \ud83d\udc40\n\nMeet the Sui Staking AI Agent \ud83e\udd16 Your assistant for native $SUI staking - \n\n- find the best validators \n- analyze your staking positions  \n- restake, claim rewards and more\n\nAll from one chat! Try it now and ask the agent to analyze your stakes -",
+          "id": "2057098651516744132",
+          "likes": 3,
+          "retweets": 2
+        },
+        {
+          "author": "doncurrent",
+          "text": "Just in: @CurrentSUI just launched a campaign of 3000 $SUI for 30 users in collaboration with @SlushWallet \n\nTimeline is 20th May to 2nd June \n\n\u2b50\ufe0f Getting started \n\n\u2022 Open your slush wallet and click on the campaign from the slush announcement board \n\n\u2022 if using pc start here and connect your slush wallet: \n\ndon\u2019t understand how it works?\n\nThere are strategies there but if you need more visual education on how it works check the content below and educational content covering everything about Cur",
+          "id": "2057098230555414756",
+          "likes": 2,
+          "retweets": 1
+        }
+      ]
+    },
+    {
+      "topic": "ethereum",
+      "count": 5,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "VitalikButerin",
+          "text": "Short-term things being done to shift Ethereum toward native privacy:\n\n* AA + FOCIL (makes privacy protocol txs, among many other things, first-class with strong inclusion guarantees)\n* Keyed nonces: \n* Access-layer work (Kohaku, private reads...)",
+          "id": "2056992175318073477",
+          "likes": 1156,
+          "retweets": 135
+        },
+        {
+          "author": "nero_eth",
+          "text": "Ethereum is about to fundamentally change how blocks are executed. With the upcoming Glamsterdam hardfork, it's shipping EIP-7928: Block-level Access Lists, a proposal that brings parallelization to the EVM.\n\nHere's a short explainer of what it is, how it works, and why it's a big deal for scaling.\n\nLet's start from the top. Alongside EIP-7732 (ePBS), EIP-7928 is the execution-layer (EL) headliner for Glamsterdam. Like ePBS, the main focus has been scaling Ethereum, though both proposals come wi",
+          "id": "2057027628788269457",
+          "likes": 307,
+          "retweets": 67
+        },
+        {
+          "author": "RuneCrypto_",
+          "text": "runecrypto.eth & ethereum:0x829f4b62eebe12af653b4dd4ffc480966f7d7f09\n\n14 days ago, I joned the chinese ethereum:0x829f4b62eebe12af653b4dd4ffc480966f7d7f09 telegram, where everyone wasn't liking me for being foreigner. I decided to prove who I am, created a new wallet and buy $100,000 ethereum:0x829f4b62eebe12af653b4dd4ffc480966f7d7f09 with it at $0.14 (runecrypto.eth)\n\nDuring the next weeks, I helped build sato community and held all of it. I knew I would never be able to trade my ethereum:0x829",
+          "id": "2057049300362834329",
+          "likes": 141,
+          "retweets": 16
+        },
+        {
+          "author": "5phutcrypto_",
+          "text": "\ud83d\udea8 HOLDER $ETH C\u1ea6N N\u1eaeM TH\u00d4NG TIN N\u00c0Y! #5PC \n\nCh\u1ec9 trong v\u00f2ng v\u00e0i th\u00e1ng qua, \u00edt nh\u1ea5t 8 nh\u00e2n s\u1ef1 c\u1ed1t c\u00e1n \u0111\u00e3 tuy\u00ean b\u1ed1 r\u1eddi Ethereum Foundation, ch\u01b0a k\u1ec3 h\u00e0ng lo\u1ea1t core dev kh\u00e1c.\n\n- Tomasz Sta\u0144czak (\u0110\u1ed3ng Gi\u00e1m \u0111\u1ed1c \u0110i\u1ec1u h\u00e0nh): T\u1eeb ch\u1ee9c ch\u00f3ng v\u00e1nh sau ch\u01b0a \u0111\u1ea7y 11 th\u00e1ng t\u1ea1i nhi\u1ec7m.\n\n- Tim Beiko & Barnab\u00e9 Monnot: Hai th\u1ee7 l\u0129nh Ethereum L1 \u0111\u1ed3ng lo\u1ea1t r\u1eddi \u0111i; ng\u01b0\u1eddi c\u00f2n l\u1ea1i l\u00e0 Alex Stokes c\u0169ng xin ngh\u1ec9 ph\u00e9p d\u00e0i h\u1ea1n.\n\n- Carl Beekhuizen & Julian Ma: Carl l\u00e0 ki\u1ebfn tr\u00fac s\u01b0 tr\u01b0\u1edfng \u0111\u1ee9ng sau s\u1ef1 ki\u1ec7n The Merge. Julian l\u00e0 b\u1ed9 ",
+          "id": "2057015336768258342",
+          "likes": 17,
+          "retweets": 1
+        },
+        {
+          "author": "emilyyvuong",
+          "text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8Wintermute: L\u1ef1a ch\u1ecdn ETH \u1edf hi\u1ec7n t\u1ea1i l\u00e0 sai l\u1ea7m\n\nC\u1ee5 th\u1ec3, trong b\u00e0i market update m\u1edbi nh\u1ea5t, Wintermute \u0111\u00e3 vi\u1ebft: \"T\u1ef7 l\u1ec7 ETH/BTC \u0111ang \u00e9p v\u1ec1 v\u00f9ng 0.0275, cho th\u1ea5y ETH v\u1eabn ch\u01b0a c\u00f3 l\u1ef1c b\u1eaft \u0111\u00e1y \u0111\u1ee7 m\u1ea1nh. Ethereum hi\u1ec7n kh\u00f4ng ph\u1ea3i t\u00e0i s\u1ea3n ph\u00f9 h\u1ee3p v\u1edbi m\u00f4i tr\u01b0\u1eddng v\u0129 m\u00f4 hi\u1ec7n t\u1ea1i\".",
+          "id": "2057094404633231609",
+          "likes": 5,
+          "retweets": 0
+        }
+      ]
+    },
+    {
+      "topic": "bnb",
+      "count": 5,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "DegenerateNews",
+          "text": "BREAKING: hyperliquid:native IS NOW UP OVER 110% THIS YEAR - OUTPERFORMING bitcoin:native, $ETH, $XRP, solana:So11111111111111111111111111111111111111112, $BNB, $DOGE AND $COIN (@coinbase), WHICH ARE ALL DOWN DOUBLE DIGITS YTD",
+          "id": "2057097342793244963",
+          "likes": 84,
+          "retweets": 10
+        },
+        {
+          "author": "launchly",
+          "text": "$CZ1 is now live on Uniswap v4 on @BNBChain. \ud83e\udd73\n\nA tribute to @cz_binance. 100% of creator fees go directly to @GiggleAcademy automatically. Every trade is a donation.\n\nSwap: \n\nCA: 0xcDe9fdC3e97979B76bA65a88d9a631F514a3C36f\n\nThe team is heads down and moving fast. The fees are going straight to support children all over the world. Follow @CZ1_bnb for more announcements dropping today. \ud83e\udde1\n\n#ForTheKids \ud83c\udf93",
+          "id": "2057094596035752137",
+          "likes": 40,
+          "retweets": 29
+        },
+        {
+          "author": "saturn_credit",
+          "text": "Saturn is now live on @BNBChain.\n\nUSDat and sUSDat will integrate across leading DeFi protocols - bringing $STRC to BNB Chain at scale.\n\nAvailable to eligible participants outside the United States.",
+          "id": "2057084136322670658",
+          "likes": 52,
+          "retweets": 5
+        },
+        {
+          "author": "binance",
+          "text": "300 BNB in token vouchers up for grabs.\n\nJoin the $ALT Trading Tournament and trade your way to the top.\n\nParticipate now \ud83d\udc49",
+          "id": "2057100085477986691",
+          "likes": 34,
+          "retweets": 12
+        },
+        {
+          "author": "saturn_credit",
+          "text": "May 25th: specific Saturn activities on BNB Chain will receive a 100% points boost.\n\nAccumulate Gravity Points on BNB Chain.\n\nFull participation details: \n\nAvailable to eligible participants outside the United States. Yield is variable and not guaranteed. Not an offer or solicitation where prohibited.",
+          "id": "2057084149035647260",
+          "likes": 4,
+          "retweets": 0
+        }
+      ]
+    },
+    {
+      "topic": "zcash",
+      "count": 4,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "CoinMarketCap",
+          "text": "LATEST: \ud83d\udcca The Zcash Foundation ended Q1 with $36.69M in liquid assets and just $817K in operating expenses, holding $21M in ZEC and $12.6M in cash and USDC, plus smaller amounts of Bitcoin and ETH.",
+          "id": "2056961659604816302",
+          "likes": 317,
+          "retweets": 51
+        },
+        {
+          "author": "cypherpunk",
+          "text": "BREAKING: Noir, a browser-extension Zcash wallet, just entered private beta.",
+          "id": "2057003835944526173",
+          "likes": 113,
+          "retweets": 10
+        },
+        {
+          "author": "paulbrigner",
+          "text": "This is a special opportunity to contribute to the Zcash community.\n\nI\u2019ve submitted my candidacy announcement, and it would be an honor to serve if elected.",
+          "id": "2057053264328159474",
+          "likes": 39,
+          "retweets": 5
+        },
+        {
+          "author": "Bitstamp",
+          "text": "New asset now available to trade on Bitstamp by Robinhood.\n\n$ZEC (Zcash)",
+          "id": "2057099082900902102",
+          "likes": 5,
+          "retweets": 0
+        }
+      ]
+    },
+    {
+      "topic": "ton",
+      "count": 3,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "ZenithTON",
+          "text": "12 hours ago, Telegram joked about buying Zuck \"in the metaverse.\"\n\nThe trenches ran it on two chains. 12 hours later:\n\nSolana (ZUCC): more traders, more volume, 43k transactions. Already down 65% in the last hour.\n\nTON (80): fewer traders, less volume. But 10x the market cap, still green and still going.\n\nSolana had the bigger casino. TON had the better trade.\n\nThis is the difference people miss. Solana memecoins are pure PVP. Fast in, fast out, and the meme is dead before most people even noti",
+          "id": "2056983946647482537",
+          "likes": 189,
+          "retweets": 25
+        },
+        {
+          "author": "Giooton",
+          "text": "This is so gay.\n\nBase spent millions pushing AI agents and took the #1 spot.\n\nNow imagine what @durov can do for the-open-network:native with AI agents, beyond just Telegram updates.\n\nThere are only three AI-based memes on TON and all of them are still sitting below a $350k market cap.\n\nTeleclaw: $312k\nCocoon: $250k\nMira: $70k\n\nAI narrative on TON is still extremely early.",
+          "id": "2057021769324671259",
+          "likes": 80,
+          "retweets": 9
+        },
+        {
+          "author": "apostlehearty",
+          "text": "Ton foundation just let  legend leave.\n\nThis passed a message, that whoever you are, the system is bigger than you.",
+          "id": "2056874920085270662",
+          "likes": 4,
+          "retweets": 0
+        }
+      ]
+    }
+  ],
+  "contrarian": [
+    {
+      "id": "2056992175318073477",
+      "author": "VitalikButerin",
+      "text": "Short-term things being done to shift Ethereum toward native privacy:\n\n* AA + FOCIL (makes privacy protocol txs, among many other things, first-class with strong inclusion guarantees)\n* Keyed nonces: \n* Access-layer work (Kohaku, private reads...)",
+      "likes": 1156,
+      "retweets": 135,
+      "replies": 285,
+      "views": 183336,
+      "engagement": 1576,
+      "created_at": "2026-05-20T06:55:26+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057083772441686436",
+      "author": "solana",
+      "text": "",
+      "likes": 727,
+      "retweets": 69,
+      "replies": 217,
+      "views": 26558,
+      "engagement": 1013,
+      "created_at": "2026-05-20T12:59:24+00:00"
+    },
+    {
+      "id": "2056917858026958965",
+      "author": "Aptos",
+      "text": "The Move Prover formally verifies smart contracts on Aptos, mathematically proving code works as designed before it ever touches mainnet.\n\nBuilt into the stack, first-party formal verification\u2014native to Aptos.",
+      "likes": 477,
+      "retweets": 52,
+      "replies": 219,
+      "views": 13727,
+      "engagement": 748,
+      "created_at": "2026-05-20T02:00:07+00:00"
+    },
+    {
+      "id": "2057080316850733393",
+      "author": "Bitcoin",
+      "text": "$77,384.56\n\n#Bitcoin",
+      "likes": 514,
+      "retweets": 92,
+      "replies": 115,
+      "views": 19878,
+      "engagement": 721,
+      "created_at": "2026-05-20T12:45:40+00:00"
+    },
+    {
+      "id": "2057008779615424800",
+      "author": "solsticefi",
+      "text": "TAKE YOUR YIELD BACK.\n\nJust taking the scenic route.\n\nMay 25th.",
+      "likes": 306,
+      "retweets": 28,
+      "replies": 101,
+      "views": 59945,
+      "engagement": 435,
+      "created_at": "2026-05-20T08:01:25+00:00"
+    }
+  ],
+  "summary": "\ud83d\udd25 Top narrative: *solana* v\u1edbi 10 tweets (neutral)\n\n\ud83d\uddde\ufe0f 1 breaking news items detected\n\n\ud83d\udcb0 11 funding announcements",
+  "report_path": "/home/julius/julius-workspace/working/X/report/daily/20-05-2026-daily-report.md"
+}

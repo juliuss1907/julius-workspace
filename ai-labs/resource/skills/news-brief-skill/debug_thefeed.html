@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<script>
+    // Apply dark mode BEFORE first paint to prevent light-mode flash (FOUC)
+    (function () { var s = localStorage.getItem('ragnews:theme'); if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme:dark)').matches)) document.documentElement.setAttribute('data-theme', 'dark') })()
+</script>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title id="seoTitle">The Feed | Real-time X Trends, Crypto Signals and Breaking News</title>
+    <meta name="description" id="seoDescription"
+        content="Track real-time trending posts, breaking stories, crypto signals, and engagement momentum from X in one live dashboard." />
+    <meta name="robots" id="seoRobots"
+        content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="author" content="The Feed" />
+    <meta name="theme-color" content="#0070f3" />
+    <link rel="canonical" id="seoCanonical" href="https://thefeed.today/" />
+
+    <meta property="og:type" id="seoOgType" content="website" />
+    <meta property="og:site_name" content="The Feed" />
+    <meta property="og:title" id="seoOgTitle"
+        content="The Feed | Real-time X Trends, Crypto Signals and Breaking News" />
+    <meta property="og:description" id="seoOgDescription"
+        content="Track real-time trending posts, breaking stories, crypto signals, and engagement momentum from X in one live dashboard." />
+    <meta property="og:url" id="seoOgUrl" content="https://thefeed.today/" />
+    <meta property="og:image" id="seoOgImage" content="https://thefeed.today/rag/logo.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" id="seoTwitterTitle"
+        content="The Feed | Real-time X Trends, Crypto Signals and Breaking News" />
+    <meta name="twitter:description" id="seoTwitterDescription"
+        content="Track real-time trending posts, breaking stories, crypto signals, and engagement momentum from X in one live dashboard." />
+    <meta name="twitter:image" id="seoTwitterImage" content="https://thefeed.today/rag/logo.png" />
+    <meta name="twitter:url" id="seoTwitterUrl" content="https://thefeed.today/" />
+
+    <link rel="icon" type="image/png" href="/rag/logo.png" />
+    <link rel="stylesheet" href="/rag/styles.css?v=20260519a" />
+    <script type="application/ld+json" id="seoJsonLd">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "name": "The Feed",
+            "url": "https://thefeed.today/",
+            "description": "Real-time trending posts, breaking stories, and market momentum from X.",
+            "publisher": {
+                "@type": "Organization",
+                "name": "The Feed"
+            }
+        },
+        {
+            "@type": "CollectionPage",
+            "name": "The Feed Live Dashboard",
+            "url": "https://thefeed.today/",
+            "description": "Live dashboard for trending social stories, crypto and tech discussions.",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "The Feed",
+                "url": "https://thefeed.today/"
+            }
+        }
+    ]
+}
+        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-535TM459J7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-535TM459J7');
+    </script>
+</head>
+
+<body>
+    <div id="appLoadingOverlay" class="app-loading-overlay" aria-hidden="true">
+        <div class="app-loading-stack">
+            <img src="/rag/logo.png" alt="" class="app-loading-logo app-loading-logo--light" />
+            <img src="/rag/logo-dark.png" alt="" class="app-loading-logo app-loading-logo--dark" />
+            <div class="app-loading-powered">
+                <span class="app-loading-powered-text">powered by</span>
+                <img src="/rag/anoncoin-logo.png" alt="Anoncoin"
+                    class="app-loading-anoncoin app-loading-anoncoin--light" />
+                <img src="/rag/anoncoin-logo-dark.png" alt="Anoncoin"
+                    class="app-loading-anoncoin app-loading-anoncoin--dark" />
+            </div>
+        </div>
+    </div>
+    <h1 class="seo-only">The Feed live trends dashboard</h1>
+    <div class="bg-canvas">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+    <!-- ── Global Market Marquee ───────────────────────── -->
+    <section class="market-marquee" id="marketMarquee">
+        <div class="market-marquee-items" id="marketMarqueeItems">
+            <span class="ticker-empty">Loading prices…</span>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="top-row">
+            <div class="top-title-wrap">
+                <a href="/"><img src="/rag/logo.png" alt="The Feed" class="brand-logo brand-logo--light" /><img
+                        src="/rag/logo-dark.png" alt="The Feed" class="brand-logo brand-logo--dark" /></a>
+                <div class="region-select-wrap region-select-wrap--flag-only" id="regionSelectWrap">
+                    <span class="region-flag" id="regionFlag" aria-hidden="true">🇺🇸</span>
+                    <select id="regionSelect" class="region-select" aria-label="Filter by region">
+                        <option value="all" data-flag="🌐">🌐 All countries</option>
+                        <option value="United States" data-flag="🇺🇸" selected>🇺🇸 United States</option>
+                        <option value="United Kingdom" data-flag="🇬🇧">🇬🇧 United Kingdom</option>
+                        <option value="India" data-flag="🇮🇳">🇮🇳 India</option>
+                        <option value="Japan" data-flag="🇯🇵">🇯🇵 Japan</option>
+                        <option value="Germany" data-flag="🇩🇪">🇩🇪 Germany</option>
+                        <option value="France" data-flag="🇫🇷">🇫🇷 France</option>
+                        <option value="South Korea" data-flag="🇰🇷">🇰🇷 South Korea</option>
+                        <option value="Canada" data-flag="🇨🇦">🇨🇦 Canada</option>
+                        <option value="Australia" data-flag="🇦🇺">🇦🇺 Australia</option>
+                        <option value="Brazil" data-flag="🇧🇷">🇧🇷 Brazil</option>
+                        <option value="Mexico" data-flag="🇲🇽">🇲🇽 Mexico</option>
+                        <option value="Turkey" data-flag="🇹🇷">🇹🇷 Turkey</option>
+                        <option value="Saudi Arabia" data-flag="🇸🇦">🇸🇦 Saudi Arabia</option>
+                        <option value="United Arab Emirates" data-flag="🇦🇪">🇦🇪 United Arab Emirates</option>
+                        <option value="Switzerland" data-flag="🇨🇭">🇨🇭 Switzerland</option>
+                        <option value="South Africa" data-flag="🇿🇦">🇿🇦 South Africa</option>
+                        <option value="Ireland" data-flag="🇮🇪">🇮🇪 Ireland</option>
+                    </select>
+                </div>
+                <button type="button" id="darkModeToggle" class="dark-mode-toggle" title="Toggle dark mode"
+                    aria-label="Toggle dark mode">
+                    <svg class="dm-icon dm-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5" />
+                        <path
+                            d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                    <svg class="dm-icon dm-icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="top-right-wrap">
+                <div class="powered-by-wrap">
+                    <span class="powered-by">powered by</span>
+                    <a href="https://anoncoin.it" target="_blank" rel="noreferrer noopener"><img
+                            src="/rag/anoncoin-logo.png" alt="Anoncoin"
+                            class="anoncoin-logo anoncoin-logo--light" /><img src="/rag/anoncoin-logo-dark.png"
+                            alt="Anoncoin" class="anoncoin-logo anoncoin-logo--dark" /></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Toast ──────────────────────────────────────────── -->
+        <div id="toast" class="toast" aria-live="polite"></div>
+        <!-- ── Breaking News Cards ─────────────────────────────── -->
+        <section class="breaking-cards-wrap" id="breakingCardsWrap">
+            <button class="breaking-scroll-btn breaking-scroll-left" id="breakingScrollLeft"
+                aria-label="Scroll left">‹</button>
+            <div class="breaking-cards" id="breakingCards">
+                <div class="breaking-cards-track" id="breakingCardsTrack">
+                    <!-- cards filled by JS -->
+                </div>
+            </div>
+            <button class="breaking-scroll-btn breaking-scroll-right" id="breakingScrollRight"
+                aria-label="Scroll right">›</button>
+        </section>
+
+        <!-- ── Globe + Feed Activity Row ───────────────────────── -->
+        <div class="globe-activity-row">
+            <!-- ── Half-globe hero ────────────────────────────────────── -->
+            <section class="globe-hero" id="globeHero">
+                <div class="globe-canvas-wrap">
+                    <canvas id="globeCanvas" aria-label="Trending posts globe"></canvas>
+                    <div class="globe-legend">
+                        <span><i class="dot tier-spiking"></i>Spiking</span>
+                        <span><i class="dot tier-rising"></i>Rising</span>
+                        <span><i class="dot tier-active"></i>Active</span>
+                    </div>
+                    <button type="button" class="globe-rotate-toggle" id="globeRotateToggle" aria-pressed="true">
+                        <span class="rotate-dot"></span><span class="rotate-label">Auto-rotating</span>
+                    </button>
+                    <div class="globe-zoom-controls">
+                        <button type="button" class="globe-zoom-btn" id="globeZoomIn" aria-label="Zoom in">+</button>
+                        <button type="button" class="globe-zoom-btn" id="globeZoomReset"
+                            aria-label="Reset zoom">⟲</button>
+                        <button type="button" class="globe-zoom-btn" id="globeZoomOut" aria-label="Zoom out">−</button>
+                        <button type="button" class="globe-zoom-btn" id="globeFullscreen" aria-label="Fullscreen"
+                            title="Fullscreen">⛶</button>
+                    </div>
+                </div>
+                <div class="globe-hover-card" id="globeHoverCard" hidden></div>
+            </section>
+
+            <!-- ── Top Stories Sidebar ────────────────────────── -->
+            <aside class="top-stories" id="topStories">
+                <header class="top-stories-header">
+                    <h3 class="top-stories-title">Top Stories</h3>
+                    <span class="top-stories-grok" title="Stories ranked by Grok">
+                        powered by <span class="grok-logo" aria-hidden="true"></span>
+                    </span>
+                </header>
+                <ol class="top-stories-list" id="topStoriesList">
+                    <!-- filled by JS -->
+                </ol>
+            </aside>
+        </div>
+
+        <!-- ── Categories ───────────────────────────────────── -->
+        <section class="toolbar">
+            <div class="cat-scroll" id="catScroll" style="visibility:hidden">
+                <button class="cat-btn" type="button" data-cat="all">All</button>
+                <button class="cat-btn" type="button" data-cat="bookmark" data-static="true">Bookmarks</button>
+            </div>
+            <select class="cat-select" id="catSelect" aria-label="Filter by category">
+                <option value="all">All</option>
+                <option value="bookmark">Bookmarks</option>
+            </select>
+            <div class="table-sort-mobile" id="tableSortMobile">
+                <select id="sortSelect" class="sort-select" aria-label="Sort table">
+                    <option value="postedAt">Most recent</option>
+                    <option value="likes">Most liked</option>
+                    <option value="impressions">Most viewed</option>
+                    <option value="deltaImpressions1h">Δ views (1h)</option>
+                    <option value="pct1h">Δ views (Δ1H%)</option>
+                </select>
+            </div>
+            <label class="exclude-elon-toggle" id="excludeElonToggle" style="display:none">
+                <input type="checkbox" id="excludeElonCheckbox">
+                <span class="toggle-slider"></span>
+                <span class="toggle-label">Exclude Elon</span>
+            </label>
+            <div class="bookmark-add-bar" id="bookmarkAddBar" style="display:none">
+                <button type="button" id="bookmarkAddOpenBtn" class="bookmark-add-open-btn">
+                    <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+                        <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4"
+                            stroke-linecap="round" />
+                    </svg>
+                    <span>Add</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ── Table ─────────────────────────────────────────── -->
+        <section class="table-wrap" id="tableWrap">
+            <table class="tweet-table" id="tweetTable">
+                <thead>
+                    <tr>
+                        <th scope="col" class="col-bookmark" aria-label="Bookmark"></th>
+                        <th scope="col" class="col-rank">#</th>
+                        <th scope="col" class="col-summary">Summary</th>
+                        <th scope="col" class="col-cat" id="thCategory">Category</th>
+                        <th scope="col" class="col-posted sortable" data-col="postedAt" tabindex="0" role="button"
+                            aria-sort="none">Posted <span class="sort-icon"></span></th>
+                        <th scope="col" class="col-num sortable" data-col="likes" tabindex="0" role="button"
+                            aria-sort="none">Likes <span class="sort-icon"></span></th>
+                        <th scope="col" class="col-num sortable" data-col="impressions" tabindex="0" role="button"
+                            aria-sort="none">Views <span class="sort-icon"></span>
+                        </th>
+                        <th scope="col" class="col-num sortable" data-col="deltaImpressions1h" tabindex="0"
+                            role="button" aria-sort="descending">Δ 1h <span class="sort-icon"></span>
+                        </th>
+                        <th scope="col" class="col-num sortable" data-col="pct1h" tabindex="0" role="button"
+                            aria-sort="none">Δ1H% <span class="sort-icon"></span>
+                        </th>
+                        <th scope="col" class="col-link"></th>
+                    </tr>
+                </thead>
+                <tbody id="tweetTbody">
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="skeleton-tr" aria-hidden="true">
+                        <td class="col-bookmark"></td>
+                        <td class="col-rank"><span class="skel skel-line"></span></td>
+                        <td class="col-summary"><span class="skel skel-line skel-line--lg"></span><span
+                                class="skel skel-line skel-line--md"></span></td>
+                        <td class="col-cat"><span class="skel skel-pill"></span></td>
+                        <td class="col-posted"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-num"><span class="skel skel-line"></span></td>
+                        <td class="col-link"></td>
+                    </tr>
+                    <tr class="loading-row loading-row--mobile">
+                        <td colspan="10" class="empty-cell">
+                            <div class="loading-mobile">
+                                <div class="skeleton-card">
+                                    <div class="skel-meta">
+                                        <div class="skel skel-pill"></div>
+                                        <div class="skel skel-time"></div>
+                                    </div>
+                                    <div class="skel-summary">
+                                        <div class="skel skel-avatar"></div>
+                                        <div class="skel-lines">
+                                            <div class="skel skel-line skel-line--lg"></div>
+                                            <div class="skel skel-line skel-line--md"></div>
+                                            <div class="skel skel-line skel-line--sm"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skel-stats">
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-card">
+                                    <div class="skel-meta">
+                                        <div class="skel skel-pill"></div>
+                                        <div class="skel skel-time"></div>
+                                    </div>
+                                    <div class="skel-summary">
+                                        <div class="skel skel-avatar"></div>
+                                        <div class="skel-lines">
+                                            <div class="skel skel-line skel-line--lg"></div>
+                                            <div class="skel skel-line skel-line--md"></div>
+                                            <div class="skel skel-line skel-line--sm"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skel-stats">
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-card">
+                                    <div class="skel-meta">
+                                        <div class="skel skel-pill"></div>
+                                        <div class="skel skel-time"></div>
+                                    </div>
+                                    <div class="skel-summary">
+                                        <div class="skel skel-avatar"></div>
+                                        <div class="skel-lines">
+                                            <div class="skel skel-line skel-line--lg"></div>
+                                            <div class="skel skel-line skel-line--md"></div>
+                                            <div class="skel skel-line skel-line--sm"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skel-stats">
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-card">
+                                    <div class="skel-meta">
+                                        <div class="skel skel-pill"></div>
+                                        <div class="skel skel-time"></div>
+                                    </div>
+                                    <div class="skel-summary">
+                                        <div class="skel skel-avatar"></div>
+                                        <div class="skel-lines">
+                                            <div class="skel skel-line skel-line--lg"></div>
+                                            <div class="skel skel-line skel-line--md"></div>
+                                            <div class="skel skel-line skel-line--sm"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skel-stats">
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                    </div>
+                                </div>
+                                <div class="skeleton-card">
+                                    <div class="skel-meta">
+                                        <div class="skel skel-pill"></div>
+                                        <div class="skel skel-time"></div>
+                                    </div>
+                                    <div class="skel-summary">
+                                        <div class="skel skel-avatar"></div>
+                                        <div class="skel-lines">
+                                            <div class="skel skel-line skel-line--lg"></div>
+                                            <div class="skel skel-line skel-line--md"></div>
+                                            <div class="skel skel-line skel-line--sm"></div>
+                                        </div>
+                                    </div>
+                                    <div class="skel-stats">
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                        <div class="skel skel-chip"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ── Bookmark disclaimer ────────────────────────── -->
+        <p class="bookmark-disclaimer" id="bookmarkDisclaimer" style="display:none;">Bookmarks are saved locally in your
+            browser and will be cleared if you clear site data.</p>
+
+        <!-- ── Infinite scroll sentinel ──────────────────── -->
+        <div class="scroll-sentinel" id="scrollSentinel" style="display:none;"></div>
+
+    </main>
+
+    <!-- ── Tweet Modal ─────────────────────────────────────── -->
+    <div id="tweetModal" class="live-modal" hidden
+        style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 16px; box-sizing: border-box;">
+        <div class="live-modal-content" role="dialog" aria-modal="true"
+            style="position: relative; max-width: 600px; width: 100%; margin: auto; background: #ffffff; border: none; box-shadow: 0 8px 32px rgba(0,0,0,0.3); max-height: 90vh; border-radius: 12px; display: flex; flex-direction: column;">
+            <!-- Close header — hidden until tweet loads -->
+            <div id="tweetModalHeader"
+                style="display: none; flex-shrink: 0; justify-content: flex-end; padding: 12px 16px 0; background: #ffffff; border-radius: 12px 12px 0 0;">
+                <span id="tweetModalClose" aria-label="Close"
+                    style="color: #6b7280; font-size: 13px; font-weight: 600; cursor: pointer; letter-spacing: 0.3px;"
+                    onmouseover="this.style.color='#111'" onmouseout="this.style.color='#6b7280'">Close</span>
+            </div>
+            <!-- Scrollable tweet embed area -->
+            <div id="tweetEmbedContainer"
+                style="padding: 4px 20px 20px; min-height: 200px; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; flex: 1;">
+                <div class="spinner" id="tweetLoader"></div>
+            </div>
+            <!-- Share footer — hidden until tweet loads -->
+            <div id="tweetModalFooter"
+                style="display: none; flex-shrink: 0; padding: 0 20px 16px; background: #ffffff; border-radius: 0 0 12px 12px;">
+                <button id="tweetModalCopyLink" class="share-btn">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Add Bookmark Modal ──────────────────────────────── -->
+    <div id="bookmarkAddModal" class="bm-modal" hidden>
+        <div class="bm-modal-backdrop" data-bm-close></div>
+        <div class="bm-modal-content" role="dialog" aria-modal="true" aria-labelledby="bmAddTitle">
+            <div class="bm-modal-header">
+                <h3 id="bmAddTitle">Add</h3>
+                <button type="button" class="bm-modal-close" data-bm-close aria-label="Close">×</button>
+            </div>
+            <div class="bm-modal-body">
+                <label for="bookmarkAddInput" class="bm-modal-label">Tweet URL or ID</label>
+                <input type="text" id="bookmarkAddInput" class="bm-modal-input"
+                    placeholder="https://x.com/user/status/1234…" autocomplete="off" />
+                <div class="bm-modal-status" id="bookmarkAddStatus"></div>
+            </div>
+            <div class="bm-modal-footer">
+                <button type="button" class="bm-btn bm-btn-secondary" data-bm-close>Cancel</button>
+                <button type="button" id="bookmarkAddBtn" class="bm-btn bm-btn-primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── Global Chat ────────────────────────────────────── -->
+    <aside id="chatPanel" class="chat-panel" aria-label="Global chat panel">
+        <header class="chat-panel-header">
+            <button id="chatPanelHeaderBtn" class="chat-panel-header-btn" type="button" aria-label="Toggle global chat"
+                aria-expanded="false">
+                <span class="chat-dock-avatar" aria-hidden="true">
+                    <span class="chat-dock-avatar-icon"><img src="/rag/logo.png" alt=""
+                            class="chat-dock-logo chat-dock-logo--light" /><img src="/rag/logo-dark.png" alt=""
+                            class="chat-dock-logo chat-dock-logo--dark" /></span>
+                </span>
+                <span class="chat-dock-label">Global Chat</span>
+                <span class="chat-dock-status"></span>
+                <span id="chatUnreadBadge" class="chat-unread-badge" hidden>0</span>
+            </button>
+            <button id="chatPanelCloseBtn" class="chat-panel-close" aria-label="Toggle chat">▴</button>
+        </header>
+
+        <div id="chatAccountBar" class="chat-account-bar" hidden>
+            <div class="chat-account-user">
+                <img id="chatAccountAvatar" class="chat-account-avatar" alt="" hidden>
+                <span id="chatAccountName" class="chat-account-name"></span>
+            </div>
+            <button id="chatLogoutBtn" class="chat-logout-btn" type="button" title="Log out to switch account">Log
+                out</button>
+        </div>
+
+        <div id="chatMessages" class="chat-messages" aria-live="polite"></div>
+
+        <div id="chatTypingIndicator" class="chat-typing-indicator" hidden>
+            <span class="chat-typing-text"></span>
+            <span class="chat-typing-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        </div>
+
+        <div id="chatReplyPreview" class="chat-reply-preview" hidden>
+            <div id="chatReplyPreviewText" class="chat-reply-preview-text"></div>
+            <button id="chatReplyClearBtn" class="chat-reply-clear" aria-label="Cancel reply">×</button>
+        </div>
+
+        <div id="chatAuthGate" class="chat-auth-gate" hidden>
+            <a id="chatLoginBtn" class="chat-login-btn" href="/rag/api/chat/auth/x/start">Login with X to chat</a>
+        </div>
+
+        <form id="chatComposer" class="chat-composer" autocomplete="off">
+            <textarea id="chatInput" class="chat-input" rows="1" maxlength="500"
+                placeholder="Write a message..."></textarea>
+            <button id="chatSendBtn" class="chat-send-btn" type="submit" aria-label="Send">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="19" x2="12" y2="5" />
+                    <polyline points="5 12 12 5 19 12" />
+                </svg>
+            </button>
+        </form>
+
+        <div id="chatEmojiPickerWrap" class="chat-emoji-picker-wrap" hidden>
+            <emoji-picker id="chatEmojiPicker" class="chat-emoji-picker"></emoji-picker>
+        </div>
+
+        <div id="chatActionMenu" class="chat-action-menu" role="menu" hidden>
+            <button type="button" class="chat-action-menu-item" data-action="reply">
+                <span>Reply</span>
+                <span aria-hidden="true">↩</span>
+            </button>
+            <button type="button" class="chat-action-menu-item" data-action="copy">
+                <span>Copy</span>
+                <span aria-hidden="true">⧉</span>
+            </button>
+            <button type="button" class="chat-action-menu-item chat-action-menu-item--danger" data-action="delete"
+                hidden>
+                <span>Delete</span>
+                <span aria-hidden="true">🗑</span>
+            </button>
+        </div>
+    </aside>
+
+    <div id="chatConfirmModal" class="chat-confirm-modal" hidden>
+        <div class="chat-confirm-modal-backdrop" data-confirm-dismiss></div>
+        <div class="chat-confirm-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="chatConfirmTitle">
+            <button type="button" class="chat-confirm-modal-close" data-confirm-dismiss aria-label="Close">×</button>
+            <h2 id="chatConfirmTitle" class="chat-confirm-modal-title">Delete message</h2>
+            <p class="chat-confirm-modal-body">Are you sure you want to delete this message?</p>
+            <button type="button" class="chat-confirm-modal-btn chat-confirm-modal-btn--danger"
+                data-confirm-action="confirm">Delete</button>
+            <button type="button" class="chat-confirm-modal-btn chat-confirm-modal-btn--secondary"
+                data-confirm-action="cancel">Cancel</button>
+        </div>
+    </div>
+
+    <script src="https://js.pusher.com/8.0/pusher.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stream-chat@8.58.0/dist/browser.full-bundle.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.21.1/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+    <script src="/rag/globe.js?v=5"></script>
+    <script src="/rag/app.js?v=20260519a"></script>
+</body>
+
+</html>

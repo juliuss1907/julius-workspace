@@ -63,14 +63,24 @@ Cấu trúc subsection: H3 cho từng sản phẩm/tính năng, H4 nếu cần p
 ### 6. Đội ngũ phát triển
 
 - `## Đội ngũ phát triển`
-- Liệt kê founder + key members kèm background
+- **Chỉ tập trung vào founders (tối đa 2 người)**, không liệt kê toàn bộ team members
+- Kể background chi tiết của founders: học vấn, kinh nghiệm trước đây, cách họ gặp nhau, hành trình dẫn đến sáng lập dự án — viết thành narrative flow thay vì bullet points
+- Nếu có câu chuyện thú vị (rời công ty cũ, xây dựng hedge fund trước đó, etc.) → kể thành mạch truyện
 - Nếu không có thông tin: "Thông tin về danh tính cụ thể của đội ngũ sáng lập [Project] hiện vẫn chưa công bố. Coin68 sẽ cập nhật thêm khi có thông báo mới nhất từ phía dự án."
 
-### 7. Nhà đầu tư
+### 7. Nhà đầu tư và gọi vốn
 
-- `## Nhà đầu tư`
-- Liệt kê các vòng gọi vốn, quỹ tham gia, số tiền
-- Nếu không có: "Hiện tại, [Project] chưa công bố thông tin chính thức về các vòng gọi vốn. Coin68 sẽ cập nhật thêm khi có thông báo mới nhất từ phía dự án."
+- `## Nhà đầu tư và gọi vốn` (hoặc `## Nhà đầu tư`)
+- **Nêu tổng số vốn đã huy động** ở đầu section
+- **Chi tiết từng vòng gọi vốn** với H3 subsection, mỗi vòng gồm:
+  - Thời gian (tháng/năm)
+  - Số tiền
+  - Lead investor (nếu có)
+  - Các nhà đầu tư tham gia
+  - Mục đích sử dụng vốn
+- **Tập trung vào vòng gần nhất** — mô tả kỹ nhất, kèm hyperlink bài Coin68 liên quan nếu có
+- Sắp xếp vòng theo thứ tự thời gian: gần nhất → cũ nhất
+- Nếu không có thông tin: "Hiện tại, [Project] chưa công bố thông tin chính thức về các vòng gọi vốn. Coin68 sẽ cập nhật thêm khi có thông báo mới nhất từ phía dự án."
 
 ### 8. Tổng kết
 

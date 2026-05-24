@@ -1,0 +1,2276 @@
+Được rồi, để mình viết tất cả files ra cho bạn tự tạo folder sau.
+
+***
+
+## File 1: config.py
+
+Show Python Code
+
+```
+python
+```
+
+`# config.py
+import os
+ # ============================================================ # AUTHENTICATION & CREDENTIALS # ============================================================
+ # Telegram API (Telethon - để đọc channels)
+TELEGRAM_API_ID = os.getenv('TELEGRAM_API_ID', 'YOUR_API_ID')
+TELEGRAM_API_HASH = os.getenv('TELEGRAM_API_HASH', 'YOUR_API_HASH')
+TELEGRAM_PHONE = os.getenv('TELEGRAM_PHONE', '+84...')
+ # Telegram Bot (để gửi brief)
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', 'YOUR_BOT_TOKEN')
+TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'YOUR_CHAT_ID')
+ # ============================================================ # NEWS SOURCES CONFIGURATION # ============================================================
+
+NEWS_SOURCES = { # -------------------------------------------------------- # TELEGRAM CHANNELS # --------------------------------------------------------
+'telegram': {
+'enabled': True,
+'channels': { # Crypto channels
+'crypto': [ # TODO: Thêm channels ở đây # Example: # { # 'username': 'thedefiedge', # 'name': 'The DeFi Edge', # 'priority': 'high', # high | medium | low # 'type': 'research', # research | news | alpha | community # 'enabled': True # },
+],
+ # Tech channels
+'tech': [ # TODO: Thêm channels ở đây # Example: # { # 'username': 'OpenAI', # 'name': 'OpenAI', # 'priority': 'high', # 'type': 'news', # 'enabled': True # },
+]
+},
+'settings': {
+'max_messages_per_channel': 50,
+'time_window_hours': 24,
+'skip_spam': True,
+'skip_media_only': True,
+}
+},
+ # -------------------------------------------------------- # WEBSITES # --------------------------------------------------------
+'websites': {
+'enabled': True,
+'sources': [ # TODO: Thêm websites ở đây # Example - thefeed.today: # { # 'name': 'thefeed.today', # 'url': 'https://thefeed.today/', # 'type': 'aggregator', # 'scraper': 'thefeed', # 'categories': ['crypto', 'tech'], # 'priority': 'medium', # 'enabled': True, # 'settings': { # 'use_browser': True, # 'filters': ['Crypto', 'Tech'], # 'max_items_per_category': 25, # 'extract_method': 'browser_console', # } # },
+ # Example - RSS feed: # { # 'name': 'CoinDesk', # 'url': 'https://www.coindesk.com/', # 'type': 'news', # 'scraper': 'rss', # 'categories': ['crypto'], # 'priority': 'high', # 'enabled': False, # 'settings': { # 'rss_url': 'https://www.coindesk.com/arc/outboundfeeds/rss/', # 'max_items': 20, # } # },
+ # Example - Custom website: # { # 'name': 'Custom Site', # 'url': 'https://example.com/', # 'type': 'news', # 'scraper': 'custom', # 'categories': ['tech'], # 'priority': 'medium', # 'enabled': False, # 'settings': { # 'use_browser': True, # 'selectors': { # 'item_container': 'article.news-item', # 'title': '.title', # 'summary': '.excerpt', # 'link': 'a.read-more', # 'timestamp': '.date', # } # } # },
+]
+},
+ # -------------------------------------------------------- # RSS FEEDS (future expansion) # --------------------------------------------------------
+'rss': {
+'enabled': False,
+'feeds': {
+'crypto': [ # TODO: Thêm RSS feeds ở đây
+],
+'tech': [ # TODO: Thêm RSS feeds ở đây
+]
+},
+'settings': {
+'max_items_per_feed': 20,
+'time_window_hours': 24,
+}
+},
+ # -------------------------------------------------------- # REDDIT (future expansion) # --------------------------------------------------------
+'reddit': {
+'enabled': False,
+'subreddits': {
+'crypto': [ # TODO: Thêm subreddits ở đây
+],
+'tech': [ # TODO: Thêm subreddits ở đây
+]
+},
+'settings': {
+'max_posts_per_subreddit': 25,
+'time_window_hours': 24,
+}
+},
+}
+ # ============================================================ # KEYWORD FILTERS (Core prioritization) # ============================================================
+
+KEYWORD_FILTERS = {
+'crypto': { # Tier 1: Must-have keywords (100 points)
+'tier_1': {
+'keywords': [ # TODO: Thêm tier 1 keywords ở đây # Example: 'ethereum', 'bitcoin', 'sec approval', 'etf'
+],
+'weight': 100,
+'description': 'Breaking news, major protocols, institutional moves'
+},
+ # Tier 2: High interest (70 points)
+'tier_2': {
+'keywords': [ # TODO: Thêm tier 2 keywords ở đây # Example: 'uniswap', 'aave', 'restaking', 'liquid staking'
+],
+'weight': 70,
+'description': 'Emerging trends, market signals, governance'
+},
+ # Tier 3: Worth tracking (40 points)
+'tier_3': {
+'keywords': [ # TODO: Thêm tier 3 keywords ở đây # Example: 'defi', 'dex', 'nft', 'layer 2'
+],
+'weight': 40,
+'description': 'General crypto topics'
+},
+ # Negative keywords (subtract points)
+'negative': {
+'keywords': [ # TODO: Thêm negative keywords ở đây # Example: 'meme coin', 'pump and dump', 'get rich quick'
+],
+'weight': -50,
+'description': 'Low quality, spam, scams'
+}
+},
+
+'tech': { # Tier 1: Must-have (100 points)
+'tier_1': {
+'keywords': [ # TODO: Thêm tier 1 keywords ở đây # Example: 'openai', 'anthropic', 'gpt-5', 'claude'
+],
+'weight': 100,
+'description': 'Major AI releases, big tech moves'
+},
+ # Tier 2: High interest (70 points)
+'tier_2': {
+'keywords': [ # TODO: Thêm tier 2 keywords ở đây # Example: 'chatgpt', 'copilot', 'vercel', 'funding round'
+],
+'weight': 70,
+'description': 'AI tools, startups, dev tools'
+},
+ # Tier 3: Worth tracking (40 points)
+'tier_3': {
+'keywords': [ # TODO: Thêm tier 3 keywords ở đây # Example: 'artificial intelligence', 'machine learning', 'startup'
+],
+'weight': 40,
+'description': 'General tech topics'
+},
+ # Negative keywords
+'negative': {
+'keywords': [ # TODO: Thêm negative keywords ở đây # Example: 'clickbait', 'you won\'t believe'
+],
+'weight': -50,
+'description': 'Clickbait, low quality'
+}
+},
+ # Settings
+'settings': {
+'case_sensitive': False,
+'match_whole_word': False,
+'search_in': ['title', 'summary'],
+'min_keyword_score': 0,
+}
+}
+ # ============================================================ # ENGAGEMENT WEIGHTS # ============================================================
+
+ENGAGEMENT_WEIGHTS = {
+'telegram': {
+'views': {
+'weight': 1.0,
+'normalization': {
+'min': 1_000,
+'max': 100_000,
+'max_points': 50,
+}
+},
+},
+
+'thefeed': {
+'views': {
+'weight': 1.0,
+'normalization': {
+'min': 5_000,
+'max': 5_000_000,
+'max_points': 50,
+}
+},
+'engagement_rate': {
+'weight': 10.0,
+'threshold': 2.0,
+'bonus_points': 10,
+}
+},
+
+'website': {
+'default_score': 20,
+}
+}
+ # ============================================================ # SOURCE AUTHORITY # ============================================================
+
+SOURCE_AUTHORITY = {
+'priority_multiplier': {
+'high': 1.5,
+'medium': 1.0,
+'low': 0.7,
+},
+'type_multiplier': {
+'research': 1.3,
+'news': 1.0,
+'alpha': 1.1,
+'community': 0.8,
+'aggregator': 0.9,
+},
+'max_bonus': 15,
+}
+ # ============================================================ # RECENCY BONUS # ============================================================
+
+RECENCY_BONUS = {
+'last_3h': 10,
+'last_6h': 7,
+'last_12h': 3,
+'older': 0,
+}
+ # ============================================================ # SELECTION CRITERIA # ============================================================
+
+SELECTION_CRITERIA = {
+'top_stories': {
+'min': 2,
+'max': 5,
+'min_score': 80,
+'require_keyword_match': True,
+},
+
+'worth_reading': {
+'crypto': {
+'min': 3,
+'max': 5,
+'min_score': 40,
+},
+'tech': {
+'min': 3,
+'max': 5,
+'min_score': 40,
+},
+'require_keyword_match': False,
+},
+
+'breaking_override': True,
+}
+ # ============================================================ # CONTENT FILTERING # ============================================================
+
+SPAM_KEYWORDS = [
+'buy now', 'limited time', 'click here', 'join our',
+'pump', 'moon', 'wagmi', 'lfg', 'free money',
+'airdrop', 'giveaway', '🚀🚀🚀', 'join channel',
+'subscribe', 'follow us', 'don\'t miss',
+]
+
+QUALITY_FILTERS = {
+'min_text_length': 50,
+'min_views': 100,
+'max_age_hours': 24,
+'require_link': True,
+}
+ # ============================================================ # BRIEF OUTPUT SETTINGS # ============================================================
+
+BRIEF_SETTINGS = {
+'language': 'vi',
+'format': 'markdown',
+'session_icons': {
+'morning': '☀️',
+'midday': '🌤️',
+'wrap': '🌙',
+},
+}
+ # ============================================================ # SYSTEM SETTINGS # ============================================================
+
+STATE_DIR = '.state'
+LOGS_DIR = 'logs'
+
+SCRAPE_TIMEOUT_SECONDS = 300
+JSON_FRESHNESS_MINUTES = 15
+TIME_WINDOW_HOURS = 24
+
+MAX_RETRIES = 1
+RETRY_DELAY_SECONDS = 30
+
+LOG_LEVEL = 'INFO'
+`
+
+***
+
+## File 2: config\_helpers.py
+
+Show Python Code
+
+```
+python
+```
+
+`# config_helpers.py
+from config import NEWS_SOURCES, SPAM_KEYWORDS, QUALITY_FILTERS, SOURCE_AUTHORITY
+
+def get_enabled_telegram_channels(category=None):
+"""
+Get list of enabled Telegram channels
+
+Args:
+category: 'crypto' | 'tech' | None (all)
+
+Returns:
+List of channel dicts
+"""
+if not NEWS_SOURCES['telegram']['enabled']:
+return []
+
+channels = []
+
+if category:
+category_channels = NEWS_SOURCES['telegram']['channels'].get(category, [])
+channels.extend([ch for ch in category_channels if ch['enabled']])
+else:
+for cat in ['crypto', 'tech']:
+category_channels = NEWS_SOURCES['telegram']['channels'].get(cat, [])
+channels.extend([ch for ch in category_channels if ch['enabled']])
+
+return channels
+
+def get_enabled_websites(scraper_type=None):
+"""
+Get list of enabled websites
+
+Args:
+scraper_type: 'thefeed' | 'rss' | 'custom' | None (all)
+
+Returns:
+List of website dicts
+"""
+if not NEWS_SOURCES['websites']['enabled']:
+return []
+
+websites = NEWS_SOURCES['websites']['sources']
+enabled = [w for w in websites if w['enabled']]
+
+if scraper_type:
+enabled = [w for w in enabled if w['scraper'] == scraper_type]
+
+return enabled
+
+def get_source_priority_multiplier(source_dict):
+"""
+Get priority multiplier for a source
+
+Args:
+source_dict: Channel or website dict from config
+
+Returns:
+float: Combined multiplier
+"""
+priority = source_dict.get('priority', 'medium')
+source_type = source_dict.get('type', 'news')
+
+priority_mult = SOURCE_AUTHORITY['priority_multiplier'].get(priority, 1.0)
+type_mult = SOURCE_AUTHORITY['type_multiplier'].get(source_type, 1.0)
+
+return priority_mult * type_mult
+
+def is_spam(text):
+"""Check if text contains spam keywords"""
+if not text:
+return False
+
+text_lower = text.lower()
+return any(keyword in text_lower for keyword in SPAM_KEYWORDS)
+
+def passes_quality_filters(item):
+"""Check if item passes quality filters""" # Text length
+text = item.get('summary', '') or item.get('title', '')
+if len(text) < QUALITY_FILTERS['min_text_length']:
+return False
+ # Views/engagement
+engagement = item.get('engagement', {})
+if engagement.get('value', 0) < QUALITY_FILTERS['min_views']:
+return False
+ # Link required
+if QUALITY_FILTERS['require_link'] and not item.get('link'):
+return False
+
+return True
+
+def get_all_enabled_sources():
+"""Get summary of all enabled sources"""
+telegram = get_enabled_telegram_channels()
+websites = get_enabled_websites()
+
+return {
+'telegram': {
+'count': len(telegram),
+'crypto': len([ch for ch in telegram if any(c in ch.get('username', '').lower() for c in ['crypto', 'defi', 'btc', 'eth'])]),
+'tech': len(telegram) - len([ch for ch in telegram if any(c in ch.get('username', '').lower() for c in ['crypto', 'defi', 'btc', 'eth'])]),
+},
+'websites': {
+'count': len(websites),
+'by_scraper': {
+'thefeed': len([w for w in websites if w['scraper'] == 'thefeed']),
+'rss': len([w for w in websites if w['scraper'] == 'rss']),
+'custom': len([w for w in websites if w['scraper'] == 'custom']),
+}
+}
+}
+`
+
+***
+
+## File 3: scrape\_telegram.py
+
+Show Python Code
+
+```
+python
+```
+
+`# scrape_telegram.py
+from telethon import TelegramClient
+from datetime import datetime, timedelta, timezone
+from config import TELEGRAM_API_ID, TELEGRAM_API_HASH, NEWS_SOURCES
+from config_helpers import (
+get_enabled_telegram_channels,
+get_source_priority_multiplier,
+is_spam,
+passes_quality_filters
+)
+import asyncio
+
+client = TelegramClient('hermes_session', TELEGRAM_API_ID, TELEGRAM_API_HASH)
+
+async def scrape_channel(channel_config, category, cutoff_time):
+"""
+Scrape messages from a Telegram channel
+
+Args:
+channel_config: Channel dict from config
+category: 'Crypto' or 'Tech'
+cutoff_time: Only get messages after this time
+
+Returns:
+List of items
+"""
+username = channel_config['username']
+settings = NEWS_SOURCES['telegram']['settings']
+
+items = []
+
+try:
+entity = await client.get_entity(username)
+
+message_count = 0
+async for message in client.iter_messages(
+entity,
+offset_date=cutoff_time,
+limit=settings['max_messages_per_channel']
+):
+message_count += 1
+ # Skip if no text
+if not message.text and not message.message:
+if settings['skip_media_only']:
+continue
+
+text = message.text or message.message
+ # Skip spam
+if settings['skip_spam'] and is_spam(text):
+continue
+ # Extract title and summary
+lines = text.split('\n')
+title = lines[0][:100] if lines else text[:100]
+summary = text[:300]
+
+item = {
+'title': title.strip(),
+'summary': summary.strip(),
+'link': f"https://t.me/{username}/{message.id}",
+'source': 'telegram',
+'source_name': username,
+'source_display_name': channel_config['name'],
+'source_priority': channel_config['priority'],
+'source_type': channel_config['type'],
+'category': category,
+'timestamp': message.date.replace(tzinfo=timezone.utc),
+'engagement': {
+'type': 'views',
+'value': message.views or 0
+},
+'breaking': False,
+}
+ # Quality filter
+if passes_quality_filters(item):
+items.append(item)
+
+print(f" @{username} ({channel_config['name']}): {len(items)} items (scanned {message_count})")
+
+except ValueError:
+print(f" @{username}: Channel not found or private")
+except Exception as e:
+print(f" @{username}: Error - {e}")
+
+return items
+
+async def scrape_all_telegram():
+"""Scrape all enabled Telegram channels"""
+await client.start()
+
+settings = NEWS_SOURCES['telegram']['settings']
+cutoff = datetime.now(timezone.utc) - timedelta(hours=settings['time_window_hours'])
+
+all_items = []
+
+print("Scraping Telegram channels...")
+ # Get enabled channels
+crypto_channels = get_enabled_telegram_channels('crypto')
+tech_channels = get_enabled_telegram_channels('tech')
+
+print(f"Crypto channels ({len(crypto_channels)}):")
+for channel in crypto_channels:
+items = await scrape_channel(channel, 'Crypto', cutoff)
+all_items.extend(items)
+
+print(f"Tech channels ({len(tech_channels)}):")
+for channel in tech_channels:
+items = await scrape_channel(channel, 'Tech', cutoff)
+all_items.extend(items)
+
+await client.disconnect()
+
+print(f"Total Telegram items: {len(all_items)}")
+return all_items
+
+def scrape_telegram():
+"""Sync wrapper"""
+return asyncio.run(scrape_all_telegram())
+`
+
+***
+
+## File 4: scrape\_thefeed.py
+
+Show Python Code
+
+```
+python
+```
+
+`# scrape_thefeed.py
+from playwright.sync_api import sync_playwright
+from datetime import datetime, timezone, timedelta
+from config import NEWS_SOURCES
+from config_helpers import get_enabled_websites, passes_quality_filters
+import json
+import time
+
+def get_thefeed_config():
+"""Get thefeed.today config"""
+websites = get_enabled_websites('thefeed')
+if not websites:
+return None
+return websites[0]
+
+def parse_number(text):
+"""Parse '1.2M' → 1200000"""
+if not text:
+return 0
+text = text.replace(',', '').strip()
+try:
+if 'M' in text:
+return int(float(text.replace('M', '')) * 1_000_000)
+elif 'K' in text:
+return int(float(text.replace('K', '')) * 1_000)
+else:
+return int(text)
+except:
+return 0
+
+def parse_relative_time(text):
+"""Parse '2h ago' → datetime"""
+now = datetime.now(timezone.utc)
+if not text:
+return now
+
+text = text.lower().strip()
+try:
+if 'h ago' in text:
+hours = int(text.split('h')[0].strip())
+return now - timedelta(hours=hours)
+elif 'd ago' in text:
+days = int(text.split('d')[0].strip())
+return now - timedelta(days=days)
+elif 'm ago' in text:
+minutes = int(text.split('m')[0].strip())
+return now - timedelta(minutes=minutes)
+else:
+return now
+except:
+return now
+
+def extract_category_items(page, category_name, config):
+"""Extract items from thefeed.today for a category"""
+settings = config['settings']
+
+print(f" Extracting {category_name}...")
+ # Click category filter
+page.evaluate(f"""
+document.querySelectorAll('button').forEach(b => {{
+if (b.textContent.trim() === '{category_name}') b.click();
+}});
+""")
+
+time.sleep(3)
+ # Extract via browser_console
+js_code = f"""
+new Promise(r => setTimeout(r, 1000)).then(() => {{
+const rows = document.querySelectorAll('tbody tr');
+return JSON.stringify([...rows].slice(0, {settings['max_items_per_category']}).map(row => {{
+const cells = row.querySelectorAll('td');
+if (cells.length < 6) return null;
+const links = row.querySelectorAll('a');
+const xLink = [...links].find(a => a.href && a.href.includes('x.com'));
+return {{
+summary: cells[2]?.textContent?.trim() || '',
+category: cells[3]?.textContent?.trim() || '',
+posted: cells[4]?.textContent?.trim() || '',
+likes: cells[5]?.textContent?.trim() || '',
+views: cells[6]?.textContent?.trim() || '',
+delta_1h: cells[7]?.textContent?.trim() || '',
+delta_pct: cells[8]?.textContent?.trim() || '',
+link: xLink?.href || ''
+}};
+}}).filter(Boolean));
+}})
+"""
+
+try:
+result = page.evaluate(js_code)
+raw_items = json.loads(result)
+except Exception as e:
+print(f" Error extracting: {e}")
+return []
+ # Parse and normalize
+items = []
+for raw in raw_items:
+views = parse_number(raw['views'])
+likes = parse_number(raw['likes'])
+engagement_rate = (likes / views * 100) if views > 0 else 0.0
+timestamp = parse_relative_time(raw['posted'])
+breaking = raw['category'].lower() == 'breaking'
+ # Normalize category for breaking
+actual_category = category_name
+if breaking:
+summary_lower = raw['summary'].lower()
+if any(kw in summary_lower for kw in ['crypto', 'bitcoin', 'eth', 'defi', 'token']):
+actual_category = 'Crypto'
+elif any(kw in summary_lower for kw in ['ai', 'tech', 'startup', 'app', 'software']):
+actual_category = 'Tech'
+
+item = {
+'title': raw['summary'][:100],
+'summary': raw['summary'][:300],
+'link': raw['link'],
+'source': 'website',
+'source_name': 'thefeed',
+'source_display_name': config['name'],
+'source_priority': config['priority'],
+'source_type': config['type'],
+'category': actual_category,
+'timestamp': timestamp,
+'engagement': {
+'type': 'views',
+'value': views
+},
+'engagement_rate': engagement_rate,
+'breaking': breaking
+}
+
+if passes_quality_filters(item):
+items.append(item)
+
+print(f" Extracted {len(items)} items")
+return items
+
+def scrape_thefeed():
+"""Scrape thefeed.today"""
+config = get_thefeed_config()
+
+if not config:
+print("thefeed.today is disabled in config")
+return []
+
+print(f"Scraping {config['name']}...")
+
+settings = config['settings']
+
+if not settings['use_browser']:
+print(" Browser scraping disabled for this source")
+return []
+
+playwright = sync_playwright().start()
+browser = playwright.chromium.launch(headless=True)
+context = browser.new_context(viewport={'width': 1920, 'height': 1080})
+page = context.new_page()
+
+try:
+page.goto(config['url'], timeout=30000)
+page.wait_for_load_state("networkidle")
+time.sleep(2)
+
+all_items = []
+
+for category in settings['filters']:
+items = extract_category_items(page, category, config)
+all_items.extend(items)
+
+except Exception as e:
+print(f" Error: {e}")
+all_items = []
+
+finally:
+browser.close()
+playwright.stop()
+
+print(f"Total {config['name']} items: {len(all_items)}")
+return all_items
+`
+
+***
+
+## File 5: merge.py
+
+Show Python Code
+
+```
+python
+```
+
+`# merge.py
+from datetime import datetime, timezone, timedelta
+from urllib.parse import urlparse
+from config_helpers import get_source_priority_multiplier
+import re
+
+def extract_domain(url):
+"""Extract domain from URL"""
+try:
+return urlparse(url).netloc
+except:
+return ''
+
+def normalize_title(title):
+"""Normalize title for comparison"""
+normalized = re.sub(r'[^\w\s]', '', title.lower())
+return ' '.join(normalized.split())
+
+def are_duplicates(item1, item2):
+"""Check if two items are duplicates""" # Same link
+if item1['link'] == item2['link']:
+return True
+ # Same domain + similar title
+domain1 = extract_domain(item1['link'])
+domain2 = extract_domain(item2['link'])
+
+if domain1 and domain2 and domain1 == domain2:
+title1 = normalize_title(item1['title'])
+title2 = normalize_title(item2['title'])
+
+words1 = set(title1.split())
+words2 = set(title2.split())
+
+if len(words1) > 0 and len(words2) > 0:
+overlap = len(words1 & words2) / max(len(words1), len(words2))
+if overlap > 0.8:
+return True
+
+return False
+
+def get_source_priority_score(item):
+"""Get priority score for source comparison"""
+base_score = get_source_priority_multiplier(item)
+ # Research channels get boost
+if item['source'] == 'telegram' and item.get('source_type') == 'research':
+base_score *= 1.5
+ # Higher engagement wins
+engagement = item.get('engagement', {}).get('value', 0)
+if item['source'] == 'telegram':
+base_score += min(engagement / 10_000, 1.0)
+elif item['source'] == 'website':
+base_score += min(engagement / 100_000, 1.0)
+
+return base_score
+
+def merge_and_dedup_multi(all_items):
+"""Merge items from multiple sources and deduplicate"""
+print("Merging and deduplicating...")
+ # Sort by source priority
+sorted_items = sorted(
+all_items,
+key=get_source_priority_score,
+reverse=True
+)
+
+unique_items = []
+
+for item in sorted_items:
+is_dup = False
+for existing in unique_items:
+if are_duplicates(item, existing):
+is_dup = True
+break
+
+if not is_dup:
+unique_items.append(item)
+
+print(f" Before dedup: {len(all_items)}")
+print(f" After dedup: {len(unique_items)}")
+print(f" Removed: {len(all_items) - len(unique_items)}")
+
+return unique_items
+
+def filter_by_time_window(items, hours=24):
+"""Filter items within time window"""
+cutoff = datetime.now(timezone.utc) - timedelta(hours=hours)
+
+filtered = []
+for item in items:
+ts = item['timestamp']
+if isinstance(ts, str):
+ts = datetime.fromisoformat(ts)
+if ts.tzinfo is None:
+ts = ts.replace(tzinfo=timezone.utc)
+
+if ts > cutoff:
+item['timestamp'] = ts
+filtered.append(item)
+
+print(f" Time window filter ({hours}h): {len(items)} → {len(filtered)}")
+return filtered
+
+def sort_by_timestamp(items):
+"""Sort items by timestamp (newest first)"""
+return sorted(items, key=lambda x: x['timestamp'],## File 5: merge.py (tiếp)
+ ```python # merge.py (tiếp)
+def sort_by_timestamp(items):
+"""Sort items by timestamp (newest first)"""
+return sorted(items, key=lambda x: x['timestamp'], reverse=True)
+`
+
+***
+
+## File 6: scrape.py
+
+Show Python Code
+
+```
+python
+```
+
+`# scrape.py
+from scrape_telegram import scrape_telegram
+from scrape_thefeed import scrape_thefeed
+from merge import merge_and_dedup_multi, filter_by_time_window, sort_by_timestamp
+from datetime import datetime, timezone
+from config import STATE_DIR, LOGS_DIR, NEWS_SOURCES, TIME_WINDOW_HOURS
+from config_helpers import get_all_enabled_sources
+import json
+import os
+
+def scrape_all_sources():
+"""Scrape from all enabled sources"""
+all_items = []
+source_stats = {}
+ # 1. Telegram
+if NEWS_SOURCES['telegram']['enabled']:
+print("\n" + "="*60)
+try:
+telegram_items = scrape_telegram()
+all_items.extend(telegram_items)
+source_stats['telegram'] = len(telegram_items)
+except Exception as e:
+print(f"❌ Telegram scrape failed: {e}")
+source_stats['telegram'] = 0
+else:
+print("\nTelegram scraping disabled")
+source_stats['telegram'] = 0
+ # 2. Websites - thefeed.today
+if NEWS_SOURCES['websites']['enabled']:
+print("\n" + "="*60)
+try:
+thefeed_items = scrape_thefeed()
+all_items.extend(thefeed_items)
+source_stats['thefeed'] = len(thefeed_items)
+except Exception as e:
+print(f"❌ thefeed scrape failed: {e}")
+source_stats['thefeed'] = 0
+ # TODO: Add other website scrapers here when implemented # - scrape_rss() for RSS feeds # - scrape_custom() for custom websites
+else:
+print("\nWebsite scraping disabled")
+source_stats['thefeed'] = 0
+ # 3. RSS (future)
+if NEWS_SOURCES.get('rss', {}).get('enabled'):
+print("\nRSS scraping not yet implemented")
+ # 4. Reddit (future)
+if NEWS_SOURCES.get('reddit', {}).get('enabled'):
+print("\nReddit scraping not yet implemented")
+
+return all_items, source_stats
+
+def save_json(items, filename):
+"""Save items to JSON file (atomic write)"""
+os.makedirs(STATE_DIR, exist_ok=True)
+
+data = {
+'scraped_at': datetime.now(timezone.utc).isoformat(),
+'total_items': len(items),
+'crypto_count': len([i for i in items if i['category'] == 'Crypto']),
+'tech_count': len([i for i in items if i['category'] == 'Tech']),
+'sources': {},
+'items': items
+}
+ # Count by source
+for item in items:
+source = item['source']
+source_name = item.get('source_name', source)
+key = f"{source}:{source_name}"
+data['sources'][key] = data['sources'].get(key, 0) + 1
+ # Atomic write
+tmp_file = f"{filename}.tmp"
+with open(tmp_file, 'w', encoding='utf-8') as f:
+json.dump(data, f, ensure_ascii=False, indent=2, default=str)
+
+os.rename(tmp_file, filename)
+print(f"✅ Saved to: {filename}")
+
+def main():
+"""Main scrape function"""
+print("=" * 60)
+print(f"X News Brief Scraper — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+print("=" * 60)
+ # Print enabled sources summary
+enabled = get_all_enabled_sources()
+print(f"\n📊 Enabled sources:")
+print(f" Telegram channels: {enabled['telegram']['count']}")
+print(f" Websites: {enabled['websites']['count']}")
+
+if enabled['telegram']['count'] == 0 and enabled['websites']['count'] == 0:
+print("\n⚠️ No sources enabled. Please configure config.py")
+return
+
+try: # 1. Scrape all sources
+all_items, source_stats = scrape_all_sources()
+
+if not all_items:
+print("\n⚠️ No items scraped")
+return
+ # 2. Merge and dedup
+print("\n" + "="*60)
+print("Processing...")
+unique_items = merge_and_dedup_multi(all_items)
+ # 3. Filter by time window
+recent_items = filter_by_time_window(unique_items, hours=TIME_WINDOW_HOURS)
+ # 4. Sort by timestamp
+sorted_items = sort_by_timestamp(recent_items)
+ # 5. Save JSON
+timestamp = datetime.now().strftime('%Y-%m-%d_%H%M')
+filename = f"{STATE_DIR}/raw-{timestamp}.json"
+save_json(sorted_items, filename)
+ # 6. Summary
+print("\n" + "=" * 60)
+print("📊 Final Summary:")
+print(f" Sources:")
+for source, count in source_stats.items():
+print(f" {source}: {count} items")
+print(f" Total raw: {sum(source_stats.values())}")
+print(f" After dedup: {len(unique_items)}")
+print(f" After {TIME_WINDOW_HOURS}h filter: {len(recent_items)}")
+print(f" Crypto: {len([i for i in sorted_items if i['category'] == 'Crypto'])}")
+print(f" Tech: {len([i for i in sorted_items if i['category'] == 'Tech'])}")
+print("=" * 60)
+
+except Exception as e:
+print(f"\n❌ Error: {e}")
+import traceback
+traceback.print_exc()
+
+os.makedirs(LOGS_DIR, exist_ok=True)
+with open(f"{LOGS_DIR}/scrape-error.log", 'a') as f:
+f.write(f"\n{datetime.now().isoformat()}\n")
+f.write(f"{traceback.format_exc()}\n")
+
+if __name__ == '__main__':
+main()
+`
+
+***
+
+## File 7: prioritize.py
+
+Show Python Code
+
+```
+python
+```
+
+`# prioritize.py
+from datetime import datetime, timezone, timedelta
+from config import (
+KEYWORD_FILTERS,
+ENGAGEMENT_WEIGHTS,
+SOURCE_AUTHORITY,
+RECENCY_BONUS,
+SELECTION_CRITERIA
+)
+import re
+ # ============================================================ # 1. KEYWORD MATCHING # ============================================================
+
+def calculate_keyword_score(item):
+"""
+Calculate keyword match score
+
+Returns:
+tuple: (score, matched_keywords, tier)
+"""
+category = item['category'].lower()
+filters = KEYWORD_FILTERS.get(category, {})
+settings = KEYWORD_FILTERS['settings']
+ # Text to search
+search_text = ''
+for field in settings['search_in']:
+search_text += ' ' + item.get(field, '')
+
+if not settings['case_sensitive']:
+search_text = search_text.lower()
+
+max_score = 0
+matched_keywords = []
+matched_tier = None
+ # Check each tier (highest tier wins)
+for tier_name in ['tier_1', 'tier_2', 'tier_3']:
+tier = filters.get(tier_name, {})
+keywords = tier.get('keywords', [])
+weight = tier.get('weight', 0)
+
+for keyword in keywords:
+search_keyword = keyword if settings['case_sensitive'] else keyword.lower()
+
+if settings['match_whole_word']:
+pattern = r'\b' + re.escape(search_keyword) + r'\b'
+if re.search(pattern, search_text):
+if weight > max_score:
+max_score = weight
+matched_tier = tier_name
+matched_keywords.append(keyword)
+else:
+if search_keyword in search_text:
+if weight > max_score:
+max_score = weight
+matched_tier = tier_name
+matched_keywords.append(keyword)
+ # Check negative keywords
+negative = filters.get('negative', {})
+for keyword in negative.get('keywords', []):
+search_keyword = keyword if settings['case_sensitive'] else keyword.lower()
+if search_keyword in search_text:
+max_score += negative['weight']
+matched_keywords.append(f"NEGATIVE:{keyword}")
+ # Apply minimum threshold
+if max_score < settings['min_keyword_score']:
+max_score = 0
+
+return max_score, matched_keywords, matched_tier
+ # ============================================================ # 2. ENGAGEMENT SCORING # ============================================================
+
+def calculate_engagement_score(item):
+"""Calculate engagement score based on views/reactions"""
+source = item['source']
+engagement = item.get('engagement', {})
+
+if source == 'telegram':
+weights = ENGAGEMENT_WEIGHTS['telegram']
+views = engagement.get('value', 0)
+
+norm = weights['views']['normalization']
+if views < norm['min']:
+score = 0
+elif views > norm['max']:
+score = norm['max_points']
+else:
+score = ((views - norm['min']) / (norm['max'] - norm['min'])) * norm['max_points']
+
+return score * weights['views']['weight']
+
+elif source == 'website':
+source_name = item.get('source_name', '')
+
+if source_name == 'thefeed':
+weights = ENGAGEMENT_WEIGHTS['thefeed']
+views = engagement.get('value', 0)
+
+norm = weights['views']['normalization']
+if views < norm['min']:
+score = 0
+elif views > norm['max']:
+score = norm['max_points']
+else:
+score = ((views - norm['min']) / (norm['max'] - norm['min'])) * norm['max_points']
+
+score *= weights['views']['weight']
+ # Engagement rate bonus
+eng_rate = item.get('engagement_rate', 0)
+if eng_rate > weights['engagement_rate']['threshold']:
+score += weights['engagement_rate']['bonus_points']
+
+return score
+
+else:
+return ENGAGEMENT_WEIGHTS['website']['default_score']
+
+return 0
+ # ============================================================ # 3. SOURCE AUTHORITY # ============================================================
+
+def calculate_source_bonus(item):
+"""Calculate source authority bonus"""
+priority = item.get('source_priority', 'medium')
+source_type = item.get('source_type', 'news')
+
+priority_mult = SOURCE_AUTHORITY['priority_multiplier'].get(priority, 1.0)
+type_mult = SOURCE_AUTHORITY['type_multiplier'].get(source_type, 1.0)
+
+combined = priority_mult * type_mult
+bonus = (combined - 1.0) * SOURCE_AUTHORITY['max_bonus']
+
+return max(bonus, 0)
+ # ============================================================ # 4. RECENCY BONUS # ============================================================
+
+def calculate_recency_bonus(item):
+"""Calculate recency bonus"""
+now = datetime.now(timezone.utc)
+timestamp = item['timestamp']
+
+if isinstance(timestamp, str):
+timestamp = datetime.fromisoformat(timestamp)
+if timestamp.tzinfo is None:
+timestamp = timestamp.replace(tzinfo=timezone.utc)
+
+age_hours = (now - timestamp).total_seconds() / 3600
+
+if age_hours < 3:
+return RECENCY_BONUS['last_3h']
+elif age_hours < 6:
+return RECENCY_BONUS['last_6h']
+elif age_hours < 12:
+return RECENCY_BONUS['last_12h']
+else:
+return RECENCY_BONUS['older']
+ # ============================================================ # 5. TOTAL PRIORITY SCORE # ============================================================
+
+def calculate_priority_score(item):
+"""
+Calculate total priority score
+
+Returns:
+dict: Priority breakdown
+""" # Breaking news override
+if item.get('breaking'):
+return {
+'total_score': 200,
+'keyword_score': 100,
+'engagement_score': 50,
+'source_bonus': 15,
+'recency_bonus': 10,
+'matched_keywords': ['BREAKING'],
+'keyword_tier': 'breaking',
+}
+ # Calculate components
+keyword_score, matched_keywords, keyword_tier = calculate_keyword_score(item)
+engagement_score = calculate_engagement_score(item)
+source_bonus = calculate_source_bonus(item)
+recency_bonus = calculate_recency_bonus(item)
+
+total = keyword_score + engagement_score + source_bonus + recency_bonus
+
+return {
+'total_score': total,
+'keyword_score': keyword_score,
+'engagement_score': engagement_score,
+'source_bonus': source_bonus,
+'recency_bonus': recency_bonus,
+'matched_keywords': matched_keywords,
+'keyword_tier': keyword_tier,
+}
+ # ============================================================ # 6. PRIORITIZATION # ============================================================
+
+def prioritize_items(items):
+"""Calculate priority scores for all items"""
+for item in items:
+priority = calculate_priority_score(item)
+item['priority'] = priority
+
+items.sort(key=lambda x: x['priority']['total_score'], reverse=True)
+
+return items
+ # ============================================================ # 7. SELECTION # ============================================================
+
+def select_top_stories(items):
+"""Select top stories"""
+criteria = SELECTION_CRITERIA['top_stories']
+
+candidates = []
+for item in items:
+priority = item['priority']
+ # Breaking always included
+if item.get('breaking'):
+candidates.append(item)
+continue
+ # Check score threshold
+if priority['total_score'] < criteria['min_score']:
+continue
+ # Check keyword requirement
+if criteria['require_keyword_match']:
+if priority['keyword_score'] <= 0:
+continue
+
+candidates.append(item)
+ # Take top N
+selected = candidates[:criteria['max']]
+ # Ensure minimum
+if len(selected) < criteria['min']:
+for item in items:
+if item not in selected:
+selected.append(item)
+if len(selected) >= criteria['min']:
+break
+
+return selected
+
+def select_worth_reading(items, top_stories, category):
+"""Select worth reading items for a category"""
+category_key = category.lower()
+criteria = SELECTION_CRITERIA['worth_reading'][category_key]
+ # Filter by category and exclude top stories
+candidates = [
+item for item in items
+if item['category'] == category
+and item not in top_stories
+]
+ # Filter by score
+candidates = [
+item for item in candidates
+if item['priority']['total_score'] >= criteria['min_score']
+]
+ # If require keyword match
+if SELECTION_CRITERIA['worth_reading'].get('require_keyword_match'):
+candidates = [
+item for item in candidates
+if item['priority']['keyword_score'] > 0
+]
+ # Take top N
+selected = candidates[:criteria['max']]
+ # Ensure minimum
+if len(selected) < criteria['min']:
+remaining = [
+item for item in items
+if item['category'] == category
+and item not in top_stories
+and item not in selected
+]
+needed = criteria['min'] - len(selected)
+selected.extend(remaining[:needed])
+
+return selected
+
+def select_stories(items):
+"""
+Main selection function
+
+Returns:
+dict: {
+'top_stories': [...],
+'crypto_worth_reading': [...],
+'tech_worth_reading': [...]
+}
+"""
+top_stories = select_top_stories(items)
+crypto_worth = select_worth_reading(items, top_stories, 'Crypto')
+tech_worth = select_worth_reading(items, top_stories, 'Tech')
+
+return {
+'top_stories': top_stories,
+'crypto_worth_reading': crypto_worth,
+'tech_worth_reading': tech_worth,
+}
+ # ============================================================ # DEBUG HELPER # ============================================================
+
+def explain_score(item):
+"""Print detailed score breakdown"""
+priority = item['priority']
+
+print(f"\n{'='*70}")
+print(f"📰 {item['title'][:60]}")
+print(f"{'='*70}")
+print(f"Source: {item['source']} / {item.get('source_display_name', item['source_name'])}")
+print(f"Category: {item['category']}")
+print(f"Breaking: {item.get('breaking', False)}")
+
+print(f"\n🎯 PRIORITY BREAKDOWN:")
+print(f" Keyword score: {priority['keyword_score']:6.1f} (tier: {priority['keyword_tier']})")
+print(f" Engagement score: {priority['engagement_score']:6.1f}")
+print(f" Source bonus: {priority['source_bonus']:6.1f}")
+print(f" Recency bonus: {priority['recency_bonus']:6.1f}")
+print(f" {'─'*40}")
+print(f" TOTAL SCORE: {priority['total_score']:6.1f}")
+
+if priority['matched_keywords']:
+print(f"\n🔑 Matched keywords:")
+for kw in priority['matched_keywords'][:5]:
+print(f" • {kw}")
+if len(priority['matched_keywords']) > 5:
+print(f" ... and {len(priority['matched_keywords']) - 5} more")
+
+print(f"\n📊 Engagement:")
+print(f" Views: {item['engagement']['value']:,}")
+if item.get('engagement_rate'):
+print(f" Rate: {item['engagement_rate']:.2f}%")
+
+age = (datetime.now(timezone.utc) - item['timestamp']).total_seconds() / 3600
+print(f"\n⏰ Age: {age:.1f} hours")
+
+print(f"{'='*70}")
+`
+
+***
+
+## File 8: format.py
+
+Show Python Code
+
+```
+python
+```
+
+`# format.py
+from datetime import datetime, timezone
+from config import BRIEF_SETTINGS
+
+def format_views(views):
+"""Format view count: 12500 → 12.5K"""
+if views >= 1_000_000:
+return f"{views/1_000_000:.1f}M"
+elif views >= 1_000:
+return f"{views/1_000:.1f}K"
+else:
+return str(views)
+
+def get_session_info(scraped_at):
+"""Get session name and icon based on time"""
+if isinstance(scraped_at, str):
+dt = datetime.fromisoformat(scraped_at)
+else:
+dt = scraped_at
+
+hour = dt.hour
+icons = BRIEF_SETTINGS['session_icons']
+
+if 5 <= hour < 11:
+return 'Sáng', icons['morning']
+elif 11 <= hour < 17:
+return 'Trưa', icons['midday']
+else:
+return 'Tối', icons['wrap']
+
+def format_source_label(item):
+"""Format source label for display"""
+source = item['source']
+name = item.get('source_display_name', item.get('source_name', ''))
+
+if source == 'telegram':
+return f"📱 {name}"
+elif source == 'website':
+return f"🌐 {name}"
+else:
+return name
+
+def format_top_story(num, item):
+"""Format a top story (with full narrative)"""
+title = item['title']
+summary = item['summary']
+link = item['link']
+source_label = format_source_label(item)
+views = format_views(item['engagement']['value'])
+ # Truncate summary
+if len(summary) > 200:
+summary = summary[:200] + '...'
+
+breaking_tag = "🔴 BREAKING — " if item.get('breaking') else ""
+
+return f"""
+*{num}. {breaking_tag}{title}*
+{summary}
+{source_label} · 👁 {views}
+🔗 [Xem thêm]({link})
+"""
+
+def format_short_story(num, item):
+"""Format a short story (link only)"""
+title = item['title']
+if len(title) > 80:
+title = title[:80] + '...'
+
+source_label = format_source_label(item)
+views = format_views(item['engagement']['value'])
+
+return f"{num}. [{title}]({item['link']}) — {source_label} · 👁 {views}\n"
+
+def format_brief(stories, scraped_at):
+"""
+Format complete brief
+
+Args:
+stories: dict with top_stories, crypto_worth_reading, tech_worth_reading
+scraped_at: ISO timestamp
+
+Returns:
+str: Formatted brief in Markdown
+"""
+session_name, session_icon = get_session_info(scraped_at)
+
+if isinstance(scraped_at, str):
+dt = datetime.fromisoformat(scraped_at)
+else:
+dt = scraped_at
+
+timestamp = dt.strftime('%H:%M %d/%m/%Y')
+ # Header
+brief = f"""{session_icon} *X NEWS BRIEF — {session_name.upper()}* _{timestamp}_
+
+━━━━━━━━━━━━━━
+
+"""
+ # Top Stories
+top_stories = stories.get('top_stories', [])
+if top_stories:
+brief += "🔥 *TOP STORIES*\n"
+for i, story in enumerate(top_stories, 1):
+brief += format_top_story(i, story)
+brief += "\n━━━━━━━━━━━━━━\n\n"
+ # Crypto Worth Reading
+crypto_worth = stories.get('crypto_worth_reading', [])
+if crypto_worth:
+brief += "🪙 *CRYPTO — ĐÁNG ĐỌC*\n\n"
+for i, story in enumerate(crypto_worth, 1):
+brief += format_short_story(i, story)
+brief += "\n"
+ # Tech Worth Reading
+tech_worth = stories.get('tech_worth_reading', [])
+if tech_worth:
+brief += "💻 *TECH — ĐÁNG ĐỌC*\n\n"
+for i, story in enumerate(tech_worth, 1):
+brief += format_short_story(i, story)
+brief += "\n"
+ # Footer
+brief += f"\n━━━━━━━━━━━━━━\n_Generated by Hermes · {len(top_stories) + len(crypto_worth) + len(tech_worth)} items_"
+
+return brief
+`
+
+***
+
+## File 9: send.py
+
+Show Python Code
+
+```
+python
+```
+
+`# send.py
+import requests
+from config import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+
+def send_to_telegram(brief, parse_mode='Markdown'):
+"""
+Send brief to Telegram chat
+
+Args:
+brief: Formatted brief text
+parse_mode: 'Markdown' | 'HTML' | None
+
+Returns:
+bool: Success status
+"""
+if not TELEGRAM_BOT_TOKEN or TELEGRAM_BOT_TOKEN == 'YOUR_BOT_TOKEN':
+print("❌ TELEGRAM_BOT_TOKEN not configured")
+return False
+
+if not TELEGRAM_CHAT_ID or TELEGRAM_CHAT_ID == 'YOUR_CHAT_ID':
+print("❌ TELEGRAM_CHAT_ID not configured")
+return False
+
+url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+ # Telegram has 4096 char limit per message
+MAX_LENGTH = 4000
+
+if len(brief) <= MAX_LENGTH:
+return _send_single(url, brief, parse_mode)
+else: # Split into multiple messages
+return _send_multipart(url, brief, parse_mode, MAX_LENGTH)
+
+def _send_single(url, text, parse_mode):
+"""Send single message"""
+payload = {
+'chat_id': TELEGRAM_CHAT_ID,
+'text': text,
+'parse_mode': parse_mode,
+'disable_web_page_preview': True
+}
+
+try:
+response = requests.post(url, json=payload, timeout=30)
+
+if response.status_code == 200:
+print("✅ Brief sent to Telegram")
+return True
+else:
+print(f"❌ Failed to send: {response.text}")
+return False
+
+except Exception as e:
+print(f"❌ Error sending: {e}")
+return False
+
+def _send_multipart(url, text, parse_mode, max_length):
+"""Split and send multiple messages""" # Split by sections (━━━ separator)
+parts = text.split('━━━━━━━━━━━━━━')
+
+messages = []
+current = ''
+
+for part in parts:
+if len(current) + len(part) + 50 < max_length:
+current += '━━━━━━━━━━━━━━' + part if current else part
+else:
+if current:
+messages.append(current)
+current = part
+
+if current:
+messages.append(current)
+ # Send each message
+success = True
+for i, msg in enumerate(messages):
+if not msg.strip():
+continue
+
+prefix = f"_(Part {i+1}/{len(messages)})_\n\n" if len(messages) > 1 else ""
+result = _send_single(url, prefix + msg, parse_mode)
+success = success and result
+
+return success
+
+def send_error_notification(error_message):
+"""Send error notification to Telegram"""
+if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+return False
+
+url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+
+text = f"⚠️ *X News Brief Error*\n\n```\n{error_message[:500]}\n```"
+
+payload = {
+'chat_id': TELEGRAM_CHAT_ID,
+'text': text,
+'parse_mode': 'Markdown'
+}
+
+try:
+requests.post(url, json=payload, timeout=10)
+return True
+except:
+return False
+`
+
+***
+
+## File 10: synthesize.py
+
+Show Python Code
+
+```
+python
+```
+
+`# synthesize.py
+from datetime import datetime, timezone
+from config import STATE_DIR, LOGS_DIR, JSON_FRESHNESS_MINUTES
+from prioritize import prioritize_items, select_stories, explain_score
+from format import format_brief
+from send import send_to_telegram, send_error_notification
+import json
+import os
+import glob
+import sys
+
+def find_latest_json():
+"""Find latest scraped JSON file"""
+pattern = f"{STATE_DIR}/raw-*.json"
+files = glob.glob(pattern)
+return sorted(files)[-1] if files else None
+
+def check_json_freshness(filepath, max_age_minutes=15):
+"""Check if JSON file is fresh"""
+if not os.path.exists(filepath):
+return False, "File not found"
+
+file_mtime = os.path.getmtime(filepath)
+file_age = datetime.now().timestamp() - file_mtime
+
+if file_age > max_age_minutes * 60:
+return False, f"Too old ({file_age/60:.1f} min)"
+
+return True, "OK"
+
+def load_json(filepath):
+"""Load and parse JSON file"""
+with open(filepath, 'r', encoding='utf-8') as f:
+data = json.load(f)
+ # Normalize timestamps
+for item in data['items']:
+ts = item['timestamp']
+if isinstance(ts, str):
+item['timestamp'] = datetime.fromisoformat(ts)
+
+return data
+
+def main(debug=False):
+"""Entry point for synthesize"""
+print("=" * 60)
+print(f"X News Brief Synthesizer — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+print("=" * 60)
+ # 1. Find latest JSON
+json_file = find_latest_json()
+if not json_file:
+print("❌ No scraped data found")
+print("Run scrape.py first")
+send_error_notification("No scraped data found. Run scrape.py first.")
+return False
+
+print(f"📂 Found: {json_file}")
+ # 2. Check freshness
+is_fresh, msg = check_json_freshness(json_file, JSON_FRESHNESS_MINUTES)
+if not is_fresh:
+print(f"⚠️ {msg}") # Continue anyway with warning
+ # 3. Load data
+try:
+data = load_json(json_file)
+items = data['items']
+
+print(f"📊 Loaded {len(items)} items")
+print(f" Crypto: {data['crypto_count']}")
+print(f" Tech: {data['tech_count']}")
+print(f" Scraped at: {data['scraped_at']}")
+
+except Exception as e:
+print(f"❌ Error loading JSON: {e}")
+send_error_notification(f"Error loading JSON: {e}")
+return False
+
+if not items:
+print("❌ No items to process")
+return False
+ # 4. Prioritize
+print("\n🎯 Prioritizing items...")
+prioritized = prioritize_items(items)
+ # Debug: show top 5 scores
+if debug:
+print("\n🔍 Top 5 items by score:")
+for item in prioritized[:5]:
+explain_score(item)
+ # 5. Select stories
+print("\n📋 Selecting stories...")
+stories = select_stories(prioritized)
+
+print(f" Top stories: {len(stories['top_stories'])}")
+print(f" Crypto đáng đọc: {len(stories['crypto_worth_reading'])}")
+Tiếp tục file 10:
+ ```python
+print(f" Tech đáng đọc: {len(stories['tech_worth_reading'])}")
+ # 6. Format brief
+print("\n📝 Formatting brief...")
+brief = format_brief(stories, data['scraped_at'])
+print(f" Brief length: {len(brief)} chars")
+ # 7. Send to Telegram
+print("\n📤 Sending to Telegram...")
+success = send_to_telegram(brief)
+ # 8. Update last-run timestamp
+if success:
+os.makedirs(STATE_DIR, exist_ok=True)
+with open(f"{STATE_DIR}/last-run-timestamp.txt", 'w') as f:
+f.write(datetime.now(timezone.utc).isoformat())
+
+print("\n✅ Brief sent successfully")
+return True
+else:
+print("\n❌ Failed to send brief")
+return False
+
+if __name__ == '__main__': # Check for debug flag
+debug = '--debug' in sys.argv
+
+try:
+success = main(debug=debug)
+sys.exit(0 if success else 1)
+except Exception as e:
+print(f"\n❌ Error: {e}")
+import traceback
+traceback.print_exc()
+
+os.makedirs(LOGS_DIR, exist_ok=True)
+with open(f"{LOGS_DIR}/synthesize-error.log", 'a') as f:
+f.write(f"\n{datetime.now().isoformat()}\n")
+f.write(f"{traceback.format_exc()}\n")
+
+send_error_notification(str(e))
+sys.exit(1)
+`
+
+***
+
+## File 11: setup\_telegram.py
+
+Show Python Code
+
+```
+python
+```
+
+`# setup_telegram.py
+from telethon import TelegramClient
+from config import TELEGRAM_API_ID, TELEGRAM_API_HASH, TELEGRAM_PHONE
+import asyncio
+
+async def setup():
+"""One-time setup to authenticate Telegram"""
+print("=" * 60)
+print("Telegram Authentication Setup")
+print("=" * 60)
+
+if TELEGRAM_API_ID == 'YOUR_API_ID' or TELEGRAM_API_HASH == 'YOUR_API_HASH':
+print("\n❌ Error: TELEGRAM_API_ID and TELEGRAM_API_HASH not configured")
+print("\nPlease:")
+print("1. Go to https://my.telegram.org/apps")
+print("2. Create a new application")
+print("3. Copy api_id and api_hash")
+print("4. Set them in config.py or environment variables")
+return
+
+if TELEGRAM_PHONE == '+84...':
+print("\n❌ Error: TELEGRAM_PHONE not configured")
+print("\nPlease set your phone number in config.py")
+return
+
+print(f"\nPhone: {TELEGRAM_PHONE}")
+print("\nConnecting to Telegram...")
+
+client = TelegramClient('hermes_session', TELEGRAM_API_ID, TELEGRAM_API_HASH)
+
+try:
+await client.start(phone=TELEGRAM_PHONE)
+
+print("\n✅ Authenticated successfully!")
+print("\nSession saved to: hermes_session.session")
+print("\nYou can now run:")
+print(" python3 scrape.py")
+print(" python3 synthesize.py")
+
+except Exception as e:
+print(f"\n❌ Authentication failed: {e}")
+
+finally:
+await client.disconnect()
+
+if __name__ == '__main__':
+asyncio.run(setup())
+`
+
+***
+
+## File 12: requirements.txt
+
+Show Text Code
+
+```
+txt
+```
+
+`# requirements.txt
+ # Telegram
+telethon==1.34.0
+ # Web scraping
+playwright==1.41.0
+ # HTTP requests
+requests==2.31.0
+ # Optional: for future RSS support # feedparser==6.0.10
+`
+
+***
+
+## File 13: .gitignore
+
+Show Gitignore Code
+
+```
+gitignore
+```
+
+`# .gitignore
+ # Telegram session (sensitive)
+*.session
+*.session-journal
+ # State files (generated)
+.state/
+ # Logs
+logs/
+*.log
+ # Python __pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+venv/
+.venv/
+env/
+ENV/
+ # Playwright
+playwright-report/
+test-results/
+ # IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+ # OS
+.DS_Store
+Thumbs.db
+ # Environment variables (if using .env)
+.env
+`
+
+***
+
+## File 14: README.md
+
+Show Markdown Code
+
+```
+markdown
+```
+
+`# X News Brief
+
+Automated news aggregator and brief generator for Crypto & Tech news.
+ ## Features
+ - **Multi-source scraping**: Telegram channels + websites (thefeed.today) - **Keyword-first prioritization**: Filter by topics you care about - **Smart deduplication**: Merge items from multiple sources - **Automated brief generation**: Vietnamese language output - **Telegram delivery**: Send formatted briefs to Telegram chat
+ ## Architecture
+
+`
+
+scrape.py → .state/raw-YYYY-MM-DD\_HHmm.json → synthesize.py → Telegram
+
+Show Code
+
+````
+
+### Scrape Phase
+- Scrape Telegram channels (Telethon)
+- Scrape websites (Playwright)
+- Merge + dedup
+- Save JSON
+
+### Synthesize Phase
+- Load JSON
+- Prioritize by keywords + engagement
+- Select top stories + worth reading
+- Format brief
+- Send to Telegram
+
+## Setup
+
+### 1. Install dependencies
+
+```bash
+pip3 install -r requirements.txt
+playwright install chromium
+````
+
+### 2. Configure sources
+
+Edit `config.py`:
+
+Show Python Code
+
+```
+python
+```
+
+`# Add Telegram channels
+NEWS_SOURCES = {
+'telegram': {
+'channels': {
+'crypto': [
+{
+'username': 'thedefiedge',
+'name': 'The DeFi Edge',
+'priority': 'high',
+'type': 'research',
+'enabled': True
+}, # Add more...
+],
+'tech': [ # Add tech channels...
+]
+}
+},
+ # Add websites
+'websites': {
+'sources': [
+{
+'name': 'thefeed.today',
+'url': 'https://thefeed.today/',
+'scraper': 'thefeed',
+'enabled': True, # ...
+}
+]
+}
+}
+ # Add keywords
+KEYWORD_FILTERS = {
+'crypto': {
+'tier_1': {
+'keywords': ['ethereum', 'bitcoin', 'sec approval', 'etf'],
+'weight': 100,
+}, # Add more tiers...
+},
+'tech': { # Add tech keywords...
+}
+}
+`
+
+### 3. Setup Telegram authentication
+
+Get API credentials:
+
+1. Go to https://my.telegram.org/apps
+
+2. Create new application
+
+3. Copy `api_id` and `api_hash`
+
+Set in config.py or environment:
+
+Show Bash Code
+
+```
+bash
+```
+
+`export TELEGRAM_API_ID="your_api_id"
+export TELEGRAM_API_HASH="your_api_hash"
+export TELEGRAM_PHONE="+84..."
+`
+
+Authenticate:
+
+Show Bash Code
+
+```
+bash
+```
+
+`python3 setup_telegram.py # Enter code from Telegram when prompted
+`
+
+### 4. Setup Telegram bot (for sending briefs)
+
+1. Create bot via @BotFather
+
+2. Get bot token
+
+3. Get chat ID (send message to bot, call `/getUpdates`)
+
+4. Set in config.py:
+
+Show Python Code
+
+```
+python
+```
+
+`TELEGRAM_BOT_TOKEN = "your_bot_token"
+TELEGRAM_CHAT_ID = "your_chat_id"
+`
+
+## Usage
+
+### Manual run
+
+Show Bash Code
+
+```
+bash
+```
+
+`# Scrape
+python3 scrape.py
+ # Synthesize (with debug output)
+python3 synthesize.py --debug
+`
+
+### Cron setup
+
+Show Bash Code
+
+```
+bash
+```
+
+`crontab -e
+`
+
+Add:
+
+Show Bash Code
+
+```
+bash
+```
+
+`# Scrape 3x daily
+50 6 * * * cd /path/to/skill && python3 scrape.py >> logs/scrape.log 2>&1
+50 12 * * * cd /path/to/skill && python3 scrape.py >> logs/scrape.log 2>&1
+50 20 * * * cd /path/to/skill && python3 scrape.py >> logs/scrape.log 2>&1
+ # Synthesize 10 min after scrape
+0 7 * * * cd /path/to/skill && python3 synthesize.py >> logs/synthesize.log 2>&1
+0 13 * * * cd /path/to/skill && python3 synthesize.py >> logs/synthesize.log 2>&1
+0 21 * * * cd /path/to/skill && python3 synthesize.py >> logs/synthesize.log 2>&1
+`
+
+## Configuration Guide
+
+### Priority System
+
+**Keyword matching** (0-100 points):
+
+* Tier 1: 100 points (breaking news, major protocols)
+
+* Tier 2: 70 points (emerging trends)
+
+* Tier 3: 40 points (general topics)
+
+* Negative: -50 points (spam, low quality)
+
+**Engagement** (0-50 points):
+
+* Telegram: normalized by views (1K-100K)
+
+* thefeed: normalized by views (5K-5M) + engagement rate bonus
+
+**Source authority** (0-15 points):
+
+* Priority: high (1.5x), medium (1.0x), low (0.7x)
+
+* Type: research (1.3x), news (1.0x), alpha (1.1x)
+
+**Recency** (0-10 points):
+
+* Last 3h: 10 points
+
+* Last 6h: 7 points
+
+* Last 12h: 3 points
+
+### Selection Criteria
+
+**Top stories** (2-5 items):
+
+* Min score: 80
+
+* Require keyword match: Yes
+
+* Flexible category mix
+
+**Worth reading** (3-5 per category):
+
+* Min score: 40
+
+* Require keyword match: No (allow high engagement)
+
+* Balanced Crypto/Tech split
+
+### Tuning
+
+Adjust in `config.py`:
+
+Show Python Code
+
+```
+python
+```
+
+`# Make keyword matching stricter
+KEYWORD_FILTERS['settings']['min_keyword_score'] = 40
+ # Give more weight to engagement
+ENGAGEMENT_WEIGHTS['telegram']['views']['max_points'] = 70
+ # Require higher score for top stories
+SELECTION_CRITERIA['top_stories']['min_score'] = 100
+`
+
+## Troubleshooting
+
+### No items scraped
+
+* Check if sources are enabled in config
+
+* Verify Telegram authentication: `ls hermes_session.session`
+
+* Check logs: `tail -f logs/scrape.log`
+
+### Brief not sent
+
+* Verify bot token and chat ID
+
+* Check Telegram API limits
+
+* Check logs: `tail -f logs/synthesize.log`
+
+### Low quality items
+
+* Add negative keywords to filter spam
+
+* Increase `min_keyword_score` threshold
+
+* Adjust `QUALITY_FILTERS` (min\_text\_length, min\_views)
+
+### Too few/many items
+
+* Adjust `SELECTION_CRITERIA` min/max counts
+
+* Lower/raise score thresholds
+
+* Add/remove keywords
+
+## File Structure
+
+Show Code
+
+```
+x-news-brief/
+├── config.py                    # Main configuration
+├── config_helpers.py            # Config utilities
+├── scrape.py                    # Main scraper
+├── scrape_telegram.py           # Telegram scraper
+├── scrape_thefeed.py            # thefeed.today scraper
+├── merge.py                     # Dedup logic
+├── prioritize.py                # Keyword + engagement scoring
+├── format.py                    # Brief formatting
+├── send.py                      # Telegram sender
+├── synthesize.py                # Main synthesizer
+├── setup_telegram.py            # One-time auth
+├── requirements.txt             # Python dependencies
+├── .gitignore                   # Git ignore rules
+├── README.md                    # This file
+├── .state/                      # Generated JSON files
+│   ├── raw-YYYY-MM-DD_HHmm.json
+│   └── last-run-timestamp.txt
+├── logs/                        # Log files
+│   ├── scrape.log
+│   └── synthesize.log
+└── hermes_session.session       # Telegram session (gitignored)
+```
+
+## Future Expansion
+
+* RSS feed scraper
+
+* Reddit scraper
+
+* Custom website scraper (generic)
+
+* Sentiment analysis
+
+* Trend detection
+
+* Multi-language support
+
+* Web dashboard
+
+## License
+
+MIT
+
+Show Code
+
+````
+
+---
+
+## Tổng kết
+
+Đã tạo **14 files** cho skill:
+
+### Core files (10):
+1. `config.py` — Configuration (TODO: điền sources + keywords)
+2. `config_helpers.py` — Config utilities
+3. `scrape_telegram.py` — Telegram scraper
+4. `scrape_thefeed.py` — thefeed.today scraper
+5. `merge.py` — Dedup logic
+6. `scrape.py` — Main scraper orchestrator
+7. `prioritize.py` — Keyword-first prioritization
+8. `format.py` — Brief formatting
+9. `send.py` — Telegram sender
+10. `synthesize.py` — Main synthesizer
+
+### Setup files (4):
+11. `setup_telegram.py` — One-time authentication
+12. `requirements.txt` — Python dependencies
+13. `.gitignore` — Git ignore rules
+14. `README.md` — Documentation
+
+### Bước tiếp theo:
+
+1. **Tạo folder structure:**
+```bash
+mkdir -p x-news-brief/{.state,logs}
+cd x-news-brief
+````
+
+2. **Copy tất cả files vào folder**
+
+3. **Điền config.py:**
+
+   * Telegram channels (crypto + tech)
+
+   * Websites (thefeed.today + others)
+
+   * Keywords (tier 1, 2, 3, negative)
+
+4. **Install dependencies:**
+
+Show Bash Code
+
+```
+bash
+```
+
+`pip3 install -r requirements.txt
+playwright install chromium
+`
+
+5. **Setup Telegram:**
+
+Show Bash Code
+
+```
+bash
+```
+
+`python3 setup_telegram.py
+`
+
+6. **Test run:**
+
+Show Bash Code
+
+```
+bash
+```
+
+`python3 scrape.py
+python3 synthesize.py --debug
+`
+
+Bạn cần mình giúp gì thêm không? Ví dụ:
+
+* Gợi ý danh sách Telegram channels cụ thể?
+
+* Gợi ý keywords cho crypto/tech?
+
+* Setup cron jobs chi tiết hơn?

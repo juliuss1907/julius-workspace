@@ -23,10 +23,12 @@ The 3 content types serve distinct purposes:
 
 | Input | Output location |
 |---|---|
-| Source URL/article (for Post) | `working/X/content/draft/post-<slug>.md` |
-| Topic + outline (for Thread) | `working/X/content/draft/thread-<slug>.md` |
-| Research notes (for Article) | `working/X/content/draft/article-<slug>.md` |
+| Source URL/article (for Post) | `working/X/contents/draft/post-<slug>.md` |
+| Topic + outline (for Thread) | `working/X/contents/draft/thread-<slug>.md` |
+| Research notes (for Article) | `working/X/contents/draft/article-<slug>.md` |
 | Image assets per content piece | `working/X/images/<post-or-thread-or-article>-<slug>/` |
+| daily reports about sentiments, narratives| `working/X/report/daily/<dd-MM-YYYY>-daily-report` |
+| deep research on X | `working/X/report/research/<dd-MM-YYYY>-research-report` |
 
 ### Image folder rule
 For each new content piece, Hermes creates a sibling folder in `images/` matching the content slug. Example:
@@ -91,7 +93,7 @@ When Hermes receives an X task:
 4. **For Thread**: outline structure → write tweets → verify each ≤280 chars
 5. **For Article**: research → outline → draft → polish
 6. **Create image folder** matching content slug (empty `.gitkeep` if no images)
-7. **Write to corresponding file** in `working/X/content/draft`
+7. **Write to corresponding file** in `working/X/contents/draft`
 8. **Notify Julius** with preview
 
 ---

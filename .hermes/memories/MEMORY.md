@@ -1,11 +1,17 @@
-Coin68 AGENTS.md has a path bug: references `content/` (singular) but actual filesystem uses `contents/` (plural). 8 instances at lines 29, 47, 48, 50, 83, 92, 129, 162. Julius has the line numbers and will fix himself. Until fixed, verify paths with search_files when they 404.
+X posts: CT voice with degen slang, crypto tie-in, chill/sarcastic, 2-5 emojis. Use x-post-writer skill.
 §
-Coin68 writing workflow: Markus writes draft → Julius polishes into final version. Julius prefers Vietnamese terminology over English jargon (e.g., "Chia sẻ doanh thu" not "Fee Switch"). Drafts go to working/Coin68/contents/drafts/ — never published/ (Julius moves files himself). Article structure: bold opening summary → "là gì?" section → cross-links → products/features → mechanism → team → fundraising → summary → disclaimer.
+Vai trò Markus: đọc skill Julius đã build (ai-labs/resource/skills/), tư vấn thiết kế, test skill. KHÔNG tự tạo/edit skill Julius khi chưa được yêu cầu. Chỉ thêm reference files vào hermes-agent hoặc system skills.
 §
-xurl CLI at ~/.local/bin/xurl. Active app: "my-app2" (OAuth2, client_id: STJocTZVNVpzcGpfMUF4dUdNcnk6MTpjaQ). X API Free tier: whoami+timeline work, but post/quote/reply return "CreditsDepleted" — need Basic tier ($100/mo) for write. Alt data source: thefeed.today (browser, no auth, no rate limit, Crypto+Tech filters). Full setup guide: hermes-agent skill references/xurl-setup.md.
+Output format preference: Julius prefers flat output structure - single .md report file, no nested directories. Confirmed across multiple sessions for X research reports and other deliverables.
 §
-X/Twitter posts MUST use CT (Crypto Twitter) voice, not productivity/Medium voice. Key traits: degen-native slang (fren, ser, anon, wagmi, rekt, skill issue, ngl), crypto tie-in even for non-crypto topics, chill+sarcastic+self-deprecating tone, 2-5 emojis, personal/observational framing (not philosophical/universal). Use the x-post-writer skill. Never write X posts like TED talks.
+Coin68 article preferences: Team section = founders only (2 max, not all members). Funding section = full details: rounds, dates, amounts, lead investors, purpose, hyperlinks to related Coin68 articles. Variational article revised per these rules — focus on Lucas Schuermann + Edward Yu (Columbia → Qu Capital → DCG/Genesis → Variational), 3 funding rounds detailed ($10.3M Seed Oct 2024, $1.5M Strategic Jun 2025, $50M Series A May 2026).
 §
-Behavioral rule: DO NOT fabricate or claim to have written files that don't exist. If Julius didn't request something, don't report it as done. He will notice and correct immediately. Better to say "I haven't done X yet" than to claim you did when you didn't.
+MemPalace is Hermes new memory system at ~/.hermes/mempalace/ (replaces limited built-in memory). MCP server configured (needs Hermes restart). Cron auto-mine Sun 9 AM (job d16769a2bea4). Julius's machine is off at night — always schedule cron jobs during waking hours (9 AM+).
 §
-Julius tự build skill trong ai-labs/resource/skills/. Vai trò của Markus: đọc skill Julius đã build, tư vấn thiết kế (lên ý tưởng, cấu trúc file, góp ý), test skill. KHÔNG tự ý tạo mới hoặc edit skill của Julius khi chưa được yêu cầu. Exception: có thể thêm reference files vào hermes-agent hoặc các system skills trong .hermes/skills/.
+Feynman CLI v0.2.58: run from workdir=~/julius-workspace/personal/researchs/ so outputs stay in workspace. Auth via opencode-go (14 models, default deepseek-v4-flash).
+§
+Feynman workflow: Khi Feynman tạo research plan, PHẢI đọc plan từ log/file và gửi tóm tắt cho Julius TRƯỚC. Chỉ gửi "yes" cho Feynman sau khi Julius confirm. Nếu Julius từ chối, gửi "no" hoặc kill process. KHÔNG tự động confirm plan.
+§
+Khi chạy Feynman cho Julius, luôn yêu cầu output bằng tiếng Việt (thêm instruction vào prompt). Trừ khi Julius chỉ định ngôn ngữ khác.
+§
+News brief skill: Python 3.14 breaks playwright due to greenlet incompatibility. Use requests + BeautifulSoup fallback for scraping websites when playwright install fails with _PyCFrame errors. This is not transient — it's a Python version compatibility issue that persists until playwright updates their greenlet dependency for Python 3.14+

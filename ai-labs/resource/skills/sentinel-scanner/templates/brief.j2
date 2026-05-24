@@ -1,0 +1,41 @@
+{# Telegram-formatted brief output for Sentinel Scanner #}
+{# Variables: date, narratives, contrarian_takes, kol_insights, emerging_trends #}
+
+🎯 *SENTINEL SCAN* — {{ date }}
+
+{% if narratives %}
+📊 *Top Narratives*
+{% for n in narratives[:3] %}
+→ *{{ n.topic }}* — {{ n.tweet_count }} tweet{{ 's' if n.tweet_count > 1 }}
+  {% if n.sentiment == 'positive' %}🟢{% elif n.sentiment == 'negative' %}🔴{% else %}⚪{% endif %} {{ n.description }}
+  🔥 Top: @{{ n.top_author }}: "{{ n.top_tweet[:80] }}{% if n.top_tweet|length > 80 %}...{% endif %}"
+{% endfor %}
+{% endif %}
+
+{% if contrarian_takes %}
+💡 *Contrarian Takes*
+{% for t in contrarian_takes[:2] %}
+→ @{{ t.author }}: "{{ t.text[:100] }}{% if t.text|length > 100 %}...{% endif %}"
+  — {{ t.engagement }} engagement
+{% endfor %}
+{% endif %}
+
+{% if kol_insights %}
+🔥 *KOL Insights*
+{% for k in kol_insights[:5] %}
+→ @{{ k.author }} ({{ k.tier }}):
+  "{{ k.text[:90] }}{% if k.text|length > 90 %}...{% endif %}"
+  👍 {{ k.likes }} | 🔁 {{ k.retweets }}
+{% endfor %}
+{% endif %}
+
+{% if emerging_trends %}
+⚡ *Emerging Trends*
+{% for e in emerging_trends[:3] %}
+→ *{{ e.topic }}* — gaining {{ e.momentum }} mentions
+  {{ e.notes }}
+{% endfor %}
+{% endif %}
+
+—
+_Scanned {{ total_accounts }} accounts • {{ total_keywords }} keywords • {{ total_tweets }} tweets in {{ runtime }}s_

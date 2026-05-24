@@ -2,6 +2,8 @@
 
 10-phase workflow for automated crypto + tech news briefing from thefeed.today.
 
+> **⚠️ IMPORTANT (2026-05-22):** The site uses a plain `<table>` structure, NOT the `[data-testid]` / `.item-*` selectors documented below. The working extraction method uses `browser_console` JavaScript to extract `tbody tr td` cells. See `references/thefeed-guide.md` for the actual working selectors. Phases 2-5 below are kept as reference but the `browser_console` JS approach is the one that works in practice. No scrolling needed — table renders fully on filter click.
+
 ---
 
 ## Phase 1: Initialization

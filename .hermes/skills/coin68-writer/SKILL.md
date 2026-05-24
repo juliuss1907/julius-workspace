@@ -1,15 +1,32 @@
 ---
 name: coin68-writer
 description: Write Vietnamese crypto articles for Coin68 — project reviews, news, and deep-dives following editorial standards.
-version: 1.1
-last_updated: 2026-05-19
+version: 1.2
+last_updated: 2026-05-22
 maintainer: Julius
 agent: Hermes (local)
 ---
 
 # SKILL — Coin68 Writer
 
-## Role
+## Role Identity: Markus (Writer) vs Julius (Editor)
+
+**Markus (you, the agent)**: Responsible for:
+- Research & gather project information from sources
+- Write draft articles in Vietnamese following Coin68 structure
+- Append kiểm chứng block with verification status
+- Present draft to Julius for review
+- **DO NOT** save to `published/` folder or claim editorial decisions
+
+**Julius (user)**: Responsible for:
+- Review, polish, and refine drafts
+- Make final editorial decisions
+- Move approved drafts from `drafts/` to `published/`
+- Add cross-links, images, and final formatting
+
+**Critical boundary**: Drafts are written to `drafts/` and presented to Julius. Never claim to have "saved" or "published" — only "written draft" or "presented for review".
+
+## Core Responsibilities
 
 Write high-quality Vietnamese articles about crypto projects for Coin68 publication. Follow Coin68's editorial standards, voice, and structure conventions.
 
@@ -26,6 +43,7 @@ Load this skill when:
 - Task `domain: coin68` in frontmatter
 - Task `skill: coin68-writer` in frontmatter
 - User asks to write a Coin68 article about a crypto project
+- **Always load this skill first** before writing — do not start writing without consulting the skill
 
 Do NOT use for:
 - X/Twitter content → use `x-post-writer` instead (CT voice, not Coin68 voice)
@@ -115,11 +133,15 @@ Every draft MUST end with:
 
 ## Pitfalls
 
+- **Claim-then-write anti-pattern**: NEVER say "done" or "saved" before the file actually exists on disk. Always `write_file` first, then report. If the user asks for the path and the file doesn't exist, it's a broken promise — they will check and correct you immediately. This applies to ALL writing tasks, not just Coin68. Write → verify → report; never report → write.
 - **web_search unreliable**: Firecrawl backend can fail silently with `'NoneType' object has no attribute 'status_code'`. Fall back to `browser_navigate` + `browser_console` to extract content from documentation sites. Browser tools are slower but reliable for docs/blog content.
 - **Wrong path trap**: Coin68 AGENTS.md at `working/Coin68/AGENTS.md` references paths as `content/` (singular). Actual filesystem uses `contents/` (plural). Always verify with `search_files` if a path 404s rather than assuming the file doesn't exist.
 - **Category index is sparse**: `published.md` is a simple tag list (~40 hashtags). Match the closest existing tag; escalate to inbox only if genuinely no fit.
 - **Don't generate images**: Coin68 image handling is Julius's responsibility post-draft. Never use `image_generate` for Coin68 articles.
 - **Missing team/funding info**: When docs don't provide team or investor details, use the standard fallback sentences from the article structure reference. Don't make up information.
+- **Team section — founders only**: Focus the team section on founders with their deep background story (education, previous companies, acquisitions, career path). Do NOT list every staff engineer or marketing person. The 2-3 founders and their narrative arc is what matters. Source: `docs.variational.io/getting-started/core-contributors` pattern — Julius corrected this explicitly (May 2026).
+- **Funding section — all rounds, newest highlighted**: Detail every funding round with: date, amount, round type, lead investors, participating investors, and stated purpose. Sort newest-first. The most recent round gets extra detail and a hyperlink to the Coin68 coverage article when one exists. Use `references/funding-research.md` workflow.
+- **Internal Coin68 hyperlinks**: When Coin68 has already published an article about the project (especially funding rounds), include the hyperlink in the article body — not just as a footnote. Julius provides these URLs. Example: `[bài viết này](https://coin68.com/variational-huy-dong-50-trieu-usd-de-dua-thanh-khoan-pho-wall-len-blockchain/)`.
 
 ## Escalation
 
@@ -132,5 +154,6 @@ Escalate to `tasks/inbox/escalation-*.md` when:
 ## References
 
 - [references/article-structure.md](references/article-structure.md) — Canonical article structure (extracted from N1 Chain, Fermah, Converge)
+- [references/funding-research.md](references/funding-research.md) — How to gather detailed round-by-round funding data via crypto-fundraising.info
 - `working/Coin68/AGENTS.md` — Domain rules (⚠️ `content/` vs `contents/` path bug)
 - `working/Coin68/contents/published/published.md` — Category index

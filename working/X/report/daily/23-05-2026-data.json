@@ -1,0 +1,2047 @@
+{
+  "date": "23-05-2026",
+  "runtime": 1709.3,
+  "total_accounts": 91,
+  "total_tweets": 352,
+  "breaking_news": [
+    {
+      "id": "2057901975367221543",
+      "author": "WatcherGuru",
+      "text": "JUST IN: \ud83c\uddfa\ud83c\uddf8 US House Oversight Committee launches investigation into insider trading on prediction markets.",
+      "likes": 2739,
+      "retweets": 253,
+      "replies": 281,
+      "views": 186909,
+      "engagement": 3273,
+      "created_at": "2026-05-22T19:10:39+00:00"
+    },
+    {
+      "id": "2057899491534242019",
+      "author": "OndoFinance",
+      "text": "Tokenization was once a thesis. Today, it's the foundation for the next era of finance.\n\nNew @tokenterminal research maps Ondo's path as a leading tokenizer of real-world assets, from U.S. Treasuries to stocks and ETFs:\n\n\u2192 2023: OUSG, tokenized U.S. Treasuries\n\u2192 2023: USDY, tokenized U.S. dollar yield\n\u2192 2025: Tokenized stocks and ETFs\n\nOndo has long believed tokenization is the future of finance. Every product, every launch, every milestone is a step toward a more open and modern financial syste",
+      "likes": 480,
+      "retweets": 71,
+      "replies": 33,
+      "views": 14909,
+      "engagement": 584,
+      "created_at": "2026-05-22T19:00:47+00:00"
+    },
+    {
+      "id": "2057918168136556866",
+      "author": "coinbureau",
+      "text": "\ud83d\udea8NEW: U.S. BITCOIN RESERVE BILL IS ON THE TABLE\n\nRep. Nick Begich and Rep. Jared Golden introduced a bipartisan bill to lock U.S. government Bitcoin holdings into a Strategic Bitcoin Reserve for at least 20 years.\n\nThe ARMA bill launches with 16 co-sponsors and creates a separate stockpile for non-Bitcoin digital assets.",
+      "likes": 313,
+      "retweets": 58,
+      "replies": 46,
+      "views": 16431,
+      "engagement": 417,
+      "created_at": "2026-05-22T20:15:00+00:00"
+    },
+    {
+      "id": "2057884916789187016",
+      "author": "Flow_Back1",
+      "text": "IT IS LAUNCH DAY \ud83c\udf89\n\nHere is the plan:\n- Launch the FlowBack token at 6PM EST\n- Go live on \n- Lock dev tokens while live\n- Pay for dex while live\n- Pay for 30x boost while live",
+      "likes": 236,
+      "retweets": 93,
+      "replies": 63,
+      "views": 21818,
+      "engagement": 392,
+      "created_at": "2026-05-22T18:02:52+00:00"
+    },
+    {
+      "id": "2057965593375158309",
+      "author": "saturn_credit",
+      "text": "Saturn surpassed $200M in TVL within 44 days of launch.\n\nSTRCFi is here - DeFi accelerated by $STRC.",
+      "likes": 213,
+      "retweets": 31,
+      "replies": 27,
+      "views": 112679,
+      "engagement": 271,
+      "created_at": "2026-05-22T23:23:27+00:00",
+      "tier": "T1"
+    }
+  ],
+  "funding": [
+    {
+      "amount": "$30M",
+      "project": "Unknown",
+      "text": "Trader-first Perp DEX PopDEX raised $30M in a funding round led by @foresightven.",
+      "source": "Crypto_Dealflow",
+      "id": "2057777444950569185"
+    },
+    {
+      "amount": "$3M",
+      "project": "jia_DeFi",
+      "text": "Finance startup @jia_DeFi raised $3M in a funding round led by @cbventures, with participation from @stellarorg, @A100x_Ventures, @tcg_crypto, @HashedEM.",
+      "source": "Crypto_Dealflow",
+      "id": "2057771348491915693"
+    },
+    {
+      "amount": "$200M",
+      "project": "Kalshi",
+      "text": "Regulated event\u2011contract exchange @Kalshi raised $200M in a funding round from @bailliegifford, Layer Global.",
+      "source": "Crypto_Dealflow",
+      "id": "2057765374515441862"
+    },
+    {
+      "amount": "$16.3M",
+      "project": "TownSquarexyz",
+      "text": "Crosschain yield infrastructure @TownSquarexyz raised $16.3M in a Series A funding round from @worldlibertyfi, @OKX_Ventures, @ambergroup_io, @ArcaneGrp, @AnimocaVentures, @shvcap, @Auros_global, @BixinVentures, @DoraHacks, @AnkaaLabs, @Mulana_IM, @Aptos_Network.",
+      "source": "Crypto_Dealflow",
+      "id": "2057495456515490166"
+    },
+    {
+      "amount": "$6.4M",
+      "project": "cyclesmoney",
+      "text": "Clearing protocol @cyclesmoney raised $6.4M in a Private funding round led by Blockchange Ventures, with participation from @cbventures, @CompoundVC, @primitivecrypto.",
+      "source": "Crypto_Dealflow",
+      "id": "2057491308256616526"
+    }
+  ],
+  "kol_by_tier": {
+    "T1": [
+      {
+        "id": "2057808321139118309",
+        "author": "saylor",
+        "text": "Happy Bitcoin Pizza Day! \ud83c\udf55",
+        "likes": 15541,
+        "retweets": 1757,
+        "replies": 1432,
+        "views": 379986,
+        "engagement": 18730,
+        "created_at": "2026-05-22T12:58:30+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057871165465436227",
+        "author": "KobeissiLetter",
+        "text": "BREAKING: United States Director of National Intelligence Tulsi Gabbard has resigned, per Fox News.",
+        "likes": 5682,
+        "retweets": 721,
+        "replies": 486,
+        "views": 561415,
+        "engagement": 6889,
+        "created_at": "2026-05-22T17:08:13+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057855709480362460",
+        "author": "saylor",
+        "text": "The most interesting story in Bitcoin right now is the rise of $SATA in the credit markets and the embrace of $ASST by the equity capital markets.",
+        "likes": 5572,
+        "retweets": 758,
+        "replies": 400,
+        "views": 349786,
+        "engagement": 6730,
+        "created_at": "2026-05-22T16:06:48+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057915455478673431",
+        "author": "chooserich",
+        "text": "Two weeks ago I shared that I got Classic Hodgkin Lymphoma (\"cHL\")...\n\nFor those who may be unfortunate to end up in a similar place I wanted to share lessons from the wild rollercoaster of the past two weeks.\n\nPerhaps it might be a little bit cathartic as well \u2b07\ufe0f",
+        "likes": 3646,
+        "retweets": 86,
+        "replies": 611,
+        "views": 1664263,
+        "engagement": 4343,
+        "created_at": "2026-05-22T20:04:13+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057880296725328312",
+        "author": "LynAldenContact",
+        "text": "Man, today's print in US consumer sentiment is brutal.",
+        "likes": 3373,
+        "retweets": 420,
+        "replies": 273,
+        "views": 276994,
+        "engagement": 4066,
+        "created_at": "2026-05-22T17:44:30+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057816348395278688",
+        "author": "Cointelegraph",
+        "text": "\ud83d\udd25 INSIGHT: Michael Saylor says 100M people now have $BTC exposure through MSTR stock.",
+        "likes": 1816,
+        "retweets": 215,
+        "replies": 179,
+        "views": 132776,
+        "engagement": 2210,
+        "created_at": "2026-05-22T13:30:24+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057898102741221742",
+        "author": "phongle",
+        "text": "In 10 months, $STRC went from zero to $10.5B in market cap, more than doubling the size of the 2nd largest preferred in the World.",
+        "likes": 1856,
+        "retweets": 201,
+        "replies": 79,
+        "views": 88212,
+        "engagement": 2136,
+        "created_at": "2026-05-22T18:55:16+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057878304443494837",
+        "author": "brian_armstrong",
+        "text": "2010: 10,000 BTC = two pizzas\n\n2026: 10,000 BTC = ~$768M\n\nTurns out it was a better store of value than medium of exchange (so far!), but shout out to Laszlo Hanyecz, and Happy Bitcoin pizza day.",
+        "likes": 1422,
+        "retweets": 223,
+        "replies": 213,
+        "views": 56287,
+        "engagement": 1858,
+        "created_at": "2026-05-22T17:36:35+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057900190137201117",
+        "author": "LynAldenContact",
+        "text": "Homelander really was an S-tier meme source.",
+        "likes": 1074,
+        "retweets": 36,
+        "replies": 40,
+        "views": 137790,
+        "engagement": 1150,
+        "created_at": "2026-05-22T19:03:33+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057892295022899223",
+        "author": "gladstein",
+        "text": "I genuinely don't think crypto people are aware of the massive privacy improvements that have been achieved in Bitcoin over the last 5-10 years",
+        "likes": 967,
+        "retweets": 114,
+        "replies": 40,
+        "views": 86750,
+        "engagement": 1121,
+        "created_at": "2026-05-22T18:32:11+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057915269788446728",
+        "author": "Strategy",
+        "text": "$STRC holders: Once a month is good, Twice is Better. Vote now. Visit  to learn more.",
+        "likes": 964,
+        "retweets": 90,
+        "replies": 63,
+        "views": 65673,
+        "engagement": 1117,
+        "created_at": "2026-05-22T20:03:29+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057851989992583555",
+        "author": "KobeissiLetter",
+        "text": "The stock-bond relationship is showing a rare pattern:\n\nThe 2-month correlation between US equities and the 10-year Treasury yield is down to -0.70, the lowest since 1999.\n\nIn other words, over the last 2 months, stocks and the 10-year Treasury yield have moved in opposite directions by the largest extent this century.\n\nAt the start of 2026, a positive correlation of 0.40 was observed, near the highest since 2023.\n\nAdditionally, the 30-day correlation is down to -0.68, also the lowest in 27 year",
+        "likes": 782,
+        "retweets": 151,
+        "replies": 111,
+        "views": 121907,
+        "engagement": 1044,
+        "created_at": "2026-05-22T15:52:02+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057967538902831569",
+        "author": "blknoiz06",
+        "text": "i think we've been hoodwinked lads",
+        "likes": 716,
+        "retweets": 25,
+        "replies": 195,
+        "views": 119090,
+        "engagement": 936,
+        "created_at": "2026-05-22T23:31:11+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057956029254570353",
+        "author": "viewfinderthis",
+        "text": "New York City Summer",
+        "likes": 685,
+        "retweets": 52,
+        "replies": 6,
+        "views": 24274,
+        "engagement": 743,
+        "created_at": "2026-05-22T22:45:27+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058005847683575982",
+        "author": "pmarca",
+        "text": "Made it ADA compliant.",
+        "likes": 633,
+        "retweets": 15,
+        "replies": 47,
+        "views": 93553,
+        "engagement": 695,
+        "created_at": "2026-05-23T02:03:24+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057847348672249910",
+        "author": "charliebilello",
+        "text": "The S&amp;P 500's Dividend Yield has moved down to 1.07%, the lowest level in history.",
+        "likes": 503,
+        "retweets": 113,
+        "replies": 54,
+        "views": 107032,
+        "engagement": 670,
+        "created_at": "2026-05-22T15:33:35+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057851876197142626",
+        "author": "mpopv",
+        "text": "This is how we revitalize the Sutro Baths",
+        "likes": 468,
+        "retweets": 17,
+        "replies": 8,
+        "views": 111872,
+        "engagement": 493,
+        "created_at": "2026-05-22T15:51:34+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057924036777156805",
+        "author": "AlexesNakamoto",
+        "text": "It\u2019s funny watching people get shocked over some of Saylor\u2019s AI posts.\n\nBut @saylor himself explained exactly WHY he does it.\n\nMost people will never voluntarily sit down and study: monetary theory, inflation, capital preservation, Bitcoin economics...\n\n1 - First you need attention\n2 - Then emotion\n3 - Then curiosity\n\nOnly after that will people listen to the deeper message.\n\nAs Saylor said:\n\n\u201cSometimes you have to be colorful, witty, entertaining\u2026 or a little bit edgy.\u201d\n\nThe memes are the hook.",
+        "likes": 355,
+        "retweets": 29,
+        "replies": 28,
+        "views": 51225,
+        "engagement": 412,
+        "created_at": "2026-05-22T20:38:19+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057834236518838297",
+        "author": "WallStreetMrkts",
+        "text": "JUST IN: smart money is accumulating $NEAR \ud83d\udc40\n\nthe deeper you look, the less this feels like another normal L1 play.\n\nmost of crypto is still competing over \u201cfastest chain\u201d narratives, but NEAR has been building around two important topics:\n\nPrivacy & AI\n\nI\u2019m bullish and they\u2019ve been shipping products\n\n\u2192 NEAR Intents already process around $45M in daily organic flow  \n\u2192 Over $18B in lifetime swap volume across 40+ chains  \n\u2192 Confidential Intents pushing private execution    \n\u2192 Infrastructure desi",
+        "likes": 312,
+        "retweets": 38,
+        "replies": 35,
+        "views": 20047,
+        "engagement": 385,
+        "created_at": "2026-05-22T14:41:29+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057801420208791888",
+        "author": "CryptoHayes",
+        "text": "When the haters come correct like this, you know you are in the right position as a bull.",
+        "likes": 288,
+        "retweets": 14,
+        "replies": 62,
+        "views": 65718,
+        "engagement": 364,
+        "created_at": "2026-05-22T12:31:05+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057817988888445286",
+        "author": "star_okx",
+        "text": "Energy markets are becoming global, digital, and 24/7.\nBringing ICE Brent and WTI to OKX is another step toward that future.\n\nProud to partner with ICE to bring traditional market infrastructure into the next era.",
+        "likes": 249,
+        "retweets": 27,
+        "replies": 77,
+        "views": 64470,
+        "engagement": 353,
+        "created_at": "2026-05-22T13:36:55+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057969503800025510",
+        "author": "kevinlhr88",
+        "text": "Spoke with an onchain asset issuer at Consensus Miami.\n\nHe told me:\n\n\u201cIf it doesn\u2019t beat $STRC, it\u2019s not worth tokenizing.\u201d\n\n$STRC is becoming the benchmark for DeFi.",
+        "likes": 265,
+        "retweets": 30,
+        "replies": 34,
+        "views": 72902,
+        "engagement": 329,
+        "created_at": "2026-05-22T23:38:59+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057899562678018435",
+        "author": "justinsuntron",
+        "text": "Huobi @HuobiGlobal USDT Futures",
+        "likes": 170,
+        "retweets": 20,
+        "replies": 89,
+        "views": 44747,
+        "engagement": 279,
+        "created_at": "2026-05-22T19:01:04+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057965593375158309",
+        "author": "saturn_credit",
+        "text": "Saturn surpassed $200M in TVL within 44 days of launch.\n\nSTRCFi is here - DeFi accelerated by $STRC.",
+        "likes": 213,
+        "retweets": 31,
+        "replies": 27,
+        "views": 112679,
+        "engagement": 271,
+        "created_at": "2026-05-22T23:23:27+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058016238895509593",
+        "author": "pmarca",
+        "text": "1 Press play on new 2023 Emerson biography audiobook\n2 \u201cRacial inequality\u201d, \u201cclimate change\u201d, \u201cmask deniers\u201d\n3 Hurl phone at wall",
+        "likes": 243,
+        "retweets": 9,
+        "replies": 16,
+        "views": 48671,
+        "engagement": 268,
+        "created_at": "2026-05-23T02:44:42+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057980041951363152",
+        "author": "vladtenev",
+        "text": "In 1776 the radical idea was political participation for ordinary people. In 2026 the equivalent idea is financial participation. Same instinct, different century.",
+        "likes": 220,
+        "retweets": 17,
+        "replies": 24,
+        "views": 10602,
+        "engagement": 261,
+        "created_at": "2026-05-23T00:20:52+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057865155845796069",
+        "author": "kelxyz_",
+        "text": "",
+        "likes": 200,
+        "retweets": 28,
+        "replies": 20,
+        "views": 20446,
+        "engagement": 248,
+        "created_at": "2026-05-22T16:44:21+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058003677101892078",
+        "author": "pmarca",
+        "text": "Beautiful.",
+        "likes": 214,
+        "retweets": 5,
+        "replies": 16,
+        "views": 35151,
+        "engagement": 235,
+        "created_at": "2026-05-23T01:54:47+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057961029846315052",
+        "author": "apyx_fi",
+        "text": "Onchain digital credit yield is taking over DeFi.\n\nethereum:0x38eeb52f0771140d10c4e9a9a72349a329fe8a6a APY: 12.98%",
+        "likes": 167,
+        "retweets": 16,
+        "replies": 29,
+        "views": 39678,
+        "engagement": 212,
+        "created_at": "2026-05-22T23:05:19+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058016408408375397",
+        "author": "pmarca",
+        "text": "This is what AI writing is actually competing with.",
+        "likes": 144,
+        "retweets": 7,
+        "replies": 18,
+        "views": 33522,
+        "engagement": 169,
+        "created_at": "2026-05-23T02:45:22+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058019233720934826",
+        "author": "justinsuntron",
+        "text": "TRON\u2019s growth keeps expanding across the ecosystem.",
+        "likes": 96,
+        "retweets": 8,
+        "replies": 44,
+        "views": 14450,
+        "engagement": 148,
+        "created_at": "2026-05-23T02:56:36+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057878277210194428",
+        "author": "Nick_Prince12",
+        "text": "the agentic economy needs better discovery, and standardized metadata = tablestakes.\n\nwe felt this building agentic(.)market. every service needed serviceName, tags, and icon url entered by hand. HUGE pain in the ass, even with ai.\n\nwell, problem solved. bazaar now indexes that metadata directly from your 402 response. agentic(.)market reads it through, and so can every other marketplace.\n\nthe pieces are coming together.",
+        "likes": 100,
+        "retweets": 5,
+        "replies": 26,
+        "views": 13569,
+        "engagement": 131,
+        "created_at": "2026-05-22T17:36:29+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057843268184932449",
+        "author": "NEARProtocol",
+        "text": "How Venice uses NEAR AI private inference: \n\nThe original Zashi + NEAR Intents integration that unlocked cross-chain ZEC: \n\n also now supports cross-chain ZEC across 35+ chains, with privacy-preserving execution through Confidential Intents. ZEC is the privacy thesis at the asset layer. Confidential Intents is the privacy thesis at the execution layer.\n\nSuper simple tutorial here for swapping into ZEC: \n\nMore on Confidential Intents: \n\nZooko and Illia for the big picture on privacy: \n\nAnd NEAR r",
+        "likes": 114,
+        "retweets": 13,
+        "replies": 4,
+        "views": 14760,
+        "engagement": 131,
+        "created_at": "2026-05-22T15:17:22+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057843766585856295",
+        "author": "CharlesFLehman",
+        "text": "A major talking point for those who think AI will cause mass unemployment is the recent slowdown in junior-level hiring. Lambert and Schindler, in this new working paper, point to a different culprit: work from home policies.\n\nUsing data on ~250 million hires across four countries,they show that AI exposure strongly correlates with a role being work from home. So you have to disentangle the two to get a clean estimate.\n\nWhich is the driving variable? They find that the effect of exposure to AI o",
+        "likes": 100,
+        "retweets": 18,
+        "replies": 11,
+        "views": 71691,
+        "engagement": 129,
+        "created_at": "2026-05-22T15:19:21+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058004334869443011",
+        "author": "pmarca",
+        "text": "",
+        "likes": 113,
+        "retweets": 2,
+        "replies": 13,
+        "views": 36044,
+        "engagement": 128,
+        "created_at": "2026-05-23T01:57:23+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058017188670484958",
+        "author": "pmarca",
+        "text": "Oooh.",
+        "likes": 95,
+        "retweets": 3,
+        "replies": 19,
+        "views": 33738,
+        "engagement": 117,
+        "created_at": "2026-05-23T02:48:28+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058011085148717331",
+        "author": "DrewPavlou",
+        "text": "@pmarca Needs brutalist data center.",
+        "likes": 94,
+        "retweets": 3,
+        "replies": 6,
+        "views": 49011,
+        "engagement": 103,
+        "created_at": "2026-05-23T02:24:13+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057968978249572582",
+        "author": "blknoiz06",
+        "text": "yessirr",
+        "likes": 64,
+        "retweets": 1,
+        "replies": 37,
+        "views": 27077,
+        "engagement": 102,
+        "created_at": "2026-05-22T23:36:54+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057870788414632066",
+        "author": "punk9059",
+        "text": "I brought my dog onto @fomohour today.\n\n@farokh says I should just drop everything and launch a token.\n\nthink this market has room for another dog token?",
+        "likes": 69,
+        "retweets": 2,
+        "replies": 28,
+        "views": 4091,
+        "engagement": 99,
+        "created_at": "2026-05-22T17:06:44+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2058025523587269024",
+        "author": "pmarca",
+        "text": "Interesting.",
+        "likes": 72,
+        "retweets": 8,
+        "replies": 18,
+        "views": 37113,
+        "engagement": 98,
+        "created_at": "2026-05-23T03:21:35+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057821277059219514",
+        "author": "punk9059",
+        "text": "I still can't get over just how broken @blur_io has become.  Says the floor for v1 punks is 3.63 when it's actually 3.25. \n\nTeam peaced out and now they can't pull data or listings from other exchanges.",
+        "likes": 64,
+        "retweets": 0,
+        "replies": 27,
+        "views": 6487,
+        "engagement": 91,
+        "created_at": "2026-05-22T13:49:59+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057829790116430281",
+        "author": "BullpenFi",
+        "text": "Ansem reacts to @smokey0x full porting $XPL in the first hour of the Market Bubble Invitational \ud83d\ude02\n\nSmokey is currently down -$3,000",
+        "likes": 77,
+        "retweets": 3,
+        "replies": 10,
+        "views": 39212,
+        "engagement": 90,
+        "created_at": "2026-05-22T14:23:49+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057835481006743993",
+        "author": "BullpenFi",
+        "text": "BREAKING: Ansem Longs $NEAR during the Market Bubble Invitational\n\nHe's currently up $18K in the last 24hrs\n\n@blknoiz06 is putting his money where his mouth is",
+        "likes": 62,
+        "retweets": 4,
+        "replies": 8,
+        "views": 19148,
+        "engagement": 74,
+        "created_at": "2026-05-22T14:46:26+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057840907735687450",
+        "author": "punk9059",
+        "text": "CT in 2021 discovering NFTs: \"It's a collectible art... but it's DIGITAL.\"\n\nCT in 2026 discovering TCGs: \"It's collectible art... but it's PHYSICAL.\"",
+        "likes": 52,
+        "retweets": 0,
+        "replies": 10,
+        "views": 2258,
+        "engagement": 62,
+        "created_at": "2026-05-22T15:07:59+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057846217619730785",
+        "author": "punk9059",
+        "text": "Pumped to go live on @RealVision",
+        "likes": 21,
+        "retweets": 2,
+        "replies": 4,
+        "views": 6107,
+        "engagement": 27,
+        "created_at": "2026-05-22T15:29:05+00:00",
+        "tier": "T1"
+      },
+      {
+        "id": "2057845187322483034",
+        "author": "RealVision",
+        "text": "Up 100%+ in 3M, 40% this week, trading above $60 for the first time.\n\nWhat\u2019s driving the $HYPE? - LIVE with @punk9059",
+        "likes": 21,
+        "retweets": 4,
+        "replies": 2,
+        "views": 9811,
+        "engagement": 27,
+        "created_at": "2026-05-22T15:25:00+00:00",
+        "tier": "T1"
+      }
+    ],
+    "T2": [
+      {
+        "id": "2057898384279711944",
+        "author": "k1rallik",
+        "text": "> be Riot\n> 2014 anti-cheat team is 3 guys\n> legacy system Packman barely works\n> 2020 ship Vanguard, kernel-level, on boot\n> internet calls it a Chinese rootkit\n> ship it anyway\n> ban 3.6M Valorant cheaters in 4 years\n> one ban every 37 seconds\n> 2024 force it onto League, 175K bans in months\n> scripting drops below 1% for the first time in 4 years\n> Elysium, Oasys, Zeitgeist all shut down\n> May 22 2026 flip IOMMU on DMA rigs, they blue-screen mid-match\n> tweet \"congrats on your $6k paperweight",
+        "likes": 10613,
+        "retweets": 401,
+        "replies": 142,
+        "views": 2078878,
+        "engagement": 11156,
+        "created_at": "2026-05-22T18:56:23+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057932339788058654",
+        "author": "k1rallik",
+        "text": "> be Tom Hardy\n> start drugs at 11\n> expelled for crack and theft\n> say you'd sell your mum for a rock\n> wake up at 25 in blood and vomit\n> get sober. stay sober 23 years\n> replace it with the gym and martial arts\n> become bane. mad max. venom\n> sneak into a local BJJ tournament as \"edward hardy\"\n> choke out a stranger who didn't know it was you\n> become a trustee of the veterans charity you fight for\n> in 2026 get fired for being too intense\n\nhe survived everything except a producer's email.",
+        "likes": 6021,
+        "retweets": 197,
+        "replies": 52,
+        "views": 1057908,
+        "engagement": 6270,
+        "created_at": "2026-05-22T21:11:18+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057915743178514657",
+        "author": "k1rallik",
+        "text": "do you understand what happened to GTA 6..\n\nOn the earnings call, a Bank of America analyst pushed Take-Two's CEO to price GTA 6 at $80 instead of $70 - to \"help the struggling industry\" force other publishers to follow.\n\nZelnick refused to answer and said games have only gotten cheaper for consumers over time.\n\n> Take-Two led the industry from $60 to $70 back in 2020\n> BofA argued $70 would make every other AAA game look bad\n> Mario Kart World already shipped at $80 last year\n> GTA 5 is still s",
+        "likes": 2188,
+        "retweets": 73,
+        "replies": 80,
+        "views": 1061092,
+        "engagement": 2341,
+        "created_at": "2026-05-22T20:05:22+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057884578929311818",
+        "author": "k1rallik",
+        "text": "RIOT JUST TURNED $6,000 CHEAT DEVICES INTO PAPERWEIGHTS\n\nRiot Games rolled out a Vanguard update that targets DMA cheating hardware - external devices that read game memory from a second PC to bypass anti-cheat. \n\nThe fix? A full Windows reinstall. Riot's official response: \"congrats to the owners of a brand new $6k paperweight\"\n\n\u2192 The targeted device (Heino 2) costs ~$6,000\n\u2192 Valorant is a FREE-TO-PLAY game\n\u2192 Riot worked with MSI, ASUS, and ASRock to pull this off\n\nThe real L isn't the ban. It'",
+        "likes": 1417,
+        "retweets": 79,
+        "replies": 57,
+        "views": 624076,
+        "engagement": 1553,
+        "created_at": "2026-05-22T18:01:31+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057838897116111250",
+        "author": "0xleegenz",
+        "text": "When you finally get a job after 100 rejected interviews after graduating (it\u2019s the grocery store near your house)",
+        "likes": 945,
+        "retweets": 43,
+        "replies": 5,
+        "views": 10119,
+        "engagement": 993,
+        "created_at": "2026-05-22T15:00:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057895210609221773",
+        "author": "k1rallik",
+        "text": "> be Obsession\n> get made for less than $1M\n> premiere at TIFF Midnight Madness September 2025\n> Focus, Neon, and A24 enter a bidding war for you\n> Focus wins for $14M\n> open May 15, 2026\n> pull $2.6M from Thursday previews and Wednesday early access\n> debut to $17.2M\n> hit $30.2M in week one\n> grab #1 at the box office Monday through Wednesday\n> beat Michael, Devil Wears Prada 2, and Mortal Kombat II\n> become the cheapest horror movie at #1 since Paranormal Activity in 2009\n> hold 94% Rotten To",
+        "likes": 904,
+        "retweets": 58,
+        "replies": 10,
+        "views": 70169,
+        "engagement": 972,
+        "created_at": "2026-05-22T18:43:46+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057851170035466638",
+        "author": "CrashiusClay69",
+        "text": "$500K to $1M USD Challenge\n\n3 month agreement with @rainbetcom \n\nBut with a requirement that I get to share:\n\nRainbet offered about 7 different deals \n\nI declined all of them.. until I came up with my own structure  \n\n\u201cInstead how about you sponsor a $1M account, if I double it, I get to giveaway $1M to ppl who follow me, 3 month time limit\u201d\n\n\u201cNope we can\u2019t do $1M giveaway\u201d\n\n\u201cOk $500k, if I double it, I get to giveaway $500k\u201d\n\n\u201cAlso nope\u2026 the max we can giveaway is $250k, So you can use $250k ac",
+        "likes": 576,
+        "retweets": 68,
+        "replies": 174,
+        "views": 62013,
+        "engagement": 818,
+        "created_at": "2026-05-22T15:48:46+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057828007243366616",
+        "author": "the_smart_ape",
+        "text": "> be zachxbt (real name: Zachary Wolk, Austin TX, ex-Vandegrift swim team)\n> spend 5 years hunting anons\n> get doxxed by machi in federal court in 2023\n> \u201ccommunity defense fund\u201d $1.1M, donors: cz, justin sun, jesse powell, sandeep\n> never investigate a single one of them\n> jan 2025: mystery dev airdrops you 500M $ZACHXBT\n> dump $3.87M on your own followers\n> dec 2024 \u2192 jan 2026: 7 critical threads on hyperliquid\n> jan 18 2026: hyperliquid gifts you 10,000 HYPE ($600K)\n> 4 months of silence afte",
+        "likes": 658,
+        "retweets": 45,
+        "replies": 41,
+        "views": 161953,
+        "engagement": 744,
+        "created_at": "2026-05-22T14:16:44+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057916545112957078",
+        "author": "JakeGagain",
+        "text": "The Crashius Clay Live Stream!",
+        "likes": 281,
+        "retweets": 102,
+        "replies": 67,
+        "views": 31791,
+        "engagement": 450,
+        "created_at": "2026-05-22T20:08:33+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2058002873556844828",
+        "author": "blknoiz06",
+        "text": "@stoicsavage i still dont understand why you guys hate solana so much\n\neth also raped retail to the tune of billions of dollars in tx fees, same memecoins, and a gazillion L2 coins that are down 99%\n\nwhat makes sol worse than any other L1? why is zec bad?",
+        "likes": 291,
+        "retweets": 14,
+        "replies": 56,
+        "views": 26823,
+        "engagement": 361,
+        "created_at": "2026-05-23T01:51:35+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057945264816795754",
+        "author": "sarah_talley_",
+        "text": "From @JakeGagain and @cryptojourneyrs live stream today. \n\n@CrashiusClay69 on why he\u2019s so bullish on $Troll \n\nThe first he says is, \u201cit has IP rights\u201d. \n\n\u201cYou can\u2019t fight it, it has IP, get fucked\u201d \n\nPivot to IP.",
+        "likes": 238,
+        "retweets": 50,
+        "replies": 42,
+        "views": 12418,
+        "engagement": 330,
+        "created_at": "2026-05-22T22:02:40+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057930747755860456",
+        "author": "neetqnt",
+        "text": ".@CrashiusClay69 \n\nExplains the most bullish and obvious thesis on why $TROLL going to 100B",
+        "likes": 252,
+        "retweets": 53,
+        "replies": 20,
+        "views": 13076,
+        "engagement": 325,
+        "created_at": "2026-05-22T21:04:59+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057908932199280963",
+        "author": "CrashiusClay69",
+        "text": "Bet 1 of $500k to 1M USDT challenge: \n\nsplitting this into 2 parts. \n\nNow bare with me, I'd say the first 3 bets of the challenge i'll feel the most \"pressure\" haha and you should be extra cautious while im breaking the ice.\n\ndont tail me by going way bigger than I am as a % of the money you have. \n\nThis bet is mostly my valorant quant who i always talk to weekly about bets.\n\nvalorant quant 0-0\ncrash 0-0\n\ntonight the Spurs and Thunder also will play. \n\nAnd i think its best to avoid it.. \n\nIF the",
+        "likes": 234,
+        "retweets": 26,
+        "replies": 53,
+        "views": 28634,
+        "engagement": 313,
+        "created_at": "2026-05-22T19:38:18+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057907772486832533",
+        "author": "frankdegods",
+        "text": "bullish liquidations",
+        "likes": 219,
+        "retweets": 17,
+        "replies": 52,
+        "views": 16573,
+        "engagement": 288,
+        "created_at": "2026-05-22T19:33:41+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057922725725765991",
+        "author": "k1rallik",
+        "text": "> be Miley Cyrus\n> born \"Destiny Hope,\" called \"Smiley\"\n> dad sings \"Achy Breaky Heart\"\n> godmother is Dolly Parton\n> Disney says you're \"too small\" at 11\n> book Hannah Montana anyway\n> at 15, Annie Leibovitz Vanity Fair scandal\n> at 20, twerk Robin Thicke at the VMAs\n> swing naked on a wrecking ball\n> marry Liam Hemsworth. split 7 months later\n> drop \"Flowers\" on his birthday\n> break Spotify's weekly record. twice\n> win Record of the Year. your first Grammy ever\n> at 33, get a Hollywood Walk of",
+        "likes": 224,
+        "retweets": 38,
+        "replies": 2,
+        "views": 12204,
+        "engagement": 264,
+        "created_at": "2026-05-22T20:33:06+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057902327747744251",
+        "author": "stacy_muur",
+        "text": "Celestia, a protocol that raised $156 million in funding, now has less than 1,000 daily active users.\n\nIncredible.",
+        "likes": 185,
+        "retweets": 11,
+        "replies": 38,
+        "views": 14155,
+        "engagement": 234,
+        "created_at": "2026-05-22T19:12:03+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057858552434245720",
+        "author": "frankdegods",
+        "text": "good luck bro",
+        "likes": 177,
+        "retweets": 11,
+        "replies": 34,
+        "views": 7246,
+        "engagement": 222,
+        "created_at": "2026-05-22T16:18:06+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057868354866839564",
+        "author": "stacy_muur",
+        "text": "Why is the founder persona your best marketing investment in 2026?\n\nShort answer: trust is the only thing AI can't copy.\n\nLong answer \u2193",
+        "likes": 112,
+        "retweets": 11,
+        "replies": 14,
+        "views": 4853,
+        "engagement": 137,
+        "created_at": "2026-05-22T16:57:03+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057851175957901444",
+        "author": "CrashiusClay69",
+        "text": "TG where I\u2019ll post the live odds bets I take on this challenge: \n\nMain bets will be here on X \n\nWill also be going live and discussing with yall what we bet on, and how we give this $250,000 to people outside of X as well not only people here if we succeed.",
+        "likes": 107,
+        "retweets": 10,
+        "replies": 10,
+        "views": 9796,
+        "engagement": 127,
+        "created_at": "2026-05-22T15:48:48+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057991018323026345",
+        "author": "CrashiusClay69",
+        "text": "Just took a live odds OKC +7.5 with $20k \n\nIn TG \n\n\n\nMake sure you\u2019re in TG if you\u2019re following along on this challenge with me, any live odds bets normally I will more quickly be able to post there and update more thoughts and have fun \n\nLost first bet of the challenge but it\u2019s all good, the challenge is to double \n\nAnd this is a \u201cchallenge\u201d for a reason\n\nMain bets will be on X \nMost live bets and fun on TG",
+        "likes": 90,
+        "retweets": 7,
+        "replies": 24,
+        "views": 6274,
+        "engagement": 121,
+        "created_at": "2026-05-23T01:04:29+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057810725427650977",
+        "author": "jussy_world",
+        "text": "That's fire...\n\n\u2022 Before: download a wallet, buy gas tokens, send stables\n\u2022 Now: open @SlushWallet, send stables\n\nYou don't need gas tokens anymore\n\nThis is the UX crypto actually needs for onboarding",
+        "likes": 97,
+        "retweets": 11,
+        "replies": 13,
+        "views": 5802,
+        "engagement": 121,
+        "created_at": "2026-05-22T13:08:03+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057827338835108056",
+        "author": "stacy_muur",
+        "text": "I noticed that most people trading derivatives don't fully understand how margin works across positions.\n\nI think it's worth explaining because it can change your perception of risk overall.\n\nMost platforms split perps and options into separate buckets, each with its own risk. So if you\u2019re long ETH perp on platform X and hedge by buying a put option on platform Y, they\u2019re treated as two unrelated positions.\n\nSo if ETH nukes, your long position gets liquidated even while your put is printing, bec",
+        "likes": 78,
+        "retweets": 11,
+        "replies": 25,
+        "views": 5658,
+        "engagement": 114,
+        "created_at": "2026-05-22T14:14:04+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057982399477321801",
+        "author": "katexbt",
+        "text": "for reference i was #200 or so ranked\n\nfirst instinct was to be underwhelmed\n\nthen i realized wait a minute\n\nfelix, hyperbear, hypurr never airdropped anything, not even a single cent, and ran pts programs way before prjx\n\nand then i became grateful\n\nthx yall",
+        "likes": 79,
+        "retweets": 0,
+        "replies": 20,
+        "views": 3656,
+        "engagement": 99,
+        "created_at": "2026-05-23T00:30:14+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057861546018291899",
+        "author": "0xleegenz",
+        "text": "How your dad starts acting as soon as you finish college (he already knows nobody\u2019s hiring you):",
+        "likes": 91,
+        "retweets": 4,
+        "replies": 2,
+        "views": 2794,
+        "engagement": 97,
+        "created_at": "2026-05-22T16:30:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057848066443706676",
+        "author": "jussy_world",
+        "text": "While everyone is earning 5% on their stables\n\nI deposited $30k to @piggybank_fi vault to earn 15% APY\n\nReal yield, No looping\n\nYield comes from delta neutral funding rate arbitrage across perpetual DEXs\n\nAudited, with 2/3 off-chain MPC signature\n\nUSDC Vault is almost full",
+        "likes": 74,
+        "retweets": 3,
+        "replies": 18,
+        "views": 4218,
+        "engagement": 95,
+        "created_at": "2026-05-22T15:36:26+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057809750939570383",
+        "author": "HastraFi",
+        "text": "PRIME is now live on Pendle \ud83c\udf20\n\nIntroducing new, structured strategies to gain exposure to institutional-grade, private credit cash flows, or trade directionally on PRIME's HELOC yield.\n\nMortgage-fi meets DeFi's largest yield trading layer.",
+        "likes": 45,
+        "retweets": 6,
+        "replies": 30,
+        "views": 2239,
+        "engagement": 81,
+        "created_at": "2026-05-22T13:04:11+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057894702213419430",
+        "author": "FabianoSolana",
+        "text": "You can get up to 85% APY with this strategy:\n\nJLP/SOL is trading within 10% for months\n\n- Open a position with that range\n- Choose low leverage with LO\n- Get 60% APY (85%+ with auto compounding)\n\nThis is one of the cleanest charts for LP if you believe in Crypto and SOL!!",
+        "likes": 69,
+        "retweets": 2,
+        "replies": 9,
+        "views": 7059,
+        "engagement": 80,
+        "created_at": "2026-05-22T18:41:45+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057927263966920727",
+        "author": "k1rallik",
+        "text": "STREAMING IS NOT A SAFE SPACE FROM YOUR EULA\n\nXeno just got banned from FFXIV for what he said on Twitch and half the internet is screaming \"they can't do that\" \n\nA real lawyer slid into the thread to inform them that yes, they absolutely can.\n\nThe catch-all clause has been sitting in the contract for 30 years. Nobody read it. Shocking.\n\n\u2192 The User Agreement explicitly covers behavior on video and streaming services\n\u2192 Square Enix can ban \"at any time, for any reason, without notice\"\n\u2192 Xeno's acc",
+        "likes": 59,
+        "retweets": 6,
+        "replies": 4,
+        "views": 11568,
+        "engagement": 69,
+        "created_at": "2026-05-22T20:51:08+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057861546299236610",
+        "author": "cometwtf",
+        "text": "It's actually crazy impressive how terrible of an asset $ETH is.",
+        "likes": 45,
+        "retweets": 1,
+        "replies": 14,
+        "views": 1798,
+        "engagement": 60,
+        "created_at": "2026-05-22T16:30:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057883691024589114",
+        "author": "katexbt",
+        "text": "When a woman over the age of 30 finally gets proposed to",
+        "likes": 44,
+        "retweets": 3,
+        "replies": 9,
+        "views": 1663,
+        "engagement": 56,
+        "created_at": "2026-05-22T17:58:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057942075660730854",
+        "author": "cometwtf",
+        "text": "A trader become successful after years of losses, disappointments, mental battles, and straight pain.\n\nIt's not luck.",
+        "likes": 26,
+        "retweets": 1,
+        "replies": 17,
+        "views": 648,
+        "engagement": 44,
+        "created_at": "2026-05-22T21:50:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2058040286136176747",
+        "author": "viralkick_clipz",
+        "text": "Jake, Rodney &amp; Crash discuss the Top 25 list from @MarketBubble's live stream.\n\n@CrashiusClay69 @JakeGagain @CryptoJourneyrs",
+        "likes": 31,
+        "retweets": 2,
+        "replies": 3,
+        "views": 967,
+        "engagement": 36,
+        "created_at": "2026-05-23T04:20:15+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057863054873006541",
+        "author": "crypto_linn",
+        "text": "some people are so poor all they have is money",
+        "likes": 26,
+        "retweets": 2,
+        "replies": 6,
+        "views": 757,
+        "engagement": 34,
+        "created_at": "2026-05-22T16:36:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2058036523166224731",
+        "author": "crypto_linn",
+        "text": "your natural programming defaults to the least energy expenditure\n\nin an age of infinite calories\n\nif your goal is deep meaningful fulfilment (not just survival)\n\nseek effort, challenge and what is difficult",
+        "likes": 23,
+        "retweets": 2,
+        "replies": 8,
+        "views": 667,
+        "engagement": 33,
+        "created_at": "2026-05-23T04:05:18+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057838902417990016",
+        "author": "cometwtf",
+        "text": "\"You just got very lucky.\"\n\nThe real luck:",
+        "likes": 25,
+        "retweets": 2,
+        "replies": 6,
+        "views": 875,
+        "engagement": 33,
+        "created_at": "2026-05-22T15:00:01+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057846445630484530",
+        "author": "0xleegenz",
+        "text": "How it feels getting a job offer at the same company you did your internship at:",
+        "likes": 25,
+        "retweets": 1,
+        "replies": 4,
+        "views": 494,
+        "engagement": 30,
+        "created_at": "2026-05-22T15:30:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057849373615362438",
+        "author": "katexbt",
+        "text": "don't want to sound too optimistic and crazy bullish but if this ends up retiring people in a few months i will be one of the retired ones\n\nand so will half the people that used my ref when i spammed it incessantly for months on end on here",
+        "likes": 21,
+        "retweets": 0,
+        "replies": 7,
+        "views": 4713,
+        "engagement": 28,
+        "created_at": "2026-05-22T15:41:38+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057885320889421868",
+        "author": "0xleegenz",
+        "text": "Meta workers when they realize they\u2019re not among the 8,000 people being replaced by AI",
+        "likes": 25,
+        "retweets": 1,
+        "replies": 2,
+        "views": 1782,
+        "engagement": 28,
+        "created_at": "2026-05-22T18:04:28+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057876645596348572",
+        "author": "0xleegenz",
+        "text": "When you\u2019re explaining at the family reunion how the pandemic was planned by \u201cthe elites,\u201d and one relative asks:\n\n\u201cSo did they also plan your unemployment?\u201d",
+        "likes": 22,
+        "retweets": 2,
+        "replies": 4,
+        "views": 618,
+        "engagement": 28,
+        "created_at": "2026-05-22T17:30:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057924459366125726",
+        "author": "cometwtf",
+        "text": "Crypto guys are built different.",
+        "likes": 17,
+        "retweets": 0,
+        "replies": 9,
+        "views": 376,
+        "engagement": 26,
+        "created_at": "2026-05-22T20:40:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057837159202402436",
+        "author": "katexbt",
+        "text": "we are reaching that point of the cycle where you can tag @Stitch3_ai like in the good ol' days to just bullpost about @HyperliquidX and get paid heavily for it\n\nHyperliquid.",
+        "likes": 21,
+        "retweets": 0,
+        "replies": 3,
+        "views": 644,
+        "engagement": 24,
+        "created_at": "2026-05-22T14:53:06+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057906844639830133",
+        "author": "cometwtf",
+        "text": "THIS IS CRAZY\n\nJensen Huang is about to make $870 million per year in dividends alone.\n\nNVIDIA just hiked its quarterly dividend 25x, from $0.01 to $0.25 per share.\n\nWith his 871.7 million shares, Huang\u2019s annual dividend income just exploded from $34.8 million to nearly $870 million in pure cash.",
+        "likes": 18,
+        "retweets": 0,
+        "replies": 6,
+        "views": 951,
+        "engagement": 24,
+        "created_at": "2026-05-22T19:30:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057825705086660639",
+        "author": "0xleegenz",
+        "text": "Meta workers who planned to take PTO for their vacation reading this:",
+        "likes": 22,
+        "retweets": 0,
+        "replies": 2,
+        "views": 1672,
+        "engagement": 24,
+        "created_at": "2026-05-22T14:07:35+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057884948258861330",
+        "author": "cometwtf",
+        "text": "16 years ago 10,000 BTC bought two pizzas.\n\nToday that stack could buy every Papa Johns twice.\n\nPizza Day always amazes me.",
+        "likes": 16,
+        "retweets": 1,
+        "replies": 5,
+        "views": 559,
+        "engagement": 22,
+        "created_at": "2026-05-22T18:02:59+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2058012225479303445",
+        "author": "0xleegenz",
+        "text": "2020: U.S extended COVID travel ban who recently visited Wu Han, China\n\n2026: U.S extended Ebola travel ban who recently visited Congo, Uganda",
+        "likes": 17,
+        "retweets": 0,
+        "replies": 5,
+        "views": 4323,
+        "engagement": 22,
+        "created_at": "2026-05-23T02:28:45+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057891744251871478",
+        "author": "0xleegenz",
+        "text": "Me at work: \"When i get home i'm going to update my resume and find a new job, i hate it here\"\n\nMe as soon as i get home:",
+        "likes": 17,
+        "retweets": 2,
+        "replies": 1,
+        "views": 601,
+        "engagement": 20,
+        "created_at": "2026-05-22T18:30:00+00:00",
+        "tier": "T2"
+      },
+      {
+        "id": "2057831346576458176",
+        "author": "0xleegenz",
+        "text": "Millennials patiently waiting for their boomer parents to pass away so they can finally get a house in this market:",
+        "likes": 17,
+        "retweets": 0,
+        "replies": 3,
+        "views": 521,
+        "engagement": 20,
+        "created_at": "2026-05-22T14:30:00+00:00",
+        "tier": "T2"
+      }
+    ],
+    "T3": [
+      {
+        "id": "2057821680815243365",
+        "author": "GRITCULT",
+        "text": "Whatever you do, you must pay.",
+        "likes": 490,
+        "retweets": 67,
+        "replies": 9,
+        "views": 15889,
+        "engagement": 566,
+        "created_at": "2026-05-22T13:51:35+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057902674243166450",
+        "author": "notthreadguy",
+        "text": "and it\u2019s a three day weekend? fuck",
+        "likes": 174,
+        "retweets": 1,
+        "replies": 20,
+        "views": 56483,
+        "engagement": 195,
+        "created_at": "2026-05-22T19:13:26+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057880248708911481",
+        "author": "beaniemaxi",
+        "text": "Feels like late 2023 right now when alts started to wake up after about a year and a half of complete decimation. I made a lot of money off of Near, Sei, Sui and others. Ultimately it's the narratives that matter. Never fall in love with the protocol cause you'll be disappointed.",
+        "likes": 135,
+        "retweets": 5,
+        "replies": 27,
+        "views": 8745,
+        "engagement": 167,
+        "created_at": "2026-05-22T17:44:19+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057860003331977282",
+        "author": "notthreadguy",
+        "text": "HOW TO TRADE EVERY BLACK SWAN EVENT \n\nLIVE TODAY",
+        "likes": 114,
+        "retweets": 7,
+        "replies": 28,
+        "views": 8730,
+        "engagement": 149,
+        "created_at": "2026-05-22T16:23:52+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057943026303980014",
+        "author": "flocko",
+        "text": "Choice was $1 mil cash in a duffel bag or dinner w @notthreadguy \ud83d\udc10.... Guess what I chose",
+        "likes": 114,
+        "retweets": 2,
+        "replies": 21,
+        "views": 5827,
+        "engagement": 137,
+        "created_at": "2026-05-22T21:53:46+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057979713025433998",
+        "author": "beaniemaxi",
+        "text": "Most progressive tokenomics I've ever seen. Burn to earn. With no team, VC, or insider allocation. 100% of tokens to the community.",
+        "likes": 59,
+        "retweets": 2,
+        "replies": 25,
+        "views": 20521,
+        "engagement": 86,
+        "created_at": "2026-05-23T00:19:33+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057915582175961122",
+        "author": "beaniemaxi",
+        "text": "You can't make these things up. Floyd Mayweather literally hired Jona Rechnitz who's a convict d felon for fraud to manage his money. Stupid is as stupid does. Serves this mfer right after his countless crypto token and NFT rugs.",
+        "likes": 61,
+        "retweets": 6,
+        "replies": 18,
+        "views": 6300,
+        "engagement": 85,
+        "created_at": "2026-05-22T20:04:43+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2057912548263895478",
+        "author": "notthreadguy",
+        "text": "LIVE: Stocks UP, Crypto DOWN! How To Trade Every BLACK SWAN Event... Everyone Is Getting RICH?\n\njoin on twitch to chat link below",
+        "likes": 49,
+        "retweets": 3,
+        "replies": 12,
+        "views": 4246,
+        "engagement": 64,
+        "created_at": "2026-05-22T19:52:40+00:00",
+        "tier": "T3"
+      },
+      {
+        "id": "2058048654682829169",
+        "author": "beaniemaxi",
+        "text": "If you actually care about privacy (I personally don't) and not just being round 2 exit liquidity of a tier 1 KOL pump and dump, then you'd be buying Monero (to actually use) and laughing about Zcash in your Threema group chats. It's easy to verify simply by polling the Darknet.",
+        "likes": 34,
+        "retweets": 1,
+        "replies": 22,
+        "views": 1506,
+        "engagement": 57,
+        "created_at": "2026-05-23T04:53:30+00:00",
+        "tier": "T3"
+      }
+    ],
+    "Org-AI": [
+      {
+        "id": "2057879204490883278",
+        "author": "NousResearch",
+        "text": "Hermes Agent now supports the @Bitwarden Secrets Manager",
+        "likes": 1104,
+        "retweets": 71,
+        "replies": 81,
+        "views": 98037,
+        "engagement": 1256,
+        "created_at": "2026-05-22T17:40:10+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2057831172411944980",
+        "author": "NousResearch",
+        "text": "",
+        "likes": 1102,
+        "retweets": 67,
+        "replies": 77,
+        "views": 30970,
+        "engagement": 1246,
+        "created_at": "2026-05-22T14:29:18+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2057949723328446627",
+        "author": "Teknium",
+        "text": "Hermes on your watch? nicee",
+        "likes": 270,
+        "retweets": 6,
+        "replies": 20,
+        "views": 25906,
+        "engagement": 296,
+        "created_at": "2026-05-22T22:20:23+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2057848932882170152",
+        "author": "AravSrinivas",
+        "text": "MiniMax, a leading open source model and agent, is now powered by Perplexity\u2019s search infrastructure",
+        "likes": 203,
+        "retweets": 17,
+        "replies": 17,
+        "views": 29990,
+        "engagement": 237,
+        "created_at": "2026-05-22T15:39:53+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2057889868823642277",
+        "author": "Bitwarden",
+        "text": "Thank you @NousResearch team! Here's to Security for All, agents included. \ud83d\ude0e\ud83e\udd16",
+        "likes": 142,
+        "retweets": 10,
+        "replies": 6,
+        "views": 16650,
+        "engagement": 158,
+        "created_at": "2026-05-22T18:22:33+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2057882255033348117",
+        "author": "NousResearch",
+        "text": "@Bitwarden",
+        "likes": 45,
+        "retweets": 3,
+        "replies": 2,
+        "views": 6945,
+        "engagement": 50,
+        "created_at": "2026-05-22T17:52:17+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2057981031110578275",
+        "author": "isaaccyn",
+        "text": "optimise for fun when it comes to building for and with agents\n\nsetting up a hermes agent is fun because it feels like you\u2019re hatching and raising an incredibly smart digital pet that can do and learn almost anything you want it to\n\none magic moment after another gets you hooked",
+        "likes": 33,
+        "retweets": 1,
+        "replies": 6,
+        "views": 4050,
+        "engagement": 40,
+        "created_at": "2026-05-23T00:24:47+00:00",
+        "tier": "Org-AI",
+        "is_product_update": false
+      },
+      {
+        "id": "2058012127206785094",
+        "author": "MiniMax_AI",
+        "text": "Congratulaitons on the launch of Gizmo @gradium!\nGizmo is powered by our dual\u2011LLMarchitecture, eliminating awkward silence during conversations. \n\nThe lightning-fast M2-her model delivers instant acknowledgements, while the powerful M2.7 handles complex reasoning in the background.\n\nThe result is a voice agent that feels present, responsive, and effortlessly natural, putting customer experience first",
+        "likes": 29,
+        "retweets": 3,
+        "replies": 6,
+        "views": 3695,
+        "engagement": 38,
+        "created_at": "2026-05-23T02:28:21+00:00",
+        "tier": "Org-AI",
+        "is_product_update": true
+      }
+    ]
+  },
+  "top_kols": [
+    {
+      "id": "2057808321139118309",
+      "author": "saylor",
+      "text": "Happy Bitcoin Pizza Day! \ud83c\udf55",
+      "likes": 15541,
+      "retweets": 1757,
+      "replies": 1432,
+      "views": 379986,
+      "engagement": 18730,
+      "created_at": "2026-05-22T12:58:30+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057871165465436227",
+      "author": "KobeissiLetter",
+      "text": "BREAKING: United States Director of National Intelligence Tulsi Gabbard has resigned, per Fox News.",
+      "likes": 5682,
+      "retweets": 721,
+      "replies": 486,
+      "views": 561415,
+      "engagement": 6889,
+      "created_at": "2026-05-22T17:08:13+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057855709480362460",
+      "author": "saylor",
+      "text": "The most interesting story in Bitcoin right now is the rise of $SATA in the credit markets and the embrace of $ASST by the equity capital markets.",
+      "likes": 5572,
+      "retweets": 758,
+      "replies": 400,
+      "views": 349786,
+      "engagement": 6730,
+      "created_at": "2026-05-22T16:06:48+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057915455478673431",
+      "author": "chooserich",
+      "text": "Two weeks ago I shared that I got Classic Hodgkin Lymphoma (\"cHL\")...\n\nFor those who may be unfortunate to end up in a similar place I wanted to share lessons from the wild rollercoaster of the past two weeks.\n\nPerhaps it might be a little bit cathartic as well \u2b07\ufe0f",
+      "likes": 3646,
+      "retweets": 86,
+      "replies": 611,
+      "views": 1664263,
+      "engagement": 4343,
+      "created_at": "2026-05-22T20:04:13+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057880296725328312",
+      "author": "LynAldenContact",
+      "text": "Man, today's print in US consumer sentiment is brutal.",
+      "likes": 3373,
+      "retweets": 420,
+      "replies": 273,
+      "views": 276994,
+      "engagement": 4066,
+      "created_at": "2026-05-22T17:44:30+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057816348395278688",
+      "author": "Cointelegraph",
+      "text": "\ud83d\udd25 INSIGHT: Michael Saylor says 100M people now have $BTC exposure through MSTR stock.",
+      "likes": 1816,
+      "retweets": 215,
+      "replies": 179,
+      "views": 132776,
+      "engagement": 2210,
+      "created_at": "2026-05-22T13:30:24+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057898102741221742",
+      "author": "phongle",
+      "text": "In 10 months, $STRC went from zero to $10.5B in market cap, more than doubling the size of the 2nd largest preferred in the World.",
+      "likes": 1856,
+      "retweets": 201,
+      "replies": 79,
+      "views": 88212,
+      "engagement": 2136,
+      "created_at": "2026-05-22T18:55:16+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057878304443494837",
+      "author": "brian_armstrong",
+      "text": "2010: 10,000 BTC = two pizzas\n\n2026: 10,000 BTC = ~$768M\n\nTurns out it was a better store of value than medium of exchange (so far!), but shout out to Laszlo Hanyecz, and Happy Bitcoin pizza day.",
+      "likes": 1422,
+      "retweets": 223,
+      "replies": 213,
+      "views": 56287,
+      "engagement": 1858,
+      "created_at": "2026-05-22T17:36:35+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057900190137201117",
+      "author": "LynAldenContact",
+      "text": "Homelander really was an S-tier meme source.",
+      "likes": 1074,
+      "retweets": 36,
+      "replies": 40,
+      "views": 137790,
+      "engagement": 1150,
+      "created_at": "2026-05-22T19:03:33+00:00",
+      "tier": "T1"
+    },
+    {
+      "id": "2057892295022899223",
+      "author": "gladstein",
+      "text": "I genuinely don't think crypto people are aware of the massive privacy improvements that have been achieved in Bitcoin over the last 5-10 years",
+      "likes": 967,
+      "retweets": 114,
+      "replies": 40,
+      "views": 86750,
+      "engagement": 1121,
+      "created_at": "2026-05-22T18:32:11+00:00",
+      "tier": "T1"
+    }
+  ],
+  "narratives": [
+    {
+      "topic": "ai",
+      "count": 148,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "WatcherGuru",
+          "text": "JUST IN: \ud83c\uddfa\ud83c\uddf8 Pro-crypto Kevin Warsh officially sworn in as Federal Reserve Chair, replacing Jerome Powell.",
+          "id": "2057858129128243248",
+          "likes": 22499,
+          "retweets": 3346
+        },
+        {
+          "author": "MEGAprivacy",
+          "text": "Your files should be yours \u2014 not scanned, not interpreted by AI.\nThat's why MEGA is built with end-to-end encryption. Privacy by design.",
+          "id": "2057858099621294491",
+          "likes": 14541,
+          "retweets": 1557
+        },
+        {
+          "author": "cz_binance",
+          "text": "We are trained to go bigger, more money, more crypto, more AI agents, more friends, more projects, more plans, more everything, and less happy. \n\nHappy people have a small circle of friends and simple routines.",
+          "id": "2057905736836137179",
+          "likes": 6613,
+          "retweets": 1139
+        },
+        {
+          "author": "WatcherGuru",
+          "text": "JUST IN: \ud83c\uddfa\ud83c\uddf8 SEC delays plan to allow blockchain-based tokenized stocks.",
+          "id": "2057894189271073244",
+          "likes": 5343,
+          "retweets": 782
+        },
+        {
+          "author": "k1rallik",
+          "text": "> be Tom Hardy\n> start drugs at 11\n> expelled for crack and theft\n> say you'd sell your mum for a rock\n> wake up at 25 in blood and vomit\n> get sober. stay sober 23 years\n> replace it with the gym and martial arts\n> become bane. mad max. venom\n> sneak into a local BJJ tournament as \"edward hardy\"\n> choke out a stranger who didn't know it was you\n> become a trustee of the veterans charity you fight for\n> in 2026 get fired for being too intense\n\nhe survived everything except a producer's email.",
+          "id": "2057932339788058654",
+          "likes": 6021,
+          "retweets": 197
+        }
+      ]
+    },
+    {
+      "topic": "bitcoin",
+      "count": 31,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "saylor",
+          "text": "Happy Bitcoin Pizza Day! \ud83c\udf55",
+          "id": "2057808321139118309",
+          "likes": 15541,
+          "retweets": 1757
+        },
+        {
+          "author": "WatcherGuru",
+          "text": "JUST IN: \ud83c\uddfa\ud83c\uddf8 SEC approves Nasdaq Bitcoin index options trading.",
+          "id": "2057934126871633967",
+          "likes": 7399,
+          "retweets": 1152
+        },
+        {
+          "author": "saylor",
+          "text": "The most interesting story in Bitcoin right now is the rise of $SATA in the credit markets and the embrace of $ASST by the equity capital markets.",
+          "id": "2057855709480362460",
+          "likes": 5572,
+          "retweets": 758
+        },
+        {
+          "author": "AshCrypto",
+          "text": "BREAKING: \ud83c\uddfa\ud83c\uddf8 The SEC has officially \u201cDELAYED\u201d its plan for blockchain-based tokenized stocks.\n\nBitcoin dropped nearly $900 on this news, wiping out $15,000,000,000 in market cap.",
+          "id": "2057904180824592523",
+          "likes": 2868,
+          "retweets": 407
+        },
+        {
+          "author": "AshCrypto",
+          "text": "BREAKING: The SEC has approved Bitcoin index options trading on the Nasdaq.\n\nBullish \ud83d\ude80",
+          "id": "2057934679035068658",
+          "likes": 2877,
+          "retweets": 384
+        }
+      ]
+    },
+    {
+      "topic": "base",
+      "count": 27,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "WatcherGuru",
+          "text": "JUST IN: \ud83c\uddfa\ud83c\uddf8 SEC delays plan to allow blockchain-based tokenized stocks.",
+          "id": "2057894189271073244",
+          "likes": 5343,
+          "retweets": 782
+        },
+        {
+          "author": "AshCrypto",
+          "text": "BREAKING: \ud83c\uddfa\ud83c\uddf8 The SEC has officially \u201cDELAYED\u201d its plan for blockchain-based tokenized stocks.\n\nBitcoin dropped nearly $900 on this news, wiping out $15,000,000,000 in market cap.",
+          "id": "2057904180824592523",
+          "likes": 2868,
+          "retweets": 407
+        },
+        {
+          "author": "coinbureau",
+          "text": "\ud83d\udea8TODAY: $BTC dropped below $76K after the SEC officially delayed its plan for blockchain-based tokenized stocks, wiping out roughly $15 billion in market cap.",
+          "id": "2057927413242503190",
+          "likes": 303,
+          "retweets": 49
+        },
+        {
+          "author": "solanamobile",
+          "text": "They took a Solana phone and put it on an island \ud83d\udcf1 \ud83c\udfdd\ufe0f\n\nWe're bringing the full Solana Mobile dev experience to @islanddao this June so you can go from 0 to shipping your mobile app\n\nBig plans ahead:\n- Jun 5: Intro to Solana Mobile with @beeman_nl (ideation, dev setup, base app, roadmap)\n\n- Jun 15-16: Progress check-in + hands-on building\n\n- Jun 17: Pre-release + user testing\n\n- Jun 18: Publishing day! Ship to the Solana dApp Store\n\n- Jun 19: Demo day + Seeker handouts\n\nDay 1 gets you set up for ",
+          "id": "2057871342305980520",
+          "likes": 219,
+          "retweets": 35
+        },
+        {
+          "author": "LeninUGReal",
+          "text": "Th\u1ecb tr\u01b0\u1eddng v\u1eeba s\u1ee5p \u0111\u1ed5 v\u00ec m\u1ed9t \u0111\u1ee3t b\u00e1n th\u00e1o ph\u1ed1i h\u1ee3p t\u1eeb c\u00e1c s\u00e0n l\u1edbn: Binance, Coinbase, BlackRock \u0111\u1ed3ng lo\u1ea1t x\u1ea3 h\u00e0ng ngh\u00ecn BTC. \u0110\u00e2y kh\u00f4ng ph\u1ea3i ng\u1eabu nhi\u00ean! #Bitcoin #CryptoCrash #Binance #BlackRock #MarketDump",
+          "id": "2057964805085135024",
+          "likes": 176,
+          "retweets": 4
+        }
+      ]
+    },
+    {
+      "topic": "defi",
+      "count": 22,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "kevinlhr88",
+          "text": "Spoke with an onchain asset issuer at Consensus Miami.\n\nHe told me:\n\n\u201cIf it doesn\u2019t beat $STRC, it\u2019s not worth tokenizing.\u201d\n\n$STRC is becoming the benchmark for DeFi.",
+          "id": "2057969503800025510",
+          "likes": 265,
+          "retweets": 30
+        },
+        {
+          "author": "saturn_credit",
+          "text": "Saturn surpassed $200M in TVL within 44 days of launch.\n\nSTRCFi is here - DeFi accelerated by $STRC.",
+          "id": "2057965593375158309",
+          "likes": 213,
+          "retweets": 31
+        },
+        {
+          "author": "Cointelegraph",
+          "text": "\ud83d\udd25 LATEST: Upcoming regulatory clarity could broadly boost digital assets, with Ethereum, Solana, BNB Chain, and Cardano positioned to benefit from growth in tokenized assets, stablecoins, and DeFi, according to a new Grayscale report.",
+          "id": "2057909437717782815",
+          "likes": 160,
+          "retweets": 37
+        },
+        {
+          "author": "apyx_fi",
+          "text": "Onchain digital credit yield is taking over DeFi.\n\nethereum:0x38eeb52f0771140d10c4e9a9a72349a329fe8a6a APY: 12.98%",
+          "id": "2057961029846315052",
+          "likes": 167,
+          "retweets": 16
+        },
+        {
+          "author": "millyonchain",
+          "text": "Putting my trust in DEV\u2019s who are cooking \u2014 dips are for accumulating \n\n$GRANTR (@grantr_id) \u2192 Native account abstraction \u2014 built on EIP-8141 frames \ud83e\ude99\n\n$GITLAWB (@gitlawb) \u2192 Decentralized GIT network for AI agents and humans to collaborate as equals \ud83d\udc65\n\n$CLAWBANK (@ClawBankHQ) \u2192 Legal system for your AI agents \u2014 bank accounts, companies, courts, and contracts accessible through one API \ud83e\udd9e\ud83c\udfe6\n\n$DARKSOL (@Darks0l_) \u2192 Smart contracts, DeFi protocols, agent infrastructure, full-stack dApps \u2014 launch of W",
+          "id": "2057874987441356994",
+          "likes": 118,
+          "retweets": 19
+        }
+      ]
+    },
+    {
+      "topic": "ton",
+      "count": 16,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "OndoFinance",
+          "text": "Tokenization was once a thesis. Today, it's the foundation for the next era of finance.\n\nNew @tokenterminal research maps Ondo's path as a leading tokenizer of real-world assets, from U.S. Treasuries to stocks and ETFs:\n\n\u2192 2023: OUSG, tokenized U.S. Treasuries\n\u2192 2023: USDY, tokenized U.S. dollar yield\n\u2192 2025: Tokenized stocks and ETFs\n\nOndo has long believed tokenization is the future of finance. Every product, every launch, every milestone is a step toward a more open and modern financial syste",
+          "id": "2057899491534242019",
+          "likes": 480,
+          "retweets": 71
+        },
+        {
+          "author": "CrashiusClay69",
+          "text": "Bet 1 of $500k to 1M USDT challenge: \n\nsplitting this into 2 parts. \n\nNow bare with me, I'd say the first 3 bets of the challenge i'll feel the most \"pressure\" haha and you should be extra cautious while im breaking the ice.\n\ndont tail me by going way bigger than I am as a % of the money you have. \n\nThis bet is mostly my valorant quant who i always talk to weekly about bets.\n\nvalorant quant 0-0\ncrash 0-0\n\ntonight the Spurs and Thunder also will play. \n\nAnd i think its best to avoid it.. \n\nIF the",
+          "id": "2057908932199280963",
+          "likes": 234,
+          "retweets": 26
+        },
+        {
+          "author": "k1rallik",
+          "text": "> be Miley Cyrus\n> born \"Destiny Hope,\" called \"Smiley\"\n> dad sings \"Achy Breaky Heart\"\n> godmother is Dolly Parton\n> Disney says you're \"too small\" at 11\n> book Hannah Montana anyway\n> at 15, Annie Leibovitz Vanity Fair scandal\n> at 20, twerk Robin Thicke at the VMAs\n> swing naked on a wrecking ball\n> marry Liam Hemsworth. split 7 months later\n> drop \"Flowers\" on his birthday\n> break Spotify's weekly record. twice\n> win Record of the Year. your first Grammy ever\n> at 33, get a Hollywood Walk of",
+          "id": "2057922725725765991",
+          "likes": 224,
+          "retweets": 38
+        },
+        {
+          "author": "ArisuIDO",
+          "text": "\ud83c\udfae $WOD keeps moving forward\n\nGTA 6 is confirmed to launch on November 19, 2026 \u2014 could GameFi start gaining attention again? \ud83d\udc40\n\nUnlike many short-lived GameFi projects, @worldofdypians has continued building through real community engagement while consistently shipping updates for years.\n\nSadly, even after reaching key milestones as one of the top dApps on #BNB chain, WOD still hasn\u2019t fully recovered due to bearish market conditions.\n\nMajor updates are still underway, and hopefully the market st",
+          "id": "2057810675951612128",
+          "likes": 146,
+          "retweets": 10
+        },
+        {
+          "author": "QwertiAI",
+          "text": "Decentralized memory needs decentralized liquidity. \u26a1\ufe0f\n\nWe\u2019re thrilled to partner with @Cortex_Hub as they build the persistent cognitive foundation for autonomous AI agents. To make $CORTEX hyper-accessible, they\u2019ve integrated Qwerti\u2019s White-label Magic Link \u2014 allowing anyone to acquire the token seamlessly in seconds. \n\nTo celebrate this integration, we're launching a trading event:\n\n\ud83d\udc8e 500,000 Qwerti Points Pool\nWe\u2019re allocating an extra 500K Points pool for everyone trading $CORTEX directly t",
+          "id": "2057875015735873634",
+          "likes": 138,
+          "retweets": 21
+        }
+      ]
+    },
+    {
+      "topic": "solana",
+      "count": 16,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "solana",
+          "text": "You can now buy Solana through ChatGPT with @moonpay",
+          "id": "2057884258245738679",
+          "likes": 466,
+          "retweets": 63
+        },
+        {
+          "author": "blknoiz06",
+          "text": "@stoicsavage i still dont understand why you guys hate solana so much\n\neth also raped retail to the tune of billions of dollars in tx fees, same memecoins, and a gazillion L2 coins that are down 99%\n\nwhat makes sol worse than any other L1? why is zec bad?",
+          "id": "2058002873556844828",
+          "likes": 291,
+          "retweets": 14
+        },
+        {
+          "author": "solanamobile",
+          "text": "They took a Solana phone and put it on an island \ud83d\udcf1 \ud83c\udfdd\ufe0f\n\nWe're bringing the full Solana Mobile dev experience to @islanddao this June so you can go from 0 to shipping your mobile app\n\nBig plans ahead:\n- Jun 5: Intro to Solana Mobile with @beeman_nl (ideation, dev setup, base app, roadmap)\n\n- Jun 15-16: Progress check-in + hands-on building\n\n- Jun 17: Pre-release + user testing\n\n- Jun 18: Publishing day! Ship to the Solana dApp Store\n\n- Jun 19: Demo day + Seeker handouts\n\nDay 1 gets you set up for ",
+          "id": "2057871342305980520",
+          "likes": 219,
+          "retweets": 35
+        },
+        {
+          "author": "FabianoSolana",
+          "text": "From $15,000 to $862\n\nProbably my worst investment in crypto:\n\nLast year a top Solana NFT project offered me a KOL ICO round:\n\n- 50% below public sale\n- 3 month cliff + vesting\n- \u201cHuge plans\u201d\n\nI invested $15K\n\nA few hours after TGE it was already worth $11,000\n\nToday it\u2019s $862",
+          "id": "2057805351378985013",
+          "likes": 199,
+          "retweets": 6
+        },
+        {
+          "author": "Cointelegraph",
+          "text": "\ud83d\udd25 LATEST: Upcoming regulatory clarity could broadly boost digital assets, with Ethereum, Solana, BNB Chain, and Cardano positioned to benefit from growth in tokenized assets, stablecoins, and DeFi, according to a new Grayscale report.",
+          "id": "2057909437717782815",
+          "likes": 160,
+          "retweets": 37
+        }
+      ]
+    },
+    {
+      "topic": "ethereum",
+      "count": 14,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "BullTheoryio",
+          "text": "\ud83c\uddfa\ud83c\uddf8 One SEC decision wiped out $42 billion from crypto.\n\nThe SEC just delayed its plan to allow crypto versions of US stocks on regulated exchanges, and the crypto market started dumping on the news.\n\nBitcoin is down -2.14%, wiping out $33.8 billion from its market cap.\n\nEthereum is down -3.40%, wiping out $8.5 billion.\n\n$320 million in longs were liquidated in just 60 minutes.\n\nThis decision is huge because if the SEC allowed this, it would have opened the door for trillions in traditional equit",
+          "id": "2057920729757176025",
+          "likes": 1942,
+          "retweets": 361
+        },
+        {
+          "author": "Cointelegraph",
+          "text": "\ud83d\udd25 LATEST: Upcoming regulatory clarity could broadly boost digital assets, with Ethereum, Solana, BNB Chain, and Cardano positioned to benefit from growth in tokenized assets, stablecoins, and DeFi, according to a new Grayscale report.",
+          "id": "2057909437717782815",
+          "likes": 160,
+          "retweets": 37
+        },
+        {
+          "author": "apyx_fi",
+          "text": "Onchain digital credit yield is taking over DeFi.\n\nethereum:0x38eeb52f0771140d10c4e9a9a72349a329fe8a6a APY: 12.98%",
+          "id": "2057961029846315052",
+          "likes": 167,
+          "retweets": 16
+        },
+        {
+          "author": "hantengri",
+          "text": "ethereum:0xe76c6c83af64e4c60245d8c7de953df673a7a33d",
+          "id": "2057884630053732842",
+          "likes": 37,
+          "retweets": 0
+        },
+        {
+          "author": "Rocket_Pool",
+          "text": "A new rETH/ETH market is live on @Morpho!\n\nYou can now supply $rETH as collateral and borrow ETH via KPK ETH Prime, a low-risk Morpho lending vault deployed and curated by @kpk_io \n\nOne more DeFi integration for Ethereum's decentralised liquid staking token\n\nMore info below \ud83d\udc47",
+          "id": "2057832641366552979",
+          "likes": 28,
+          "retweets": 9
+        }
+      ]
+    },
+    {
+      "topic": "privacy",
+      "count": 13,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "MEGAprivacy",
+          "text": "Your files should be yours \u2014 not scanned, not interpreted by AI.\nThat's why MEGA is built with end-to-end encryption. Privacy by design.",
+          "id": "2057858099621294491",
+          "likes": 14541,
+          "retweets": 1557
+        },
+        {
+          "author": "gladstein",
+          "text": "I genuinely don't think crypto people are aware of the massive privacy improvements that have been achieved in Bitcoin over the last 5-10 years",
+          "id": "2057892295022899223",
+          "likes": 967,
+          "retweets": 114
+        },
+        {
+          "author": "WallStreetMrkts",
+          "text": "JUST IN: smart money is accumulating $NEAR \ud83d\udc40\n\nthe deeper you look, the less this feels like another normal L1 play.\n\nmost of crypto is still competing over \u201cfastest chain\u201d narratives, but NEAR has been building around two important topics:\n\nPrivacy & AI\n\nI\u2019m bullish and they\u2019ve been shipping products\n\n\u2192 NEAR Intents already process around $45M in daily organic flow  \n\u2192 Over $18B in lifetime swap volume across 40+ chains  \n\u2192 Confidential Intents pushing private execution    \n\u2192 Infrastructure desi",
+          "id": "2057834236518838297",
+          "likes": 312,
+          "retweets": 38
+        },
+        {
+          "author": "StoryProtocol",
+          "text": "Privacy is a core part of UX in many everyday apps.\n\nMessages.\nCredentials.\nPersonal notes.\nSelective sharing.\nAI memory.\n\nAnd yet, most software still struggles with sensitive data.\n\n\u2192 This is the exact design space that CDR is built for\n\u2192 Hackathon opens May 27th\n\nYou in?",
+          "id": "2057846649989538155",
+          "likes": 85,
+          "retweets": 26
+        },
+        {
+          "author": "NEARProtocol",
+          "text": "How Venice uses NEAR AI private inference: \n\nThe original Zashi + NEAR Intents integration that unlocked cross-chain ZEC: \n\n also now supports cross-chain ZEC across 35+ chains, with privacy-preserving execution through Confidential Intents. ZEC is the privacy thesis at the asset layer. Confidential Intents is the privacy thesis at the execution layer.\n\nSuper simple tutorial here for swapping into ZEC: \n\nMore on Confidential Intents: \n\nZooko and Illia for the big picture on privacy: \n\nAnd NEAR r",
+          "id": "2057843268184932449",
+          "likes": 114,
+          "retweets": 13
+        }
+      ]
+    },
+    {
+      "topic": "stablecoin",
+      "count": 13,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "bluefinapp",
+          "text": "Sending stablecoins on @SuiNetwork is now free! No gas. No friction. Just send.\n\nTo celebrate, we\u2019re sending $25 USDC to 10 community members.\n\nComplete the following before May 25, 23:59 UTC for a chance to win:\n\u2028\u2022 Reply with your SuiNS name or Sui wallet address\u2028\u2022 Tag 2 friends that should know about Sui\u2019s gasless stablecoin transfers\n\nGood luck and enjoy sending stablecoins on Sui for free!",
+          "id": "2057892024653652116",
+          "likes": 287,
+          "retweets": 119
+        },
+        {
+          "author": "EmanAbio",
+          "text": "yesterday gasless stablecoin transfers went live on @SuiNetwork \n\nyou can now send USDsui, suiUSDe, AUSD, FDUSD, USDB, USDC, and USDY to anyone, for zero gas fees, without holding a single SUI\n\nand this is the paradigm shift we have been pointing at for years\n\nmoney should move as freely as messages\n\nyou do not buy credits before texting a friend on whatsapp or instagram\n\nand you should not have to buy a separate token before sending a dollar\n\nthat gap, between how messages move and how money mo",
+          "id": "2057830997954105458",
+          "likes": 463,
+          "retweets": 81
+        },
+        {
+          "author": "SuiNetwork",
+          "text": "Why does a $100 stablecoin transfer need two different tokens?\n\nMost chains force businesses to hold gas tokens to send dollars. Creating:\n\u2192 More overhead\n\u2192 Constant gas friction\n\u2192 Fragmented balances\n\n On Sui, a dollar transfer is just a dollar transfer. No gas needed.\n\ud83e\uddf5",
+          "id": "2057904324416807320",
+          "likes": 345,
+          "retweets": 55
+        },
+        {
+          "author": "SuiNetwork",
+          "text": "Global payments just entered a zero friction era.\n\nThis week, Sui eliminated stablecoin gas fees for millions of users and opened up massive new rails for global commerce. With protocol level updates eliminating onboarding hurdles and major finance integrations going live.\n\nHere is your weekly recap:\n\n- Sui officially rolled out protocol level gasless stablecoin transfers on mainnet, making peer-to-peer Stable transactions completely free with zero $SUI tokens required in the sender wallet.\n\n- F",
+          "id": "2057975808732651988",
+          "likes": 224,
+          "retweets": 25
+        },
+        {
+          "author": "Cointelegraph",
+          "text": "\ud83d\udd25 LATEST: Upcoming regulatory clarity could broadly boost digital assets, with Ethereum, Solana, BNB Chain, and Cardano positioned to benefit from growth in tokenized assets, stablecoins, and DeFi, according to a new Grayscale report.",
+          "id": "2057909437717782815",
+          "likes": 160,
+          "retweets": 37
+        }
+      ]
+    },
+    {
+      "topic": "sui",
+      "count": 12,
+      "sentiment": "neutral",
+      "tweets": [
+        {
+          "author": "EmanAbio",
+          "text": "BREAKING\ud83d\udca5\n\nPRIVATE TRANSACTIONS ARE COMING TO SUI MAINNET VERY, VERY SOON",
+          "id": "2057930279629602924",
+          "likes": 580,
+          "retweets": 84
+        },
+        {
+          "author": "bluefinapp",
+          "text": "Sending stablecoins on @SuiNetwork is now free! No gas. No friction. Just send.\n\nTo celebrate, we\u2019re sending $25 USDC to 10 community members.\n\nComplete the following before May 25, 23:59 UTC for a chance to win:\n\u2028\u2022 Reply with your SuiNS name or Sui wallet address\u2028\u2022 Tag 2 friends that should know about Sui\u2019s gasless stablecoin transfers\n\nGood luck and enjoy sending stablecoins on Sui for free!",
+          "id": "2057892024653652116",
+          "likes": 287,
+          "retweets": 119
+        },
+        {
+          "author": "EmanAbio",
+          "text": "yesterday gasless stablecoin transfers went live on @SuiNetwork \n\nyou can now send USDsui, suiUSDe, AUSD, FDUSD, USDB, USDC, and USDY to anyone, for zero gas fees, without holding a single SUI\n\nand this is the paradigm shift we have been pointing at for years\n\nmoney should move as freely as messages\n\nyou do not buy credits before texting a friend on whatsapp or instagram\n\nand you should not have to buy a separate token before sending a dollar\n\nthat gap, between how messages move and how money mo",
+          "id": "2057830997954105458",
+          "likes": 463,
+          "retweets": 81
+        },
+        {
+          "author": "SuiNetwork",
+          "text": "Why does a $100 stablecoin transfer need two different tokens?\n\nMost chains force businesses to hold gas tokens to send dollars. Creating:\n\u2192 More overhead\n\u2192 Constant gas friction\n\u2192 Fragmented balances\n\n On Sui, a dollar transfer is just a dollar transfer. No gas needed.\n\ud83e\uddf5",
+          "id": "2057904324416807320",
+          "likes": 345,
+          "retweets": 55
+        },
+        {
+          "author": "SuiNetwork",
+          "text": "Global payments just entered a zero friction era.\n\nThis week, Sui eliminated stablecoin gas fees for millions of users and opened up massive new rails for global commerce. With protocol level updates eliminating onboarding hurdles and major finance integrations going live.\n\nHere is your weekly recap:\n\n- Sui officially rolled out protocol level gasless stablecoin transfers on mainnet, making peer-to-peer Stable transactions completely free with zero $SUI tokens required in the sender wallet.\n\n- F",
+          "id": "2057975808732651988",
+          "likes": 224,
+          "retweets": 25
+        }
+      ]
+    }
+  ],
+  "contrarian": [
+    {
+      "id": "2057905736836137179",
+      "author": "cz_binance",
+      "text": "We are trained to go bigger, more money, more crypto, more AI agents, more friends, more projects, more plans, more everything, and less happy. \n\nHappy people have a small circle of friends and simple routines.",
+      "likes": 6613,
+      "retweets": 1139,
+      "replies": 1443,
+      "views": 290331,
+      "engagement": 9195,
+      "created_at": "2026-05-22T19:25:36+00:00"
+    },
+    {
+      "id": "2057877626132271264",
+      "author": "AshCrypto",
+      "text": "I completely agree with bears now.\n\n$BTC is about to crash really hard.",
+      "likes": 2337,
+      "retweets": 243,
+      "replies": 561,
+      "views": 190954,
+      "engagement": 3141,
+      "created_at": "2026-05-22T17:33:54+00:00"
+    },
+    {
+      "id": "2057911916480086100",
+      "author": "Pumpfun",
+      "text": "you know, once you get deep in the trenches the weather is actually quite nice",
+      "likes": 1441,
+      "retweets": 195,
+      "replies": 615,
+      "views": 85204,
+      "engagement": 2251,
+      "created_at": "2026-05-22T19:50:09+00:00"
+    },
+    {
+      "id": "2057945873569464331",
+      "author": "AshCrypto",
+      "text": "What the actual fuck man.\n\nThe US stock market just printed its highest weekly close ever in HISTORY. \n\nMeanwhile, Bitcoin is down -40% from its all-time high and crypto market is sitting at a 5 year low.\n\nNow, either this is pure price suppression and manipulation, or no one gives a shit about crypto anymore. \n\nIf retail can get rich with safe stock in this AI mania, why would they bet on memecoins or altcoins that can get rugged in 24 hours with insiders taking all their money. \n\nAt this momen",
+      "likes": 1176,
+      "retweets": 145,
+      "replies": 298,
+      "views": 72638,
+      "engagement": 1619,
+      "created_at": "2026-05-22T22:05:05+00:00"
+    },
+    {
+      "id": "2057805019404185945",
+      "author": "czbinanceprd",
+      "text": "the market looks boring until it suddenly isn\u2019t.\n\nthis cycle could shock everyone.",
+      "likes": 750,
+      "retweets": 89,
+      "replies": 174,
+      "views": 27447,
+      "engagement": 1013,
+      "created_at": "2026-05-22T12:45:23+00:00"
+    }
+  ],
+  "summary": "\ud83d\udd25 Top narrative: *ai* v\u1edbi 148 tweets (neutral)\n\n\ud83d\uddde\ufe0f 5 breaking news items detected\n\n\ud83d\udcb0 10 funding announcements",
+  "view_thresholds": {
+    "T1": 30000,
+    "T2": 5000,
+    "T3": 5000
+  },
+  "report_path": "/home/julius/julius-workspace/working/X/report/daily/23-05-2026-daily-report.md"
+}

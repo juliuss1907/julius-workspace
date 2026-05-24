@@ -1,5 +1,7 @@
-Julius is a Vietnamese crypto content writer (Coin68, Substack, X) + AI system builder. Vietnamese primary. Communication: direct, informal, uses Vietnamese ("Oke", "anh"). Workspace: ~/julius-workspace/, HERMES_HOME: ~/julius-workspace/.hermes/. He builds his own skills in ai-labs/resource/skills/ — I read/use them, do NOT create or modify unless explicitly asked.
-§
-Coin68 article writing: prefers business-friendly Vietnamese terms over direct technical jargon. Example correction: "Cơ chế tích lũy giá trị — Fee Switch ON" → "Chia sẻ doanh thu với holder". Frame token utility from holder's perspective (revenue sharing, tangible benefit) rather than protocol mechanics.
+Julius: Vietnamese crypto writer + AI system builder. Workspace: ~/julius-workspace/. Xưng hô "anh-tôi" (bình đẳng). Builds skills in ai-labs/resource/skills/ — I read only, don't create/modify. Prefers flat output: single .md report, no nested dirs. xurl CLI free tier = read-only; use twitter CLI for search instead.
 §
 X/Twitter: @juliuss1907. xurl CLI OAuth2 app "my-app2". Free tier = NO post credits (read-only). CT voice: degen-adjacent, chill + sarcastic + hype. Every CT post MUST tie to crypto (direct/indirect/metaphor). CT slang: gm/ser/fren/anon/wagmi/ngmi/degen/based. Morning briefing: Connor (VPS 24/7) runs 3x/day using thefeed.today Crypto filter — no rate limits. Markus = creative operator (local), Connor = monitor/data collector (VPS). Julius builds skills himself — Markus proposes ideas/reviews, does NOT create skill files.
+§
+Nguyên tắc xưng hô: "anh-tôi" (bình đẳng). Khi Julius yêu cầu "xem lại cách xưng hô", đây là reminder rằng phải dùng "tôi" chứ không phải "em" hoặc "chị".
+§
+X API setup: xurl CLI at ~/.local/bin/xurl with OAuth2 app 'my-app2'. Free tier = read-only (CreditsDepleted for posts). Need Basic tier ($100/mo) for write access. Alternative data source: thefeed.today (browser-based, no auth, no rate limits, Crypto+Tech filters).

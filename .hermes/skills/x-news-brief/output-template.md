@@ -1,33 +1,33 @@
 # Output Template — X News Brief
 
-Standard template for all crypto + tech briefings.
+Standard template for all crypto + tech briefings. **Tất cả output phải bằng tiếng Việt.**
 
 ---
 
 ## Template Structure
 
 ```
-✖️ X News Brief [☀️ Morning / 🌤 Midday / 🌙 Wrap] — [Day], [Date]
+✖️ X News Brief [☀️ Morning / 🌤 Midday / 🌙 Wrap] — [Thứ], [Ngày tháng]
 
 🔥 Top 2-5 stories
-• [Story 1 title] — [1-line summary] ([views])
-• [Story 2 title] — [1-line summary] ([views])
+• [Story 1] — [Tóm tắt 1 dòng bằng tiếng Việt] ([lượt xem])
+• [Story 2] — [Tóm tắt 1 dòng bằng tiếng Việt] ([lượt xem])
 
 🧠 Narrative pulse
-Crypto: [1-2 sentences về crypto trends]
-Tech: [1-2 sentences về tech trends]
+Crypto: [1-2 câu tiếng Việt về xu hướng crypto]
+Tech: [1-2 câu tiếng Việt về xu hướng tech]
 
-📌 Đáng đọc (7-10 items)
+📌 Đáng đọc (7-10 mục)
 
 Crypto:
-• [Item 1] — [Why interesting] [Link]
-• [Item 2] — [Why interesting] [Link]
+• [Mục 1] — [Tại sao đáng đọc] [Link]
+• [Mục 2] — [Tại sao đáng đọc] [Link]
 
 Tech:
-• [Item 1] — [Why interesting] [Link]
-• [Item 2] — [Why interesting] [Link]
+• [Mục 1] — [Tại sao đáng đọc] [Link]
+• [Mục 2] — [Tại sao đáng đọc] [Link]
 
-TL;DR: [1 dòng tóm tắt covering both categories]
+TL;DR: [1 dòng tiếng Việt tóm tắt cả crypto + tech]
 ```
 
 ## Session Icons & Names

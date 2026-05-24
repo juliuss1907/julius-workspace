@@ -89,3 +89,37 @@ Each result has multiple formats under `.media_formats`:
 - URL-encode the query: spaces as `+`, special chars as `%XX`
 - For sending in chat, `tinygif` URLs are lighter weight
 - GIF URLs can be used directly in markdown: `![alt](url)`
+
+## GIPHY Fallback (no API key needed)
+
+When `TENOR_API_KEY` is not set, use GIPHY's direct CDN as a fallback. No auth required.
+
+### Step 1: Find GIF IDs via browser search
+
+Navigate to `https://giphy.com/search/<query>` and extract GIF IDs from the page links:
+
+```js
+// In browser console
+const links = [...document.querySelectorAll('a[href*="/gifs/"]')];
+links.map(a => {
+  const parts = a.href.split('/gifs/')[1]?.split('-');
+  return parts?.[parts.length-1];
+}).filter(Boolean).slice(0, 15);
+```
+
+### Step 2: Download by GIF ID
+
+```bash
+# Direct CDN URL — no auth needed
+curl -sL "https://media.giphy.com/media/<GIF_ID>/giphy.gif" -o output.gif
+
+# Example: steam locomotive
+curl -sL "https://media.giphy.com/media/8F3bK4aq1tCo0TLkf7/giphy.gif" -o train.gif
+```
+
+### Pitfalls
+
+- **Don't use `i.giphy.com` domain** — the long-form URLs with Y2lk tokens fail intermittently (406 errors)
+- **The `media.giphy.com/media/{id}/giphy.gif` pattern** is the reliable short-form URL
+- **Lazy-loaded images**: GIPHY pages use lazy loading — `querySelector('img')` returns empty until you scroll. Use the link-based extraction above instead
+- **Browser needed for discovery**: The GIF ID extraction requires a browser to navigate GIPHY search. Once you have IDs, `curl` alone works for download

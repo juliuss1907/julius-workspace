@@ -37,6 +37,8 @@ Source of truth: `tools/skill_manager_tool.py::_validate_frontmatter`. Hard requ
 - `description` field present, ≤ **1024 chars** (`MAX_DESCRIPTION_LENGTH`).
 - Non-empty body after the closing `---`.
 
+### In-Repo Shape (`skills/<category>/<name>/SKILL.md`)
+
 Peer-matched shape used by every skill under `skills/software-development/`:
 
 ```yaml
@@ -54,6 +56,34 @@ metadata:
 ```
 
 `version` / `author` / `license` / `metadata` are NOT enforced by the validator, but every peer has them — omit and your skill sticks out.
+
+### User-Local Shape (`~/.hermes/skills/<name>/SKILL.md` or custom path)
+
+User-local skills loaded by `skill_view()` use a **different metadata layout**. Do NOT copy the in-repo shape for user-local skills:
+
+```yaml
+---
+name: my-skill-name
+description: >
+  Multi-line description of what this skill does.
+  Keep it under 1024 chars.
+metadata:
+  version: "2.0"
+  author: "Your Name"
+  created: "2026-05-23"
+  aliases: ["alias-1", "alias-2"]
+  trigger: "Use when X happens"
+  output: "What the skill produces"
+---
+```
+
+Key differences from in-repo:
+- `description` is at root (NOT inside `metadata`)
+- `version` / `author` / `created` / `aliases` / `trigger` / `output` go inside `metadata:` block
+- No `license` field expected
+- No `metadata.hermes.tags/related_skills` nesting — those are in-repo conventions
+
+See `references/hermes-yaml-frontmatter.md` for a concrete before/after fix from a real session.
 
 ## Size Limits
 
@@ -152,14 +182,26 @@ Pick the closest existing category. Don't invent new top-level categories casual
 
 7. **Linking to skills that don't exist in-repo.** `related_skills: [some-user-local-skill]` works for you but breaks for other clones. Prefer only in-repo links.
 
+8. **Using `purpose:` instead of `description:` in user-local skills.** Hermes `skill_view()` requires `description:` at the root level. Using `purpose:` or any other key will cause the skill to not be recognized or to display with a blank description.
+
+9. **Flat frontmatter for user-local skills.** Putting `aliases`, `trigger`, `output`, or `version` at the root level (instead of inside `metadata:`) results in a malformed skill that may not load correctly. User-local skills require `metadata:` block containing these fields.
+
+10. **Creating skills in custom paths without indexing.** If you write a skill to `ai-labs/resource/skills/my-skill/` (or any non-standard path), `skill_view()` will not find it unless you symlink it into `~/.hermes/skills/` or restart the gateway so it re-indexes. Hermes only auto-discovers skills in its configured skill directories.
+
+11. **Mixing in-repo and user-local frontmatter shapes.** Do not put `metadata.hermes.tags` or `license` in a user-local skill, and do not put `metadata.aliases` or `metadata.trigger` in an in-repo skill. The two shapes are not interchangeable. See the frontmatter section above for the correct layout of each.
+
 ## Verification Checklist
 
-- [ ] File is at `skills/<category>/<name>/SKILL.md` (not in `~/.hermes/skills/`)
+- [ ] File is at `skills/<category>/<name>/SKILL.md` (in-repo) or `~/.hermes/skills/<name>/SKILL.md` (user-local)
 - [ ] Frontmatter starts at byte 0 with `---`, closes with `\n---\n`
-- [ ] `name`, `description`, `version`, `author`, `license`, `metadata.hermes.{tags, related_skills}` all present
+- [ ] `name`, `description` present at root level (not inside `metadata`)
 - [ ] Name ≤ 64 chars, lowercase + hyphens
-- [ ] Description ≤ 1024 chars and starts with "Use when ..."
+- [ ] Description ≤ 1024 chars
 - [ ] Total file ≤ 100,000 chars (aim for 8-15k)
+- [ ] **If user-local:** `metadata:` block contains `version`, `author`, `created`, `aliases`, `trigger`, `output` (NOT at root)
+- [ ] **If in-repo:** `version`, `author`, `license` at root + `metadata.hermes.{tags, related_skills}` present
+- [ ] `purpose:` is NOT used in place of `description:`
 - [ ] Structure: `# Title` → `## Overview` → `## When to Use` → body → `## Common Pitfalls` → `## Verification Checklist`
 - [ ] `related_skills` references resolve in-repo (or are explicitly OK to be user-local)
-- [ ] `git add skills/<category>/<name>/ && git commit` completed on the intended branch
+- [ ] `git add skills/<category>/<name>/ && git commit` completed on the intended branch (in-repo only)
+- [ ] If placed in a custom path (e.g., `ai-labs/resource/skills/`), symlinked to `~/.hermes/skills/` or gateway was restarted to re-index

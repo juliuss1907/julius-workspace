@@ -1,8 +1,7 @@
 model:
-  default: deepseek-v4-pro
-  provider: opencode-go
-  base_url: https://opencode.ai/zen/go/v1
-  api_mode: chat_completions
+  default: kimi-k2-thinking
+  provider: ollama-cloud
+  base_url: https://ollama.com/v1
 providers: {}
 fallback_providers: []
 credential_pool_strategies: {}
@@ -417,7 +416,9 @@ approvals:
   cron_mode: deny
   mcp_reload_confirm: true
   destructive_slash_confirm: true
-command_allowlist: []
+command_allowlist:
+- script execution via -e/-c flag
+- delete in root path
 quick_commands: {}
 hooks: {}
 hooks_auto_accept: false
@@ -489,7 +490,7 @@ x_search:
   retries: 2
 _config_version: 23
 session_reset:
-  mode: none
+  mode: both
   idle_minutes: 1440
   at_hour: 4
 group_sessions_per_user: true

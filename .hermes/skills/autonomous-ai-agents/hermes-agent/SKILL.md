@@ -798,6 +798,15 @@ and logs — avoids shell-escaping backslashes in bash.
 2. Verify provider: `pip install faster-whisper` or set API key
 3. In gateway: `/restart`. In CLI: exit and relaunch.
 
+### Web search/extract slow, rate-limited, or failing
+
+See [references/web-toolchain-diagnosis.md](references/web-toolchain-diagnosis.md) for the full backend chain trace (Firecrawl → DDGS → direct HTTP) and step-by-step diagnosis sequence.
+
+Quick checks:
+1. `hermes config | grep -A5 "web:"` — verify backend
+2. `grep -iE "firecrawl|tavily|tool_gateway" ~/.hermes/.env` — verify credentials
+3. If `web_search` works but `web_extract` is rate-limited → backend auth is missing, DDGS fallback active for search but not extract
+
 ### Tool not available
 1. `hermes tools` — check if toolset is enabled for your platform
 2. Some tools need env vars (check `.env`)

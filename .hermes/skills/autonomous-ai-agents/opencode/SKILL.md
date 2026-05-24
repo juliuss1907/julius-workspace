@@ -30,6 +30,8 @@ Use [OpenCode](https://opencode.ai) as an autonomous coding worker orchestrated 
 - Git repository for code tasks (recommended)
 - `pty=true` for interactive TUI sessions
 
+**Custom providers**: See [references/open-claude-config.md](references/open-claude-config.md) for configuring OpenCode with the Open Claude API gateway (GPT + Claude models via two separate providers).
+
 ## Binary Resolution (Important)
 
 Shell environments may resolve different OpenCode binaries. If behavior differs between your terminal and Hermes, check:
@@ -217,3 +219,7 @@ Success criteria:
 4. For long tasks, provide progress updates from `process` logs.
 5. Report concrete outcomes (files changed, tests, remaining risks).
 6. Exit interactive sessions with Ctrl+C or kill, never `/exit`.
+
+## References
+
+- [references/open-claude-provider.md](references/open-claude-provider.md) — Custom provider config pattern (Open Claude gateway for GPT + Claude)

@@ -185,7 +185,7 @@ If team is anonymous or minimal info available:
 ```markdown
 ## Đội ngũ phát triển
 
-Đội ngũ phát triển [Project] hoạt động dưới dạng pseudonymous, tập trung vào việc xây dựng sản phẩm và cộng đồng thay vì branding cá nhân.
+Thông tin đội ngũ phát triển chưa được công bố, Coin68 sẽ cập nhật khi có thêm thông tin.
 ```
 
 ### Step 3.7: Write "Nhà đầu tư"
@@ -203,7 +203,7 @@ If no funding info:
 ```markdown
 ## Nhà đầu tư
 
-Thông tin về nhà đầu tư của [Project] chưa được công bố công khai.
+Thông tin về nhà đầu tư của [Project] chưa được công bố công khai. Coin68 sẽ cập nhật khi có thêm thông tin.
 ```
 
 ### Step 3.8: Write "Tokenomics" (if applicable)

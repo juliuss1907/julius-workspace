@@ -1,0 +1,5 @@
+context_lengths:
+  kimi-k2-thinking@https://ollama.com/v1: 262144
+  kimi-k2-thinking@https://ollama.com/v1/: 262144
+  kimi-k2.5@https://ollama.com/v1: 262144
+  kimi-k2.5@https://ollama.com/v1/: 262144

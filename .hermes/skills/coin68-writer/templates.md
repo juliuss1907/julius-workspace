@@ -73,7 +73,7 @@ Use this section when project has multiple products or complex mechanisms.
 [Optional: Notable team members]
 
 **If team info not available:**
-Đội ngũ phát triển [Project] hoạt động dưới dạng pseudonymous, tập trung vào việc xây dựng sản phẩm và cộng đồng.
+Thông tin đội ngũ phát triển chưa được công bố, Coin68 sẽ cập nhật khi có thêm thông tin.
 
 ## Nhà đầu tư [và đối tác]
 
@@ -82,7 +82,7 @@ Use this section when project has multiple products or complex mechanisms.
 [Optional: Notable partnerships]
 
 **If funding info not available:**
-Thông tin về nhà đầu tư của [Project] chưa được công bố công khai.
+Thông tin về nhà đầu tư của [Project] chưa được công bố công khai. Coin68 sẽ cập nhật khi có thêm thông tin.
 
 ## Tokenomics (optional)
 

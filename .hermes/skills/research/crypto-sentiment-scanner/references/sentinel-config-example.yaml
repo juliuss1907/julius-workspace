@@ -1,0 +1,104 @@
+# Sentinel Scanner Reference Implementation
+# From session: 2026-05-20
+# Status: Working with rate-limit delays
+
+# Config location: ai-labs/resource/skills/sentinel-scanner/config.yaml
+
+kols:
+  individuals:
+    tier1:
+      # L1/L2 Infrastructure
+      - "VitalikButerin"
+      - "sassal0x"
+      - "drakefjustin"
+      - "balajis"
+      - "naval"
+      # DeFi Pioneers
+      - "rleshner"
+      - "StaniKulechov"
+      - "haydenzadams"
+      - "AndreCronjeTech"
+      # Macro & Trading
+      - "RaoulGMI"
+      - "woonomic"
+      - "MuradMahmudov"
+      # CT Culture
+      - "cobie"
+      # TradFi/Exchange
+      - "pmarca"
+      - "matthuang"
+      - "CryptoHayes"
+      # Bitcoin
+      - "saylor"
+      - "brian_armstrong"
+      - "justinsuntron"
+      - "zachxbt"
+    
+    tier2:
+      # NFT/Community
+      - "mztacat"
+      - "0xSunNFT"
+      - "Zeneca"
+      - "frankdegods"
+    
+    tier3:
+      # Emerging/Contrarian
+      - "0xJeffrey"
+      - "ThorHarcourt"
+
+  organizations_crypto:
+    - "arkham"
+    - "MessariCrypto"
+    - "binance"
+
+  organizations_ai:
+    - "huggingface"
+    - "Google"
+    - "AnthropicAI"
+    - "OpenAI"
+
+keywords:
+  evergreen:
+    - "Ethereum staking"
+    - "L2 scaling"
+    - "DeFi"
+    - "DEX aggregator"
+    - "Bitcoin ETF"
+    - "Real World Assets"
+    - "AI crypto"
+    - "ZK proofs"
+    - "MEV"
+    - "derivatives"
+
+  trending:
+    - "EigenLayer"
+    - "Restaking season"
+    - "Farcaster"
+    - "SocialFi"
+    - "DePIN"
+
+scan:
+  tweets_per_kol: 10          # Reduced for speed
+  tweets_per_keyword: 20
+  min_engagement: 50          # Filter noise
+  max_age_hours: 24
+  max_tweets_to_analyze: 300  # LLM limit
+
+enabled_tiers:
+  individuals_tier1: true
+  individuals_tier2: false    # Disable for faster scans
+  individuals_tier3: false
+  organizations_crypto: true
+  organizations_ai: true
+
+sentiment:
+  positive_keywords:
+    - "bullish"
+    - "buy"
+    - "breakout"
+    - "undervalued"
+  negative_keywords:
+    - "bearish"
+    - "sell"
+    - "crash"
+    - "overvalued"

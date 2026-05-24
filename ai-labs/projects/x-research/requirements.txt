@@ -1,0 +1,18 @@
+# X-Research Dependencies
+# Python 3.10+
+
+# Core
+requests>=2.31.0
+pyyaml>=6.0
+
+# Templating
+jinja2>=3.1.2
+
+# CLI
+click>=8.1.0
+
+# Date/time
+python-dateutil>=2.8.2
+
+# Telegram (optional)
+python-telegram-bot>=20.0

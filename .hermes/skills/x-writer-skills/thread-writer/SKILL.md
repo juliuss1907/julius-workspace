@@ -1,3 +1,12 @@
+---
+name: thread-writer
+description: Write multi-tweet threads (5–15 tweets) for X across 5 types — tutorial, breakdown, story, curated, announcement. CT voice native with hook optimization and numbered formatting.
+agent: Hermes (local)
+purpose: Write multi-tweet threads for X (Twitter)
+version: 2.0
+last_updated: 2026-05-19
+---
+
 # SKILL — Thread Writer
 
 **Agent:** Hermes (local)  
@@ -125,9 +134,11 @@ domain: x
 skill: thread-writer
 thread_type: tutorial | breakdown | story | curated | announcement
 length: short | medium | long
-target: working/X/contents/threads/<slug>.md
+target: working/X/content/draft/<slug>.md
 ---
 ```
+
+> ⚠️ **Path convention:** Output always goes to the path specified in the task's `target` field. The project AGENTS.md defines the canonical directory structure — verify target path against AGENTS.md before writing. The project uses `content/` (singular), not `contents/` (plural). Drafts live under `content/draft/`.
 
 ### 5 Available Types
 

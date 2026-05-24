@@ -1,0 +1,64 @@
+---
+# X-Research Configuration
+# Version: 1.0.0
+
+# Research parameters
+research:
+  topic: ""                    # Injected at runtime via CLI arg
+  lookback_hours: 48           # Tweet time filter (2 days)
+  tweet_limit: 50              # Max tweets from X search
+  web_sources: 10              # Max web sources to crawl
+  min_relevance_score: 0.5     # Filter tweets by relevance (0.0-1.0)
+
+# X/Twitter settings
+x_twitter:
+  search_tool: "twitter"       # CLI tool
+  search_flags: "-n"           # Flag format
+  timeout: 30                  # Seconds per search
+
+# Firecrawl settings
+firecrawl:
+  base_url: "http://localhost:3002"
+  timeout: 60
+  retries: 3
+  retry_delay: 5
+  formats: ["markdown"]
+  wait_for: 0
+  fallback_enabled: true
+
+# Processing
+processing:
+  domain_limit: 2
+  filter_low_quality: true
+  min_content_length: 200
+
+# Model preferences (agent-driven, no API)
+models:
+  synthesis:
+    agent: "hermes"
+    language: "vi"
+
+# Output settings
+output:
+  report_dir: "/home/julius/julius-workspace/working/X/report/research"
+  filename_pattern: "{topic_slug}-{date}.md"
+  date_format: "%d-%m-%Y"
+
+  # Report sections
+  sections:
+    executive_summary: true
+    deep_analysis: true
+    emerging_trends: true
+    contrarian_views: true
+
+# Telegram notification
+telegram:
+  enabled: true
+  bot_token_env: "TELEGRAM_BOT_TOKEN"
+  chat_id_env: "TELEGRAM_CHAT_ID"
+  brief_max_points: 5
+
+# Logging
+logging:
+  level: "INFO"
+  console: true
