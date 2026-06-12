@@ -1,0 +1,58 @@
+# .gitignore
+
+# Environment
+.env
+.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data & State (local only)
+data/ohlcv/*.csv
+data/derivatives/*.db
+data/cache/*.json
+data/*.session
+data/*.session-journal
+state/snapshots/*
+state/cache/*
+state/*.db
+state/*.json
+logs/*.log
+logs/*.log.*
+logs/*.bak*
+logs/*.pid
+logs/*.json
+logs/*.jsonl
+logs/*.md
+backups/
+
+# Reports (optional - can commit if needed)
+# reports/
+reports/manual-trade-report-smoke.md
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS
+.DS_Store
+Thumbs.db
