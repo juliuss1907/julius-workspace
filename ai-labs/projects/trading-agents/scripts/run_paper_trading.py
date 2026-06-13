@@ -6,6 +6,7 @@ Consumes shared analysis orchestration (orchestration.analyze_symbol)
 and layers on demo-policy decisions via RiskManager/PositionManager/OrderManager.
 """
 import asyncio
+import argparse
 import os
 import signal
 import sys
@@ -17,6 +18,19 @@ from typing import Optional
 # Add project root to path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    """Build parser before heavy runtime imports so --help stays usable."""
+    parser = argparse.ArgumentParser(description='Trading System')
+    parser.add_argument('--single-cycle', action='store_true',
+                       help='Run single cycle and exit')
+    return parser
+
+
+if any(arg in ("-h", "--help") for arg in sys.argv[1:]):
+    _build_parser().parse_args()
+    sys.exit(0)
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -740,11 +754,7 @@ class TradingSystem:
 
 async def main():
     """Main entry point"""
-    import argparse
-
-    parser = argparse.ArgumentParser(description='Trading System')
-    parser.add_argument('--single-cycle', action='store_true',
-                       help='Run single cycle and exit')
+    parser = _build_parser()
     args = parser.parse_args()
 
     system = TradingSystem()

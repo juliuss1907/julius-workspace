@@ -202,6 +202,19 @@ def test_readonly_analyzer_module_import_no_execution_leak():
     _check_no_leak("readonly analyzer import", code)
 
 
+def test_run_paper_trading_cli_help_exits_zero_lightweight():
+    """--help must not require optional runtime deps like Telethon."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/run_paper_trading.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"paper --help rc={rv.returncode}: {rv.stderr.strip()[:300]}")
+    assert_true("--single-cycle" in rv.stdout,
+                f"paper help missing --single-cycle: {rv.stdout[:300]}")
+
+
 def test_run_paper_trading_syntax():
     code = (
         "import ast\n"
@@ -291,6 +304,7 @@ def run_tests():
         ("manual_report_cli_help_exits_zero_lightweight", test_manual_report_cli_help_exits_zero_lightweight),
         ("readonly_analyzer_cli_help_exits_zero_lightweight", test_readonly_analyzer_cli_help_exits_zero_lightweight),
         ("readonly_analyzer_module_import_no_execution_leak", test_readonly_analyzer_module_import_no_execution_leak),
+        ("run_paper_trading_cli_help_exits_zero_lightweight", test_run_paper_trading_cli_help_exits_zero_lightweight),
         ("run_paper_trading_syntax", test_run_paper_trading_syntax),
         ("generate_manual_trade_report_syntax", test_generate_manual_trade_report_syntax),
         ("orchestration_module_docstrings", test_orchestration_module_docstrings),
