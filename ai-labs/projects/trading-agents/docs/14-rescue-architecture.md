@@ -1,6 +1,6 @@
 # 14. Rescue Architecture — Re-align `trading-agents` to the original 5-layer system
 
-> **Status:** Proposed reset / north-star document
+> **Status:** Accepted north-star document. The core orchestration/policy split has been implemented; this file remains the architecture intent source, with historical “should/proposed” language preserved where it describes the original rescue plan.
 > **Why this exists:** The codebase drifted toward an execution-first paper-trading platform. The original product intent was broader and cleaner: **one shared trading brain** serving **two outputs** — **demo auto-trade** and **manual real-money decision reports**.
 
 ---
@@ -42,7 +42,18 @@ That created three failure modes:
 
 ## 3. Target system definition
 
-The target architecture should be:
+**Current implemented seam (2026-06):**
+
+- `orchestration.contracts.FinalAnalysis` — normalized shared contract
+- `orchestration.analyze_symbol()` / `orchestration.analysis_runner.analyze_symbol()` — shared analysis/synthesis runner
+- `policies.demo_execution` — demo runtime decision adapter
+- `policies.manual_report` — manual report adapter
+- `policies.reverse_planner` — stdlib-only guarded reverse planner
+- `scripts/run_paper_trading.py` — demo runtime consumer
+- `scripts/generate_manual_trade_report.py` — manual report consumer
+- `scripts/analyze_symbol_readonly.py` — thin read-only orchestration client
+
+The target architecture is:
 
 - **One shared analysis core**
 - **One shared synthesis / decision core**
@@ -227,13 +238,14 @@ This layer is where the two tracks fully diverge.
 - produce watchlists, setup summaries, and reviewable markdown
 
 **Current code likely in this layer**
+- `scripts/generate_manual_trade_report.py`
+- `policies/manual_report.py`
 - `scripts/run_screening.py`
 - `scripts/update_dynamic_watchlist.py`
 - parts of `scripts/generate_daily_report.py`
-- future: dedicated `scripts/generate_manual_trade_report.py`
 
 **Design rule**
-- Manual-report output must become a first-class path, not a side effect of the auto-trade runtime.
+- Manual-report output must remain a first-class path, not a side effect of the auto-trade runtime.
 
 ---
 
@@ -261,6 +273,8 @@ The repo already contains many pieces needed for the intended architecture. The 
 - `scripts/trading_scheduler.py`
 
 ### Manual-report path
+- `scripts/generate_manual_trade_report.py`
+- `policies/manual_report.py`
 - `scripts/run_screening.py`
 - `scripts/update_dynamic_watchlist.py`
 - report-rendering code that should be reoriented toward actionable manual decisions
@@ -276,11 +290,13 @@ These are useful, but they should support the shared core and demo policy — no
 
 ---
 
-## 6. What must change
+## 6. What changed / what must remain true
+
+The first rescue pass has already created the shared orchestration seam and downstream policy consumers. The guardrail now is to keep future work from drifting back into execution-first design.
 
 ## A. Make the shared brain explicit
 
-Create or formalize a shared orchestration path that does this for any symbol/set of symbols:
+Maintain the shared orchestration path that does this for any symbol/set of symbols:
 
 1. fetch normalized data
 2. run analysts
@@ -289,11 +305,10 @@ Create or formalize a shared orchestration path that does this for any symbol/se
 
 This should work **without** needing to enter paper-trading runtime flow.
 
-### Desired functions / modules
-- `analysis/run_analysis_cycle.py` or similar
-- `orchestration/analyze_symbol()`
-- `orchestration/analyze_watchlist()`
-- `orchestration/build_final_analysis()`
+### Current functions / modules
+- `orchestration.analyze_symbol()`
+- `orchestration.analysis_runner.analyze_symbol()`
+- `orchestration.contracts.FinalAnalysis`
 
 ---
 
@@ -312,11 +327,11 @@ This keeps auto-trade intact without letting it define the entire system.
 
 ---
 
-## C. Create a true manual-report pipeline
+## C. Keep the true manual-report pipeline first-class
 
-The manual path needs a dedicated orchestrator.
+The manual path has a dedicated consumer and must stay independent from demo runtime execution.
 
-### Proposed artifact
+### Current artifact
 - `scripts/generate_manual_trade_report.py`
 
 ### Responsibilities
@@ -484,14 +499,15 @@ Make the repo reflect the actual product model.
 - `scripts/update_dynamic_watchlist.py`
 - report rendering utilities that currently focus mostly on operational summaries
 
-## Consider creating
+## Created by orchestration refactor
 - `orchestration/analysis_runner.py`
-- `orchestration/final_analysis.py`
+- `orchestration/contracts.py`
 - `policies/demo_execution.py`
 - `policies/manual_report.py`
+- `policies/reverse_planner.py`
 - `scripts/generate_manual_trade_report.py`
 
-These names are suggestions; exact paths can vary.
+These paths are now the canonical import locations. Avoid reintroducing shared analysis logic into `scripts/run_paper_trading.py`.
 
 ---
 
@@ -522,22 +538,21 @@ If a new feature only helps manual trade review, classify it explicitly as manua
 
 ---
 
-## 10. Recommended immediate next actions
+## 10. Recommended next actions after the orchestration split
 
-If refactoring starts now, the first three concrete tasks should be:
+The initial rescue/refactor milestones are implemented. The next concrete tasks are:
 
-1. **Write `docs/system-intent.md` or adopt this file as the intent source**
-   - one paragraph on the 5 layers
-   - one paragraph on the 2 output tracks
+1. **Repo inventory / tracking plan**
+   - classify remaining untracked source, docs, generated artifacts, and private/runtime paths
+   - propose `.gitignore` updates before any broad staging
 
-2. **Create a shared `FinalAnalysis` contract**
-   - even if initially lightweight
-   - stop letting paper-runtime-local shapes become the de facto API
+2. **Runtime integration smoke**
+   - run safe manual-report and demo-runtime smoke checks
+   - verify no execution side effects unless an explicit execution mode is used
 
-3. **Build one first-class manual report script**
-   - one flat markdown output
-   - bias, confidence, setups, invalidation, risk notes
-   - generated without entering the order execution path
+3. **Continue boundary hardening only where it protects the seam**
+   - keep shared analysis importable without execution/runtime modules
+   - keep manual-report defaults flat and execution-free
 
 ---
 
@@ -545,17 +560,17 @@ If refactoring starts now, the first three concrete tasks should be:
 
 The repo does **not** need to be thrown away.
 
-The core issue is that:
-- the **shared trading brain exists in pieces**, but
+The historical core issue was that:
+- the **shared trading brain existed in pieces**, but
 - the **paper-trading runtime became the dominant orchestration path**, and
-- the **manual report product never became first-class**.
+- the **manual report product was not yet first-class**.
 
-The rescue strategy is therefore:
+The rescue strategy remains:
 
 1. keep the shared analysis pieces,
 2. formalize synthesis as the true core,
 3. split policy by use case,
 4. keep demo auto-trade as one consumer,
-5. elevate manual decision reports into the second consumer originally intended.
+5. keep manual decision reports as the second first-class consumer.
 
 That gets the project back to its original idea without wasting the execution work already built.

@@ -1,6 +1,7 @@
 # Trading Agents Orchestration Refactor Plan
 
 > **For OpenCode:** implement this plan in order. Keep commits small. Do not start with broad rewrites. First carve out shared orchestration, then reconnect demo/runtime and manual-report consumers.
+> **Status note (2026-06):** The main shared-core / policy / readonly-cleanup milestones are implemented. Treat this as the historical implementation plan and source of architectural intent, not a request to recreate missing “proposed” files. Current canonical paths are `orchestration/contracts.py`, `orchestration/analysis_runner.py`, `policies/demo_execution.py`, `policies/manual_report.py`, `policies/reverse_planner.py`, `scripts/generate_manual_trade_report.py`, and `scripts/analyze_symbol_readonly.py`.
 
 **Goal:** Re-center `trading-agents` around a shared analysis/synthesis orchestration layer that serves two products: demo auto-trading and manual real-money decision reports.
 
@@ -32,14 +33,14 @@ These existing flows are useful and should be treated as source material, not th
 
 ### Existing orchestration-heavy runtime
 - `scripts/run_paper_trading.py`
-  - currently initializes analysts, data manager, debate, risk, position manager, order manager, Telegram bot, reconciliation, locks, and runtime health
-  - currently contains the deepest end-to-end orchestration logic
+  - historically initialized analysts, data manager, debate, risk, position manager, order manager, Telegram bot, reconciliation, locks, and runtime health
+  - now should be read as the demo runtime consumer, not the architectural brain
 
 ### Existing read-only analysis path
 - `scripts/analyze_symbol_readonly.py`
   - already proves there is demand for a non-execution path
-  - currently runs the stack without placing orders
-  - should become a thin caller of the future shared orchestration core
+  - now acts as a thin caller of the shared orchestration core
+  - only loads demo/runtime managers behind explicit `--include-demo-decision`
 
 ### Existing shared reasoning pieces
 - `agents/technical_analyst.py`
@@ -73,7 +74,7 @@ Data Layer
 
 ### Primary rule
 
-`run_paper_trading.py` must stop being the only real orchestration entrypoint.
+`run_paper_trading.py` is no longer the only real orchestration entrypoint; keep it as a downstream demo consumer.
 
 Instead:
 - shared orchestration builds `FinalAnalysis`
@@ -84,19 +85,20 @@ Instead:
 
 ## 4. Proposed file additions
 
-These are suggested paths. Exact names may vary, but keep responsibilities clean.
+These are the canonical paths after the first refactor pass, with two original-plan modules intentionally deferred unless complexity grows again.
 
-### New shared orchestration/core files
+### Shared orchestration/core files
 - `orchestration/__init__.py`
 - `orchestration/contracts.py`
 - `orchestration/analysis_runner.py`
-- `orchestration/bootstrap.py`
-- `orchestration/final_analysis_builder.py`
+- `orchestration/bootstrap.py` — proposed in the original plan; not required unless shared dependency setup grows again
+- `orchestration/final_analysis_builder.py` — proposed in the original plan; builder logic currently lives in `analysis_runner.py`
 
 ### New policy files
 - `policies/__init__.py`
 - `policies/demo_execution.py`
 - `policies/manual_report.py`
+- `policies/reverse_planner.py`
 
 ### New consumer script
 - `scripts/generate_manual_trade_report.py`

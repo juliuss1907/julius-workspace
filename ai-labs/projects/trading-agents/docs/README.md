@@ -120,8 +120,10 @@ If a change is reusable across both output paths, it probably belongs in `orches
   - manual reports consume `policies.manual_report`
   - readonly CLI is thin by default and only loads demo/runtime managers behind `--include-demo-decision`
   - boundary guardrails cover lazy imports, pure policy modules, and lightweight CLI help paths
-- **Docs alignment + repo hygiene:** IN PROGRESS
-  - keep README + docs index aligned with actual import paths
+- **Docs alignment:** DONE
+  - README + docs index are aligned with actual import paths
+  - rescue/implementation docs now distinguish historical plan language from current committed modules
+- **Repo hygiene:** TODO
   - inventory remaining untracked source/docs/artifacts before any broad staging
 - **9A — Production Hardening:** DONE
   - 9A.1 Process Lock + Healthcheck

@@ -26,7 +26,7 @@ Orchestration refactor đã hoàn thành các mốc chính từ shared core đ�
 - Runtime consumers: `scripts/run_paper_trading.py`, `scripts/generate_manual_trade_report.py`, `scripts/analyze_symbol_readonly.py`
 - Boundary guardrails: `scripts/test_boundary_guardrails.py`
 
-Repo hiện đang ở **docs alignment + repo hygiene**: giữ README/docs khớp với shared-core model và inventory các file chưa track trước khi stage rộng hơn.
+Repo hiện đang ở **repo hygiene + runtime smoke**: README/docs đã được căn lại với shared-core model; bước tiếp theo là inventory các file chưa track và chạy thêm smoke tests an toàn trước khi stage rộng hơn.
 
 ### Core rule
 
@@ -204,6 +204,7 @@ Nếu muốn hiểu repo nhanh mà không drift về execution-first mindset, đ
 5. `orchestration/analysis_runner.py`
 6. `policies/demo_execution.py`
 7. `policies/manual_report.py`
+8. `policies/reverse_planner.py`
 
 Mục tiêu là thấy rõ:
 
