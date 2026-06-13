@@ -26,6 +26,7 @@ Usage:
   ./venv/bin/python scripts/runtime_control.py restart
 """
 import argparse
+import json
 import os
 import signal
 import subprocess
@@ -38,10 +39,24 @@ project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 from utils.process_lock import ProcessLock
-from state.runtime_health import read_health
 
 
 PYTHON = sys.executable
+
+
+def _read_health_file(path: str) -> dict:
+    """Read runtime health JSON using stdlib only.
+
+    Returns {} if the file is missing, unreadable, corrupt, or not a dict.
+    This keeps runtime_control lightweight and independent of aiosqlite.
+    """
+    try:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    return data
 
 
 def _resolve_lock_path() -> str:
@@ -79,7 +94,7 @@ def resolve_status() -> dict:
 
     lock = ProcessLock(path=str(lock_path), name="trading-runtime")
     info = lock.lock_info()
-    health = read_health(str(health_path))
+    health = _read_health_file(str(health_path))
 
     pid_alive = bool(info and info.get("pid_alive"))
     lock_pid = info.get("pid") if info else None

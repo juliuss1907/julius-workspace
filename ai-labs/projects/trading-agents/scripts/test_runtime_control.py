@@ -22,6 +22,7 @@ from scripts.runtime_control import (
     _resolve,
     _resolve_lock_path,
     _resolve_health_path,
+    _read_health_file,
 )
 
 
@@ -132,6 +133,40 @@ def test_status_running_no_lock(tmp_root, cfg_patcher):
     state = resolve_status()
     assert state["status"] == "running_no_lock"
     print("PASS test_status_running_no_lock")
+
+
+# ---------------------------------------------------------------------------
+# _read_health_file
+# ---------------------------------------------------------------------------
+
+def test_read_health_file_missing():
+    result = _read_health_file(str(Path("/nonexistent/runtime_health.json")))
+    assert result == {}
+    print("PASS test_read_health_file_missing")
+
+
+def test_read_health_file_valid(tmp_root):
+    h = tmp_root / "h.json"
+    h.write_text(json.dumps({"status": "running", "cycle_count": 3}), encoding="utf-8")
+    result = _read_health_file(str(h))
+    assert result == {"status": "running", "cycle_count": 3}
+    print("PASS test_read_health_file_valid")
+
+
+def test_read_health_file_corrupt(tmp_root):
+    h = tmp_root / "h.json"
+    h.write_text("not valid json", encoding="utf-8")
+    result = _read_health_file(str(h))
+    assert result == {}
+    print("PASS test_read_health_file_corrupt")
+
+
+def test_read_health_file_not_dict(tmp_root):
+    h = tmp_root / "h.json"
+    h.write_text(json.dumps(["list", "not", "dict"]), encoding="utf-8")
+    result = _read_health_file(str(h))
+    assert result == {}
+    print("PASS test_read_health_file_not_dict")
 
 
 # ---------------------------------------------------------------------------
@@ -470,6 +505,10 @@ def run_all():
             test_status_stale_lock,
             test_status_running_live_lock,
             test_status_running_no_lock,
+            test_read_health_file_missing,
+            test_read_health_file_valid,
+            test_read_health_file_corrupt,
+            test_read_health_file_not_dict,
             test_format_status_text_never_started,
             test_format_status_text_with_health,
             test_cmd_start_dry_run,

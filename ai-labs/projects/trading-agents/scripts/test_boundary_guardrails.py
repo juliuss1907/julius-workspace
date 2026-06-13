@@ -202,6 +202,46 @@ def test_readonly_analyzer_module_import_no_execution_leak():
     _check_no_leak("readonly analyzer import", code)
 
 
+def test_runtime_control_cli_help_exits_zero_lightweight():
+    """runtime_control --help must work with system Python (no aiosqlite)."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/runtime_control.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"runtime_control --help rc={rv.returncode}: {rv.stderr.strip()[:200]}")
+    assert_true("usage:" in rv.stdout.lower(),
+                f"runtime_control help missing usage info: {rv.stdout[:200]}")
+
+
+def test_runtime_control_start_dry_run_exits_zero_lightweight():
+    """runtime_control start --dry-run must work with system Python (no aiosqlite)."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/runtime_control.py",
+         "start", "--mode", "single-cycle", "--dry-run"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"runtime_control start dry-run rc={rv.returncode}: {rv.stderr.strip()[:300]}")
+    assert_true("DRY-RUN" in rv.stdout,
+                f"runtime_control dry-run missing DRY-RUN marker: {rv.stdout[:300]}")
+
+
+def test_runtime_control_import_no_optional_deps():
+    """Importing runtime_control.py as a module must not pull aiosqlite/state.database/trading/telegram_bot."""
+    code = (
+        "import runpy, sys\n"
+        "runpy.run_path('scripts/runtime_control.py', run_name='runtime_control_test')\n"
+        "forbidden = ['aiosqlite', 'state.database', 'trading', 'telegram_bot']\n"
+        "leaked = [m for m in sys.modules for kw in forbidden "
+        "if m == kw or m.startswith(kw + '.') or kw in m]\n"
+        "print('LEAKED:' + ','.join(sorted(set(leaked))) if leaked else 'CLEAN')\n"
+    )
+    _check_no_leak("runtime_control import purity", code)
+
+
 def test_run_paper_trading_cli_help_exits_zero_lightweight():
     """--help must not require optional runtime deps like Telethon."""
     rv = subprocess.run(
@@ -304,6 +344,9 @@ def run_tests():
         ("manual_report_cli_help_exits_zero_lightweight", test_manual_report_cli_help_exits_zero_lightweight),
         ("readonly_analyzer_cli_help_exits_zero_lightweight", test_readonly_analyzer_cli_help_exits_zero_lightweight),
         ("readonly_analyzer_module_import_no_execution_leak", test_readonly_analyzer_module_import_no_execution_leak),
+        ("runtime_control_cli_help_exits_zero_lightweight", test_runtime_control_cli_help_exits_zero_lightweight),
+        ("runtime_control_start_dry_run_exits_zero_lightweight", test_runtime_control_start_dry_run_exits_zero_lightweight),
+        ("runtime_control_import_no_optional_deps", test_runtime_control_import_no_optional_deps),
         ("run_paper_trading_cli_help_exits_zero_lightweight", test_run_paper_trading_cli_help_exits_zero_lightweight),
         ("run_paper_trading_syntax", test_run_paper_trading_syntax),
         ("generate_manual_trade_report_syntax", test_generate_manual_trade_report_syntax),
