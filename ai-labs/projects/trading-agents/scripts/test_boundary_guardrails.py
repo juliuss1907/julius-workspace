@@ -175,6 +175,33 @@ def test_manual_report_cli_help_exits_zero_lightweight():
                 f"help output missing usage info: {rv.stdout[:200]}")
 
 
+def test_readonly_analyzer_cli_help_exits_zero_lightweight():
+    """--help must work with system Python before dotenv/runtime imports."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/analyze_symbol_readonly.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"readonly --help rc={rv.returncode}: {rv.stderr.strip()[:200]}")
+    assert_true("--include-demo-decision" in rv.stdout,
+                f"readonly help missing demo flag: {rv.stdout[:300]}")
+
+
+def test_readonly_analyzer_module_import_no_execution_leak():
+    """Loading helper functions must not import execution/runtime modules."""
+    code = (
+        "import runpy, sys\n"
+        "runpy.run_path('scripts/analyze_symbol_readonly.py', run_name='readonly_test')\n"
+        "forbidden = ['dotenv', 'orchestration.analysis_runner', 'risk_manager', "
+        "'position_manager', 'state', 'trading', 'telegram_bot']\n"
+        "leaked = [m for m in sys.modules for kw in forbidden "
+        "if m == kw or m.startswith(kw + '.') or kw in m]\n"
+        "print('LEAKED:' + ','.join(sorted(set(leaked))) if leaked else 'CLEAN')\n"
+    )
+    _check_no_leak("readonly analyzer import", code)
+
+
 def test_run_paper_trading_syntax():
     code = (
         "import ast\n"
@@ -262,6 +289,8 @@ def run_tests():
         ("reverse_planner_stdlib_only", test_reverse_planner_stdlib_only),
         ("manual_report_no_execution_leak", test_manual_report_no_execution_leak),
         ("manual_report_cli_help_exits_zero_lightweight", test_manual_report_cli_help_exits_zero_lightweight),
+        ("readonly_analyzer_cli_help_exits_zero_lightweight", test_readonly_analyzer_cli_help_exits_zero_lightweight),
+        ("readonly_analyzer_module_import_no_execution_leak", test_readonly_analyzer_module_import_no_execution_leak),
         ("run_paper_trading_syntax", test_run_paper_trading_syntax),
         ("generate_manual_trade_report_syntax", test_generate_manual_trade_report_syntax),
         ("orchestration_module_docstrings", test_orchestration_module_docstrings),
