@@ -1,0 +1,30 @@
+[Unit]
+Description=Trading Agents Paper Trading Runtime
+Documentation=file:///home/julius/julius-workspace/ai-labs/projects/trading-agents/docs/runtime-runbook.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/julius/julius-workspace/ai-labs/projects/trading-agents
+ExecStart=/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python scripts/run_paper_trading.py
+Restart=on-failure
+RestartSec=30
+TimeoutStopSec=45
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+
+# Process lock + health are written by the runtime itself
+# Do NOT pre-create logs/run_paper_trading.lock here
+
+# Hardening: no new privileges
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits (conservative; tune for your box)
+LimitNOFILE=4096
+MemoryMax=2G
+
+[Install]
+WantedBy=default.target

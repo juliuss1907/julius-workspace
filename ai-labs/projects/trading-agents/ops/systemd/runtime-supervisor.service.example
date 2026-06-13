@@ -1,0 +1,27 @@
+[Unit]
+Description=Trading Agents Auto-Restart Supervisor
+Documentation=file:///home/julius/julius-workspace/ai-labs/projects/trading-agents/docs/runtime-runbook.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/julius/julius-workspace/ai-labs/projects/trading-agents
+ExecStart=/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python scripts/runtime_supervisor.py --loop
+Restart=on-failure
+RestartSec=60
+TimeoutStopSec=15
+
+# Environment
+Environment=PYTHONUNBUFFERED=1
+
+# Hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=4096
+MemoryMax=512M
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,113 @@
+# BTC-Specific Parameters
+# Inherits from default_params.yaml, overrides below
+# This is an EXAMPLE file. Copy to BTC.yaml and customize.
+
+coin: "BTC"
+coin_type: "large_cap"
+
+# =============================================================================
+# Technical Indicators (BTC overrides)
+# =============================================================================
+technical_indicators:
+  rsi:
+    oversold: 25      # Override: BTC less oversold
+    overbought: 75    # Override: BTC stretches further
+    period: 14
+  
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  
+  bollinger_bands:
+    period: 20
+    std_dev: 2.0
+  
+  atr:
+    period: 14
+
+# =============================================================================
+# Stop Loss (BTC-specific)
+# =============================================================================
+stop_loss:
+  method: "atr"
+  atr_multiplier: 2.5  # Wider SL for BTC volatility
+  fixed_pct: 0.15
+
+# =============================================================================
+# Take Profit
+# =============================================================================
+take_profit:
+  risk_reward_ratio: 2.0
+  
+  trailing_stop:
+    enabled: true
+    activation_pct: 0.04  # Activate at +4% (BTC moves slower)
+    trail_pct: 0.02       # Trail 2%
+
+# =============================================================================
+# Position Sizing (BTC-specific)
+# =============================================================================
+position_sizing:
+  risk_per_trade: 0.03      # 3% risk
+  max_position_size: 0.30   # 30% max (large cap allowed)
+  
+  confidence_multipliers:
+    high: 1.0
+    medium: 0.75
+    low: 0.5
+
+# =============================================================================
+# Futures (BTC)
+# =============================================================================
+futures:
+  max_leverage: 10
+  margin_type: "isolated"
+  
+  leverage_by_confidence:
+    high: 10
+    medium: 5
+    low: 3
+    none: 1
+
+# =============================================================================
+# Tuning History (auto-managed)
+# =============================================================================
+tuning_history:
+  last_tuned: "2026-06-01"
+  last_change_summary: "Initial setup"
+  
+  changes_log:
+    - date: "2026-06-01"
+      approved_by: "julius"
+      changes:
+        rsi_oversold:
+          old: 30
+          new: 25
+        rsi_overbought:
+          old: 70
+          new: 75
+        sl_atr_multiplier:
+          old: 2.0
+          new: 2.5
+      reason: "Backtest showed +6% win rate improvement"
+      backtest_result:
+        win_rate: 0.68
+        sharpe: 1.85
+        max_drawdown: 0.15
+
+# =============================================================================
+# Notes
+# =============================================================================
+notes: |
+  BTC Configuration Notes:
+  
+  - Wider RSI thresholds (25/75) due to BTC's tendency to stay in extended
+    ranges before reversing
+  - ATR multiplier 2.5x to handle BTC's higher volatility compared to other
+    large caps
+  - Trailing stop activates later (+4%) and trails wider (2%) since BTC
+    moves develop more slowly
+  
+  Last review: 2026-06-01 (Julius approved)
+  Next scheduled tuning: 2026-07-01

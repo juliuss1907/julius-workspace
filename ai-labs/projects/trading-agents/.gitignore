@@ -48,6 +48,40 @@ reports/manual-trade-report-smoke.md
 # Jupyter
 .ipynb_checkpoints/
 
+# Hermes / agent runtime state
+.hermes/
+
+# Runtime-generated watchlist proposals
+watchlist/dynamic-watchlist.json
+watchlist/dynamic-watchlist.md
+
+# Generated reports (runtime output) — keep reports/phase10a/ analysis notes
+reports/backtest_report_*.md
+reports/backtest-dashboard.*
+reports/daily_report_*.md
+reports/optimization_results_*.csv
+reports/parameter-recommendations.*
+reports/calibration/
+reports/daily/
+reports/flash/
+reports/quick/
+reports/reconciliation/
+reports/screening/
+
+# Session / DB artifacts anywhere in project
+*.session
+*.session-journal
+*.db
+*.sqlite
+*.sqlite3
+
+# Auth transient state
+data/phone_code_hash.pkl
+
+# Cache directories
+.cache/
+.mypy_cache/
+
 # Testing
 .pytest_cache/
 .coverage

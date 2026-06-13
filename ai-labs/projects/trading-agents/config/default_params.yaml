@@ -1,0 +1,717 @@
+# Default Parameters — Global Defaults
+# Applied to all coins unless overridden in coin_params/<coin>.yaml
+
+# =============================================================================
+# Risk Management
+# =============================================================================
+risk_management:
+  # Risk per trade as % of total portfolio
+  risk_per_trade: 0.03  # 3%
+  
+  # Position size constraints
+  max_position_size: 0.30        # 30% per coin
+  max_total_exposure: 0.80       # 80% total (luôn giữ 20% cash)
+  max_correlated_exposure: 0.50  # 50% for correlated assets
+  max_open_positions: 5
+  
+  # Coin type allocation limits
+  coin_type_limits:
+    memecoin: 0.05    # 5% per memecoin
+    large_cap: 0.30   # 30% per large cap (BTC, ETH)
+    mid_cap: 0.15     # 15% per mid cap
+    small_cap: 0.10   # 10% per small cap
+
+# =============================================================================
+# Risk Manager Execution Gate
+# =============================================================================
+risk_manager:
+  # Signal validation
+  min_signal_confidence: 0.60
+  max_open_positions: 5
+  block_duplicate_symbol: true
+
+  # Portfolio exposure gate based on existing open positions
+  total_exposure_warning_pct: 0.70
+  max_total_exposure_pct: 0.80
+  correlated_exposure_warning_pct: 0.40
+  max_correlated_exposure_pct: 0.50
+
+  # Volatility gate based on ATR / current price
+  high_atr_pct: 0.05       # reduce size when ATR >= 5%
+  max_atr_pct: 0.08        # block trade when ATR >= 8%
+
+  # Funding gate for futures-style directional risk
+  funding_warning_threshold: 0.0005  # reduce size when adverse funding >= 0.05%
+  max_acceptable_funding: 0.001      # block when adverse funding >= 0.10%
+
+  # Position size reduction multipliers
+  technical_conflict_multiplier: 0.50
+  analyst_conflict_step: 0.15
+  analyst_conflict_floor: 0.50
+  funding_warning_multiplier: 0.75
+  volatility_warning_multiplier: 0.75
+  portfolio_exposure_warning_multiplier: 0.70
+  correlated_exposure_warning_multiplier: 0.80
+  research_opposite_multiplier: 0.50
+
+  correlated_groups:
+    majors: ["BTC", "ETH", "SOL", "BNB"]
+    alt_l1: ["SOL", "ADA", "AVAX", "SUI", "APT"]
+    high_beta: ["SOL", "DOGE", "XRP", "ADA"]
+
+  # Risk-level labels from final approved multiplier
+  high_risk_multiplier_below: 0.70
+  medium_risk_multiplier_below: 0.90
+
+  # Risk-aware leverage caps exposed to future execution logic
+  leverage_caps:
+    low: 5
+    medium: 3
+    high: 1
+    blocked: 1
+
+  # Phase 5C: Position-aware risk gates
+  pyramiding:
+    allow_pyramiding: false
+    max_same_symbol_positions: 1
+    same_symbol_exposure_warning_pct: 0.20
+    max_same_symbol_exposure_pct: 0.30
+    same_symbol_warning_multiplier: 0.50
+
+  directional_exposure:
+    directional_exposure_warning_pct: 0.60
+    max_directional_exposure_pct: 0.75
+    directional_exposure_warning_multiplier: 0.70
+
+  drawdown:
+    daily_drawdown_warning_pct: -0.03
+    daily_drawdown_block_pct: -0.05
+    total_drawdown_warning_pct: -0.08
+    total_drawdown_block_pct: -0.12
+    drawdown_warning_multiplier: 0.50
+
+# =============================================================================
+# Notifications
+# =============================================================================
+notifications:
+  position_events:
+    enabled: true
+    notify_closed: true
+    notify_reduced: true
+    notify_recommendations: true
+    notify_failures: true
+    notify_risk_rejections: false
+
+# =============================================================================
+# Trade Simulation (Phase 6C)
+# =============================================================================
+simulation:
+  enabled: true
+  fee_pct: 0.001
+  slippage_pct: 0.0005
+  signal_only: true
+  require_opposite_exit: true
+  min_confidence: 0.55
+
+  # Phase 6F: SL/TP-aware simulation
+  use_sl_tp: false
+  stop_loss_pct: 0.03
+  take_profit_pct: 0.06
+  max_hold_candles: 48
+  same_candle_priority: "stop_loss"
+  ohlcv_source: "database"
+  ohlcv_timeframe: "1h"
+
+# Parameter Sweep (Phase 6D)
+parameter_sweep:
+  min_confidence_values: [0.55, 0.60, 0.65, 0.70, 0.75, 0.80]
+  fee_pct_values: [0.001]
+  slippage_pct_values: [0.0005]
+  min_trades_no_penalty: 5
+  min_trades_mild_penalty: 3
+
+# =============================================================================
+# Position Manager
+# =============================================================================
+position_manager:
+  min_confidence_to_reduce: 0.60
+  min_confidence_to_close: 0.70
+  min_confidence_to_reverse: 0.80
+  reduce_fraction: 0.50
+  close_on_opposite_technical: true
+  close_on_research_opposite: true
+  reverse_enabled: false
+
+  profit_protection:
+    enabled: true
+    reduce_when_profit_pct_above: 0.05
+    reduce_on_weak_signal_confidence_below: 0.60
+
+  loss_control:
+    enabled: true
+    close_when_loss_pct_below: -0.04
+    close_if_opposite_signal: true
+
+  execution_mode: "execute_all"
+
+  # Entry Guard (Phase 10C) — DCA-aware policy for new entries.
+  # Independent of execution_mode and enforced by OrderManager.execute_signal().
+  entry_guard:
+    enabled: true
+    # If true, even when execution_mode allows entries, the bot only
+    # opens symbols listed in trade_watchlist.
+    enforce_trade_watchlist: true
+    # Opposite-side entries must go through reverse flow, not fresh entries.
+    block_opposite_side: true
+    dca:
+      enabled: true
+      # Minimal approach: base row + up to 3 same-side add rows.
+      max_adds_per_symbol_side: 3
+      # Block same-side adds if new entry is too close to the nearest open entry.
+      min_price_distance_pct: 0.02
+      # DCA requires stronger signal than a first entry.
+      min_confidence: 0.80
+      # Projected symbol exposure after add must stay <= 20% portfolio.
+      max_symbol_portfolio_pct: 0.20
+      # Leverage must not exceed 10x for any symbol group.
+      max_leverage: 10
+      close_behavior: "close_group"
+    # When blocked, the bot records the block reason and (optionally)
+    # sends a Telegram alert.
+    notify_on_block: true
+
+  # Phase 5B.4: Guarded reverse flow
+  reverse_flow:
+    require_execute_all: true
+    close_first: true
+    rerun_risk_after_close: true
+    min_confidence_to_open_reverse: 0.80
+
+# =============================================================================
+# Technical Indicators
+# =============================================================================
+technical_indicators:
+  rsi:
+    period: 14
+    oversold: 30
+    overbought: 70
+  
+  macd:
+    fast: 12
+    slow: 26
+    signal: 9
+  
+  bollinger_bands:
+    period: 20
+    std_dev: 2.0
+  
+  obv:
+    threshold: 0.05  # Volume change threshold
+  
+  atr:
+    period: 14
+  
+  ichimoku:
+    tenkan: 9
+    kijun: 26
+    senkou_span_b: 52
+  
+  ema:
+    fast: 20
+    slow: 50
+    long: 200
+
+# =============================================================================
+# Stop Loss
+# =============================================================================
+stop_loss:
+  method: "atr"  # Options: "atr", "fixed", "support_resistance"
+  atr_multiplier: 2.5  # Optimized from backtest (was 2.0)
+  fixed_pct: 0.15  # 15% (fallback)
+  
+  # Support/Resistance buffer
+  sr_buffer_pct: 0.01  # 1% buffer below support / above resistance
+
+# =============================================================================
+# Take Profit
+# =============================================================================
+take_profit:
+  risk_reward_ratio: 2.0  # Min 1:2
+  
+  trailing_stop:
+    enabled: true
+    activation_pct: 0.03  # Activate when profit >3%
+    trail_pct: 0.015      # Trail 1.5%
+
+# =============================================================================
+# Futures Trading
+# =============================================================================
+futures:
+  max_leverage: 10
+  margin_type: "isolated"
+  
+  # Leverage by confidence
+  leverage_by_confidence:
+    high: 10    # Confidence >= 0.8
+    medium: 5   # Confidence 0.6-0.8
+    low: 3      # Confidence 0.4-0.6
+    none: 1     # Confidence < 0.4 (no leverage)
+  
+  # Funding rate thresholds
+  max_acceptable_funding: 0.001   # 0.1% per 8h
+  funding_warning_threshold: 0.0005  # 0.05%
+
+# =============================================================================
+# Confidence Scoring
+# =============================================================================
+confidence:
+  # Position size multipliers by confidence level
+  position_size_multipliers:
+    high: 1.0      # Confidence >= 0.8
+    medium: 0.75   # Confidence 0.6-0.8
+    low: 0.5       # Confidence 0.4-0.6
+    skip: 0.0      # Confidence < 0.4
+  
+  thresholds:
+    strong: 0.8
+    moderate: 0.6
+    weak: 0.4
+  
+  # Researcher debate adjustment
+  researcher_adjustment:
+    aligned: 0.05      # +0.05 nếu Bull/Bear đồng thuận
+    opposite: -0.10    # -0.10 nếu nghiêng ngược signal
+    neutral: 0.0       # Giữ nguyên
+
+# =============================================================================
+# Analyst Weights (Per Mode)
+# =============================================================================
+analyst_weights:
+  full:
+    technical: 0.75
+    news: 0.03
+    fundamentals: 0.05
+    sentiment: 0.02
+    derivatives: 0.15
+
+  # Direction thresholds for final signal
+  direction_thresholds:
+    bullish_above: 0.57
+    bearish_below: 0.43
+    hold_confidence_cap: 0.55
+  
+  quick:
+    technical: 0.60
+    news: 0.15
+    derivatives: 0.25
+  
+  flash_quick:
+    technical: 0.60
+    news: 0.15
+    sentiment: 0.15
+    derivatives: 0.10
+  
+  # Constraints
+  technical_min_weight: 0.50  # Technical luôn >= 50%
+
+# =============================================================================
+# Market Regime Detection
+# =============================================================================
+market_regime:
+  trend_threshold: 25    # ADX > 25 = trending
+  volatility_threshold: 0.05  # 5% daily std = volatile
+  
+  regimes:
+    trend_up:
+      strategies: ["momentum", "trend_following"]
+    trend_down:
+      strategies: ["short_momentum", "bb_bounces"]
+    ranging:
+      strategies: ["mean_reversion", "rsi_extremes"]
+    volatile:
+      strategies: ["skip"]  # Tăng risk thresholds, có thể skip
+
+# =============================================================================
+# Entry Logic
+# =============================================================================
+entry:
+  # Market vs Limit decision
+  market_threshold_pct: 0.005  # <0.5% diff → market order
+  limit_expire_minutes: 60     # Limit order expire sau 1h
+  
+  # Scale-in (optional)
+  scale_in:
+    enabled: false
+    num_entries: 3
+    spread_pct: 0.002  # ±0.2% spread between entries
+
+# =============================================================================
+# Data Quality
+# =============================================================================
+data_quality:
+  # Anomaly detection
+  price_spike_threshold:
+    normal: 0.50      # 50% in 1 min
+    memecoin: 2.00    # 200% in 1 min
+  
+  # Validation rules
+  min_volume_24h: 1000000  # $1M minimum
+  max_spread_pct: 0.005    # 0.5% max spread
+  
+  # Stale data threshold
+  max_data_age_seconds:
+    realtime: 300    # 5 minutes
+    ohlcv_1h: 1800   # 30 minutes
+    fundamentals: 86400  # 24 hours
+
+# =============================================================================
+# Modes
+# =============================================================================
+modes:
+  full:
+    schedule: "0 7 * * *"  # 7:00 daily
+    timeout_seconds: 600    # 10 minutes
+    timeframes: ["1h", "4h", "1d"]
+    pipeline: ["analysts", "researchers", "trader", "risk_portfolio"]
+  
+  quick:
+    schedule: "0 11,15,19,23 * * *"  # 11:00, 15:00, 19:00, 23:00
+    timeout_seconds: 300              # 5 minutes
+    timeframes: ["1h", "4h"]
+    pipeline: ["technical", "news", "derivatives", "trader"]
+  
+  flash_quick:
+    trigger: "price_spike_10pct"
+    timeout_seconds: 120
+    timeframes: ["1h", "4h"]
+    pipeline: ["technical", "news", "sentiment", "derivatives", "trader"]
+  
+  lite:
+    schedule: "0 8-23 * * *"  # Every hour 8h-23h
+    timeout_seconds: 60
+    timeframes: ["30m", "1h"]
+    pipeline: ["price_monitor"]
+    triggers:
+      flash_quick: 0.10  # 10% biến động → trigger Flash Quick
+
+# =============================================================================
+# Backtesting
+# =============================================================================
+backtesting:
+  default_period_months: 6
+  initial_balance: 10000
+  
+  fees:
+    spot_maker: 0.001
+    spot_taker: 0.001
+    futures_maker: 0.0002
+    futures_taker: 0.0005
+  
+  slippage_fixed:
+    spot: 0.0005
+    futures: 0.0002
+  
+  monthly_schedule: "0 3 1 * *"  # Day 1, 03:00
+
+# =============================================================================
+# Parameter Tuning
+# =============================================================================
+parameter_tuning:
+  schedule: "0 4 1 * *"  # Day 1, 04:00 (after backtest)
+  min_trades_to_tune: 10
+  max_param_change_pct: 0.30  # Max ±30% change
+  min_tuning_interval_days: 30
+  
+  # Auto-rollback
+  auto_rollback:
+    enabled: true
+    check_after_days: 14
+    win_rate_threshold: 0.10  # Rollback if dropped >10%
+
+# =============================================================================
+# Fine-tuning
+# =============================================================================
+fine_tuning:
+  schedule: "0 4 1 * *"  # Day 1, 04:00 (parallel với parameter tuning)
+  model: "deepseek-v4-flash"
+  
+  # A/B test thresholds
+  deploy_threshold: 0.05      # Deploy if accuracy improvement >= 5%
+  reject_threshold: -0.02     # Reject if accuracy drop > 2%
+
+# =============================================================================
+# Notifications
+# =============================================================================
+notifications:
+  daily_summary_time: "23:00"
+  weekly_summary:
+    day: "sunday"
+    time: "23:00"
+  
+  alert_levels:
+    critical: ["heartbeat_dead", "auth_error", "all_llm_failed"]
+    error: ["coin_skipped", "agent_failed_after_retry"]
+    warning: ["fallback_model_used", "stale_data"]
+    info: ["normal_run_completed"]
+
+# =============================================================================
+# System
+# =============================================================================
+system:
+  heartbeat_check_seconds: 300       # 5 minutes
+  heartbeat_timeout_seconds: 900     # 15 minutes
+  
+  # Resource limits
+  max_disk_usage_pct: 80
+  max_memory_usage_pct: 80
+  
+  # Snapshots
+  snapshot_interval_hours: 4
+  snapshot_retention_days: 32
+  
+  # Backups
+  backup_schedule: "0 2 * * *"  # Daily 02:00
+  backup_retention_days: 90
+  backup_destination: "gdrive:trading-agents-backups/"
+
+# =============================================================================
+# Demo Trading (Binance Demo Mode + Futures Testnet)
+# =============================================================================
+demo_trading:
+  # Endpoints
+  spot_demo:
+    rest_url: "https://demo-api.binance.com"
+    ws_url: "wss://demo-stream.binance.com"
+  
+  futures_testnet:
+    rest_url: "https://demo-fapi.binance.com"
+    ws_url: "wss://fstream.binancefuture.com"
+  
+  # Initial balances
+  initial_spot_balance: 10000  # USDT
+  initial_futures_balance: 10000  # USDT
+  
+  # Auto-execute settings
+  auto_execute:
+    enabled: true
+    min_confidence: 0.60  # Optimized from backtest (was 0.70) - captures more opportunities
+    max_trades_per_day: 10
+    check_interval_seconds: 3600  # 1 hour
+  
+  # Spot vs Futures decision
+  market_selection:
+    # Dùng futures cho: downtrend, hoặc coin có biến động thấp, vốn hóa lớn
+    futures_allowed_coins: ["BTC", "ETH", "SOL", "BNB", "XRP", "ADA", "DOGE", "HYPE"]
+    futures_on_downtrend: true
+    max_futures_leverage: 10
+    leverage_by_confidence:
+      high: 10    # Confidence >= 0.8
+      medium: 5   # Confidence 0.6-0.8
+      low: 3      # Confidence < 0.6
+  
+  # Trading fees
+  fees:
+    spot_maker: 0.001  # 0.1%
+    spot_taker: 0.001
+    futures_maker: 0.0002  # 0.02%
+    futures_taker: 0.0005
+  
+  # Telegram notifications
+  notify:
+    enabled: true
+    on_trade_open: true
+    on_trade_close: true
+    on_sl_tp_hit: true
+    daily_summary: true
+    on_error: true
+  
+  # Retry settings
+  retry:
+    max_retries: 3
+    backoff_seconds: [2, 4, 8]
+
+# =============================================================================
+# Lite Mode (Price Monitoring)
+# =============================================================================
+lite_mode:
+  # Check interval (seconds)
+  check_interval_seconds: 60  # Every minute
+  
+  # Flash Quick trigger threshold
+  flash_threshold_pct: 10.0  # Trigger when price moves >10%
+  
+  # Cooldown between flashes for same symbol (hours)
+  flash_cooldown_hours: 1
+
+# =============================================================================
+# Scheduler
+# =============================================================================
+scheduler:
+  # Full mode schedule (Technical Analyst)
+  full_mode_time: "07:00"  # Daily at 07:00
+  
+  # Lite mode enabled
+  lite_mode_enabled: true
+  
+  # Daily report time
+  report_time: "23:00"  # Daily at 23:00
+
+# =============================================================================
+# Watchlist
+# =============================================================================
+# watchlist:    symbols the bot analyzes each cycle.
+# trade_watchlist: subset of watchlist that the bot is allowed to AUTO-OPEN.
+#                 Symbols only in watchlist are analyzed but never opened.
+watchlist:
+  - BTCUSDT
+  - ETHUSDT
+  - SOLUSDT
+  - HYPEUSDT
+
+trade_watchlist:
+  - BTCUSDT
+  - ETHUSDT
+  - SOLUSDT
+
+# =============================================================================
+# Screening (Phase 8A)
+# =============================================================================
+screening:
+  # Initial candidate universe for screening
+  default_symbols:
+    - BTCUSDT
+    - ETHUSDT
+    - SOLUSDT
+    - BNBUSDT
+    - HYPEUSDT
+    - ZECUSDT
+
+  # How many top candidates to surface in the report
+  top_n: 5
+
+  # Minimum score to be flagged as candidate
+  min_score: 60
+
+  # Score weights (must sum to 1.0)
+  weights:
+    liquidity: 0.25
+    volatility: 0.20
+    technical: 0.25
+    news: 0.15
+    risk: 0.15
+
+  # Liquidity thresholds (24h quote volume in USDT)
+  liquidity_thresholds:
+    excellent: 100_000_000
+    good: 50_000_000
+    fair: 10_000_000
+    low: 1_000_000
+
+  # Volatility preferred range (ATR / price)
+  volatility_ideal_min: 0.010
+  volatility_ideal_max: 0.050
+  volatility_block_threshold: 0.10
+
+  # Minimum candles required for technical scoring
+  min_candles_required: 50
+
+  # Rating thresholds
+  rating_thresholds:
+    strong_candidate: 75
+    candidate: 60
+    watch_only: 45
+
+# =============================================================================
+# Dynamic Watchlist (Phase 8B)
+# =============================================================================
+dynamic_watchlist:
+  # Master switch — must be false until you have manually approved the file
+  enabled: false
+
+  # Source report from Screening Agent (Phase 8A)
+  source_report: "reports/screening/latest-screening.json"
+
+  # Output files (proposal layer)
+  output_json: "watchlist/dynamic-watchlist.json"
+  output_md: "watchlist/dynamic-watchlist.md"
+
+  # Selection rules
+  max_symbols: 6
+  min_score: 60
+  min_rating: "candidate"
+
+  # If true, base watchlist symbols are always kept even if screening
+  # score is low. This is the safe default.
+  preserve_base_watchlist: true
+
+  # If true, the proposal is marked manual_review_required and
+  # enabled_for_runtime stays false. Runtime integration is opt-in.
+  require_manual_approval: true
+
+  # Exclude symbols that already have open positions (advisory only)
+  exclude_open_positions: false
+
+  # Exclude any candidate with rating == avoid
+  exclude_avoid_rating: true
+
+  # Conservative base watchlist (always preserved if preserve_base_watchlist)
+  base_symbols:
+    - BTCUSDT
+    - ETHUSDT
+    - SOLUSDT
+
+  # Allowlist of symbols eligible for dynamic promotion
+  allowed_symbols:
+    - BTCUSDT
+    - ETHUSDT
+    - SOLUSDT
+    - BNBUSDT
+    - HYPEUSDT
+    - ZECUSDT
+
+# =============================================================================
+# Runtime Hardening (Phase 9A)
+# =============================================================================
+runtime:
+  # Prevent two trading processes from running at once
+  prevent_duplicate_instances: true
+
+  # Lock + health paths
+  lock_file: "logs/run_paper_trading.lock"
+  health_file: "logs/runtime_health.json"
+
+  # Lightweight log rotation (size-based, no compression)
+  log_rotation:
+    enabled: true
+    max_bytes: 10485760      # 10 MB per file
+    keep_files: 5            # keep .1 ... .keep_files
+    files:
+      - "logs/paper_trading.log"
+      - "logs/system.log"
+      - "logs/errors.log"
+      - "logs/lite_mode.log"
+
+  # Phase 9A.4: Auto-Restart Supervisor / Heartbeat Monitor
+  supervisor:
+    enabled: false           # off by default
+    mode: "monitor_only"     # monitor_only | auto_restart
+    check_interval_seconds: 60
+    stale_after_seconds: 900 # 15 minutes
+    max_restarts_per_hour: 2
+    restart_mode: "continuous"
+    state_file: "logs/runtime_supervisor_state.json"
+    log_file: "logs/runtime_supervisor.log"
+
+  # Reconciliation: Binance Futures testnet vs local SQLite (Phase 10C)
+  reconciliation:
+    enabled: true                                   # on by default since Phase 10C
+    interval_seconds: 60
+    run_before_cycle: true
+    run_after_order: true
+    auto_sync_orphans: true                         # insert SYNC rows for Binance-only positions
+    auto_close_db_missing: true                     # mark DB-only positions as closed_external
+    auto_fix_qty_mismatch: false                    # do NOT auto-fix qty by default
+    qty_tolerance_pct: 0.5                          # 0.5% qty diff tolerated
+    price_tolerance_pct: 0.5                        # 0.5% entry-price diff tolerated
+    notify_mismatches: true                         # send Telegram alert for warnings
+    notify_threshold_severity: "warning"            # min severity to notify

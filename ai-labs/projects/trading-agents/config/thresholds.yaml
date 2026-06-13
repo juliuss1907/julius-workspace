@@ -1,0 +1,254 @@
+# Risk Thresholds — Hard Limits
+# Các ngưỡng này trigger warnings/rejections trong Risk Manager
+
+# =============================================================================
+# Liquidity Thresholds
+# =============================================================================
+liquidity:
+  # Spread (bid-ask)
+  max_spread_pct:
+    spot: 0.005      # 0.5% — reject nếu spread >0.5%
+    futures: 0.003   # 0.3% — futures thường tighter spread
+  
+  # Volume
+  min_volume_24h_usd:
+    large_cap: 500_000_000   # $500M minimum cho BTC, ETH
+    mid_cap: 50_000_000      # $50M minimum
+    small_cap: 5_000_000     # $5M minimum
+    memecoin: 1_000_000      # $1M minimum
+  
+  # Order book depth
+  min_orderbook_depth_usd:
+    spot: 100_000      # $100K depth at ±1%
+    futures: 500_000   # $500K depth at ±1%
+
+# =============================================================================
+# Volatility Thresholds
+# =============================================================================
+volatility:
+  # ATR-based
+  extreme_volatility_threshold:
+    multiplier: 3.0  # ATR > 3x của 30d average = extreme volatile
+  
+  # Bollinger Band width
+  bb_width_extreme: 0.20  # BB width >20% = extreme volatility
+  
+  # Actions khi extreme volatility
+  extreme_volatility_action:
+    - "increase_stop_loss_buffer"  # Tăng SL buffer lên 1.5x
+    - "reduce_position_size"       # Giảm position size 50%
+    - "skip_low_confidence"        # Skip signals confidence <0.7
+
+# =============================================================================
+# Exposure Limits (enforced by Portfolio Manager)
+# =============================================================================
+exposure:
+  # Per coin
+  max_single_coin_pct: 0.30  # 30%
+  
+  # Total exposure
+  max_total_exposure_pct: 0.80  # 80% (giữ 20% cash)
+  
+  # Correlated exposure
+  max_correlated_exposure_pct: 0.50  # 50%
+  
+  # Correlated groups
+  correlated_groups:
+    - ["BTC", "ETH"]  # Bitcoin ecosystem
+    - ["SOL", "JTO", "JUP", "PYTH"]  # Solana ecosystem
+    - ["ARB", "OP", "STRK"]  # L2s
+    - ["UNI", "AAVE", "MKR", "CRV"]  # DeFi
+  
+  # Max open positions
+  max_open_positions: 5
+
+# =============================================================================
+# Margin & Leverage (Futures)
+# =============================================================================
+margin:
+  # Margin safety
+  min_margin_ratio: 1.5  # Maintain >150% margin ratio
+  
+  # Max leverage per confidence
+  max_leverage_by_confidence:
+    high: 10      # Confidence >= 0.8
+    medium: 5     # Confidence 0.6-0.8
+    low: 3        # Confidence 0.4-0.6
+    none: 1       # No leverage for <0.4
+  
+  # Funding rate limits
+  max_acceptable_funding_rate: 0.001    # 0.1% per 8h
+  funding_rate_warning: 0.0005          # 0.05% = warning
+  
+  # Actions khi funding high
+  high_funding_action:
+    positive: "reduce_long_leverage"   # Long pay positive funding
+    negative: "reduce_short_leverage"  # Short pay negative funding
+
+# =============================================================================
+# Drawdown Limits (Portfolio Level)
+# =============================================================================
+drawdown:
+  # Paper portfolio
+  max_drawdown_warning: 0.15   # 15% DD → warning
+  max_drawdown_pause: 0.25     # 25% DD → pause trading
+  
+  # Actions khi drawdown excessive
+  drawdown_actions:
+    warning:
+      - "notify_julius"
+      - "reduce_risk_per_trade"  # Giảm từ 3% → 2%
+    pause:
+      - "stop_new_positions"
+      - "close_losing_positions"
+      - "notify_julius_critical"
+
+# =============================================================================
+# Confidence Thresholds
+# =============================================================================
+confidence:
+  min_confidence_to_trade: 0.40  # Skip nếu confidence <0.4
+  
+  # Position size multipliers
+  position_size_multipliers:
+    high: 1.0      # >= 0.8
+    medium: 0.75   # 0.6 - 0.8
+    low: 0.5       # 0.4 - 0.6
+
+# =============================================================================
+# Data Quality Thresholds
+# =============================================================================
+data_quality:
+  # Stale data
+  max_data_age_seconds:
+    price_realtime: 300        # 5 min
+    ohlcv_1h: 1800            # 30 min
+    derivatives: 3600          # 1 hour
+    fundamentals: 86400        # 24 hours
+    news: 3600                 # 1 hour
+  
+  # Missing data tolerance
+  max_missing_analysts: 1  # Max 1 analyst có thể fail
+  required_analysts:
+    full_mode: ["technical"]  # Technical là required
+    quick_mode: ["technical"]
+    flash_mode: ["technical", "news"]
+  
+  # Price anomaly
+  price_spike_thresholds:
+    normal_coin: 0.50     # 50% in 1 candle
+    memecoin: 2.00        # 200% in 1 candle
+  
+  # Action on anomaly
+  anomaly_action: "flag_only"  # Giữ data, chỉ flag
+
+# =============================================================================
+# System Resource Limits
+# =============================================================================
+system:
+  max_disk_usage_pct: 80
+  max_memory_usage_pct: 80
+  max_cpu_usage_pct: 90
+  
+  # Actions khi exceed
+  resource_limit_actions:
+    disk:
+      - "cleanup_old_cache"
+      - "cleanup_old_logs"
+    memory:
+      - "garbage_collect"
+      - "clear_stale_cache"
+
+# =============================================================================
+# Cost Limits
+# =============================================================================
+cost:
+  # Monthly budget
+  monthly_budget_usd: 60
+  
+  # Per-day limits
+  daily_limit_usd: 5
+  
+  # Actions khi approach limit
+  budget_thresholds:
+    warning: 0.80      # 80% of budget → warning
+    pause: 0.95        # 95% of budget → pause expensive operations
+  
+  # Pause actions
+  pause_operations:
+    - "skip_full_mode"           # Chỉ chạy quick mode
+    - "skip_fine_tuning"         # Defer fine-tuning
+    - "reduce_backtest_scope"    # Backtest ít coins hơn
+
+# =============================================================================
+# Timing & Rate Limits
+# =============================================================================
+timing:
+  # Mode execution timeouts
+  max_execution_time_seconds:
+    full: 600      # 10 minutes
+    quick: 300     # 5 minutes
+    flash: 120     # 2 minutes
+    lite: 60       # 1 minute
+  
+  # API rate limits (per minute)
+  api_rate_limits:
+    binance: 1200
+    geckoterminal: 60
+    opencode_go: 60
+    ollama: 120
+  
+  # Retry limits
+  max_retries: 3
+  backoff_base_seconds: 2  # Exponential: 2s, 4s, 8s
+
+# =============================================================================
+# Error Thresholds
+# =============================================================================
+errors:
+  # Circuit breaker
+  circuit_breaker:
+    failure_threshold: 5      # Open circuit after 5 consecutive failures
+    timeout_seconds: 900      # Stay open for 15 minutes
+  
+  # Max errors per period
+  max_errors_per_day: 10
+  max_errors_per_hour: 3
+  
+  # Actions on error spike
+  error_spike_action:
+    - "notify_julius"
+    - "reduce_frequency"  # Giảm frequency các modes
+
+# =============================================================================
+# Screening Thresholds (Phase 8)
+# =============================================================================
+screening:
+  # Volume spike
+  min_volume_spike_pct: 2.0  # 200% increase vs 7d avg
+  
+  # Social buzz
+  min_social_mentions_increase: 5.0  # 5x increase
+  
+  # Market cap
+  min_market_cap: 10_000_000    # $10M minimum
+  max_market_cap: 50_000_000_000  # <$50B (exclude too large)
+  
+  # Age
+  min_token_age_days: 7  # Minimum 7 days old
+  
+  # Max proposals per week
+  max_proposals_per_week: 5
+
+# =============================================================================
+# Notes
+# =============================================================================
+notes: |
+  Threshold Notes:
+  
+  - Thresholds này là hard limits — Risk/Portfolio Manager sẽ reject nếu vượt quá
+  - Có thể adjust dựa trên market conditions (ví dụ: bull market có thể increase exposure limits)
+  - Review quarterly hoặc khi market regime thay đổi đáng kể
+  
+  Last review: 2026-06-01
+  Next review: 2026-09-01
