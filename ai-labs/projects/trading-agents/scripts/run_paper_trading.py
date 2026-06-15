@@ -25,6 +25,11 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description='Trading System')
     parser.add_argument('--single-cycle', action='store_true',
                        help='Run single cycle and exit')
+    parser.add_argument(
+        '--dry-run',
+        action='store_true',
+        help='Run without Telegram startup/messages, position mutations, or production state writes',
+    )
     return parser
 
 
@@ -56,20 +61,68 @@ setup_logging("INFO")
 logger = get_logger(__name__)
 
 
+class _DryRunTelegramBot:
+    """Null Telegram bot used in dry-run mode."""
+
+    is_paused = False
+
+    async def start(self):
+        logger.info("DRY-RUN: skipped Telegram bot start")
+
+    async def stop(self):
+        logger.info("DRY-RUN: skipped Telegram bot stop")
+
+
+class _DryRunNotifier:
+    """Null notifier used in dry-run mode."""
+
+    async def notify_risk_rejected(self, *args, **kwargs):
+        logger.info("DRY-RUN: risk rejected notification suppressed")
+
+    async def notify_trade_opened(self, *args, **kwargs):
+        logger.info("DRY-RUN: trade opened notification suppressed")
+
+    async def notify_trade_closed(self, *args, **kwargs):
+        logger.info("DRY-RUN: trade closed notification suppressed")
+
+    async def notify_position_event(self, *args, **kwargs):
+        logger.info("DRY-RUN: position event notification suppressed")
+
+    async def notify_error(self, *args, **kwargs):
+        logger.info("DRY-RUN: error notification suppressed")
+
+    async def send_daily_summary(self, *args, **kwargs):
+        logger.info("DRY-RUN: daily summary suppressed")
+
+    async def _send_message(self, *args, **kwargs):
+        logger.info("DRY-RUN: message suppressed")
+
+    async def close(self):
+        pass
+
+
 class TradingSystem:
     """Main trading system orchestrator"""
 
-    def __init__(self):
+    def __init__(self, dry_run: bool = False):
+        self.dry_run = dry_run
         self.running = False
         # Execution-side components (analysts are created per-cycle by
         # the shared orchestration layer).
         self.risk_manager = RiskManager()
         self.position_manager = PositionManager()
         self.portfolio_context_builder = PortfolioContextBuilder()
-        self.notifier = TradeNotifier()
+        if self.dry_run:
+            self.notifier = _DryRunNotifier()
+            logger.info("DRY-RUN mode enabled: Telegram bot and notifier are no-ops")
+        else:
+            self.notifier = TradeNotifier()
         self.order_manager = OrderManager(notifier=self.notifier)
         self.position_monitor = PositionMonitor()
-        self.telegram_bot = TradingTelegramBot(self.order_manager, self.position_monitor)
+        if self.dry_run:
+            self.telegram_bot = _DryRunTelegramBot()
+        else:
+            self.telegram_bot = TradingTelegramBot(self.order_manager, self.position_monitor)
 
         # Load config
         default_config = config.load_default_params()
@@ -77,6 +130,9 @@ class TradingSystem:
         self.check_interval = demo_config.get('auto_execute', {}).get('check_interval_seconds', 3600)
         pm_config = default_config.get('position_manager', {})
         self.position_execution_mode = pm_config.get('execution_mode', 'execute_close_only')
+        if self.dry_run:
+            self.position_execution_mode = "dry_run"
+            logger.info("DRY-RUN: overriding position_execution_mode to 'dry_run'")
         self.reverse_enabled = pm_config.get('reverse_enabled', False)
         reverse_flow_config = pm_config.get('reverse_flow', {})
         self.min_confidence_to_open_reverse = reverse_flow_config.get('min_confidence_to_open_reverse', 0.80)
@@ -106,10 +162,12 @@ class TradingSystem:
 
         # Reconciliation (Phase 10C)
         recon_config = default_config.get('runtime', {}).get('reconciliation', {})
-        self.recon_enabled = bool(recon_config.get('enabled', False))
+        self.recon_enabled = bool(recon_config.get('enabled', False)) and not self.dry_run
         self.recon_config = recon_config
         self.reconciler: Optional[FuturesReconciler] = None
-        if self.recon_enabled:
+        if self.dry_run:
+            logger.info("DRY-RUN: reconciliation disabled")
+        elif self.recon_enabled:
             try:
                 from dataflows.binance_futures_client import BinanceFuturesClient
                 client = BinanceFuturesClient(
@@ -139,6 +197,26 @@ class TradingSystem:
         self.health_path = runtime_cfg.get("health_file", "logs/runtime_health.json")
         self.process_lock = ProcessLock(path=self.lock_path, name="trading-runtime")
         self.runtime_health = RuntimeHealth(path=self.health_path, name="trading-runtime")
+
+    def _record_signal(self, **kwargs):
+        """Record a signal.  In dry-run mode, log a summary instead of writing production state."""
+        if self.dry_run:
+            symbol = kwargs.get("symbol", "?")
+            status = kwargs.get("execution_status", "?")
+            position_decision = kwargs.get("position_decision") or {}
+            risk_decision = kwargs.get("risk_decision") or {}
+            logger.info(
+                "DRY-RUN decision summary: symbol=%s status=%s position_action=%s risk_approved=%s reason=%s",
+                symbol,
+                status,
+                position_decision.get("action") or position_decision.get("recommended_action"),
+                risk_decision.get("approved") if isinstance(risk_decision, dict) else None,
+                position_decision.get("reason") or (
+                    risk_decision.get("reason") if isinstance(risk_decision, dict) else None
+                ),
+            )
+            return
+        signal_recorder.record_signal(**kwargs)
 
     async def initialize(self):
         """Initialize all components"""
@@ -250,7 +328,7 @@ class TradingSystem:
                         confidence=final_signal.confidence,
                         reason=decision.reason,
                     )
-                signal_recorder.record_signal(
+                self._record_signal(
                     symbol=symbol,
                     analyst_signals=analyst_signals,
                     draft_signal=draft_signal,
@@ -266,7 +344,7 @@ class TradingSystem:
             # Open / new entry — gate by execution mode
             if self.position_execution_mode == "execute_close_only":
                 logger.info(f"{symbol}: New entry blocked by execution_mode=execute_close_only")
-                signal_recorder.record_signal(
+                self._record_signal(
                     symbol=symbol,
                     analyst_signals=analyst_signals,
                     draft_signal=draft_signal,
@@ -278,9 +356,9 @@ class TradingSystem:
                     execution_status="entry_blocked_close_only",
                 )
                 return
-            if self.position_execution_mode == "dry_run":
+            if self.dry_run or self.position_execution_mode == "dry_run":
                 logger.info(f"{symbol}: New entry in dry_run mode, recording signal only")
-                signal_recorder.record_signal(
+                self._record_signal(
                     symbol=symbol,
                     analyst_signals=analyst_signals,
                     draft_signal=draft_signal,
@@ -289,7 +367,7 @@ class TradingSystem:
                     market_snapshot=market_snapshot,
                     position_decision=decision.position_decision,
                     risk_decision=decision.risk_decision,
-                    execution_status="entry_dry_run",
+                    execution_status="dry_run_entry_recommended",
                 )
                 return
 
@@ -305,7 +383,7 @@ class TradingSystem:
                     final_signal, current_price, atr,
                     risk_decision=decision.risk_decision,
                 )
-                signal_recorder.record_signal(
+                self._record_signal(
                     symbol=symbol,
                     analyst_signals=analyst_signals,
                     draft_signal=draft_signal,
@@ -329,7 +407,7 @@ class TradingSystem:
                     f"{symbol}: Final confidence {final_signal.confidence:.3f} below "
                     f"threshold {self.order_manager.min_confidence:.3f}, skipping"
                 )
-                signal_recorder.record_signal(
+                self._record_signal(
                     symbol=symbol,
                     analyst_signals=analyst_signals,
                     draft_signal=draft_signal,
@@ -369,8 +447,8 @@ class TradingSystem:
         reverse_trade_result = None
 
         if position_action == "close_position":
-            if self.position_execution_mode == "dry_run":
-                execution_status = "position_close_recommended"
+            if self.dry_run or self.position_execution_mode == "dry_run":
+                execution_status = "dry_run_position_close_recommended"
             else:
                 position = position_decision.get("position", {})
                 trade_id = position.get("trade_id")
@@ -381,25 +459,32 @@ class TradingSystem:
                     closed = await self.order_manager.close_position(trade_id, reason=close_reason) if trade_id else False
                 execution_status = "position_closed" if closed else "position_close_failed"
         elif position_action == "reduce_position":
-            allowed = self.position_execution_mode in ("execute_reduce_and_close", "execute_all")
-            if not allowed:
-                execution_status = "position_reduce_recommended"
+            if self.dry_run:
+                execution_status = "dry_run_position_reduce_recommended"
             else:
-                trade_id = position_decision.get("position", {}).get("trade_id")
-                fraction = position_decision.get("close_fraction", 0.5)
-                reduced = await self.order_manager.reduce_position(trade_id, fraction=fraction, reason=close_reason) if trade_id else False
-                execution_status = "position_reduced" if reduced else "position_reduce_failed"
+                allowed = self.position_execution_mode in ("execute_reduce_and_close", "execute_all")
+                if not allowed:
+                    execution_status = "position_reduce_recommended"
+                else:
+                    trade_id = position_decision.get("position", {}).get("trade_id")
+                    fraction = position_decision.get("close_fraction", 0.5)
+                    reduced = await self.order_manager.reduce_position(trade_id, fraction=fraction, reason=close_reason) if trade_id else False
+                    execution_status = "position_reduced" if reduced else "position_reduce_failed"
         elif position_action == "reverse_position":
-            execution_status, reverse_trade_result, reverse_risk_decision = await self._execute_guarded_reverse(
-                symbol=symbol,
-                final_signal=final_signal,
-                position_decision=position_decision,
-                close_reason=close_reason,
-                base_market_snapshot=base_market_snapshot,
-                draft_signal=draft_signal,
-                analyst_signals=analyst_signals,
-                research_debate=research_debate,
-            )
+            if self.dry_run:
+                logger.info(f"{symbol}: reverse action blocked in dry-run")
+                execution_status = "dry_run_position_reverse_recommended"
+            else:
+                execution_status, reverse_trade_result, reverse_risk_decision = await self._execute_guarded_reverse(
+                    symbol=symbol,
+                    final_signal=final_signal,
+                    position_decision=position_decision,
+                    close_reason=close_reason,
+                    base_market_snapshot=base_market_snapshot,
+                    draft_signal=draft_signal,
+                    analyst_signals=analyst_signals,
+                    research_debate=research_debate,
+                )
 
         notify_market_type = position_decision.get("position", {}).get("market_type", "") or ""
         notify_position_side = position_decision.get("position", {}).get("side", "") or ""
@@ -428,7 +513,7 @@ class TradingSystem:
             trade_id=notify_trade_id,
         )
 
-        signal_recorder.record_signal(
+        self._record_signal(
             symbol=symbol,
             analyst_signals=analyst_signals,
             draft_signal=draft_signal,
@@ -459,6 +544,10 @@ class TradingSystem:
 
         Returns: (execution_status, trade_result_or_None, risk_decision_or_None)
         """
+        if self.dry_run:
+            logger.info(f"{symbol}: guarded reverse blocked in dry-run")
+            return ("dry_run_position_reverse_recommended", None, None)
+
         plan = plan_guarded_reverse(
             reverse_enabled=self.reverse_enabled,
             execution_mode=self.position_execution_mode,
@@ -586,8 +675,11 @@ class TradingSystem:
                 except Exception as e:
                     logger.warning(f"Reconciliation (before cycle) failed: {e}")
 
-            # Always monitor existing positions (even when paused)
-            await self.monitor_positions()
+            if self.dry_run:
+                logger.info("DRY-RUN: skipped position monitoring")
+            else:
+                # Always monitor existing positions (even when paused)
+                await self.monitor_positions()
 
             # Only analyze and trade if not paused
             if not self.telegram_bot.is_paused:
@@ -599,30 +691,36 @@ class TradingSystem:
                 logger.info("⚠️ Trading is paused, skipping analysis")
 
             # Save portfolio snapshot
-            try:
-                stats = await self.order_manager.get_portfolio_stats()
-                from state import db
-                await db.save_portfolio_snapshot(
-                    spot_balance=stats['spot_balance'],
-                    futures_balance=stats['futures_balance']
-                )
-            except Exception as e:
-                logger.error(f"Error saving portfolio snapshot: {e}")
+            if self.dry_run:
+                logger.info("DRY-RUN: skipped portfolio snapshot save")
+            else:
+                try:
+                    stats = await self.order_manager.get_portfolio_stats()
+                    from state import db
+                    await db.save_portfolio_snapshot(
+                        spot_balance=stats['spot_balance'],
+                        futures_balance=stats['futures_balance']
+                    )
+                except Exception as e:
+                    logger.error(f"Error saving portfolio snapshot: {e}")
         except Exception as e:
             cycle_status = "failed"
             cycle_error = str(e)
             logger.error(f"Trading cycle failed: {e}", exc_info=True)
 
         duration = time.monotonic() - t0
-        try:
-            self.runtime_health.record_cycle(
-                status=cycle_status,
-                duration_sec=duration,
-                symbols_processed=symbols_processed,
-                error=cycle_error,
-            )
-        except Exception as e:
-            logger.warning(f"Failed to record runtime health: {e}")
+        if self.dry_run:
+            logger.info("DRY-RUN: skipped runtime health record_cycle")
+        else:
+            try:
+                self.runtime_health.record_cycle(
+                    status=cycle_status,
+                    duration_sec=duration,
+                    symbols_processed=symbols_processed,
+                    error=cycle_error,
+                )
+            except Exception as e:
+                logger.warning(f"Failed to record runtime health: {e}")
 
         logger.info(f"\n{'='*80}")
         logger.info(f"Trading cycle completed")
@@ -666,12 +764,15 @@ class TradingSystem:
         """Main trading loop"""
         self.running = True
 
-        try:
-            self.runtime_health.mark_running(
-                watchlist=self.watchlist, mode="continuous",
-            )
-        except Exception as e:
-            logger.warning(f"Failed to mark runtime health: {e}")
+        if not self.dry_run:
+            try:
+                self.runtime_health.mark_running(
+                    watchlist=self.watchlist, mode="continuous",
+                )
+            except Exception as e:
+                logger.warning(f"Failed to mark runtime health: {e}")
+        else:
+            logger.info("DRY-RUN: skipped runtime health mark_running")
 
         # Initialize
         await self.initialize()
@@ -716,12 +817,16 @@ class TradingSystem:
         await self.shutdown()
 
         # Send shutdown message
-        await self.notifier._send_message("🛑 <b>Trading System Stopped</b>")
+        if not self.dry_run:
+            await self.notifier._send_message("🛑 <b>Trading System Stopped</b>")
 
-        try:
-            self.runtime_health.mark_stopped(reason="continuous_loop_exit")
-        except Exception as e:
-            logger.warning(f"Failed to mark runtime health stopped: {e}")
+        if not self.dry_run:
+            try:
+                self.runtime_health.mark_stopped(reason="continuous_loop_exit")
+            except Exception as e:
+                logger.warning(f"Failed to mark runtime health stopped: {e}")
+        else:
+            logger.info("DRY-RUN: skipped runtime health mark_stopped")
 
     def stop(self):
         """Stop the trading system"""
@@ -732,12 +837,15 @@ class TradingSystem:
         """Run a single trading cycle and exit"""
         logger.info("Running single trading cycle...")
 
-        try:
-            self.runtime_health.mark_running(
-                watchlist=self.watchlist, mode="single_cycle",
-            )
-        except Exception as e:
-            logger.warning(f"Failed to mark runtime health: {e}")
+        if not self.dry_run:
+            try:
+                self.runtime_health.mark_running(
+                    watchlist=self.watchlist, mode="single_cycle",
+                )
+            except Exception as e:
+                logger.warning(f"Failed to mark runtime health: {e}")
+        else:
+            logger.info("DRY-RUN: skipped runtime health mark_running")
 
         await self.initialize()
 
@@ -746,10 +854,13 @@ class TradingSystem:
             logger.info("✓ Single cycle completed")
         finally:
             await self.shutdown()
-            try:
-                self.runtime_health.mark_stopped(reason="single_cycle_complete")
-            except Exception as e:
-                logger.warning(f"Failed to mark runtime health stopped: {e}")
+            if not self.dry_run:
+                try:
+                    self.runtime_health.mark_stopped(reason="single_cycle_complete")
+                except Exception as e:
+                    logger.warning(f"Failed to mark runtime health stopped: {e}")
+            else:
+                logger.info("DRY-RUN: skipped runtime health mark_stopped")
 
 
 async def main():
@@ -757,21 +868,24 @@ async def main():
     parser = _build_parser()
     args = parser.parse_args()
 
-    system = TradingSystem()
+    system = TradingSystem(dry_run=args.dry_run)
 
-    # Acquire process lock (Phase 9A.1)
-    try:
-        system.process_lock.acquire()
-    except LockHeldError as e:
-        holder = e.holder or {}
-        logger.error(
-            f"Runtime lock active: PID {holder.get('pid')} already running "
-            f"(started={holder.get('started_at')}). Refusing to start duplicate process."
-        )
-        sys.exit(1)
-    except Exception as e:
-        logger.error(f"Failed to acquire runtime lock: {e}")
-        sys.exit(1)
+    # Acquire process lock (Phase 9A.1) — skipped in dry-run mode
+    if not args.dry_run:
+        try:
+            system.process_lock.acquire()
+        except LockHeldError as e:
+            holder = e.holder or {}
+            logger.error(
+                f"Runtime lock active: PID {holder.get('pid')} already running "
+                f"(started={holder.get('started_at')}). Refusing to start duplicate process."
+            )
+            sys.exit(1)
+        except Exception as e:
+            logger.error(f"Failed to acquire runtime lock: {e}")
+            sys.exit(1)
+    else:
+        logger.info("DRY-RUN: skipped process lock acquire")
 
     # Setup signal handlers
     def signal_handler(sig, frame):
@@ -793,10 +907,13 @@ async def main():
         logger.error(f"Fatal error: {e}", exc_info=True)
         exit_code = 1
     finally:
-        try:
-            system.process_lock.release()
-        except Exception as e:
-            logger.warning(f"Failed to release runtime lock: {e}")
+        if not args.dry_run:
+            try:
+                system.process_lock.release()
+            except Exception as e:
+                logger.warning(f"Failed to release runtime lock: {e}")
+        else:
+            logger.info("DRY-RUN: skipped process lock release")
 
     if exit_code:
         sys.exit(exit_code)

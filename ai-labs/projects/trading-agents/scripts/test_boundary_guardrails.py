@@ -253,6 +253,8 @@ def test_run_paper_trading_cli_help_exits_zero_lightweight():
               f"paper --help rc={rv.returncode}: {rv.stderr.strip()[:300]}")
     assert_true("--single-cycle" in rv.stdout,
                 f"paper help missing --single-cycle: {rv.stdout[:300]}")
+    assert_true("--dry-run" in rv.stdout,
+                f"paper help missing --dry-run: {rv.stdout[:300]}")
 
 
 def test_run_paper_trading_syntax():
