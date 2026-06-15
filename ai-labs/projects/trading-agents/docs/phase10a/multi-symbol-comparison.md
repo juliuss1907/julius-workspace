@@ -4,6 +4,8 @@
 > **Date:** 2026-06-09
 > **Window:** 14d (step=4h, SL/TP enabled)
 > **Calibration folders:** `reports/calibration/2026-06-09-{btc,eth,sol,combined}/`
+>
+> **Updated by:** [phase10a-refresh-2026-06-15.md](phase10a-refresh-2026-06-15.md) — 30d multi-symbol comparison with reduced SHORT bias and no config promotion.
 
 ---
 

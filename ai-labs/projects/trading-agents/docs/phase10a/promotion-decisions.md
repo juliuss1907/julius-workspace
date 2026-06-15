@@ -2,6 +2,8 @@
 
 > **Companion to:** `bias-investigation.md`, `multi-symbol-comparison.md`
 > **Date:** 2026-06-09
+>
+> **Updated by:** [phase10a-refresh-2026-06-15.md](phase10a-refresh-2026-06-15.md) — 30d refresh again resulted in **zero config promotions**; only methodological/data_quality recommendations.
 
 Per `docs/config-promotion-checklist.md`, every recommendation was evaluated against the 6 hard gates and 4 soft gates. Decisions are explicit and final.
 

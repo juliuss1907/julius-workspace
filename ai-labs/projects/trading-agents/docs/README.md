@@ -144,4 +144,4 @@ Parallel next topics:
 
 - **Repo inventory / tracking plan:** categorize remaining untracked source, docs, generated artifacts, and private/runtime paths
 - **Runtime integration smoke:** DONE — safe dry-run/single-cycle smoke for demo runtime is implemented and validated (`--single-cycle --dry-run`)
-- **10A — Longer Calibration + Bias Investigation**
+- **10A — Longer Calibration + Bias Investigation:** DONE — 30d combined + per-symbol calibration completed on 2026-06-15; see [phase10a/phase10a-refresh-2026-06-15.md](phase10a/phase10a-refresh-2026-06-15.md)

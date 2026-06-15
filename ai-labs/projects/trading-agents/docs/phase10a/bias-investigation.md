@@ -5,6 +5,8 @@
 > **Symbols:** BTCUSDT, ETHUSDT, SOLUSDT (combined + per-symbol)
 > **Method:** `run_calibration_workflow.py --days 14 --window 120 --step 4 --use-sl-tp`
 > **Calibration folders:** `reports/calibration/2026-06-09-{btc,eth,sol,combined}/`
+>
+> **Updated by:** [phase10a-refresh-2026-06-15.md](phase10a-refresh-2026-06-15.md) — 30d refresh confirms SHORT bias is market-driven and reduced to 60% in a longer window.
 
 ---
 
