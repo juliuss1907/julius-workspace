@@ -127,9 +127,9 @@ If a change is reusable across both output paths, it probably belongs in `orches
   - README + docs index are aligned with actual import paths
   - rescue/implementation docs now distinguish historical plan language from current committed modules
   - runtime smoke docs now require `--single-cycle --dry-run` and warn against plain `--single-cycle`
-- **Repo hygiene:** TODO
-  - inventory remaining untracked source/docs/artifacts before any broad staging
-  - `trading-agents-repo-inventory.md` is an untracked working artifact; do not stage it without review
+- **Repo hygiene:** DONE
+  - source/docs are tracked; generated/runtime/private artifacts are ignored
+  - stale untracked inventory artifact `trading-agents-repo-inventory.md` was removed after review
 - **9A — Production Hardening:** DONE
   - 9A.1 Process Lock + Healthcheck
   - 9A.2 Scheduler Guard + Log Rotation + Health CLI
