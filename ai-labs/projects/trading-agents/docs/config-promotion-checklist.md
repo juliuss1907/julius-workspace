@@ -105,11 +105,19 @@ Once all hard gates pass and soft gates are acknowledged:
    ./venv/bin/python -c "import yaml; print(yaml.safe_load(open('config/default_params.yaml'))['analyst_weights'])"
    ```
 
-4. **Smoke test single cycle**:
+4. **Smoke test single cycle (dry-run first)**:
+   ```bash
+   # Safe smoke: validates config load + analysis/policy path without operational side effects
+   ./venv/bin/python scripts/run_paper_trading.py --single-cycle --dry-run
+   ```
+
+   Only run a plain operational single cycle after manual approval if needed:
    ```bash
    ./venv/bin/python scripts/run_paper_trading.py --single-cycle
    ./venv/bin/python scripts/check_runtime_health.py
    ```
+
+   > A plain `--single-cycle` run is operational: it may start Telegram, send notifications, write runtime health/state, save portfolio snapshots, run reconciliation, and mutate paper positions depending on config.
 
 5. **Commit locally** (do NOT push):
    ```bash

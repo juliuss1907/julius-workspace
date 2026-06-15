@@ -70,18 +70,34 @@ All paths are relative to project root unless absolute.
 
 ## 4. Standard operational flows
 
-### 4.1 Start a single cycle (smoke test)
+### 4.1 Start a single cycle (dry-run smoke test)
+
+Use this for safe smoke tests. It exercises the analysis + demo-policy decision path without operational side effects.
 
 ```bash
 cd /home/julius/julius-workspace/ai-labs/projects/trading-agents
-./venv/bin/python scripts/run_paper_trading.py --single-cycle
-./venv/bin/python scripts/check_runtime_health.py
+./venv/bin/python scripts/run_paper_trading.py --single-cycle --dry-run
 ```
 
-Expected:
+Expected dry-run behavior:
 - Process exits with code 0.
-- `logs/runtime_health.json` shows `status: stopped` and `stop_reason: single_cycle_complete`.
+- Skips process lock acquire/release.
+- Skips runtime health writes (`logs/runtime_health.json` is not updated).
+- Skips Telegram bot startup.
+- Skips notifier/Telegram message sends.
+- Skips position monitoring.
+- Skips reconciliation.
+- Skips portfolio snapshot save.
+- Skips position mutations (no open/close/reduce/reverse/execute).
+- Logs `DRY-RUN` decision summaries per symbol.
 - No leftover `logs/run_paper_trading.lock`.
+
+> **Warning:** A plain `--single-cycle` run (without `--dry-run`) is an operational run. It may start the Telegram bot, send notifications, write runtime health/state, save portfolio snapshots, run reconciliation, and mutate paper positions depending on config. Only run it deliberately as an operational step, not as a smoke test.
+
+To verify a production single-cycle run afterwards, you can check:
+```bash
+./venv/bin/python scripts/check_runtime_health.py
+```
 
 ### 4.2 Start runtime continuously
 

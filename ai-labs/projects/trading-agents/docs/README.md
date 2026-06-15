@@ -82,10 +82,11 @@ sed -n '1,120p' docs/14-rescue-architecture.md
 # 4. Verify runtime health
 ./venv/bin/python scripts/check_runtime_health.py
 
-# 5. Single-cycle smoke test (demo path)
-./venv/bin/python scripts/run_paper_trading.py --single-cycle
+# 5. Single-cycle dry-run smoke test (demo path)
+#    Safe: no Telegram startup, no position mutations, no production state writes.
+./venv/bin/python scripts/run_paper_trading.py --single-cycle --dry-run
 
-# 6. Start runtime
+# 6. Start runtime operationally (after dry-run smoke passes and operator approves)
 ./venv/bin/python scripts/runtime_control.py start
 
 # 7. Status
@@ -94,6 +95,8 @@ sed -n '1,120p' docs/14-rescue-architecture.md
 # 8. Stop
 ./venv/bin/python scripts/runtime_control.py stop
 ```
+
+> **Safety note:** Use `--single-cycle --dry-run` for smoke tests. A plain `--single-cycle` run is an operational run: it may start the Telegram bot, send notifications, write runtime health/state, save portfolio snapshots, run reconciliation, and mutate paper positions depending on config.
 
 For full operational procedures, see [runtime-runbook.md](runtime-runbook.md).
 
@@ -123,8 +126,10 @@ If a change is reusable across both output paths, it probably belongs in `orches
 - **Docs alignment:** DONE
   - README + docs index are aligned with actual import paths
   - rescue/implementation docs now distinguish historical plan language from current committed modules
+  - runtime smoke docs now require `--single-cycle --dry-run` and warn against plain `--single-cycle`
 - **Repo hygiene:** TODO
   - inventory remaining untracked source/docs/artifacts before any broad staging
+  - `trading-agents-repo-inventory.md` is an untracked working artifact; do not stage it without review
 - **9A — Production Hardening:** DONE
   - 9A.1 Process Lock + Healthcheck
   - 9A.2 Scheduler Guard + Log Rotation + Health CLI
@@ -138,5 +143,5 @@ If a change is reusable across both output paths, it probably belongs in `orches
 Parallel next topics:
 
 - **Repo inventory / tracking plan:** categorize remaining untracked source, docs, generated artifacts, and private/runtime paths
-- **Runtime integration smoke:** safe dry-run/single-cycle checks for manual report + demo runtime
+- **Runtime integration smoke:** DONE — safe dry-run/single-cycle smoke for demo runtime is implemented and validated (`--single-cycle --dry-run`)
 - **10A — Longer Calibration + Bias Investigation**

@@ -26,7 +26,7 @@ Orchestration refactor đã hoàn thành các mốc chính từ shared core đ�
 - Runtime consumers: `scripts/run_paper_trading.py`, `scripts/generate_manual_trade_report.py`, `scripts/analyze_symbol_readonly.py`
 - Boundary guardrails: `scripts/test_boundary_guardrails.py`
 
-Repo hiện đang ở **repo hygiene + runtime smoke**: README/docs đã được căn lại với shared-core model; bước tiếp theo là inventory các file chưa track và chạy thêm smoke tests an toàn trước khi stage rộng hơn.
+Repo hiện đang ở **repo hygiene + safe runtime dry-run smoke**: README/docs đã được căn lại với shared-core model; runtime dry-run smoke (`--single-cycle --dry-run`) đã được implement và validate. Bước tiếp theo là inventory các file chưa track trước khi stage rộng hơn.
 
 ### Core rule
 
@@ -137,11 +137,13 @@ cat docs/README.md
 # Shared manual path (help should stay lightweight)
 python scripts/generate_manual_trade_report.py --help
 
-# Demo execution path
-python scripts/run_paper_trading.py --single-cycle
+# Safe demo execution smoke (no Telegram startup, no position mutations, no production state writes)
+python scripts/run_paper_trading.py --single-cycle --dry-run
 
 # Read-only shared analysis path
 python scripts/analyze_symbol_readonly.py BTCUSDT
+
+> **Safety note:** Use `run_paper_trading.py --single-cycle --dry-run` for smoke tests. A plain `--single-cycle` run is an operational run: it may start the Telegram bot, send notifications, write runtime health/state, save portfolio snapshots, run reconciliation, and mutate paper positions depending on config.
 
 # Optional demo-policy inspection for the same symbol (loads runtime-side managers intentionally)
 python scripts/analyze_symbol_readonly.py BTCUSDT --include-demo-decision

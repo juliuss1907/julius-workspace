@@ -185,8 +185,11 @@ ps aux | grep -E "(trading_scheduler|lite_mode|run_paper)" | grep -v grep
 ### Manual Commands
 
 ```bash
-# Run Full Mode manually (single cycle)
-python scripts/run_paper_trading.py --single-cycle
+# Run Full Mode manually as a dry-run smoke test (safe)
+python scripts/run_paper_trading.py --single-cycle --dry-run
+
+# Operational single-cycle run (not a smoke test; may mutate positions/state)
+# python scripts/run_paper_trading.py --single-cycle
 
 # Run Lite Mode manually
 python scripts/lite_mode_monitor.py
@@ -362,8 +365,8 @@ tail -f logs/scheduler.log
 # Verify time
 date
 
-# Run Full Mode manually
-python scripts/run_paper_trading.py --single-cycle
+# Run Full Mode manually as a dry-run smoke test
+python scripts/run_paper_trading.py --single-cycle --dry-run
 ```
 
 ### Daily report not generating
