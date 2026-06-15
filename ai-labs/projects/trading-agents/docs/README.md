@@ -1,7 +1,7 @@
 # Trading Agents — Documentation Index
 
 > **Project:** Crypto trading agents system with one shared analysis core and two main consumers: demo auto-trade + manual discretionary reports.
-> **Last updated:** 2026-06-13
+> **Last updated:** 2026-06-15
 
 ---
 
@@ -145,3 +145,4 @@ Parallel next topics:
 - **Repo inventory / tracking plan:** categorize remaining untracked source, docs, generated artifacts, and private/runtime paths
 - **Runtime integration smoke:** DONE — safe dry-run/single-cycle smoke for demo runtime is implemented and validated (`--single-cycle --dry-run`)
 - **10A — Longer Calibration + Bias Investigation:** DONE — 30d combined + per-symbol calibration completed on 2026-06-15; see [phase10a/phase10a-refresh-2026-06-15.md](phase10a/phase10a-refresh-2026-06-15.md)
+- **10A.2 — Multi-Regime Bull-Market Replay:** DONE — 91d 2024 Q4 bull-market replay completed on 2026-06-15; confirms signal stack is market-tracking, not intrinsically bear-biased; see [phase10a/bull-market-replay-2024-q4.md](phase10a/bull-market-replay-2024-q4.md)

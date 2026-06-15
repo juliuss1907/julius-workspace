@@ -33,6 +33,7 @@ class _Args:
         self.config = kwargs.get("config", None)
         self.dry_run = kwargs.get("dry_run", False)
         self.output_date = kwargs.get("output_date", None)
+        self.end_date = kwargs.get("end_date", None)
         self.timeout = kwargs.get("timeout", None)
         self.skip_replay = kwargs.get("skip_replay", False)
         self.skip_replay_sweep = kwargs.get("skip_replay_sweep", False)
@@ -149,6 +150,18 @@ def test_build_steps_depends_set():
     recs = [s for s in steps if s["id"] == "recommendations"][0]
     assert "dashboard" in recs["depends"]
     print("PASS test_build_steps_depends_set")
+
+
+def test_build_steps_end_date_passthrough():
+    from datetime import date
+    cal = Path("/tmp/cal7b/t10")
+    art = cal / "artifacts"
+    args = _Args(end_date=date(2024, 12, 31))
+    replay = [s for s in build_steps(args, cal, art) if s["id"] == "replay"][0]
+    cmd_str = " ".join(str(a) for a in replay["cmd"])
+    assert "--end-date" in cmd_str
+    assert "2024-12-31" in cmd_str
+    print("PASS test_build_steps_end_date_passthrough")
 
 
 def test_build_steps_sweep_days_override():
@@ -289,14 +302,17 @@ def test_generate_summary_md_parameters_printed():
     cal.mkdir(parents=True, exist_ok=True)
     steps = [{"id": "replay", "label": "Replay", "cmd": ["python", "replay.py"]}]
     results = {"replay": {"status": "success", "detail": "ok", "duration_sec": 1.0}}
+    from datetime import date
     args = _Args(symbols=["BTCUSDT", "ETHUSDT"], days=14, window=80, step=12,
-                 sweep_days=3, use_sl_tp=True, baseline_only=True)
+                 sweep_days=3, use_sl_tp=True, baseline_only=True,
+                 end_date=date(2024, 12, 31))
     md = generate_summary_md(cal, results, steps, args)
     assert "BTCUSDT, ETHUSDT" in md
     assert "14\n" in md or "Days: 14" in md
     assert "Sweep days: 3" in md
     assert "Window: 80" in md
     assert "Step: 12" in md
+    assert "End date: 2024-12-31" in md
     assert "SL/TP: true" in md
     assert "Baseline only: true" in md
     print("PASS test_generate_summary_md_parameters_printed")
@@ -406,6 +422,7 @@ def run_all():
             test_build_steps_output_paths_are_dated,
             test_build_steps_symbols_in_cmd,
             test_build_steps_depends_set,
+            test_build_steps_end_date_passthrough,
             test_build_steps_sweep_days_override,
             test_dependency_failed_statuses,
             test_load_json_safe_missing,

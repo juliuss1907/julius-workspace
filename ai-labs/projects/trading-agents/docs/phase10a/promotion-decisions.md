@@ -4,6 +4,7 @@
 > **Date:** 2026-06-09
 >
 > **Updated by:** [phase10a-refresh-2026-06-15.md](phase10a-refresh-2026-06-15.md) — 30d refresh again resulted in **zero config promotions**; only methodological/data_quality recommendations.
+> **Confirmed by:** [bull-market-replay-2024-q4.md](bull-market-replay-2024-q4.md) — 2024 Q4 bull-market replay also resulted in **zero config promotions**.
 
 Per `docs/config-promotion-checklist.md`, every recommendation was evaluated against the 6 hard gates and 4 soft gates. Decisions are explicit and final.
 

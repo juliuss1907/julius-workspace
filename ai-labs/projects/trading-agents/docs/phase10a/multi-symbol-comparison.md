@@ -6,6 +6,7 @@
 > **Calibration folders:** `reports/calibration/2026-06-09-{btc,eth,sol,combined}/`
 >
 > **Updated by:** [phase10a-refresh-2026-06-15.md](phase10a-refresh-2026-06-15.md) — 30d multi-symbol comparison with reduced SHORT bias and no config promotion.
+> **Confirmed by:** [bull-market-replay-2024-q4.md](bull-market-replay-2024-q4.md) — bull-market replay confirms multi-symbol signal distribution flips bullish in a bull regime.
 
 ---
 

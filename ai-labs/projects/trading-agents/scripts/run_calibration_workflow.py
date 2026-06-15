@@ -39,6 +39,13 @@ import time
 from datetime import datetime, date
 from pathlib import Path
 
+
+def _parse_end_date(value: str) -> date:
+    try:
+        return datetime.strptime(value, "%Y-%m-%d").date()
+    except ValueError as e:
+        raise argparse.ArgumentTypeError(f"--end-date must be YYYY-MM-DD: {e}")
+
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
@@ -142,6 +149,8 @@ def build_steps(args, cal_dir: Path, artifacts_dir: Path) -> list:
                    "--step", str(step_c),
                    "--output", str(replay_jsonl),
                    ]
+            if args.end_date:
+                cmd.extend(["--end-date", args.end_date.isoformat()])
             steps.append({"id": sid, "label": label, "cmd": cmd, "outputs": [replay_jsonl],
                           "depends": depends, "skip": False})
 
@@ -248,6 +257,7 @@ def generate_summary_md(cal_dir: Path, step_results: dict, steps: list, args) ->
     lines.append(f"- Sweep days: {args.sweep_days or args.days}")
     lines.append(f"- Window: {args.window}")
     lines.append(f"- Step: {args.step}")
+    lines.append(f"- End date: {args.end_date.isoformat() if args.end_date else 'today'}")
     lines.append(f"- SL/TP: {_flag_str(args.use_sl_tp)}")
     lines.append(f"- Baseline only: {_flag_str(args.baseline_only)}")
     lines.append("")
@@ -491,6 +501,12 @@ def main():
     parser.add_argument("--config", default=None, help="Path to default_params.yaml")
     parser.add_argument("--output-date", default=None,
                         help="Calibration date label (default: today)")
+    parser.add_argument(
+        "--end-date",
+        type=_parse_end_date,
+        default=None,
+        help="End date for historical replay window (YYYY-MM-DD). Passed through to replay_signals.py.",
+    )
     parser.add_argument("--timeout", type=int, default=None,
                         help="Timeout per step in seconds")
     parser.add_argument("--dry-run", action="store_true",

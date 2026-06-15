@@ -8,7 +8,7 @@ Produces logs/replay_signals.jsonl for analysis.
 import argparse
 import asyncio
 import sys
-from datetime import datetime
+from datetime import datetime, date, time as dt_time, timedelta
 from pathlib import Path
 
 project_root = Path(__file__).parent.parent
@@ -38,11 +38,13 @@ class SignalReplay:
         step_candles: int = 4,
         output_path: str = "logs/replay_signals.jsonl",
         config_override: dict = None,
+        end_date: date = None,
     ):
         self.symbols = symbols
         self.days = days
         self.window_size = window_size
         self.step_candles = step_candles
+        self.end_date = end_date
         self.config_override = config_override or {}
         self.recorder = SignalRecorder(log_path=Path(output_path))
         self.technical = TechnicalAnalyst()
@@ -64,7 +66,19 @@ class SignalReplay:
     async def fetch_candles(self, symbol: str) -> list:
         bc = BinanceClient()
         try:
-            candles = await bc.fetch_ohlcv(symbol, "1h", limit=self.days * 24 + 50)
+            if self.end_date:
+                end_dt = datetime.combine(self.end_date, dt_time(23, 59, 59))
+                start_dt = datetime.combine(
+                    self.end_date, dt_time(0, 0, 0)
+                ) - timedelta(days=self.days)
+                candles = await bc.fetch_ohlcv(
+                    symbol, "1h",
+                    start_time=start_dt,
+                    end_time=end_dt,
+                    limit=self.days * 24 + 50,
+                )
+            else:
+                candles = await bc.fetch_ohlcv(symbol, "1h", limit=self.days * 24 + 50)
         finally:
             await bc.close()
         logger.info(f"{symbol}: fetched {len(candles)} candles")
@@ -154,6 +168,13 @@ class SignalReplay:
             await self.close()
 
 
+def _parse_end_date(value: str) -> date:
+    try:
+        return datetime.strptime(value, "%Y-%m-%d").date()
+    except ValueError as e:
+        raise argparse.ArgumentTypeError(f"--end-date must be YYYY-MM-DD: {e}")
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Replay agent stack on historical OHLCV")
     parser.add_argument("--symbols", nargs="+", default=["BTCUSDT", "ETHUSDT", "SOLUSDT"])
@@ -161,6 +182,12 @@ def parse_args():
     parser.add_argument("--window", type=int, default=200, help="Candle window size")
     parser.add_argument("--step", type=int, default=4, help="Step size in candles (4 = ~4h)")
     parser.add_argument("--output", default="logs/replay_signals.jsonl", help="Output JSONL path")
+    parser.add_argument(
+        "--end-date",
+        type=_parse_end_date,
+        default=None,
+        help="End date for historical window (YYYY-MM-DD). When set, replay looks back --days from this date.",
+    )
     return parser.parse_args()
 
 
@@ -172,6 +199,7 @@ async def main():
         window_size=args.window,
         step_candles=args.step,
         output_path=args.output,
+        end_date=args.end_date,
     )
     await replay.run()
     logger.info("Replay complete")
