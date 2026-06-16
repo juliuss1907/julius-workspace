@@ -6,6 +6,7 @@ from typing import Dict, List, Optional
 from agents.base_agent import BaseAgent, AgentResult, SignalDirection
 from agents.indicators import Indicators
 from agents.market_regime import MarketRegimeDetector, MarketRegime
+from strategies.contracts import MarketState, TechnicalState
 from utils import get_logger, config
 
 
@@ -22,14 +23,14 @@ class TechnicalAnalyst(BaseAgent):
     
     def __init__(self, config_override: Optional[Dict] = None):
         super().__init__("TechnicalAnalyst", config_override)
-        
-        # Load config
+
+        # Load config with canonical technical_indicators mapping + legacy fallback
         default_config = config.load_default_params()
-        self.config = {**default_config.get("technical_analysis", {}), **(config_override or {})}
-        
+        self.config = self._load_indicator_config(default_config, config_override)
+
         # Initialize components
         self.regime_detector = MarketRegimeDetector(self.config.get("regime", {}))
-        
+
         # Indicator parameters
         self.rsi_period = self.config.get("rsi_period", 14)
         self.macd_fast = self.config.get("macd_fast", 12)
@@ -38,7 +39,7 @@ class TechnicalAnalyst(BaseAgent):
         self.bb_period = self.config.get("bb_period", 20)
         self.bb_std = self.config.get("bb_std", 2.0)
         self.atr_period = self.config.get("atr_period", 14)
-        
+
         # Scoring weights
         self.weights = self.config.get("weights", {
             "trend": 0.30,
@@ -47,12 +48,42 @@ class TechnicalAnalyst(BaseAgent):
             "volume": 0.15,
             "regime": 0.10
         })
-        
+
         # Thresholds
         self.rsi_overbought = self.config.get("rsi_overbought", 70)
         self.rsi_oversold = self.config.get("rsi_oversold", 30)
         self.rsi_strong_overbought = self.config.get("rsi_strong_overbought", 80)
         self.rsi_strong_oversold = self.config.get("rsi_strong_oversold", 20)
+
+    @staticmethod
+    def _load_indicator_config(
+        default_config: Dict,
+        config_override: Optional[Dict] = None,
+    ) -> Dict:
+        """Map canonical `technical_indicators` config + legacy overrides.
+
+        Precedence (highest to lowest):
+        1. explicit config_override
+        2. legacy `technical_analysis` block
+        3. canonical `technical_indicators` block
+        4. hard-coded defaults
+        """
+        legacy = default_config.get("technical_analysis", {})
+        canonical = default_config.get("technical_indicators", {})
+
+        mapped = {
+            "rsi_period": canonical.get("rsi", {}).get("period", 14),
+            "rsi_oversold": canonical.get("rsi", {}).get("oversold", 30),
+            "rsi_overbought": canonical.get("rsi", {}).get("overbought", 70),
+            "macd_fast": canonical.get("macd", {}).get("fast", 12),
+            "macd_slow": canonical.get("macd", {}).get("slow", 26),
+            "macd_signal": canonical.get("macd", {}).get("signal", 9),
+            "bb_period": canonical.get("bollinger_bands", {}).get("period", 20),
+            "bb_std": canonical.get("bollinger_bands", {}).get("std_dev", 2.0),
+            "atr_period": canonical.get("atr", {}).get("period", 14),
+        }
+
+        return {**mapped, **legacy, **(config_override or {})}
     
     async def initialize(self):
         """Initialize the agent"""
@@ -100,16 +131,20 @@ class TechnicalAnalyst(BaseAgent):
         
         # Calculate sub-scores
         scores = self._calculate_scores(indicators, regime_data, closes, volumes)
-        
+
         # Calculate overall sub-score
         sub_score = self._calculate_overall_score(scores)
-        
+
         # Determine direction
         direction = self._determine_direction(sub_score)
-        
+
         # Generate reasoning
         reasoning = self._generate_reasoning(scores, regime_data, indicators)
-        
+
+        # Build normalized strategy-layer state snapshots
+        technical_state = self._build_technical_state(indicators, scores)
+        market_state = self._build_market_state(regime_data)
+
         # Build analysis dict
         analysis = {
             "indicators": indicators,
@@ -121,6 +156,8 @@ class TechnicalAnalyst(BaseAgent):
                 "reason": regime_data["reason"]
             },
             "scores": scores,
+            "technical_state": technical_state.to_dict(),
+            "market_state": market_state.to_dict(),
             "timeframe": timeframe,
             "candles_analyzed": len(ohlcv)
         }
@@ -208,7 +245,23 @@ class TechnicalAnalyst(BaseAgent):
         else:
             latest["macd_crossing_up"] = False
             latest["macd_crossing_down"] = False
-        
+
+        # Donchian-style 20-candle breakout helpers.
+        # Use previous 20 candles, excluding the current candle, so the
+        # breakout trigger is not self-referential.
+        if len(highs) >= 21 and len(lows) >= 21:
+            recent_high_20 = max(highs[-21:-1])
+            recent_low_20 = min(lows[-21:-1])
+            latest["recent_high_20"] = recent_high_20
+            latest["recent_low_20"] = recent_low_20
+            latest["breakout_up_20"] = closes[-1] > recent_high_20
+            latest["breakout_down_20"] = closes[-1] < recent_low_20
+        else:
+            latest["recent_high_20"] = None
+            latest["recent_low_20"] = None
+            latest["breakout_up_20"] = False
+            latest["breakout_down_20"] = False
+
         return latest
     
     def _calculate_scores(
@@ -462,6 +515,42 @@ class TechnicalAnalyst(BaseAgent):
         
         return "; ".join(parts)
     
+    def _build_technical_state(self, indicators: Dict, scores: Dict) -> TechnicalState:
+        """Build a normalized TechnicalState from raw indicators and scores."""
+        return TechnicalState(
+            close=indicators.get("close"),
+            rsi=indicators.get("rsi"),
+            macd_histogram=indicators.get("macd_histogram"),
+            macd_crossing_up=bool(indicators.get("macd_crossing_up", False)),
+            macd_crossing_down=bool(indicators.get("macd_crossing_down", False)),
+            bb_position=indicators.get("bb_position"),
+            atr=indicators.get("atr"),
+            ema_20=indicators.get("ema_20"),
+            ema_50=indicators.get("ema_50"),
+            ema_200=indicators.get("ema_200"),
+            volume=indicators.get("volume"),
+            obv=indicators.get("obv"),
+            obv_prev=indicators.get("obv_prev"),
+            recent_high_20=indicators.get("recent_high_20"),
+            recent_low_20=indicators.get("recent_low_20"),
+            breakout_up_20=bool(indicators.get("breakout_up_20", False)),
+            breakout_down_20=bool(indicators.get("breakout_down_20", False)),
+            scores=dict(scores or {}),
+        )
+
+    def _build_market_state(self, regime_data: Dict) -> MarketState:
+        """Build a normalized MarketState from raw regime data."""
+        regime = regime_data.get("regime")
+        return MarketState(
+            regime=regime.value if hasattr(regime, "value") else str(regime),
+            confidence=float(regime_data.get("confidence", 0.0)),
+            trend_direction=regime_data.get("trend_direction", "neutral"),
+            trend_strength=float(regime_data.get("trend_strength", 0.0)),
+            adx=float(regime_data.get("adx", 0.0)),
+            bb_width=regime_data.get("bb_width"),
+            reason=regime_data.get("reason", ""),
+        )
+
     def _create_neutral_result(self, symbol: str, reason: str) -> AgentResult:
         """Create a neutral result when analysis cannot be performed"""
         return AgentResult(

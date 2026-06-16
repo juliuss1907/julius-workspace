@@ -43,6 +43,9 @@ _EXEC_SUBSTR = (
     "trade_notifier", "telegram_bot", "reconciliation", "runtime_health",
 )
 
+# Extended forbidden list used for strategy-layer purity checks.
+_STRATEGY_EXEC_SUBSTR = _EXEC_SUBSTR + ("trading", "state.database")
+
 # ── pre-flight: verify venv Python is usable ─────────────────────────
 
 _VENV_OK = os.path.isfile(VENV_PYTHON)
@@ -124,16 +127,15 @@ _LEAK_CHECK = (
 )
 
 
-def _leak_code(import_line, extra_checks="", tuple_name="_EXEC"):
+def _leak_code(import_line, extra_checks="", forbidden=_EXEC_SUBSTR):
     """Build a leak-checking subprocess script from a template.
 
     Avoids %% formatting ambiguity by constructing the tuple literal
     via repr, then substituting it and the import line explicitly.
     """
-    tup = _EXEC_SUBSTR
     return _LEAK_CHECK.format(
         import_line=import_line,
-        tuple_=repr(tup),
+        tuple_=repr(forbidden),
         extra_checks=extra_checks,
     )
 
@@ -307,6 +309,16 @@ def test_orchestration_init_does_not_import_policies_or_state():
     _check_no_leak("orchestration.init no policies/state", code)
 
 
+def test_strategy_contracts_no_execution_leak():
+    code = _leak_code("from strategies import StrategySignal", forbidden=_STRATEGY_EXEC_SUBSTR)
+    _check_no_leak("strategies.contracts", code)
+
+
+def test_volatility_skip_no_execution_leak():
+    code = _leak_code("from strategies.volatility_skip import VolatilitySkipStrategy", forbidden=_STRATEGY_EXEC_SUBSTR)
+    _check_no_leak("strategies.volatility_skip", code)
+
+
 def test_orchestration_module_docstrings():
     """Every orchestration/ module must document its execution-free guarantee."""
     import ast
@@ -352,6 +364,8 @@ def run_tests():
         ("run_paper_trading_cli_help_exits_zero_lightweight", test_run_paper_trading_cli_help_exits_zero_lightweight),
         ("run_paper_trading_syntax", test_run_paper_trading_syntax),
         ("generate_manual_trade_report_syntax", test_generate_manual_trade_report_syntax),
+        ("strategy_contracts_no_execution_leak", test_strategy_contracts_no_execution_leak),
+        ("volatility_skip_no_execution_leak", test_volatility_skip_no_execution_leak),
         ("orchestration_module_docstrings", test_orchestration_module_docstrings),
         ("policies_docstrings_enforce_boundaries", test_policies_docstrings_enforce_boundaries),
     ]
