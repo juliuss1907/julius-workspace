@@ -222,6 +222,21 @@ technical_indicators:
     long: 200
 
 # =============================================================================
+# Strategy Layer — Pure Playbook Selection
+# =============================================================================
+strategy_layer:
+  enabled: true
+  default_confidence_floor: 0.55
+  regime_strategy_order:
+    trend_up: ["volatility_skip", "trend_following", "breakout"]
+    trend_down: ["volatility_skip", "trend_following", "breakout"]
+    ranging: ["volatility_skip", "breakout"]
+    volatile: ["volatility_skip"]
+  selection:
+    prefer_action_over_hold: true
+    min_action_confidence: 0.55
+
+# =============================================================================
 # Stop Loss
 # =============================================================================
 stop_loss:

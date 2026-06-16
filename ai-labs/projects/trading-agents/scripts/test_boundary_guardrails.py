@@ -319,6 +319,21 @@ def test_volatility_skip_no_execution_leak():
     _check_no_leak("strategies.volatility_skip", code)
 
 
+def test_trend_following_no_execution_leak():
+    code = _leak_code("from strategies.trend_following import TrendFollowingStrategy", forbidden=_STRATEGY_EXEC_SUBSTR)
+    _check_no_leak("strategies.trend_following", code)
+
+
+def test_breakout_no_execution_leak():
+    code = _leak_code("from strategies.breakout import BreakoutStrategy", forbidden=_STRATEGY_EXEC_SUBSTR)
+    _check_no_leak("strategies.breakout", code)
+
+
+def test_strategy_registry_no_execution_leak():
+    code = _leak_code("from strategies.registry import StrategyRegistry", forbidden=_STRATEGY_EXEC_SUBSTR)
+    _check_no_leak("strategies.registry", code)
+
+
 def test_orchestration_module_docstrings():
     """Every orchestration/ module must document its execution-free guarantee."""
     import ast
@@ -366,6 +381,9 @@ def run_tests():
         ("generate_manual_trade_report_syntax", test_generate_manual_trade_report_syntax),
         ("strategy_contracts_no_execution_leak", test_strategy_contracts_no_execution_leak),
         ("volatility_skip_no_execution_leak", test_volatility_skip_no_execution_leak),
+        ("trend_following_no_execution_leak", test_trend_following_no_execution_leak),
+        ("breakout_no_execution_leak", test_breakout_no_execution_leak),
+        ("strategy_registry_no_execution_leak", test_strategy_registry_no_execution_leak),
         ("orchestration_module_docstrings", test_orchestration_module_docstrings),
         ("policies_docstrings_enforce_boundaries", test_policies_docstrings_enforce_boundaries),
     ]

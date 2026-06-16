@@ -16,6 +16,9 @@ from strategies.contracts import (
     StrategySignal,
 )
 from strategies.base import StrategyPolicy
+from strategies.breakout import BreakoutStrategy
+from strategies.registry import StrategyRegistry
+from strategies.trend_following import TrendFollowingStrategy
 from strategies.volatility_skip import VolatilitySkipStrategy
 
 __all__ = [
@@ -26,4 +29,7 @@ __all__ = [
     "StrategySignal",
     "StrategyPolicy",
     "VolatilitySkipStrategy",
+    "TrendFollowingStrategy",
+    "BreakoutStrategy",
+    "StrategyRegistry",
 ]
