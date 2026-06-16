@@ -21,6 +21,47 @@
 
 The system should share the **brain**, but not force both products through the same runtime path.
 
+### Strategy / edge north star
+
+The next architectural center of gravity is the **strategy layer**, not more runtime plumbing.
+
+Indicators are inputs, not strategies. RSI, MACD, EMA, Bollinger Bands, ATR, OBV, funding, sentiment, and news are all **state features**. They only become useful when mapped into an explicit, regime-conditioned policy:
+
+```text
+State → Setup → Trigger → Action → Sizing → Exit / Invalidation → Review
+```
+
+The system should evolve from generic signal aggregation toward **strategy-driven decision-making**:
+
+- identify market state/regime first;
+- select the appropriate playbook for that state;
+- evaluate whether a valid setup exists;
+- define concrete trigger, entry idea, invalidation, stop, take-profit, and no-trade conditions;
+- size based on edge, variance, confidence, correlation, drawdown, and risk budget;
+- attribute backtest/replay results by strategy, not only by global BUY/SELL/HOLD signal.
+
+This means the project should add a first-class `strategies/` layer before adding more operational complexity. A strategy module should answer: **what edge is being expressed, in what state, through what action, with what invalidation?**
+
+The target strategy seam should look conceptually like:
+
+```text
+Data / Indicators / Context
+  -> TechnicalState / MarketState
+  -> StrategyPolicy
+     -> StrategySignal
+        -> FinalAnalysis
+           -> DemoExecutionPolicy
+           -> ManualReportPolicy
+```
+
+Do not confuse these layers:
+
+- `agents/indicators.py` calculates technical features.
+- `agents/technical_analyst.py` should describe technical state.
+- `strategies/` should decide which setup/playbook is valid.
+- `policies/` should translate the resulting analysis into demo or manual output.
+- `trading/` should execute only after a downstream policy approves it.
+
 ---
 
 ## 2. Root cause of the drift
@@ -540,19 +581,28 @@ If a new feature only helps manual trade review, classify it explicitly as manua
 
 ## 10. Recommended next actions after the orchestration split
 
-The initial rescue/refactor milestones are implemented. The next concrete tasks are:
+The initial rescue/refactor milestones are implemented: shared orchestration, two output tracks, repo hygiene, and safe dry-run runtime smoke are in place. The next concrete tasks should move the project from **signal aggregation** toward **strategy-driven trading**:
 
-1. **Repo inventory / tracking plan**
-   - classify remaining untracked source, docs, generated artifacts, and private/runtime paths
-   - propose `.gitignore` updates before any broad staging
+1. **Strategy layer foundation**
+   - add a first-class `strategies/` package;
+   - define contracts such as `TechnicalState`, `MarketState`, `StrategySignal`, and `StrategyDecision`;
+   - implement initial playbooks: `trend_following`, `mean_reversion`, `breakout`, and `volatility_skip`;
+   - map existing regime names (`trend_up`, `trend_down`, `ranging`, `volatile`) to real strategy implementations, not just config labels.
 
-2. **Runtime integration smoke**
-   - run safe manual-report and demo-runtime smoke checks
-   - verify no execution side effects unless an explicit execution mode is used
+2. **Indicator/config cleanup**
+   - make `technical_indicators` config the canonical source for RSI, MACD, Bollinger Bands, ATR, OBV, and EMA parameters;
+   - separate indicator calculation from strategy policy;
+   - keep `TechnicalAnalyst` focused on technical state, not hidden strategy decisions.
 
-3. **Continue boundary hardening only where it protects the seam**
-   - keep shared analysis importable without execution/runtime modules
-   - keep manual-report defaults flat and execution-free
+3. **Strategy attribution in replay/backtests**
+   - record which strategy produced each signal/trade;
+   - report win rate, expectancy, drawdown, average hold, and side bias per strategy;
+   - distinguish “market-tracking signal stack” from “strategy edge.”
+
+4. **Continue boundary hardening only where it protects the seam**
+   - keep shared analysis importable without execution/runtime modules;
+   - keep manual-report defaults flat and execution-free;
+   - prevent `strategies/` from importing order execution, Telegram runtime, or paper-position mutation code.
 
 ---
 
