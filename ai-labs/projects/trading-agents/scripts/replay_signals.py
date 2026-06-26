@@ -22,9 +22,26 @@ from dataflows import BinanceClient
 from dataflows.data_manager import DataManager
 from state import db, SignalRecorder
 from agents import TechnicalAnalyst, TraderAgent, ResearchDebate
+from strategies.attribution import build_strategy_signal
 
 setup_logging("INFO")
 logger = get_logger(__name__)
+
+
+def _load_strategy_layer_config() -> dict:
+    """Load strategy_layer config best-effort; never block replay."""
+    try:
+        from utils.config_loader import config
+        default_config = config.load_default_params() or {}
+        if not isinstance(default_config, dict):
+            return {}
+        strategy_config = default_config.get("strategy_layer", {}) or {}
+        if not isinstance(strategy_config, dict):
+            return {}
+        return strategy_config
+    except Exception as exc:
+        logger.warning(f"Strategy layer config unavailable for replay: {exc}")
+        return {}
 
 
 class SignalReplay:
@@ -121,6 +138,13 @@ class SignalReplay:
         tech_s = technical_signal.sub_score if technical_signal else 0.0
         tech_c = technical_signal.confidence if technical_signal else 0.0
 
+        technical_analysis = technical_signal.analysis if technical_signal else {}
+        strategy_signal = build_strategy_signal(
+            technical_analysis=technical_analysis,
+            strategy_config=_load_strategy_layer_config(),
+            source="replay_signals",
+        )
+
         logger.info(
             f"  [{timestamp}] {symbol} "
             f"Tech={tech_dir} S:{tech_s:.3f} C:{tech_c:.3f} | "
@@ -141,6 +165,7 @@ class SignalReplay:
                 "candle_timestamp": candle_ts,
                 "lookback_window": self.window_size,
             },
+            strategy_signal=strategy_signal,
             execution_status="replay_recorded",
         )
 

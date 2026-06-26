@@ -334,6 +334,11 @@ def test_strategy_registry_no_execution_leak():
     _check_no_leak("strategies.registry", code)
 
 
+def test_strategy_attribution_no_execution_leak():
+    code = _leak_code("from strategies.attribution import build_strategy_signal", forbidden=_STRATEGY_EXEC_SUBSTR)
+    _check_no_leak("strategies.attribution", code)
+
+
 def test_orchestration_module_docstrings():
     """Every orchestration/ module must document its execution-free guarantee."""
     import ast
@@ -384,6 +389,7 @@ def run_tests():
         ("trend_following_no_execution_leak", test_trend_following_no_execution_leak),
         ("breakout_no_execution_leak", test_breakout_no_execution_leak),
         ("strategy_registry_no_execution_leak", test_strategy_registry_no_execution_leak),
+        ("strategy_attribution_no_execution_leak", test_strategy_attribution_no_execution_leak),
         ("orchestration_module_docstrings", test_orchestration_module_docstrings),
         ("policies_docstrings_enforce_boundaries", test_policies_docstrings_enforce_boundaries),
     ]
