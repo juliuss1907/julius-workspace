@@ -24,6 +24,8 @@ from agents.research_debate import ResearchDebate
 from agents.base_agent import AgentResult, SignalDirection
 from dataflows import data_manager as dm
 from orchestration.contracts import FinalAnalysis, AnalystSignalSummary
+from strategies.contracts import MarketState, StrategySignal, TechnicalState
+from strategies.registry import StrategyRegistry
 from utils import get_logger
 
 
@@ -71,6 +73,78 @@ def _derive_direction_and_action(
     action = trader_analysis.get("action", final_sig.metadata.get("final_action", "HOLD"))
     hold_reason = trader_analysis.get("hold_reason")
     return direction, action, hold_reason
+
+
+def _fallback_strategy_signal(reason: str) -> Dict:
+    """Return serialized observational skip when strategy layer cannot run."""
+    return StrategySignal(
+        strategy_id="registry",
+        family="registry",
+        action="skip",
+        confidence=0.0,
+        setup="strategy layer unavailable",
+        trigger=reason,
+        invalidation="n/a",
+        sizing_hint="no position",
+        exit_plan="n/a",
+        no_trade_reason=(
+            "Strategy layer skipped because technical_state or market_state is missing"
+        ),
+        risk_notes=["Strategy layer unavailable; FinalAnalysis.action was not changed."],
+        attribution={"registry": False, "evaluated": []},
+    ).to_dict()
+
+
+def _load_strategy_layer_config() -> Dict:
+    """Load strategy_layer config best-effort; never block analysis."""
+    try:
+        from utils.config_loader import config
+        default_config = config.load_default_params() or {}
+        if not isinstance(default_config, dict):
+            return {}
+        strategy_config = default_config.get("strategy_layer", {}) or {}
+        if not isinstance(strategy_config, dict):
+            return {}
+        return strategy_config
+    except Exception as exc:
+        logger.warning(f"Strategy layer config unavailable: {exc}")
+        return {}
+
+
+def _build_strategy_signal(
+    technical_analysis: dict,
+    strategy_config: Optional[Dict] = None,
+) -> Dict:
+    """Build serialized StrategySignal from technical analyst state snapshots.
+
+    Observational only: this function never returns execution actions and never
+    modifies FinalAnalysis.action.
+    """
+    if strategy_config and strategy_config.get("enabled") is False:
+        fallback = _fallback_strategy_signal("strategy layer disabled")
+        fallback["no_trade_reason"] = "Strategy layer disabled by config"
+        return fallback
+
+    technical_state_raw = technical_analysis.get("technical_state")
+    market_state_raw = technical_analysis.get("market_state")
+
+    if not isinstance(technical_state_raw, dict) or not isinstance(market_state_raw, dict):
+        return _fallback_strategy_signal("missing technical_state or market_state")
+
+    try:
+        technical_state = TechnicalState(**technical_state_raw)
+        market_state = MarketState(**market_state_raw)
+        signal = StrategyRegistry(strategy_config or {}).select(
+            technical_state,
+            market_state,
+            context={"source": "analysis_runner"},
+        )
+        return signal.to_dict()
+    except Exception as exc:
+        fallback = _fallback_strategy_signal(f"strategy layer error: {exc}")
+        fallback["no_trade_reason"] = "Strategy layer skipped because strategy selection failed"
+        fallback["risk_notes"].append("Strategy layer raised during serialization seam.")
+        return fallback
 
 
 async def analyze_symbol(
@@ -199,6 +273,11 @@ async def analyze_symbol(
             "fundamentals_available": bool(fundamentals),
         }
 
+        strategy_signal = _build_strategy_signal(
+            technical_analysis=tech.analysis,
+            strategy_config=_load_strategy_layer_config(),
+        )
+
         normalized = FinalAnalysis(
             symbol=symbol,
             timeframe=timeframe,
@@ -217,6 +296,7 @@ async def analyze_symbol(
             metadata={
                 "mode": mode,
                 "analysis_timeframe": timeframe,
+                "strategy_signal": strategy_signal,
             },
         )
 

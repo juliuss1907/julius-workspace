@@ -126,6 +126,47 @@ def _fake_result(name="TechnicalAnalyst", direction=SignalDirection.BULLISH,
     )
 
 
+def _fake_technical_result_with_states():
+    return _fake_result(
+        name="TechnicalAnalyst",
+        direction=SignalDirection.BULLISH,
+        score=0.72,
+        confidence=0.65,
+        reasoning="technical state available",
+        extra_analysis={
+            "technical_state": {
+                "close": 68000.0,
+                "rsi": 58.0,
+                "macd_histogram": 120.0,
+                "macd_crossing_up": False,
+                "macd_crossing_down": False,
+                "bb_position": 0.62,
+                "atr": 1500.0,
+                "ema_20": 67000.0,
+                "ema_50": 65000.0,
+                "ema_200": 60000.0,
+                "volume": 1000.0,
+                "obv": 10000.0,
+                "obv_prev": 9500.0,
+                "recent_high_20": 67500.0,
+                "recent_low_20": 62000.0,
+                "breakout_up_20": True,
+                "breakout_down_20": False,
+                "scores": {"momentum": 0.7},
+            },
+            "market_state": {
+                "regime": "trend_up",
+                "confidence": 0.75,
+                "trend_direction": "up",
+                "trend_strength": 0.7,
+                "adx": 28.0,
+                "bb_width": 0.04,
+                "reason": "uptrend regime",
+            },
+        },
+    )
+
+
 def _singleton_mock(analyze_result=None, analyze_side_effect=None):
     mock = MagicMock()
     mock.initialize = AsyncMock()
@@ -392,6 +433,80 @@ def test_market_snapshot_has_required_keys():
         assert key in ms, f"missing key {key!r} in market_snapshot"
 
 
+def test_strategy_signal_serialized_when_technical_states_exist():
+    tech = _singleton_mock(analyze_result=_fake_technical_result_with_states())
+    news = _default_analyst_pair(0.55, SignalDirection.NEUTRAL)
+    sent = _default_analyst_pair(0.60, SignalDirection.NEUTRAL)
+    fund = _default_analyst_pair(0.50, SignalDirection.NEUTRAL)
+    deriv = _default_analyst_pair(0.58, SignalDirection.BULLISH)
+    trader = _default_trader_pair()
+    debate = _default_debate_pair()
+
+    bundle = asyncio.run(_run_patched(
+        dm_mock=_mock_dm(),
+        tech=tech, news=news, sent=sent, fund=fund, deriv=deriv,
+        trader=trader, debate=debate,
+    ))
+
+    strategy_signal = bundle.final.metadata.get("strategy_signal")
+
+    assert_true(isinstance(strategy_signal, dict), "strategy_signal should be serialized dict")
+    assert_true(strategy_signal["action"] in ("long", "short", "hold", "skip"))
+    assert_true(strategy_signal["strategy_id"] in ("volatility-skip", "trend-following", "breakout", "registry"))
+    assert_true("evaluated" in strategy_signal["attribution"])
+    assert_eq(bundle.final.action, "BUY", "existing FinalAnalysis.action semantics must remain unchanged")
+
+
+def test_strategy_signal_degrades_when_states_missing():
+    tech = _default_analyst_pair()
+    news = _default_analyst_pair(0.55, SignalDirection.NEUTRAL)
+    sent = _default_analyst_pair(0.60, SignalDirection.NEUTRAL)
+    fund = _default_analyst_pair(0.50, SignalDirection.NEUTRAL)
+    deriv = _default_analyst_pair(0.58, SignalDirection.BULLISH)
+    trader = _default_trader_pair()
+    debate = _default_debate_pair()
+
+    bundle = asyncio.run(_run_patched(
+        dm_mock=_mock_dm(),
+        tech=tech, news=news, sent=sent, fund=fund, deriv=deriv,
+        trader=trader, debate=debate,
+    ))
+
+    strategy_signal = bundle.final.metadata.get("strategy_signal")
+
+    assert_true(isinstance(strategy_signal, dict), "strategy_signal should still be present")
+    assert_eq(strategy_signal["action"], "skip")
+    assert_eq(strategy_signal["strategy_id"], "registry")
+    assert_true("missing" in strategy_signal["trigger"])
+    assert_eq(bundle.final.action, "BUY", "strategy degradation must not change existing action")
+
+
+def test_strategy_registry_receives_nested_strategy_config():
+    tech = _singleton_mock(analyze_result=_fake_technical_result_with_states())
+    news = _default_analyst_pair(0.55, SignalDirection.NEUTRAL)
+    sent = _default_analyst_pair(0.60, SignalDirection.NEUTRAL)
+    fund = _default_analyst_pair(0.50, SignalDirection.NEUTRAL)
+    deriv = _default_analyst_pair(0.58, SignalDirection.BULLISH)
+    trader = _default_trader_pair()
+    debate = _default_debate_pair()
+
+    with patch(
+        "orchestration.analysis_runner._load_strategy_layer_config",
+        return_value={"selection": {"min_action_confidence": 0.99}},
+    ):
+        bundle = asyncio.run(_run_patched(
+            dm_mock=_mock_dm(),
+            tech=tech, news=news, sent=sent, fund=fund, deriv=deriv,
+            trader=trader, debate=debate,
+        ))
+
+    strategy_signal = bundle.final.metadata.get("strategy_signal")
+
+    assert_true(isinstance(strategy_signal, dict), "strategy_signal should be serialized dict")
+    assert_eq(strategy_signal["action"], "hold")
+    assert_eq(bundle.final.action, "BUY", "strategy config must not change existing action")
+
+
 def run_tests():
     tests = [
         ("returns_normalized_final_analysis_shape", test_returns_normalized_final_analysis_shape),
@@ -400,6 +515,9 @@ def run_tests():
         ("technical_analyst_returns_none_raises_runtime_error", test_technical_analyst_returns_none_raises_runtime_error),
         ("confidence_within_range", test_confidence_within_range),
         ("market_snapshot_has_required_keys", test_market_snapshot_has_required_keys),
+        ("strategy_signal_serialized_when_technical_states_exist", test_strategy_signal_serialized_when_technical_states_exist),
+        ("strategy_signal_degrades_when_states_missing", test_strategy_signal_degrades_when_states_missing),
+        ("strategy_registry_receives_nested_strategy_config", test_strategy_registry_receives_nested_strategy_config),
     ]
 
     all_errors = []

@@ -143,6 +143,42 @@ def test_final_analysis_serialization():
     )
 
 
+def test_final_analysis_metadata_can_carry_strategy_signal():
+    strategy_signal = {
+        "strategy_id": "trend_following",
+        "family": "trend_following",
+        "action": "long",
+        "confidence": 0.68,
+        "setup": "ema trend alignment",
+        "trigger": "close above ema20",
+        "invalidation": "close below ema50",
+        "sizing_hint": "reduced size until replay validated",
+        "exit_plan": "exit on invalidation",
+        "no_trade_reason": None,
+        "risk_notes": [],
+        "attribution": {
+            "registry": True,
+            "evaluated": [
+                {"strategy_id": "volatility_skip", "action": "hold", "confidence": 0.9},
+                {"strategy_id": "trend_following", "action": "long", "confidence": 0.68},
+            ],
+        },
+    }
+
+    fa = make_final_analysis(
+        action="HOLD",
+        metadata={"mode": "full", "strategy_signal": strategy_signal},
+    )
+
+    d = fa.to_dict()
+    restored = json.loads(json.dumps(d))
+
+    assert_eq(restored["action"], "HOLD")
+    assert_eq(restored["metadata"]["strategy_signal"]["action"], "long")
+    assert_eq(restored["metadata"]["strategy_signal"]["strategy_id"], "trend_following")
+    assert_true(restored["metadata"]["strategy_signal"]["attribution"]["registry"])
+
+
 def test_final_analysis_risk_notes_default():
     fa = FinalAnalysis(
         symbol="ETHUSDT",
@@ -183,6 +219,7 @@ def run_tests():
         ("final_analysis_action_valid", test_final_analysis_action_valid),
         ("final_analysis_hold_reason_optional", test_final_analysis_hold_reason_optional),
         ("final_analysis_serialization", test_final_analysis_serialization),
+        ("final_analysis_metadata_can_carry_strategy_signal", test_final_analysis_metadata_can_carry_strategy_signal),
         ("final_analysis_risk_notes_default", test_final_analysis_risk_notes_default),
         ("final_analysis_research_debate_optional", test_final_analysis_research_debate_optional),
     ]
