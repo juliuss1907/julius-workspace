@@ -102,6 +102,31 @@ def _make_final_analysis(**overrides) -> FinalAnalysis:
     return FinalAnalysis(**defaults)
 
 
+def _make_strategy_signal(**overrides):
+    signal = {
+        "strategy_id": "trend_following",
+        "family": "trend_following",
+        "action": "long",
+        "confidence": 0.68,
+        "setup": "EMA20 > EMA50 and price above trend stack",
+        "trigger": "Close held above EMA20",
+        "invalidation": "Close below EMA50",
+        "sizing_hint": "Half size until replay attribution validates edge",
+        "exit_plan": "Exit on invalidation or momentum rollover",
+        "no_trade_reason": None,
+        "risk_notes": ["Observational only; not execution approval."],
+        "attribution": {
+            "registry": True,
+            "evaluated": [
+                {"strategy_id": "volatility_skip", "action": "hold", "confidence": 0.90},
+                {"strategy_id": "trend_following", "action": "long", "confidence": 0.68},
+            ],
+        },
+    }
+    signal.update(overrides)
+    return signal
+
+
 # -------------------------------------------------------------------
 # Tests
 # -------------------------------------------------------------------
@@ -271,6 +296,44 @@ def test_report_item_serialization():
     assert_eq(restored["setup_quality"], item.setup_quality)
 
 
+def test_manual_report_item_preserves_strategy_signal():
+    strategy_signal = _make_strategy_signal()
+    fa = _make_final_analysis(
+        action="BUY",
+        metadata={"mode": "full", "strategy_signal": strategy_signal},
+    )
+
+    item = final_analysis_to_report_item(fa)
+
+    assert_true(isinstance(item.strategy_signal, dict), "strategy_signal should be copied")
+    assert_eq(item.strategy_signal["strategy_id"], "trend_following")
+    assert_eq(item.strategy_signal["action"], "long")
+    assert_eq(item.strategy_signal["confidence"], 0.68)
+    assert_eq(fa.action, "BUY", "strategy attribution must not alter FinalAnalysis.action")
+
+
+def test_manual_report_item_strategy_signal_defaults_to_empty_dict():
+    fa = _make_final_analysis(metadata={"mode": "full"})
+    item = final_analysis_to_report_item(fa)
+
+    assert_true(isinstance(item.strategy_signal, dict))
+    assert_eq(item.strategy_signal, {})
+
+
+def test_report_item_serialization_includes_strategy_signal():
+    strategy_signal = _make_strategy_signal()
+    fa = _make_final_analysis(
+        metadata={"mode": "full", "strategy_signal": strategy_signal},
+    )
+    item = final_analysis_to_report_item(fa)
+
+    d = item.to_dict()
+
+    assert_true("strategy_signal" in d)
+    assert_eq(d["strategy_signal"]["strategy_id"], "trend_following")
+    assert_eq(d["strategy_signal"]["action"], "long")
+
+
 def test_markdown_renderer_produces_output():
     fa1 = _make_final_analysis()
     item1 = final_analysis_to_report_item(fa1)
@@ -303,6 +366,36 @@ def test_markdown_renderer_produces_output():
     assert_true("Xu hướng Tăng" in md)
     assert_true("Xu hướng Giảm" in md)
     assert_true("---\n---" not in md, "renderer should not produce duplicate horizontal rules")
+
+
+def test_markdown_renderer_includes_strategy_layer_observational_section():
+    strategy_signal = _make_strategy_signal()
+    fa = _make_final_analysis(
+        metadata={"mode": "full", "strategy_signal": strategy_signal},
+    )
+    item = final_analysis_to_report_item(fa)
+
+    md = render_markdown_report([item])
+
+    assert_true("Strategy Layer (Observational)" in md, "missing strategy section")
+    assert_true("trend_following" in md, "missing selected strategy id")
+    assert_true("long" in md, "missing strategy action")
+    assert_true("68%" in md or "0.68" in md, "missing strategy confidence")
+    assert_true("volatility_skip:hold@0.90" in md, "missing evaluated attribution")
+    assert_true("trend_following:long@0.68" in md, "missing evaluated attribution")
+    assert_true(
+        "does not override FinalAnalysis.action" in md,
+        "strategy section must state observational-only semantics",
+    )
+
+
+def test_markdown_renderer_omits_strategy_section_when_absent():
+    fa = _make_final_analysis(metadata={"mode": "full"})
+    item = final_analysis_to_report_item(fa)
+
+    md = render_markdown_report([item])
+
+    assert_true("Strategy Layer (Observational)" not in md)
 
 
 def test_markdown_renderer_sorts_section_by_quality_and_confidence():
@@ -729,7 +822,12 @@ def run_tests():
         ("high_confidence_no_conflicts_gets_a", test_high_confidence_no_conflicts_gets_a),
         ("low_confidence_gets_avoid", test_low_confidence_gets_avoid),
         ("report_item_serialization", test_report_item_serialization),
+        ("manual_report_item_preserves_strategy_signal", test_manual_report_item_preserves_strategy_signal),
+        ("manual_report_item_strategy_signal_defaults_to_empty_dict", test_manual_report_item_strategy_signal_defaults_to_empty_dict),
+        ("report_item_serialization_includes_strategy_signal", test_report_item_serialization_includes_strategy_signal),
         ("markdown_renderer_produces_output", test_markdown_renderer_produces_output),
+        ("markdown_renderer_includes_strategy_layer_observational_section", test_markdown_renderer_includes_strategy_layer_observational_section),
+        ("markdown_renderer_omits_strategy_section_when_absent", test_markdown_renderer_omits_strategy_section_when_absent),
         ("markdown_renderer_sorts_section_by_quality_and_confidence", test_markdown_renderer_sorts_section_by_quality_and_confidence),
         ("vietnamese_markdown_has_required_sections", test_vietnamese_markdown_has_required_sections),
         ("vietnamese_markdown_trading_plan_labels", test_vietnamese_markdown_trading_plan_labels),

@@ -69,6 +69,63 @@ def test_analysis_payload_shape():
     assert_true("demo_decision" not in payload)
 
 
+def test_analysis_payload_preserves_strategy_signal_metadata():
+    helpers = _load_helpers()
+    signal = AnalystSignalSummary(
+        direction="bullish",
+        score=0.75,
+        confidence=0.66,
+        reasoning="synthetic",
+    )
+    strategy_signal = {
+        "strategy_id": "trend_following",
+        "family": "trend_following",
+        "action": "long",
+        "confidence": 0.68,
+        "setup": "ema trend alignment",
+        "trigger": "close above ema20",
+        "invalidation": "close below ema50",
+        "sizing_hint": "reduced size until replay validated",
+        "exit_plan": "exit on invalidation",
+        "no_trade_reason": None,
+        "risk_notes": [],
+        "attribution": {
+            "registry": True,
+            "evaluated": [
+                {"strategy_id": "volatility_skip", "action": "hold", "confidence": 0.9},
+                {"strategy_id": "trend_following", "action": "long", "confidence": 0.68},
+            ],
+        },
+    }
+    bundle = SimpleNamespace(
+        final=SimpleNamespace(
+            symbol="BTCUSDT",
+            timeframe="4h",
+            price=68000.0,
+            timestamp="2026-06-13T00:00:00",
+            analyst_signals={"technical": signal},
+            draft_signal=signal,
+            final_signal=signal,
+            direction="bullish",
+            confidence=0.66,
+            action="BUY",
+            hold_reason=None,
+            research_debate={"consensus": "aligned"},
+            market_snapshot={"ticker_price": 68000.0},
+            risk_notes=[],
+            metadata={"mode": "full", "strategy_signal": strategy_signal},
+        )
+    )
+
+    payload = helpers["_analysis_payload"](bundle)
+
+    restored_signal = payload["metadata"].get("strategy_signal")
+    assert_true(isinstance(restored_signal, dict), "strategy_signal should be preserved")
+    assert_eq(restored_signal["strategy_id"], "trend_following")
+    assert_eq(restored_signal["action"], "long")
+    assert_eq(payload["final_action"], "BUY", "readonly payload must keep FinalAnalysis action")
+
+
 def test_parser_exposes_demo_flag_without_runtime_imports():
     helpers = _load_helpers()
     parser = helpers["_build_parser"]()
@@ -82,6 +139,7 @@ def test_parser_exposes_demo_flag_without_runtime_imports():
 def run_tests():
     tests = [
         ("analysis_payload_shape", test_analysis_payload_shape),
+        ("analysis_payload_preserves_strategy_signal_metadata", test_analysis_payload_preserves_strategy_signal_metadata),
         ("parser_exposes_demo_flag_without_runtime_imports", test_parser_exposes_demo_flag_without_runtime_imports),
     ]
     all_errors = []

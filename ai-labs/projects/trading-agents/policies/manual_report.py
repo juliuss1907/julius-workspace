@@ -62,6 +62,7 @@ class ManualTradeReportItem:
     source_summary: Dict[str, AnalystSignalSummary] = field(default_factory=dict)
     hold_reason: Optional[str] = None
     research_debate: Optional[Dict] = None
+    strategy_signal: Dict = field(default_factory=dict)
 
     news_analysis: Dict = field(default_factory=dict)
     technical_analysis: Dict = field(default_factory=dict)
@@ -386,6 +387,11 @@ def final_analysis_to_report_item(
         analysis.direction, analysis.confidence, conflicts,
     )
 
+    metadata = analysis.metadata or {}
+    strategy_signal = metadata.get("strategy_signal")
+    if not isinstance(strategy_signal, dict):
+        strategy_signal = {}
+
     return ManualTradeReportItem(
         symbol=analysis.symbol,
         direction=analysis.direction,
@@ -404,6 +410,7 @@ def final_analysis_to_report_item(
         source_summary=dict(analysis.analyst_signals),
         hold_reason=analysis.hold_reason,
         research_debate=analysis.research_debate,
+        strategy_signal=dict(strategy_signal),
 
         news_analysis=_build_news_analysis(analysis),
         technical_analysis=_build_technical_analysis(analysis),
@@ -560,6 +567,62 @@ def _render_trading_plan_section(tp: Dict) -> str:
     return "\n".join(lines)
 
 
+def _format_evaluated_strategies(strategy_signal: Dict) -> str:
+    attribution = strategy_signal.get("attribution", {}) or {}
+    evaluated = attribution.get("evaluated", []) or []
+    if not evaluated:
+        return _NA
+
+    parts = []
+    for item in evaluated:
+        if not isinstance(item, dict):
+            continue
+        strategy_id = item.get("strategy_id", "unknown")
+        action = item.get("action", "unknown")
+        confidence = item.get("confidence")
+        if isinstance(confidence, (int, float)):
+            parts.append(f"{strategy_id}:{action}@{confidence:.2f}")
+        else:
+            parts.append(f"{strategy_id}:{action}")
+    return " -> ".join(parts) if parts else _NA
+
+
+def _render_strategy_section(strategy_signal: Dict) -> str:
+    if not strategy_signal:
+        return ""
+
+    confidence = strategy_signal.get("confidence")
+    if isinstance(confidence, (int, float)):
+        confidence_text = f"{confidence:.0%}"
+    else:
+        confidence_text = _UNKNOWN
+
+    no_trade_reason = strategy_signal.get("no_trade_reason") or _NA
+    risk_notes = strategy_signal.get("risk_notes", []) or []
+
+    lines = ["### 7. Strategy Layer (Observational)", ""]
+    lines.append(f"- **Strategy:** {strategy_signal.get('strategy_id', _UNKNOWN)}")
+    lines.append(f"- **Family:** {strategy_signal.get('family', _UNKNOWN)}")
+    lines.append(f"- **Strategy action:** {strategy_signal.get('action', _UNKNOWN)}")
+    lines.append(f"- **Confidence:** {confidence_text}")
+    lines.append(f"- **Setup:** {strategy_signal.get('setup') or _NA}")
+    lines.append(f"- **Trigger:** {strategy_signal.get('trigger') or _NA}")
+    lines.append(f"- **Invalidation:** {strategy_signal.get('invalidation') or _NA}")
+    lines.append(f"- **Sizing hint:** {strategy_signal.get('sizing_hint') or _NA}")
+    lines.append(f"- **Exit plan:** {strategy_signal.get('exit_plan') or _NA}")
+    lines.append(f"- **No-trade reason:** {no_trade_reason}")
+    lines.append(f"- **Evaluated:** {_format_evaluated_strategies(strategy_signal)}")
+    if risk_notes:
+        lines.append("- **Strategy risk notes:**")
+        for note in risk_notes:
+            lines.append(f"  - {note}")
+    lines.append(
+        "- **Boundary:** Strategy Layer is observational only and does not override FinalAnalysis.action."
+    )
+    lines.append("")
+    return "\n".join(lines)
+
+
 def _render_trade_card(item: ManualTradeReportItem) -> str:
     direction_icon = {"bullish": "📈", "bearish": "📉", "neutral": "➖"}.get(
         item.direction, "❓",
@@ -577,6 +640,7 @@ def _render_trade_card(item: ManualTradeReportItem) -> str:
     lines.append(_render_sentiment_section(item.sentiment_analysis))
     lines.append(_render_fundamental_section(item.fundamental_thesis))
     lines.append(_render_trading_plan_section(item.trading_plan))
+    lines.append(_render_strategy_section(item.strategy_signal))
     lines.append("")
     return "\n".join(lines)
 
