@@ -1,0 +1,210 @@
+{
+  "action_alignment": {
+    "aligned": 35,
+    "conflicted": 0,
+    "missing": 0,
+    "neutral_or_observational": 105
+  },
+  "alignment_matrix": {
+    "BUY|hold": 15,
+    "BUY|long": 5,
+    "BUY|skip": 21,
+    "HOLD|hold": 24,
+    "HOLD|short": 3,
+    "HOLD|skip": 31,
+    "SELL|hold": 7,
+    "SELL|short": 6,
+    "SELL|skip": 28
+  },
+  "by_market_regime": {
+    "trend_down": 45,
+    "trend_up": 15,
+    "volatile": 80
+  },
+  "by_strategy_action": {
+    "hold": 46,
+    "long": 5,
+    "short": 9,
+    "skip": 80
+  },
+  "by_strategy_family": {
+    "breakout": 4,
+    "trend_following": 10,
+    "volatility_skip": 126
+  },
+  "by_strategy_id": {
+    "breakout": 4,
+    "trend-following": 10,
+    "volatility-skip": 126
+  },
+  "by_symbol": {
+    "ADAUSDT": 28,
+    "BTCUSDT": 28,
+    "ETHUSDT": 28,
+    "SOLUSDT": 28,
+    "XRPUSDT": 28
+  },
+  "by_timeframe": {
+    "1h": 140
+  },
+  "examples": {
+    "conflicts": [],
+    "missing_strategy_signal": [],
+    "volatility_skips": [
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.280674",
+        "trader_action": "SELL"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.302474",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.306024",
+        "trader_action": "HOLD"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.308667",
+        "trader_action": "SELL"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.311287",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.312766",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.314144",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.315525",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.316854",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.319798",
+        "trader_action": "HOLD"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.321150",
+        "trader_action": "SELL"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.323864",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.325218",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.326547",
+        "trader_action": "BUY"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:26:42.327922",
+        "trader_action": "HOLD"
+      }
+    ]
+  },
+  "records_missing_strategy_signal": 0,
+  "records_with_strategy_signal": 140,
+  "total_records": 140,
+  "volatility_skip_blocks": 80
+}
