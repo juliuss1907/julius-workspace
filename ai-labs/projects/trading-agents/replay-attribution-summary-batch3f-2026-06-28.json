@@ -1,0 +1,111 @@
+{
+  "action_alignment": {
+    "aligned": 6,
+    "conflicted": 0,
+    "missing": 0,
+    "neutral_or_observational": 9
+  },
+  "alignment_matrix": {
+    "BUY|hold": 3,
+    "HOLD|hold": 5,
+    "HOLD|skip": 5,
+    "SELL|short": 1,
+    "SELL|skip": 1
+  },
+  "by_market_regime": {
+    "trend_down": 8,
+    "trend_up": 1,
+    "volatile": 6
+  },
+  "by_strategy_action": {
+    "hold": 8,
+    "short": 1,
+    "skip": 6
+  },
+  "by_strategy_family": {
+    "trend_following": 1,
+    "volatility_skip": 14
+  },
+  "by_strategy_id": {
+    "trend-following": 1,
+    "volatility-skip": 14
+  },
+  "by_symbol": {
+    "BTCUSDT": 5,
+    "ETHUSDT": 5,
+    "SOLUSDT": 5
+  },
+  "by_timeframe": {
+    "1h": 15
+  },
+  "examples": {
+    "conflicts": [],
+    "missing_strategy_signal": [],
+    "volatility_skips": [
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:10:47.702886",
+        "trader_action": "HOLD"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:10:47.710922",
+        "trader_action": "HOLD"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:10:47.712555",
+        "trader_action": "HOLD"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "ETHUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:10:47.846544",
+        "trader_action": "HOLD"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "ETHUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:10:47.849148",
+        "trader_action": "SELL"
+      },
+      {
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_action": "skip",
+        "strategy_confidence": 0.6,
+        "strategy_id": "volatility-skip",
+        "symbol": "SOLUSDT",
+        "timeframe": "1h",
+        "timestamp": "2026-06-28T10:10:47.998400",
+        "trader_action": "HOLD"
+      }
+    ]
+  },
+  "records_missing_strategy_signal": 0,
+  "records_with_strategy_signal": 15,
+  "total_records": 15,
+  "volatility_skip_blocks": 6
+}
