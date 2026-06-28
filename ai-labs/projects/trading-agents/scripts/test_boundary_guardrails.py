@@ -204,6 +204,34 @@ def test_readonly_analyzer_module_import_no_execution_leak():
     _check_no_leak("readonly analyzer import", code)
 
 
+def test_replay_attribution_analyzer_cli_help_exits_zero_lightweight():
+    """Replay attribution analyzer --help must work without runtime deps."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/analyze_replay_attribution.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"replay attribution --help rc={rv.returncode}: {rv.stderr.strip()[:300]}")
+    assert_true("--input" in rv.stdout and "--output" in rv.stdout,
+                f"replay attribution help missing expected flags: {rv.stdout[:300]}")
+
+
+def test_replay_attribution_analyzer_import_no_execution_leak():
+    """Loading analyzer helpers must not import runtime/execution modules."""
+    code = (
+        "import runpy, sys\n"
+        "runpy.run_path('scripts/analyze_replay_attribution.py', run_name='replay_attr_test')\n"
+        "forbidden = ['dotenv', 'dataflows', 'state', 'trading', 'telegram_bot', "
+        "'risk_manager', 'position_manager', 'order_manager', 'entry_guard', "
+        "'runtime_health', 'reconciliation']\n"
+        "leaked = [m for m in sys.modules for kw in forbidden "
+        "if m == kw or m.startswith(kw + '.') or kw in m]\n"
+        "print('LEAKED:' + ','.join(sorted(set(leaked))) if leaked else 'CLEAN')\n"
+    )
+    _check_no_leak("replay attribution analyzer import", code)
+
+
 def test_runtime_control_cli_help_exits_zero_lightweight():
     """runtime_control --help must work with system Python (no aiosqlite)."""
     rv = subprocess.run(
@@ -378,6 +406,8 @@ def run_tests():
         ("manual_report_cli_help_exits_zero_lightweight", test_manual_report_cli_help_exits_zero_lightweight),
         ("readonly_analyzer_cli_help_exits_zero_lightweight", test_readonly_analyzer_cli_help_exits_zero_lightweight),
         ("readonly_analyzer_module_import_no_execution_leak", test_readonly_analyzer_module_import_no_execution_leak),
+        ("replay_attribution_analyzer_cli_help_exits_zero_lightweight", test_replay_attribution_analyzer_cli_help_exits_zero_lightweight),
+        ("replay_attribution_analyzer_import_no_execution_leak", test_replay_attribution_analyzer_import_no_execution_leak),
         ("runtime_control_cli_help_exits_zero_lightweight", test_runtime_control_cli_help_exits_zero_lightweight),
         ("runtime_control_start_dry_run_exits_zero_lightweight", test_runtime_control_start_dry_run_exits_zero_lightweight),
         ("runtime_control_import_no_optional_deps", test_runtime_control_import_no_optional_deps),
