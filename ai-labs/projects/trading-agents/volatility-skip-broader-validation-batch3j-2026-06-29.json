@@ -1,0 +1,628 @@
+{
+  "aggregate": {
+    "baseline": {
+      "gate_status_counts": {
+        "attribution_ready:pass": 2,
+        "conflict_review_ready:pass": 2,
+        "directional_sample_insufficient:warn": 2,
+        "execution_not_authorized:blocked": 2,
+        "skip_calibration_needed:pass": 1,
+        "skip_calibration_needed:warn": 1
+      },
+      "rates": {
+        "alignment_rate": {
+          "max": 0.4,
+          "mean": 0.325,
+          "min": 0.25,
+          "range": 0.15000000000000002
+        },
+        "attribution_coverage_rate": {
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "range": 0.0
+        },
+        "conflict_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        },
+        "directional_strategy_coverage_rate": {
+          "max": 0.1,
+          "mean": 0.08333333333333334,
+          "min": 0.06666666666666667,
+          "range": 0.03333333333333334
+        },
+        "neutral_or_observational_rate": {
+          "max": 0.75,
+          "mean": 0.675,
+          "min": 0.6,
+          "range": 0.15000000000000002
+        },
+        "skip_during_trader_action_rate": {
+          "max": 0.35,
+          "mean": 0.20833333333333331,
+          "min": 0.06666666666666667,
+          "range": 0.2833333333333333
+        },
+        "volatility_skip_direct_block_rate": {
+          "max": 0.5714285714285714,
+          "mean": 0.4857142857142857,
+          "min": 0.4,
+          "range": 0.17142857142857137
+        }
+      },
+      "total_records": 155,
+      "windows": 2
+    },
+    "variant-b": {
+      "gate_status_counts": {
+        "attribution_ready:pass": 2,
+        "conflict_review_ready:pass": 2,
+        "directional_sample_insufficient:warn": 2,
+        "execution_not_authorized:blocked": 2,
+        "skip_calibration_needed:pass": 2
+      },
+      "rates": {
+        "alignment_rate": {
+          "max": 0.7333333333333333,
+          "mean": 0.6166666666666667,
+          "min": 0.5,
+          "range": 0.23333333333333328
+        },
+        "attribution_coverage_rate": {
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "range": 0.0
+        },
+        "conflict_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        },
+        "directional_strategy_coverage_rate": {
+          "max": 0.12857142857142856,
+          "mean": 0.0976190476190476,
+          "min": 0.06666666666666667,
+          "range": 0.06190476190476189
+        },
+        "neutral_or_observational_rate": {
+          "max": 0.5,
+          "mean": 0.3833333333333333,
+          "min": 0.26666666666666666,
+          "range": 0.23333333333333334
+        },
+        "skip_during_trader_action_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        },
+        "volatility_skip_direct_block_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        }
+      },
+      "total_records": 155,
+      "windows": 2
+    },
+    "variant-d": {
+      "gate_status_counts": {
+        "attribution_ready:pass": 2,
+        "conflict_review_ready:pass": 2,
+        "directional_sample_insufficient:warn": 2,
+        "execution_not_authorized:blocked": 2,
+        "skip_calibration_needed:pass": 2
+      },
+      "rates": {
+        "alignment_rate": {
+          "max": 0.7333333333333333,
+          "mean": 0.6059523809523809,
+          "min": 0.4785714285714286,
+          "range": 0.2547619047619047
+        },
+        "attribution_coverage_rate": {
+          "max": 1.0,
+          "mean": 1.0,
+          "min": 1.0,
+          "range": 0.0
+        },
+        "conflict_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        },
+        "directional_strategy_coverage_rate": {
+          "max": 0.10714285714285714,
+          "mean": 0.0869047619047619,
+          "min": 0.06666666666666667,
+          "range": 0.04047619047619047
+        },
+        "neutral_or_observational_rate": {
+          "max": 0.5214285714285715,
+          "mean": 0.3940476190476191,
+          "min": 0.26666666666666666,
+          "range": 0.2547619047619048
+        },
+        "skip_during_trader_action_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        },
+        "volatility_skip_direct_block_rate": {
+          "max": 0.0,
+          "mean": 0.0,
+          "min": 0.0,
+          "range": 0.0
+        }
+      },
+      "total_records": 155,
+      "windows": 2
+    }
+  },
+  "batch": "3J",
+  "candidates": [
+    "baseline",
+    "variant-d",
+    "variant-b"
+  ],
+  "implementation_authorized": false,
+  "mode": "offline_replay_only",
+  "production_change_authorized": false,
+  "recommendation": {
+    "confidence": "medium",
+    "implementation_authorized": false,
+    "next_step": "Batch 3K \u2014 targeted review of zero volatility-skip block behavior before runtime/default changes",
+    "outcome": "Variant D remains the safer primary candidate for another review step.",
+    "primary_candidate": "variant-d",
+    "production_change_authorized": false,
+    "reason": "Validated 2 replay-only variants across 2 windows / 155 records. Variant D directional mean delta=0.0036; Variant D skip-during-action mean delta=-0.2083.",
+    "requires_approval_before_runtime_change": true,
+    "secondary_candidate": "variant-b"
+  },
+  "regression_flags": [
+    {
+      "candidate": "variant-d",
+      "message": "Volatility-skip direct block rate dropped to 0.0%; confirm de-overblocking rather than over-relaxation.",
+      "metric": "volatility_skip_direct_block_rate",
+      "severity": "watch",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "candidate": "variant-b",
+      "message": "Volatility-skip direct block rate dropped to 0.0%; confirm de-overblocking rather than over-relaxation.",
+      "metric": "volatility_skip_direct_block_rate",
+      "severity": "watch",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "candidate": "variant-d",
+      "message": "Volatility-skip direct block rate dropped to 0.0%; confirm de-overblocking rather than over-relaxation.",
+      "metric": "volatility_skip_direct_block_rate",
+      "severity": "watch",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "candidate": "variant-b",
+      "message": "Volatility-skip direct block rate dropped to 0.0%; confirm de-overblocking rather than over-relaxation.",
+      "metric": "volatility_skip_direct_block_rate",
+      "severity": "watch",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    }
+  ],
+  "requires_approval_before_runtime_change": true,
+  "results": [
+    {
+      "candidates": {
+        "baseline": {
+          "action_matrix": {
+            "BUY|long": 0,
+            "BUY|short": 0,
+            "BUY|skip": 0,
+            "HOLD|hold": 5,
+            "HOLD|skip": 5,
+            "SELL|long": 0,
+            "SELL|short": 1,
+            "SELL|skip": 1
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 15,
+            "total_records": 15
+          },
+          "gate_status": {
+            "attribution_ready": "pass",
+            "conflict_review_ready": "pass",
+            "directional_sample_insufficient": "warn",
+            "execution_not_authorized": "blocked",
+            "skip_calibration_needed": "pass"
+          },
+          "market_regime": {
+            "trend_down": 8,
+            "trend_up": 1,
+            "volatile": 6
+          },
+          "rates": {
+            "alignment_rate": 0.4,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.06666666666666667,
+            "neutral_or_observational_rate": 0.6,
+            "skip_during_trader_action_rate": 0.06666666666666667,
+            "volatility_skip_direct_block_rate": 0.4
+          },
+          "strategy_action": {
+            "hold": 8,
+            "long": 0,
+            "short": 1,
+            "skip": 6
+          },
+          "strategy_family": {
+            "trend_following": 1,
+            "volatility_skip": 14
+          },
+          "strategy_id": {
+            "trend-following": 1,
+            "volatility-skip": 14
+          }
+        },
+        "variant-b": {
+          "action_matrix": {
+            "BUY|long": 0,
+            "BUY|short": 0,
+            "BUY|skip": 0,
+            "HOLD|hold": 10,
+            "HOLD|skip": 0,
+            "SELL|long": 0,
+            "SELL|short": 1,
+            "SELL|skip": 0
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 15,
+            "total_records": 15
+          },
+          "gate_status": {
+            "attribution_ready": "pass",
+            "conflict_review_ready": "pass",
+            "directional_sample_insufficient": "warn",
+            "execution_not_authorized": "blocked",
+            "skip_calibration_needed": "pass"
+          },
+          "market_regime": {
+            "trend_down": 8,
+            "trend_up": 1,
+            "volatile": 6
+          },
+          "rates": {
+            "alignment_rate": 0.7333333333333333,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.06666666666666667,
+            "neutral_or_observational_rate": 0.26666666666666666,
+            "skip_during_trader_action_rate": 0.0,
+            "volatility_skip_direct_block_rate": 0.0
+          },
+          "strategy_action": {
+            "hold": 14,
+            "long": 0,
+            "short": 1,
+            "skip": 0
+          },
+          "strategy_family": {
+            "trend_following": 1,
+            "volatility_skip": 14
+          },
+          "strategy_id": {
+            "trend-following": 1,
+            "volatility-skip": 14
+          }
+        },
+        "variant-d": {
+          "action_matrix": {
+            "BUY|long": 0,
+            "BUY|short": 0,
+            "BUY|skip": 0,
+            "HOLD|hold": 10,
+            "HOLD|skip": 0,
+            "SELL|long": 0,
+            "SELL|short": 1,
+            "SELL|skip": 0
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 15,
+            "total_records": 15
+          },
+          "gate_status": {
+            "attribution_ready": "pass",
+            "conflict_review_ready": "pass",
+            "directional_sample_insufficient": "warn",
+            "execution_not_authorized": "blocked",
+            "skip_calibration_needed": "pass"
+          },
+          "market_regime": {
+            "trend_down": 8,
+            "trend_up": 1,
+            "volatile": 6
+          },
+          "rates": {
+            "alignment_rate": 0.7333333333333333,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.06666666666666667,
+            "neutral_or_observational_rate": 0.26666666666666666,
+            "skip_during_trader_action_rate": 0.0,
+            "volatility_skip_direct_block_rate": 0.0
+          },
+          "strategy_action": {
+            "hold": 14,
+            "long": 0,
+            "short": 1,
+            "skip": 0
+          },
+          "strategy_family": {
+            "trend_following": 1,
+            "volatility_skip": 14
+          },
+          "strategy_id": {
+            "trend-following": 1,
+            "volatility-skip": 14
+          }
+        }
+      },
+      "window": {
+        "market_regime_counts": {
+          "trend_down": 8,
+          "trend_up": 1,
+          "volatile": 6
+        },
+        "record_count": 15,
+        "source": "logs/replay_signals-batch3f-2026-06-28.jsonl",
+        "symbols": [
+          "BTCUSDT",
+          "ETHUSDT",
+          "SOLUSDT"
+        ],
+        "timeframe_counts": {
+          "1h": 15
+        },
+        "window_id": "replay_signals-batch3f-2026-06-28"
+      }
+    },
+    {
+      "candidates": {
+        "baseline": {
+          "action_matrix": {
+            "BUY|long": 5,
+            "BUY|short": 0,
+            "BUY|skip": 21,
+            "HOLD|hold": 24,
+            "HOLD|skip": 31,
+            "SELL|long": 0,
+            "SELL|short": 6,
+            "SELL|skip": 28
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 140,
+            "total_records": 140
+          },
+          "gate_status": {
+            "attribution_ready": "pass",
+            "conflict_review_ready": "pass",
+            "directional_sample_insufficient": "warn",
+            "execution_not_authorized": "blocked",
+            "skip_calibration_needed": "warn"
+          },
+          "market_regime": {
+            "trend_down": 45,
+            "trend_up": 15,
+            "volatile": 80
+          },
+          "rates": {
+            "alignment_rate": 0.25,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.1,
+            "neutral_or_observational_rate": 0.75,
+            "skip_during_trader_action_rate": 0.35,
+            "volatility_skip_direct_block_rate": 0.5714285714285714
+          },
+          "strategy_action": {
+            "hold": 46,
+            "long": 5,
+            "short": 9,
+            "skip": 80
+          },
+          "strategy_family": {
+            "breakout": 4,
+            "trend_following": 10,
+            "volatility_skip": 126
+          },
+          "strategy_id": {
+            "breakout": 4,
+            "trend-following": 10,
+            "volatility-skip": 126
+          }
+        },
+        "variant-b": {
+          "action_matrix": {
+            "BUY|long": 6,
+            "BUY|short": 0,
+            "BUY|skip": 0,
+            "HOLD|hold": 55,
+            "HOLD|skip": 0,
+            "SELL|long": 0,
+            "SELL|short": 9,
+            "SELL|skip": 0
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 140,
+            "total_records": 140
+          },
+          "gate_status": {
+            "attribution_ready": "pass",
+            "conflict_review_ready": "pass",
+            "directional_sample_insufficient": "warn",
+            "execution_not_authorized": "blocked",
+            "skip_calibration_needed": "pass"
+          },
+          "market_regime": {
+            "trend_down": 45,
+            "trend_up": 15,
+            "volatile": 80
+          },
+          "rates": {
+            "alignment_rate": 0.5,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.12857142857142856,
+            "neutral_or_observational_rate": 0.5,
+            "skip_during_trader_action_rate": 0.0,
+            "volatility_skip_direct_block_rate": 0.0
+          },
+          "strategy_action": {
+            "hold": 122,
+            "long": 6,
+            "short": 12,
+            "skip": 0
+          },
+          "strategy_family": {
+            "breakout": 8,
+            "trend_following": 10,
+            "volatility_skip": 122
+          },
+          "strategy_id": {
+            "breakout": 8,
+            "trend-following": 10,
+            "volatility-skip": 122
+          }
+        },
+        "variant-d": {
+          "action_matrix": {
+            "BUY|long": 5,
+            "BUY|short": 0,
+            "BUY|skip": 0,
+            "HOLD|hold": 55,
+            "HOLD|skip": 0,
+            "SELL|long": 0,
+            "SELL|short": 7,
+            "SELL|skip": 0
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 140,
+            "total_records": 140
+          },
+          "gate_status": {
+            "attribution_ready": "pass",
+            "conflict_review_ready": "pass",
+            "directional_sample_insufficient": "warn",
+            "execution_not_authorized": "blocked",
+            "skip_calibration_needed": "pass"
+          },
+          "market_regime": {
+            "trend_down": 46,
+            "trend_up": 15,
+            "volatile": 79
+          },
+          "rates": {
+            "alignment_rate": 0.4785714285714286,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.10714285714285714,
+            "neutral_or_observational_rate": 0.5214285714285715,
+            "skip_during_trader_action_rate": 0.0,
+            "volatility_skip_direct_block_rate": 0.0
+          },
+          "strategy_action": {
+            "hold": 125,
+            "long": 5,
+            "short": 10,
+            "skip": 0
+          },
+          "strategy_family": {
+            "breakout": 4,
+            "trend_following": 11,
+            "volatility_skip": 125
+          },
+          "strategy_id": {
+            "breakout": 4,
+            "trend-following": 11,
+            "volatility-skip": 125
+          }
+        }
+      },
+      "window": {
+        "market_regime_counts": {
+          "trend_down": 45,
+          "trend_up": 15,
+          "volatile": 80
+        },
+        "record_count": 140,
+        "source": "logs/replay_signals-batch3g-2026-06-28.jsonl",
+        "symbols": [
+          "ADAUSDT",
+          "BTCUSDT",
+          "ETHUSDT",
+          "SOLUSDT",
+          "XRPUSDT"
+        ],
+        "timeframe_counts": {
+          "1h": 140
+        },
+        "window_id": "replay_signals-batch3g-2026-06-28"
+      }
+    }
+  ],
+  "scope_boundary": "No live trading, order placement, StrategySignal-to-order mapping, production config/default changes, or runtime semantic changes.",
+  "windows": [
+    {
+      "market_regime_counts": {
+        "trend_down": 8,
+        "trend_up": 1,
+        "volatile": 6
+      },
+      "record_count": 15,
+      "source": "logs/replay_signals-batch3f-2026-06-28.jsonl",
+      "symbols": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "SOLUSDT"
+      ],
+      "timeframe_counts": {
+        "1h": 15
+      },
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "market_regime_counts": {
+        "trend_down": 45,
+        "trend_up": 15,
+        "volatile": 80
+      },
+      "record_count": 140,
+      "source": "logs/replay_signals-batch3g-2026-06-28.jsonl",
+      "symbols": [
+        "ADAUSDT",
+        "BTCUSDT",
+        "ETHUSDT",
+        "SOLUSDT",
+        "XRPUSDT"
+      ],
+      "timeframe_counts": {
+        "1h": 140
+      },
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    }
+  ]
+}
