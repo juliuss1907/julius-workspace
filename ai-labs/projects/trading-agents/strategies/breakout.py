@@ -17,6 +17,11 @@ class BreakoutStrategy(StrategyPolicy):
     strategy_id = "breakout"
     family = "breakout"
 
+    def __init__(self, config: Optional[dict] = None):
+        """Create breakout strategy with optional replay-only knobs."""
+        self.config = config or {}
+        self.allow_volatile = bool(self.config.get("allow_volatile", False))
+
     def evaluate(
         self,
         technical_state: TechnicalState,
@@ -34,7 +39,7 @@ class BreakoutStrategy(StrategyPolicy):
         macd_cross_down = technical_state.macd_crossing_down
         regime = market_state.regime
 
-        if regime == "volatile":
+        if regime == "volatile" and not self.allow_volatile:
             return self._skip(
                 technical_state,
                 market_state,

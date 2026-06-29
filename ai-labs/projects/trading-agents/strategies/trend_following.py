@@ -21,6 +21,17 @@ class TrendFollowingStrategy(StrategyPolicy):
     RSI_LONG_CAP = 75.0
     RSI_SHORT_FLOOR = 25.0
 
+    def __init__(self, config: Optional[dict] = None):
+        """Create trend-following strategy with optional replay-only knobs."""
+        self.config = config or {}
+        self.min_regime_confidence = float(
+            self.config.get("min_regime_confidence", self.MIN_REGIME_CONFIDENCE)
+        )
+        self.rsi_long_cap = float(self.config.get("rsi_long_cap", self.RSI_LONG_CAP))
+        self.rsi_short_floor = float(self.config.get("rsi_short_floor", self.RSI_SHORT_FLOOR))
+        self.allow_volatile_trend_up = bool(self.config.get("allow_volatile_trend_up", False))
+        self.allow_volatile_trend_down = bool(self.config.get("allow_volatile_trend_down", False))
+
     def evaluate(
         self,
         technical_state: TechnicalState,
@@ -34,15 +45,22 @@ class TrendFollowingStrategy(StrategyPolicy):
         macd_hist = technical_state.macd_histogram
         rsi = technical_state.rsi
         regime = market_state.regime
+        original_regime = regime
         confidence = float(market_state.confidence)
 
-        # Fail-safe for volatile regime (volatility_skip should catch this first).
+        # Default fail-safe for volatile regime. Batch 3H may opt into
+        # replay-only volatile trend exceptions without changing defaults.
         if regime == "volatile":
-            return self._skip(
-                technical_state,
-                market_state,
-                "Volatile regime — trend-following does not trade chop",
-            )
+            if self.allow_volatile_trend_down and market_state.trend_direction == "down":
+                regime = "trend_down"
+            elif self.allow_volatile_trend_up and market_state.trend_direction == "up":
+                regime = "trend_up"
+            else:
+                return self._skip(
+                    technical_state,
+                    market_state,
+                    "Volatile regime — trend-following does not trade chop",
+                )
 
         # Fail-safe for missing core data.
         if close is None or ema_20 is None or ema_50 is None or macd_hist is None:
@@ -53,7 +71,7 @@ class TrendFollowingStrategy(StrategyPolicy):
                 data_quality=True,
             )
 
-        if confidence < self.MIN_REGIME_CONFIDENCE:
+        if confidence < self.min_regime_confidence:
             return self._hold(
                 technical_state,
                 market_state,
@@ -68,7 +86,7 @@ class TrendFollowingStrategy(StrategyPolicy):
                 return self._hold(technical_state, market_state, "Price not above EMAs")
             if macd_hist <= 0:
                 return self._hold(technical_state, market_state, "MACD histogram not positive")
-            if rsi is not None and rsi >= self.RSI_LONG_CAP:
+            if rsi is not None and rsi >= self.rsi_long_cap:
                 return self._skip(
                     technical_state,
                     market_state,
@@ -92,6 +110,7 @@ class TrendFollowingStrategy(StrategyPolicy):
                 ],
                 attribution={
                     "regime": regime,
+                    "original_regime": original_regime,
                     "trend_direction": market_state.trend_direction,
                     "ema_20": ema_20,
                     "ema_50": ema_50,
@@ -108,7 +127,7 @@ class TrendFollowingStrategy(StrategyPolicy):
                 return self._hold(technical_state, market_state, "Price not below EMAs")
             if macd_hist >= 0:
                 return self._hold(technical_state, market_state, "MACD histogram not negative")
-            if rsi is not None and rsi <= self.RSI_SHORT_FLOOR:
+            if rsi is not None and rsi <= self.rsi_short_floor:
                 return self._skip(
                     technical_state,
                     market_state,
@@ -132,6 +151,7 @@ class TrendFollowingStrategy(StrategyPolicy):
                 ],
                 attribution={
                     "regime": regime,
+                    "original_regime": original_regime,
                     "trend_direction": market_state.trend_direction,
                     "ema_20": ema_20,
                     "ema_50": ema_50,

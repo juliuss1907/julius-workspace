@@ -29,9 +29,9 @@ class StrategyRegistry:
     def __init__(self, config: Optional[Dict] = None):
         self.config = config or {}
         self._strategies: Dict[str, StrategyPolicy] = {
-            "volatility_skip": VolatilitySkipStrategy(),
-            "trend_following": TrendFollowingStrategy(),
-            "breakout": BreakoutStrategy(),
+            "volatility_skip": VolatilitySkipStrategy(self.config.get("volatility_skip", {})),
+            "trend_following": TrendFollowingStrategy(self.config.get("trend_following", {})),
+            "breakout": BreakoutStrategy(self.config.get("breakout", {})),
         }
         self._order = self.config.get(
             "regime_strategy_order",

@@ -1,0 +1,298 @@
+{
+  "baseline": {
+    "actions": {
+      "hold": 46,
+      "long": 5,
+      "short": 9,
+      "skip": 80
+    },
+    "gate_status": {
+      "attribution_ready": "pass",
+      "conflict_review_ready": "pass",
+      "directional_sample_insufficient": "warn",
+      "execution_not_authorized": "blocked",
+      "skip_calibration_needed": "warn"
+    },
+    "matrix": {
+      "BUY|long": 5,
+      "BUY|short": 0,
+      "BUY|skip": 21,
+      "SELL|long": 0,
+      "SELL|short": 6,
+      "SELL|skip": 28
+    },
+    "rates": {
+      "alignment_rate": 0.25,
+      "attribution_coverage_rate": 1.0,
+      "conflict_rate": 0.0,
+      "directional_strategy_coverage_rate": 0.1,
+      "neutral_or_observational_rate": 0.75,
+      "skip_during_trader_action_rate": 0.35,
+      "volatility_skip_direct_block_rate": 0.5714285714285714
+    },
+    "strategy_selection": {
+      "breakout": {
+        "count": 4,
+        "share": 0.02857142857142857
+      },
+      "trend-following": {
+        "count": 10,
+        "share": 0.07142857142857142
+      },
+      "volatility-skip": {
+        "count": 126,
+        "share": 0.9
+      }
+    },
+    "total_records": 140
+  },
+  "mode": "offline_replay_only",
+  "recommendation": {
+    "next_step": "Batch 3I \u2014 Replay-Only Calibration Implementation Proposal",
+    "outcome": "Outcome A \u2014 Calibration looks promising",
+    "reason": "Promising variants: variant-b, variant-d."
+  },
+  "scope_boundary": "production/runtime thresholds were not changed; StrategySignal remains observational-only.",
+  "variants": {
+    "variant-a": {
+      "deltas": {
+        "alignment_rate": 0.22142857142857142,
+        "attribution_coverage_rate": 0.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.0,
+        "neutral_or_observational_rate": -0.22142857142857142,
+        "skip_during_trader_action_rate": -0.35,
+        "volatility_skip_direct_block_rate": -0.5714285714285714
+      },
+      "description": "Mild volatility relaxation: only hard-skip volatile regimes at higher regime confidence; keep conservative ATR guard.",
+      "promising": false,
+      "summary": {
+        "actions": {
+          "hold": 126,
+          "long": 5,
+          "short": 9,
+          "skip": 0
+        },
+        "gate_status": {
+          "attribution_ready": "pass",
+          "conflict_review_ready": "pass",
+          "directional_sample_insufficient": "warn",
+          "execution_not_authorized": "blocked",
+          "skip_calibration_needed": "pass"
+        },
+        "matrix": {
+          "BUY|long": 5,
+          "BUY|short": 0,
+          "BUY|skip": 0,
+          "SELL|long": 0,
+          "SELL|short": 6,
+          "SELL|skip": 0
+        },
+        "rates": {
+          "alignment_rate": 0.4714285714285714,
+          "attribution_coverage_rate": 1.0,
+          "conflict_rate": 0.0,
+          "directional_strategy_coverage_rate": 0.1,
+          "neutral_or_observational_rate": 0.5285714285714286,
+          "skip_during_trader_action_rate": 0.0,
+          "volatility_skip_direct_block_rate": 0.0
+        },
+        "strategy_selection": {
+          "breakout": {
+            "count": 4,
+            "share": 0.02857142857142857
+          },
+          "trend-following": {
+            "count": 10,
+            "share": 0.07142857142857142
+          },
+          "volatility-skip": {
+            "count": 126,
+            "share": 0.9
+          }
+        },
+        "total_records": 140
+      }
+    },
+    "variant-b": {
+      "deltas": {
+        "alignment_rate": 0.25,
+        "attribution_coverage_rate": 0.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.028571428571428553,
+        "neutral_or_observational_rate": -0.25,
+        "skip_during_trader_action_rate": -0.35,
+        "volatility_skip_direct_block_rate": -0.5714285714285714
+      },
+      "description": "Moderate relaxation stress test: materially higher volatile confidence and ATR floors, with breakout allowed in volatile replay only.",
+      "promising": true,
+      "summary": {
+        "actions": {
+          "hold": 122,
+          "long": 6,
+          "short": 12,
+          "skip": 0
+        },
+        "gate_status": {
+          "attribution_ready": "pass",
+          "conflict_review_ready": "pass",
+          "directional_sample_insufficient": "warn",
+          "execution_not_authorized": "blocked",
+          "skip_calibration_needed": "pass"
+        },
+        "matrix": {
+          "BUY|long": 6,
+          "BUY|short": 0,
+          "BUY|skip": 0,
+          "SELL|long": 0,
+          "SELL|short": 9,
+          "SELL|skip": 0
+        },
+        "rates": {
+          "alignment_rate": 0.5,
+          "attribution_coverage_rate": 1.0,
+          "conflict_rate": 0.0,
+          "directional_strategy_coverage_rate": 0.12857142857142856,
+          "neutral_or_observational_rate": 0.5,
+          "skip_during_trader_action_rate": 0.0,
+          "volatility_skip_direct_block_rate": 0.0
+        },
+        "strategy_selection": {
+          "breakout": {
+            "count": 8,
+            "share": 0.05714285714285714
+          },
+          "trend-following": {
+            "count": 10,
+            "share": 0.07142857142857142
+          },
+          "volatility-skip": {
+            "count": 122,
+            "share": 0.8714285714285714
+          }
+        },
+        "total_records": 140
+      }
+    },
+    "variant-c": {
+      "deltas": {
+        "alignment_rate": 0.22142857142857142,
+        "attribution_coverage_rate": 0.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.0,
+        "neutral_or_observational_rate": -0.22142857142857142,
+        "skip_during_trader_action_rate": -0.35,
+        "volatility_skip_direct_block_rate": -0.5714285714285714
+      },
+      "description": "Trend-down short exception: allow only volatile downtrends through trend-following after volatility guard relaxation.",
+      "promising": false,
+      "summary": {
+        "actions": {
+          "hold": 126,
+          "long": 5,
+          "short": 9,
+          "skip": 0
+        },
+        "gate_status": {
+          "attribution_ready": "pass",
+          "conflict_review_ready": "pass",
+          "directional_sample_insufficient": "warn",
+          "execution_not_authorized": "blocked",
+          "skip_calibration_needed": "pass"
+        },
+        "matrix": {
+          "BUY|long": 5,
+          "BUY|short": 0,
+          "BUY|skip": 0,
+          "SELL|long": 0,
+          "SELL|short": 6,
+          "SELL|skip": 0
+        },
+        "rates": {
+          "alignment_rate": 0.4714285714285714,
+          "attribution_coverage_rate": 1.0,
+          "conflict_rate": 0.0,
+          "directional_strategy_coverage_rate": 0.1,
+          "neutral_or_observational_rate": 0.5285714285714286,
+          "skip_during_trader_action_rate": 0.0,
+          "volatility_skip_direct_block_rate": 0.0
+        },
+        "strategy_selection": {
+          "breakout": {
+            "count": 4,
+            "share": 0.02857142857142857
+          },
+          "trend-following": {
+            "count": 10,
+            "share": 0.07142857142857142
+          },
+          "volatility-skip": {
+            "count": 126,
+            "share": 0.9
+          }
+        },
+        "total_records": 140
+      }
+    },
+    "variant-d": {
+      "deltas": {
+        "alignment_rate": 0.2285714285714286,
+        "attribution_coverage_rate": 0.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.007142857142857131,
+        "neutral_or_observational_rate": -0.22857142857142854,
+        "skip_during_trader_action_rate": -0.35,
+        "volatility_skip_direct_block_rate": -0.5714285714285714
+      },
+      "description": "Trend-following confidence floor review: lower replay-only trend/action floors without changing production defaults.",
+      "promising": true,
+      "summary": {
+        "actions": {
+          "hold": 125,
+          "long": 5,
+          "short": 10,
+          "skip": 0
+        },
+        "gate_status": {
+          "attribution_ready": "pass",
+          "conflict_review_ready": "pass",
+          "directional_sample_insufficient": "warn",
+          "execution_not_authorized": "blocked",
+          "skip_calibration_needed": "pass"
+        },
+        "matrix": {
+          "BUY|long": 5,
+          "BUY|short": 0,
+          "BUY|skip": 0,
+          "SELL|long": 0,
+          "SELL|short": 7,
+          "SELL|skip": 0
+        },
+        "rates": {
+          "alignment_rate": 0.4785714285714286,
+          "attribution_coverage_rate": 1.0,
+          "conflict_rate": 0.0,
+          "directional_strategy_coverage_rate": 0.10714285714285714,
+          "neutral_or_observational_rate": 0.5214285714285715,
+          "skip_during_trader_action_rate": 0.0,
+          "volatility_skip_direct_block_rate": 0.0
+        },
+        "strategy_selection": {
+          "breakout": {
+            "count": 4,
+            "share": 0.02857142857142857
+          },
+          "trend-following": {
+            "count": 11,
+            "share": 0.07857142857142857
+          },
+          "volatility-skip": {
+            "count": 125,
+            "share": 0.8928571428571429
+          }
+        },
+        "total_records": 140
+      }
+    }
+  }
+}

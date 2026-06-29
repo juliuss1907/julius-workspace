@@ -1,0 +1,142 @@
+{
+  "action_matrix": {
+    "BUY|hold": 36,
+    "BUY|long": 5,
+    "HOLD|hold": 55,
+    "HOLD|short": 3,
+    "SELL|hold": 35,
+    "SELL|short": 6
+  },
+  "counts": {
+    "action_alignment": {
+      "aligned": 66,
+      "conflicted": 0,
+      "missing": 0,
+      "neutral_or_observational": 74
+    },
+    "action_matrix": {
+      "BUY|hold": 36,
+      "BUY|long": 5,
+      "HOLD|hold": 55,
+      "HOLD|short": 3,
+      "SELL|hold": 35,
+      "SELL|short": 6
+    },
+    "by_symbol": {
+      "ADAUSDT": 28,
+      "BTCUSDT": 28,
+      "ETHUSDT": 28,
+      "SOLUSDT": 28,
+      "XRPUSDT": 28
+    },
+    "by_timeframe": {
+      "1h": 140
+    },
+    "directional_strategy_signals": 14,
+    "market_regime": {
+      "trend_down": 45,
+      "trend_up": 15,
+      "volatile": 80
+    },
+    "skip_during_trader_action": 0,
+    "strategy_action": {
+      "hold": 126,
+      "long": 5,
+      "short": 9
+    },
+    "strategy_family": {
+      "breakout": 4,
+      "trend_following": 10,
+      "volatility_skip": 126
+    },
+    "strategy_id": {
+      "breakout": 4,
+      "trend-following": 10,
+      "volatility-skip": 126
+    },
+    "volatility_skip_direct_blocks": 0
+  },
+  "dataset": {
+    "records_missing_strategy_signal": 0,
+    "records_with_strategy_signal": 140,
+    "total_records": 140
+  },
+  "gate_status": {
+    "attribution_ready": {
+      "message": "All replay records include top-level strategy_signal.",
+      "status": "pass"
+    },
+    "conflict_review_ready": {
+      "message": "No hard BUY|short or SELL|long conflicts detected.",
+      "status": "pass"
+    },
+    "directional_sample_insufficient": {
+      "message": "Directional strategy sample is still sparse; collect more replay evidence before policy changes.",
+      "status": "warn"
+    },
+    "execution_not_authorized": {
+      "message": "Evaluation tooling does not authorize live trading, order routing, or strategy-to-execution mapping.",
+      "status": "blocked"
+    },
+    "skip_calibration_needed": {
+      "message": "Skip-during-action rate is below first-review warning threshold.",
+      "status": "pass"
+    }
+  },
+  "metrics": {
+    "alignment": {
+      "denominator": 140,
+      "numerator": 66,
+      "rate": 0.4714285714285714
+    },
+    "attribution_coverage": {
+      "denominator": 140,
+      "numerator": 140,
+      "rate": 1.0
+    },
+    "conflict": {
+      "denominator": 140,
+      "numerator": 0,
+      "rate": 0.0
+    },
+    "directional_strategy_coverage": {
+      "denominator": 140,
+      "numerator": 14,
+      "rate": 0.1
+    },
+    "neutral_or_observational": {
+      "denominator": 140,
+      "numerator": 74,
+      "rate": 0.5285714285714286
+    },
+    "skip_during_trader_action": {
+      "denominator": 140,
+      "numerator": 0,
+      "rate": 0.0
+    },
+    "volatility_skip_direct_block": {
+      "denominator": 140,
+      "numerator": 0,
+      "rate": 0.0
+    }
+  },
+  "rates": {
+    "alignment_rate": 0.4714285714285714,
+    "attribution_coverage_rate": 1.0,
+    "conflict_rate": 0.0,
+    "directional_strategy_coverage_rate": 0.1,
+    "missing_rate": 0.0,
+    "neutral_or_observational_rate": 0.5285714285714286,
+    "skip_during_trader_action_rate": 0.0,
+    "strategy_family_share": {
+      "breakout": 0.02857142857142857,
+      "trend_following": 0.07142857142857142,
+      "volatility_skip": 0.9
+    },
+    "volatility_skip_direct_block_rate": 0.0
+  },
+  "recommendation": {
+    "next_batch": "Batch 3H \u2014 Volatility-Skip Calibration Review",
+    "reason": "Use repeatable Batch 4B metrics to compare replay-only calibration variants against the Batch 3G baseline before any threshold tuning."
+  }
+}
