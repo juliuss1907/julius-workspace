@@ -1,0 +1,212 @@
+{
+  "additional_replay_required": {
+    "candidates_to_compare": [
+      "baseline",
+      "variant-d",
+      "variant-b",
+      "variant-e-middle-ground"
+    ],
+    "minimum_windows": 3,
+    "preferred_windows": 5,
+    "regimes": [
+      "trend_up",
+      "trend_down",
+      "volatile",
+      "ranging"
+    ],
+    "required": true,
+    "variant_e_hypothesis": "Reduce overblocking while preserving non-zero volatility-skip direct block utility."
+  },
+  "approval_gates": [
+    "Run broader multi-period replay dataset before any runtime/default config change.",
+    "Compute Batch 4B evaluator metrics on every additional window.",
+    "Conflict rate must remain 0.0% or every conflict must be explicitly reviewed.",
+    "Directional coverage must improve without eliminating all risk guard utility across windows.",
+    "Julius must explicitly approve any runtime/default config change.",
+    "Rollback plan must be documented and tested before implementation.",
+    "No live execution mapping from StrategySignal to orders may be introduced."
+  ],
+  "baseline": {
+    "action_matrix": {
+      "BUY|long": 5,
+      "BUY|short": 0,
+      "BUY|skip": 21,
+      "SELL|long": 0,
+      "SELL|short": 6,
+      "SELL|skip": 28
+    },
+    "dataset": {
+      "records_missing_strategy_signal": 0,
+      "records_with_strategy_signal": 140,
+      "total_records": 140
+    },
+    "rates": {
+      "alignment_rate": 0.25,
+      "attribution_coverage_rate": 1.0,
+      "conflict_rate": 0.0,
+      "directional_strategy_coverage_rate": 0.1,
+      "neutral_or_observational_rate": 0.75,
+      "skip_during_trader_action_rate": 0.35,
+      "volatility_skip_direct_block_rate": 0.5714285714285714
+    },
+    "source": "strategy-vs-traderagent-evaluation-batch4b-2026-06-29.json"
+  },
+  "batch": "3I",
+  "candidate_evidence": {
+    "variant-b": {
+      "deltas": {
+        "alignment_rate": 0.25,
+        "attribution_coverage_rate": 0.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.028571428571428553,
+        "neutral_or_observational_rate": -0.25,
+        "skip_during_trader_action_rate": -0.35,
+        "volatility_skip_direct_block_rate": -0.5714285714285714
+      },
+      "description": "Moderate relaxation stress test: materially higher volatile confidence and ATR floors, with breakout allowed in volatile replay only.",
+      "gate_status": {
+        "attribution_ready": "pass",
+        "conflict_review_ready": "pass",
+        "directional_sample_insufficient": "warn",
+        "execution_not_authorized": "blocked",
+        "skip_calibration_needed": "pass"
+      },
+      "matrix": {
+        "BUY|long": 6,
+        "BUY|short": 0,
+        "BUY|skip": 0,
+        "SELL|long": 0,
+        "SELL|short": 9,
+        "SELL|skip": 0
+      },
+      "promising": true,
+      "rates": {
+        "alignment_rate": 0.5,
+        "attribution_coverage_rate": 1.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.12857142857142856,
+        "neutral_or_observational_rate": 0.5,
+        "skip_during_trader_action_rate": 0.0,
+        "volatility_skip_direct_block_rate": 0.0
+      },
+      "strategy_selection": {
+        "breakout": {
+          "count": 8,
+          "share": 0.05714285714285714
+        },
+        "trend-following": {
+          "count": 10,
+          "share": 0.07142857142857142
+        },
+        "volatility-skip": {
+          "count": 122,
+          "share": 0.8714285714285714
+        }
+      }
+    },
+    "variant-d": {
+      "deltas": {
+        "alignment_rate": 0.2285714285714286,
+        "attribution_coverage_rate": 0.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.007142857142857131,
+        "neutral_or_observational_rate": -0.22857142857142854,
+        "skip_during_trader_action_rate": -0.35,
+        "volatility_skip_direct_block_rate": -0.5714285714285714
+      },
+      "description": "Trend-following confidence floor review: lower replay-only trend/action floors without changing production defaults.",
+      "gate_status": {
+        "attribution_ready": "pass",
+        "conflict_review_ready": "pass",
+        "directional_sample_insufficient": "warn",
+        "execution_not_authorized": "blocked",
+        "skip_calibration_needed": "pass"
+      },
+      "matrix": {
+        "BUY|long": 5,
+        "BUY|short": 0,
+        "BUY|skip": 0,
+        "SELL|long": 0,
+        "SELL|short": 7,
+        "SELL|skip": 0
+      },
+      "promising": true,
+      "rates": {
+        "alignment_rate": 0.4785714285714286,
+        "attribution_coverage_rate": 1.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.10714285714285714,
+        "neutral_or_observational_rate": 0.5214285714285715,
+        "skip_during_trader_action_rate": 0.0,
+        "volatility_skip_direct_block_rate": 0.0
+      },
+      "strategy_selection": {
+        "breakout": {
+          "count": 4,
+          "share": 0.02857142857142857
+        },
+        "trend-following": {
+          "count": 11,
+          "share": 0.07857142857142857
+        },
+        "volatility-skip": {
+          "count": 125,
+          "share": 0.8928571428571429
+        }
+      }
+    }
+  },
+  "created": "2026-06-29",
+  "production_change_authorized": false,
+  "proposal_type": "replay_only_calibration_implementation_proposal",
+  "recommendation": {
+    "implementation_authorized": false,
+    "next_batch": "Batch 3J - Broader Replay Validation for Volatility-Skip Calibration",
+    "summary": "Do not authorize production calibration yet. Use Variant D as the primary candidate for broader replay validation and Variant B as an aggressive upper-bound stress test only."
+  },
+  "recommended_candidate": "variant-d",
+  "requires_approval_before_runtime_change": true,
+  "risk_assessment": [
+    {
+      "evidence": "Both promising variants reduce volatility_skip_direct_block_rate from 57.1% to 0.0% in the Batch 3G sample.",
+      "mitigation": "Require broader multi-period replay and consider an intermediate Variant E before runtime adoption.",
+      "risk": "Full suppression of volatility-skip direct blocks may be too aggressive."
+    },
+    {
+      "evidence": "Batch 3H uses the Batch 3G replay window only.",
+      "mitigation": "Validate on at least 3-5 additional windows spanning trend_up, trend_down, volatile, and ranging regimes.",
+      "risk": "Single replay window may overfit one market period."
+    },
+    {
+      "evidence": "Variant B has the best directional coverage but explicitly allows breakout in volatile replay context.",
+      "mitigation": "Treat Variant B as an aggressive stress-test candidate, not the first production candidate.",
+      "risk": "Variant B weakens risk posture by allowing volatile breakout in replay."
+    },
+    {
+      "evidence": "Directional coverage improves from 10.0% to 10.7%, a +0.7 percentage-point move.",
+      "mitigation": "Use Variant D as primary validation candidate, not immediate production change.",
+      "risk": "Variant D improvement is modest."
+    },
+    {
+      "evidence": "Batch 3H and 3I remain evaluation/proposal only and intentionally avoid PnL/backtest metrics.",
+      "mitigation": "Do not infer profitability; evaluate only strategy-vs-TraderAgent attribution quality.",
+      "risk": "No PnL/equity evidence exists by design."
+    }
+  ],
+  "rollback_plan": {
+    "steps": [
+      "Revert strategy config to current defaults.",
+      "Disable any future calibration config block.",
+      "Re-run the Batch 4B evaluator against post-rollback replay artifacts.",
+      "Confirm baseline-like volatility guard behavior returns.",
+      "Keep StrategySignal observational-only unless separately approved."
+    ],
+    "trigger_conditions": [
+      "Conflict rate rises materially in broader replay.",
+      "Volatility guard stops providing useful skip coverage across volatile windows.",
+      "Runtime behavior diverges from approved observational-only scope."
+    ]
+  },
+  "scope_boundary": "Proposal only. No runtime behavior, production defaults, live trading, execution mapping, PnL/backtest, or order-routing changes are authorized.",
+  "secondary_candidate": "variant-b"
+}
