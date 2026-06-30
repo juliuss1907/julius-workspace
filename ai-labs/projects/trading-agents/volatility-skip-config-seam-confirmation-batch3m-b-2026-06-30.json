@@ -1,0 +1,2582 @@
+{
+  "authoritative_config_source": "candidate_detected_but_not_proven",
+  "batch": "3M-B",
+  "config_only_implementation_feasible": "partial",
+  "config_source_matrix": [
+    {
+      "authoritative_status": "candidate_source_needs_confirmation",
+      "exists": true,
+      "file": "config/default_params.yaml",
+      "reference_count": 97,
+      "referenced_by": [
+        ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        ".hermes/plans/2026-06-16_opencode-strategy-layer-batch1-prompt.md",
+        ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        ".hermes/plans/opencode-strategy-layer-foundation-prompt.md",
+        "README.md",
+        "config/default_params.yaml",
+        "docs/11-parameter-tuning.md",
+        "docs/BACKTESTING.md",
+        "docs/LITE_FULL_MODE.md",
+        "docs/PAPER_TRADING.md",
+        "docs/README.md",
+        "docs/SESSION_HANDOFF_2026-06-06.md",
+        "docs/config-promotion-checklist.md",
+        "docs/phase10a/bull-market-replay-2024-q4.md",
+        "docs/phase10a/phase10a-refresh-2026-06-15.md",
+        "docs/phase10a/promotion-decisions.md",
+        "docs/reconciliation.md",
+        "docs/service-setup.md",
+        "scripts/generate_parameter_recommendations.py"
+      ],
+      "strategy_surface_detected": true
+    },
+    {
+      "authoritative_status": "candidate_source_needs_confirmation",
+      "exists": true,
+      "file": "config/thresholds.yaml",
+      "reference_count": 22,
+      "referenced_by": [
+        "README.md",
+        "config/thresholds.yaml",
+        "scripts/validate_structure.py",
+        "trading-agent-idea.md",
+        "utils/config_loader.py",
+        "volatility-skip-implementation-design-batch3l-2026-06-30.json",
+        "volatility-skip-implementation-design-batch3l-2026-06-30.md",
+        "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md"
+      ],
+      "strategy_surface_detected": false
+    }
+  ],
+  "dead_config_risk": "medium",
+  "dead_config_risks": [
+    "YAML strategy-looking keys may be present but not necessarily consumed by runtime.",
+    "Static scan found code support for knobs, but authoritative loader/pass-through still needs side-effect-free confirmation."
+  ],
+  "evidence": {
+    "batch3j": {
+      "outcome": "Variant D remains the safer primary candidate for another review step.",
+      "windows": 2
+    },
+    "batch3k": {
+      "baseline_blocks_reviewed": 86,
+      "outcome": "Variant D zero-block behavior is mostly explained by the replay-only volatile confidence floor."
+    },
+    "batch3l": {
+      "recommended_candidate": "variant-d",
+      "variant_e_required": false
+    },
+    "batch3m_a": {
+      "exists": true,
+      "strategy_knobs_supported_in_code": true,
+      "yaml_strategy_surface_detected": true
+    }
+  },
+  "implementation_authorized": false,
+  "key_mapping": {
+    "breakout.allow_volatile": {
+      "code_support_confirmed": true,
+      "expected_receiver": "BreakoutStrategy",
+      "required_value_for_variant_d": false,
+      "runtime_yaml_source_confirmed": false
+    },
+    "selection.min_action_confidence": {
+      "code_support_confirmed": true,
+      "expected_receiver": "StrategyRegistry",
+      "runtime_yaml_source_confirmed": false
+    },
+    "trend_following.allow_volatile_trend_down": {
+      "code_support_confirmed": true,
+      "expected_receiver": "TrendFollowingStrategy",
+      "runtime_yaml_source_confirmed": false
+    },
+    "trend_following.allow_volatile_trend_up": {
+      "code_support_confirmed": true,
+      "expected_receiver": "TrendFollowingStrategy",
+      "runtime_yaml_source_confirmed": false
+    },
+    "trend_following.min_regime_confidence": {
+      "code_support_confirmed": true,
+      "expected_receiver": "TrendFollowingStrategy",
+      "runtime_yaml_source_confirmed": false
+    },
+    "volatility_skip.high_atr_pct": {
+      "code_support_confirmed": true,
+      "expected_receiver": "VolatilitySkipStrategy",
+      "runtime_yaml_source_confirmed": false
+    },
+    "volatility_skip.volatile_confidence_floor": {
+      "code_support_confirmed": true,
+      "expected_receiver": "VolatilitySkipStrategy",
+      "runtime_yaml_source_confirmed": false
+    }
+  },
+  "mode": "read_only_authoritative_config_seam_confirmation",
+  "production_change_authorized": false,
+  "recommendation": {
+    "approval_required_before_mutation": "Approve Batch 3M runtime/default implementation for variant-d volatility-skip calibration.",
+    "next_batch": "Batch 3M-C or approved Batch 3M implementation should first confirm runtime loader behavior with a side-effect-free probe before mutating config.",
+    "outcome": "Outcome B \u2014 strategy knobs are code-supported, but authoritative runtime YAML seam remains partially confirmed only."
+  },
+  "replay_path_confirmed": true,
+  "runtime_default_config_change_performed": false,
+  "runtime_path_confirmed": false,
+  "static_scan": {
+    "code_findings": {
+      "main.py": [
+        {
+          "line": 9,
+          "text": "from utils import setup_logging, get_logger, config, watchlist"
+        },
+        {
+          "line": 26,
+          "text": "    # Load configuration"
+        },
+        {
+          "line": 27,
+          "text": "    logger.info(\"Loading configuration...\")"
+        },
+        {
+          "line": 28,
+          "text": "    default_params = config.load_default_params()"
+        },
+        {
+          "line": 29,
+          "text": "    thresholds = config.load_thresholds()"
+        },
+        {
+          "line": 30,
+          "text": "    logger.info(\"Configuration loaded successfully\")"
+        }
+      ],
+      "scripts/replay_signals.py": [
+        {
+          "line": 25,
+          "text": "from strategies.attribution import build_strategy_signal"
+        },
+        {
+          "line": 38,
+          "text": "        strategy_config = default_config.get(\"strategy_layer\", {}) or {}"
+        },
+        {
+          "line": 39,
+          "text": "        if not isinstance(strategy_config, dict):"
+        },
+        {
+          "line": 41,
+          "text": "        return strategy_config"
+        },
+        {
+          "line": 142,
+          "text": "        strategy_signal = build_strategy_signal("
+        },
+        {
+          "line": 144,
+          "text": "            strategy_config=_load_strategy_layer_config(),"
+        }
+      ],
+      "scripts/run_paper_trading.py": [
+        {
+          "line": 128,
+          "text": "        default_config = config.load_default_params()"
+        }
+      ],
+      "strategies/attribution.py": [
+        {
+          "line": 11,
+          "text": "from strategies.registry import StrategyRegistry"
+        },
+        {
+          "line": 34,
+          "text": "def build_strategy_signal("
+        },
+        {
+          "line": 36,
+          "text": "    strategy_config: Optional[Dict] = None,"
+        },
+        {
+          "line": 45,
+          "text": "    strategy_config = strategy_config or {}"
+        },
+        {
+          "line": 47,
+          "text": "    if strategy_config.get(\"enabled\") is False:"
+        },
+        {
+          "line": 64,
+          "text": "        signal = StrategyRegistry(strategy_config).select("
+        }
+      ],
+      "strategies/breakout.py": [
+        {
+          "line": 20,
+          "text": "    def __init__(self, config: Optional[dict] = None):"
+        },
+        {
+          "line": 22,
+          "text": "        self.config = config or {}"
+        },
+        {
+          "line": 23,
+          "text": "        self.allow_volatile = bool(self.config.get(\"allow_volatile\", False))"
+        },
+        {
+          "line": 42,
+          "text": "        if regime == \"volatile\" and not self.allow_volatile:"
+        }
+      ],
+      "strategies/registry.py": [
+        {
+          "line": 2,
+          "text": "Strategy registry \u2014 pure playbook selection."
+        },
+        {
+          "line": 10,
+          "text": "from strategies.breakout import BreakoutStrategy"
+        },
+        {
+          "line": 12,
+          "text": "from strategies.trend_following import TrendFollowingStrategy"
+        },
+        {
+          "line": 13,
+          "text": "from strategies.volatility_skip import VolatilitySkipStrategy"
+        },
+        {
+          "line": 16,
+          "text": "DEFAULT_REGIME_STRATEGY_ORDER = {"
+        },
+        {
+          "line": 17,
+          "text": "    \"trend_up\": [\"volatility_skip\", \"trend_following\", \"breakout\"],"
+        },
+        {
+          "line": 18,
+          "text": "    \"trend_down\": [\"volatility_skip\", \"trend_following\", \"breakout\"],"
+        },
+        {
+          "line": 19,
+          "text": "    \"ranging\": [\"volatility_skip\", \"breakout\"],"
+        },
+        {
+          "line": 20,
+          "text": "    \"volatile\": [\"volatility_skip\"],"
+        },
+        {
+          "line": 23,
+          "text": "DEFAULT_MIN_ACTION_CONFIDENCE = 0.55"
+        },
+        {
+          "line": 32,
+          "text": "            \"volatility_skip\": VolatilitySkipStrategy(self.config.get(\"volatility_skip\", {})),"
+        },
+        {
+          "line": 33,
+          "text": "            \"trend_following\": TrendFollowingStrategy(self.config.get(\"trend_following\", {})),"
+        },
+        {
+          "line": 34,
+          "text": "            \"breakout\": BreakoutStrategy(self.config.get(\"breakout\", {})),"
+        },
+        {
+          "line": 37,
+          "text": "            \"regime_strategy_order\","
+        },
+        {
+          "line": 38,
+          "text": "            DEFAULT_REGIME_STRATEGY_ORDER,"
+        },
+        {
+          "line": 40,
+          "text": "        selection_config = self.config.get(\"selection\", {})"
+        },
+        {
+          "line": 41,
+          "text": "        self._min_action_confidence = selection_config.get("
+        },
+        {
+          "line": 42,
+          "text": "            \"min_action_confidence\","
+        },
+        {
+          "line": 43,
+          "text": "            self.config.get(\"min_action_confidence\", DEFAULT_MIN_ACTION_CONFIDENCE),"
+        },
+        {
+          "line": 45,
+          "text": "        self._prefer_action = selection_config.get("
+        },
+        {
+          "line": 58,
+          "text": "        order = self._order.get(regime, [\"volatility_skip\"])"
+        },
+        {
+          "line": 69,
+          "text": "            if key == \"volatility_skip\" and signal.action == \"skip\":"
+        },
+        {
+          "line": 73,
+          "text": "            if signal.action in (\"long\", \"short\") and signal.confidence >= self._min_action_confidence:"
+        },
+        {
+          "line": 120,
+          "text": "                no_trade_reason=f\"Action confidence {best.confidence:.2f} below floor {self._min_action_confidence:.2f}\","
+        }
+      ],
+      "strategies/trend_following.py": [
+        {
+          "line": 20,
+          "text": "    MIN_REGIME_CONFIDENCE = 0.55"
+        },
+        {
+          "line": 24,
+          "text": "    def __init__(self, config: Optional[dict] = None):"
+        },
+        {
+          "line": 26,
+          "text": "        self.config = config or {}"
+        },
+        {
+          "line": 27,
+          "text": "        self.min_regime_confidence = float("
+        },
+        {
+          "line": 28,
+          "text": "            self.config.get(\"min_regime_confidence\", self.MIN_REGIME_CONFIDENCE)"
+        },
+        {
+          "line": 30,
+          "text": "        self.rsi_long_cap = float(self.config.get(\"rsi_long_cap\", self.RSI_LONG_CAP))"
+        },
+        {
+          "line": 31,
+          "text": "        self.rsi_short_floor = float(self.config.get(\"rsi_short_floor\", self.RSI_SHORT_FLOOR))"
+        },
+        {
+          "line": 32,
+          "text": "        self.allow_volatile_trend_up = bool(self.config.get(\"allow_volatile_trend_up\", False))"
+        },
+        {
+          "line": 33,
+          "text": "        self.allow_volatile_trend_down = bool(self.config.get(\"allow_volatile_trend_down\", False))"
+        },
+        {
+          "line": 54,
+          "text": "            if self.allow_volatile_trend_down and market_state.trend_direction == \"down\":"
+        },
+        {
+          "line": 56,
+          "text": "            elif self.allow_volatile_trend_up and market_state.trend_direction == \"up\":"
+        },
+        {
+          "line": 74,
+          "text": "        if confidence < self.min_regime_confidence:"
+        }
+      ],
+      "strategies/volatility_skip.py": [
+        {
+          "line": 21,
+          "text": "    HIGH_ATR_PCT = 0.08"
+        },
+        {
+          "line": 23,
+          "text": "    def __init__(self, config: Optional[dict] = None):"
+        },
+        {
+          "line": 27,
+          "text": "        explicit in-memory config through replay artifacts only; no runtime"
+        },
+        {
+          "line": 28,
+          "text": "        config files or execution behavior are changed here."
+        },
+        {
+          "line": 30,
+          "text": "        self.config = config or {}"
+        },
+        {
+          "line": 31,
+          "text": "        self.high_atr_pct = float(self.config.get(\"high_atr_pct\", self.HIGH_ATR_PCT))"
+        },
+        {
+          "line": 32,
+          "text": "        self.skip_volatile_regime = bool(self.config.get(\"skip_volatile_regime\", True))"
+        },
+        {
+          "line": 33,
+          "text": "        self.volatile_confidence_floor = float(self.config.get(\"volatile_confidence_floor\", 0.0))"
+        },
+        {
+          "line": 50,
+          "text": "            and self.skip_volatile_regime"
+        },
+        {
+          "line": 51,
+          "text": "            and market_state.confidence >= self.volatile_confidence_floor"
+        },
+        {
+          "line": 62,
+          "text": "                    f\"{self.volatile_confidence_floor:.2f})\""
+        },
+        {
+          "line": 64,
+          "text": "                invalidation=f\"regime exits volatile AND ATR/close < {self.high_atr_pct:.0%}\","
+        },
+        {
+          "line": 75,
+          "text": "                    \"volatile_confidence_floor\": self.volatile_confidence_floor,"
+        },
+        {
+          "line": 76,
+          "text": "                    \"replay_only_calibration\": bool(self.config.get(\"calibration\", {}).get(\"replay_only\")),"
+        },
+        {
+          "line": 80,
+          "text": "        if atr_pct >= self.high_atr_pct:"
+        },
+        {
+          "line": 87,
+          "text": "                trigger=f\"ATR/close = {atr_pct:.2%} >= {self.high_atr_pct:.0%}\","
+        },
+        {
+          "line": 88,
+          "text": "                invalidation=f\"ATR/close drops below {self.high_atr_pct:.0%}\","
+        },
+        {
+          "line": 93,
+          "text": "                    f\"atr_pct={atr_pct:.2%} exceeds {self.high_atr_pct:.0%} threshold.\","
+        },
+        {
+          "line": 106,
+          "text": "            invalidation=f\"regime becomes volatile or ATR/close >= {self.high_atr_pct:.0%}\","
+        }
+      ]
+    },
+    "config_file_refs": [
+      {
+        "line": 64,
+        "path": "scripts/validate_structure.py",
+        "text": "\"config/default_params.yaml\","
+      },
+      {
+        "line": 65,
+        "path": "scripts/validate_structure.py",
+        "text": "\"config/thresholds.yaml\","
+      },
+      {
+        "line": 9,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "- The script reads `config/default_params.yaml` only to surface current"
+      },
+      {
+        "line": 17,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "config/default_params.yaml"
+      },
+      {
+        "line": 530,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "parser.add_argument(\"--config\", default=\"config/default_params.yaml\")"
+      },
+      {
+        "line": 361,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "\"--config\", str(project_root_real / \"config/default_params.yaml\"),"
+      },
+      {
+        "line": 201,
+        "path": "scripts/parameter_optimizer.py",
+        "text": "print(\"\\nTo apply these parameters, update config/default_params.yaml:\")"
+      },
+      {
+        "line": 435,
+        "path": "scripts/test_dynamic_watchlist.py",
+        "text": "\"\"\"Make sure the script doesn't touch default_params.yaml.\"\"\""
+      },
+      {
+        "line": 436,
+        "path": "scripts/test_dynamic_watchlist.py",
+        "text": "cfg_path = project_root / \"config/default_params.yaml\""
+      },
+      {
+        "line": 10,
+        "path": "scripts/update_dynamic_watchlist.py",
+        "text": "- Mutate `config/default_params.yaml` runtime watchlist"
+      },
+      {
+        "line": 212,
+        "path": "scripts/run_calibration_workflow.py",
+        "text": "config_path = str(args.config or (project_root / \"config/default_params.yaml\"))"
+      },
+      {
+        "line": 501,
+        "path": "scripts/run_calibration_workflow.py",
+        "text": "parser.add_argument(\"--config\", default=None, help=\"Path to default_params.yaml\")"
+      },
+      {
+        "line": 176,
+        "path": "utils/watchlist.py",
+        "text": "1. Static watchlist from `config.default_params.yaml -> watchlist`"
+      },
+      {
+        "line": 21,
+        "path": "utils/config_loader.py",
+        "text": "config_file = self.config_dir / \"default_params.yaml\""
+      },
+      {
+        "line": 29,
+        "path": "utils/config_loader.py",
+        "text": "config_file = self.config_dir / \"thresholds.yaml\""
+      },
+      {
+        "line": 120,
+        "path": "README.md",
+        "text": "cp config/default_params.yaml.example config/default_params.yaml"
+      },
+      {
+        "line": 181,
+        "path": "README.md",
+        "text": "- `default_params.yaml` \u2014 Global defaults"
+      },
+      {
+        "line": 183,
+        "path": "README.md",
+        "text": "- `thresholds.yaml` \u2014 Risk thresholds"
+      },
+      {
+        "line": 105,
+        "path": "volatility-skip-implementation-design-batch3l-2026-06-30.md",
+        "text": "| config/default_params.yaml or config/thresholds.yaml | Expose/adopt variant-d volatility-skip and strategy-selection parameters as runtime/default config values. | read/document only; no mutation |"
+      },
+      {
+        "line": 91,
+        "path": "trading-agent-idea.md",
+        "text": "\u2502   \u2514\u2500\u2500 thresholds.yaml    # Risk thresholds, triggers"
+      },
+      {
+        "line": 9,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"path\": \"config/default_params.yaml or config/thresholds.yaml\","
+      },
+      {
+        "line": 214,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"path\": \"config/default_params.yaml\","
+      },
+      {
+        "line": 231,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"config/default_params.yaml\": {"
+      },
+      {
+        "line": 246,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"config/thresholds.yaml\": {"
+      },
+      {
+        "line": 45,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "### config/default_params.yaml"
+      },
+      {
+        "line": 62,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "### config/thresholds.yaml"
+      },
+      {
+        "line": 103,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| config/default_params.yaml or config/thresholds.yaml | needs exact authoritative source confirmation | Wrong YAML source may create dead config or unintended runtime behavior |"
+      },
+      {
+        "line": 138,
+        "path": "volatility-skip-implementation-design-batch3l-2026-06-30.json",
+        "text": "\"path\": \"config/default_params.yaml or config/thresholds.yaml\""
+      },
+      {
+        "line": 33,
+        "path": "docs/README.md",
+        "text": "| [config-promotion-checklist.md](config-promotion-checklist.md) | Gate before applying any config change. | Before editing `default_params.yaml`. |"
+      },
+      {
+        "line": 125,
+        "path": "docs/LITE_FULL_MODE.md",
+        "text": "\u2514\u2500\u2500 default_params.yaml         # Added lite_mode, scheduler, watchlist"
+      },
+      {
+        "line": 350,
+        "path": "docs/LITE_FULL_MODE.md",
+        "text": "# config/default_params.yaml -> lite_mode.flash_threshold_pct"
+      },
+      {
+        "line": 16,
+        "path": "docs/11-parameter-tuning.md",
+        "text": "M\u1ed7i coin c\u00f3 file config ri\u00eang, inherits t\u1eeb `default_params.yaml`:"
+      },
+      {
+        "line": 20,
+        "path": "docs/11-parameter-tuning.md",
+        "text": "\u251c\u2500\u2500 default_params.yaml       # Global defaults"
+      },
+      {
+        "line": 125,
+        "path": "docs/SESSION_HANDOFF_2026-06-06.md",
+        "text": "- `config/default_params.yaml`"
+      },
+      {
+        "line": 3,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "> **Scope:** Mandatory steps before applying ANY change to `config/default_params.yaml` that affects live trading behavior."
+      },
+      {
+        "line": 64,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "- [ ] Change can be reverted by editing one line in `default_params.yaml` and `runtime_control restart`"
+      },
+      {
+        "line": 69,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "Run `git diff config/default_params.yaml` and confirm:"
+      },
+      {
+        "line": 101,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "2. **Apply change** to `config/default_params.yaml`"
+      },
+      {
+        "line": 105,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "./venv/bin/python -c \"import yaml; print(yaml.safe_load(open('config/default_params.yaml'))['analyst_weights'])\""
+      },
+      {
+        "line": 124,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "git add config/default_params.yaml"
+      },
+      {
+        "line": 147,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "| Edit `default_params.yaml` while runtime running | Race condition with cycle reads |"
+      },
+      {
+        "line": 158,
+        "path": "docs/config-promotion-checklist.md",
+        "text": "2. `git diff HEAD~1 config/default_params.yaml` \u2192 identify the change"
+      },
+      {
+        "line": 37,
+        "path": "docs/service-setup.md",
+        "text": "# Edit config/default_params.yaml: runtime.supervisor.enabled: true"
+      },
+      {
+        "line": 17,
+        "path": "docs/reconciliation.md",
+        "text": "In `config/default_params.yaml`:"
+      },
+      {
+        "line": 149,
+        "path": "docs/PAPER_TRADING.md",
+        "text": "### Config File (config/default_params.yaml)"
+      },
+      {
+        "line": 196,
+        "path": "docs/BACKTESTING.md",
+        "text": "nano config/default_params.yaml"
+      },
+      {
+        "line": 288,
+        "path": "docs/BACKTESTING.md",
+        "text": "nano config/default_params.yaml"
+      },
+      {
+        "line": 98,
+        "path": "docs/phase10a/promotion-decisions.md",
+        "text": "**Net effect on live config: ZERO changes.** `config/default_params.yaml` remains at the calibrated Phase 6B baseline."
+      },
+      {
+        "line": 140,
+        "path": "docs/phase10a/bull-market-replay-2024-q4.md",
+        "text": "- **No signal-config recommendation.** `config/default_params.yaml` remains at the current baseline."
+      },
+      {
+        "line": 282,
+        "path": "docs/phase10a/phase10a-refresh-2026-06-15.md",
+        "text": "**Net effect on live config: ZERO changes.** `config/default_params.yaml` remains at the current baseline."
+      },
+      {
+        "line": 26,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "- `config/default_params.yaml`"
+      },
+      {
+        "line": 462,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "## Task 5: Wire `strategy_layer` config from `config/default_params.yaml`"
+      },
+      {
+        "line": 495,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "config = load_config(\"default_params.yaml\") or {}"
+      },
+      {
+        "line": 42,
+        "path": ".hermes/plans/opencode-strategy-layer-foundation-prompt.md",
+        "text": "- `config/default_params.yaml` \u2014 canonical `technical_indicators` config and new `strategy_layer` config location."
+      },
+      {
+        "line": 184,
+        "path": ".hermes/plans/opencode-strategy-layer-foundation-prompt.md",
+        "text": "2. Add `strategy_layer:` config to `config/default_params.yaml`:"
+      },
+      {
+        "line": 247,
+        "path": ".hermes/plans/opencode-strategy-layer-foundation-prompt.md",
+        "text": "- `config/default_params.yaml`"
+      },
+      {
+        "line": 63,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "- `config/default_params.yaml` \u2014 add `strategy_layer:` config here."
+      },
+      {
+        "line": 195,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "1. Modify `config/default_params.yaml`."
+      },
+      {
+        "line": 283,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "- Modify: `config/default_params.yaml`"
+      },
+      {
+        "line": 9,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "**Tech Stack:** Python dataclasses, stdlib only for contracts/strategies where possible, existing project scripts as tests, existing `config/default_params.yaml`, current `agents/technical_analyst.py`, `agents/market_regime.py`, `orchestration/contracts.py`, a"
+      },
+      {
+        "line": 104,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "config/default_params.yaml"
+      },
+      {
+        "line": 425,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "**Objective:** Make `technical_indicators:` in `config/default_params.yaml` the canonical source while preserving current defaults."
+      },
+      {
+        "line": 752,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "- Modify: `config/default_params.yaml`"
+      },
+      {
+        "line": 767,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "Add under `strategy_layer:` in `config/default_params.yaml`:"
+      },
+      {
+        "line": 806,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "ai-labs/projects/trading-agents/config/default_params.yaml \\"
+      },
+      {
+        "line": 39,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch1-prompt.md",
+        "text": "- `config/default_params.yaml` \u2014 canonical `technical_indicators:` config and future strategy layer config area."
+      },
+      {
+        "line": 200,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch1-prompt.md",
+        "text": "2. Test that `TechnicalAnalyst()` reads from `technical_indicators:` in `config/default_params.yaml`:"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-15-btc-30d/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-08/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-09-eth/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-15-combined-30d/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 36,
+        "path": "reports/calibration/2024-q4-bull-combined/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-09-sol/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-09-btc/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-15-eth-30d/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-09-combined/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      },
+      {
+        "line": 35,
+        "path": "reports/calibration/2026-06-15-sol-30d/workflow-summary.md",
+        "text": "/home/julius/julius-workspace/ai-labs/projects/trading-agents/venv/bin/python /home/julius/julius-workspace/ai-labs/projects/trading-agents/scripts/generate_parameter_recommendations.py --dashboard /home/julius/julius-workspace/ai-labs/projects/trading-agents/"
+      }
+    ],
+    "config_findings": {
+      "config/default_params.yaml": [
+        {
+          "line": 29,
+          "text": "  min_signal_confidence: 0.60"
+        },
+        {
+          "line": 39,
+          "text": "  # Volatility gate based on ATR / current price"
+        },
+        {
+          "line": 40,
+          "text": "  high_atr_pct: 0.05       # reduce size when ATR >= 5%"
+        },
+        {
+          "line": 41,
+          "text": "  max_atr_pct: 0.08        # block trade when ATR >= 8%"
+        },
+        {
+          "line": 52,
+          "text": "  volatility_warning_multiplier: 0.75"
+        },
+        {
+          "line": 114,
+          "text": "  min_confidence: 0.55"
+        },
+        {
+          "line": 127,
+          "text": "  min_confidence_values: [0.55, 0.60, 0.65, 0.70, 0.75, 0.80]"
+        },
+        {
+          "line": 137,
+          "text": "  min_confidence_to_reduce: 0.60"
+        },
+        {
+          "line": 138,
+          "text": "  min_confidence_to_close: 0.70"
+        },
+        {
+          "line": 139,
+          "text": "  min_confidence_to_reverse: 0.80"
+        },
+        {
+          "line": 148,
+          "text": "    reduce_on_weak_signal_confidence_below: 0.60"
+        },
+        {
+          "line": 173,
+          "text": "      min_confidence: 0.80"
+        },
+        {
+          "line": 188,
+          "text": "    min_confidence_to_open_reverse: 0.80"
+        },
+        {
+          "line": 211,
+          "text": "  atr:"
+        },
+        {
+          "line": 225,
+          "text": "# Strategy Layer \u2014 Pure Playbook Selection"
+        },
+        {
+          "line": 227,
+          "text": "strategy_layer:"
+        },
+        {
+          "line": 229,
+          "text": "  default_confidence_floor: 0.55"
+        },
+        {
+          "line": 230,
+          "text": "  regime_strategy_order:"
+        },
+        {
+          "line": 231,
+          "text": "    trend_up: [\"volatility_skip\", \"trend_following\", \"breakout\"]"
+        },
+        {
+          "line": 232,
+          "text": "    trend_down: [\"volatility_skip\", \"trend_following\", \"breakout\"]"
+        },
+        {
+          "line": 233,
+          "text": "    ranging: [\"volatility_skip\", \"breakout\"]"
+        },
+        {
+          "line": 234,
+          "text": "    volatile: [\"volatility_skip\"]"
+        },
+        {
+          "line": 235,
+          "text": "  selection:"
+        },
+        {
+          "line": 237,
+          "text": "    min_action_confidence: 0.55"
+        },
+        {
+          "line": 243,
+          "text": "  method: \"atr\"  # Options: \"atr\", \"fixed\", \"support_resistance\""
+        },
+        {
+          "line": 244,
+          "text": "  atr_multiplier: 2.5  # Optimized from backtest (was 2.0)"
+        },
+        {
+          "line": 268,
+          "text": "  # Leverage by confidence"
+        },
+        {
+          "line": 269,
+          "text": "  leverage_by_confidence:"
+        },
+        {
+          "line": 270,
+          "text": "    high: 10    # Confidence >= 0.8"
+        },
+        {
+          "line": 271,
+          "text": "    medium: 5   # Confidence 0.6-0.8"
+        },
+        {
+          "line": 272,
+          "text": "    low: 3      # Confidence 0.4-0.6"
+        },
+        {
+          "line": 273,
+          "text": "    none: 1     # Confidence < 0.4 (no leverage)"
+        },
+        {
+          "line": 280,
+          "text": "# Confidence Scoring"
+        },
+        {
+          "line": 282,
+          "text": "confidence:"
+        },
+        {
+          "line": 283,
+          "text": "  # Position size multipliers by confidence level"
+        },
+        {
+          "line": 285,
+          "text": "    high: 1.0      # Confidence >= 0.8"
+        },
+        {
+          "line": 286,
+          "text": "    medium: 0.75   # Confidence 0.6-0.8"
+        },
+        {
+          "line": 287,
+          "text": "    low: 0.5       # Confidence 0.4-0.6"
+        },
+        {
+          "line": 288,
+          "text": "    skip: 0.0      # Confidence < 0.4"
+        },
+        {
+          "line": 316,
+          "text": "    hold_confidence_cap: 0.55"
+        },
+        {
+          "line": 337,
+          "text": "  volatility_threshold: 0.05  # 5% daily std = volatile"
+        },
+        {
+          "line": 341,
+          "text": "      strategies: [\"momentum\", \"trend_following\"]"
+        },
+        {
+          "line": 346,
+          "text": "    volatile:"
+        },
+        {
+          "line": 512,
+          "text": "    min_confidence: 0.60  # Optimized from backtest (was 0.70) - captures more opportunities"
+        },
+        {
+          "line": 517,
+          "text": "  market_selection:"
+        },
+        {
+          "line": 522,
+          "text": "    leverage_by_confidence:"
+        },
+        {
+          "line": 523,
+          "text": "      high: 10    # Confidence >= 0.8"
+        },
+        {
+          "line": 524,
+          "text": "      medium: 5   # Confidence 0.6-0.8"
+        },
+        {
+          "line": 525,
+          "text": "      low: 3      # Confidence < 0.6"
+        },
+        {
+          "line": 613,
+          "text": "    volatility: 0.20"
+        },
+        {
+          "line": 625,
+          "text": "  # Volatility preferred range (ATR / price)"
+        },
+        {
+          "line": 626,
+          "text": "  volatility_ideal_min: 0.010"
+        },
+        {
+          "line": 627,
+          "text": "  volatility_ideal_max: 0.050"
+        },
+        {
+          "line": 628,
+          "text": "  volatility_block_threshold: 0.10"
+        },
+        {
+          "line": 653,
+          "text": "  # Selection rules"
+        }
+      ],
+      "config/thresholds.yaml": [
+        {
+          "line": 26,
+          "text": "# Volatility Thresholds"
+        },
+        {
+          "line": 28,
+          "text": "volatility:"
+        },
+        {
+          "line": 29,
+          "text": "  # ATR-based"
+        },
+        {
+          "line": 30,
+          "text": "  extreme_volatility_threshold:"
+        },
+        {
+          "line": 31,
+          "text": "    multiplier: 3.0  # ATR > 3x c\u1ee7a 30d average = extreme volatile"
+        },
+        {
+          "line": 34,
+          "text": "  bb_width_extreme: 0.20  # BB width >20% = extreme volatility"
+        },
+        {
+          "line": 36,
+          "text": "  # Actions khi extreme volatility"
+        },
+        {
+          "line": 37,
+          "text": "  extreme_volatility_action:"
+        },
+        {
+          "line": 40,
+          "text": "    - \"skip_low_confidence\"        # Skip signals confidence <0.7"
+        },
+        {
+          "line": 72,
+          "text": "  # Max leverage per confidence"
+        },
+        {
+          "line": 73,
+          "text": "  max_leverage_by_confidence:"
+        },
+        {
+          "line": 74,
+          "text": "    high: 10      # Confidence >= 0.8"
+        },
+        {
+          "line": 75,
+          "text": "    medium: 5     # Confidence 0.6-0.8"
+        },
+        {
+          "line": 76,
+          "text": "    low: 3        # Confidence 0.4-0.6"
+        },
+        {
+          "line": 107,
+          "text": "# Confidence Thresholds"
+        },
+        {
+          "line": 109,
+          "text": "confidence:"
+        },
+        {
+          "line": 110,
+          "text": "  min_confidence_to_trade: 0.40  # Skip n\u1ebfu confidence <0.4"
+        }
+      ]
+    },
+    "first_strategy_flow_by_file": [
+      {
+        "line": 473,
+        "path": "scripts/test_boundary_guardrails.py",
+        "text": "code = _leak_code(\"from strategies.registry import StrategyRegistry\", forbidden=_STRATEGY_EXEC_SUBSTR)"
+      },
+      {
+        "line": 10,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 31,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "from strategies.attribution import build_strategy_signal  # noqa: E402"
+      },
+      {
+        "line": 9,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "from strategies.attribution import build_strategy_signal, fallback_strategy_signal"
+      },
+      {
+        "line": 132,
+        "path": "scripts/run_volatility_skip_broader_validation.py",
+        "text": "candidate_records = rebuild_replay_records(records, VARIANTS[candidate][\"strategy_config\"], source=f\"batch3j:{candidate}\")"
+      },
+      {
+        "line": 16,
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "text": "from strategies.registry import StrategyRegistry  # noqa: E402"
+      },
+      {
+        "line": 25,
+        "path": "scripts/replay_signals.py",
+        "text": "from strategies.attribution import build_strategy_signal"
+      },
+      {
+        "line": 118,
+        "path": "scripts/analyze_volatility_skip_zero_blocks.py",
+        "text": "return VARIANTS[candidate][\"strategy_config\"]"
+      },
+      {
+        "line": 484,
+        "path": "scripts/test_analysis_runner.py",
+        "text": "def test_strategy_registry_receives_nested_strategy_config():"
+      },
+      {
+        "line": 11,
+        "path": "strategies/attribution.py",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 26,
+        "path": "strategies/registry.py",
+        "text": "class StrategyRegistry:"
+      },
+      {
+        "line": 20,
+        "path": "strategies/__init__.py",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 27,
+        "path": "orchestration/analysis_runner.py",
+        "text": "from strategies.attribution import build_strategy_signal"
+      },
+      {
+        "line": 110,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"from strategies.attribution import build_strategy_signal  # noqa: E402\""
+      },
+      {
+        "line": 37,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| attribution_accepts_strategy_config | true |"
+      },
+      {
+        "line": 489,
+        "path": "docs/07-backtesting.md",
+        "text": "strategy_config = load_yaml(\"config/active_strategy.yaml\")"
+      },
+      {
+        "line": 7,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "**Architecture:** `TechnicalAnalyst` already produces `technical_state` and `market_state`; `StrategyRegistry` already selects one pure `StrategySignal`. Batch 3 adds a thin seam in `orchestration/analysis_runner.py`: extract the states from the technical anal"
+      },
+      {
+        "line": 7,
+        "path": ".hermes/plans/2026-06-26_144206-batch3b-strategy-attribution-surface.md",
+        "text": "**Architecture:** Batch 3A already added the core orchestration seam: `TechnicalAnalyst` state \u2192 `StrategyRegistry` \u2192 serialized `StrategySignal` \u2192 `FinalAnalysis.metadata[\"strategy_signal\"]`. Batch 3B should keep that as the single source of truth and only ex"
+      },
+      {
+        "line": 218,
+        "path": ".hermes/plans/opencode-strategy-layer-foundation-prompt.md",
+        "text": "- `from strategies.registry import StrategyRegistry` must not leak execution modules."
+      },
+      {
+        "line": 35,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "_build_strategy_signal(technical_analysis: dict, strategy_config: Optional[Dict] = None) -> Dict"
+      },
+      {
+        "line": 149,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "2. Implement `StrategyRegistry`."
+      },
+      {
+        "line": 334,
+        "path": ".hermes/plans/2026-06-29_095700-batch3h-volatility-skip-calibration-review.md",
+        "text": "- Add a small calibration wrapper that passes explicit `strategy_config` to attribution, or"
+      },
+      {
+        "line": 835,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "code = _leak_code(\"from strategies.registry import StrategyRegistry\")"
+      }
+    ],
+    "loader_refs": [
+      {
+        "line": 138,
+        "path": "config/thresholds.yaml",
+        "text": "price_spike_thresholds:"
+      },
+      {
+        "line": 173,
+        "path": "config/thresholds.yaml",
+        "text": "budget_thresholds:"
+      },
+      {
+        "line": 275,
+        "path": "config/default_params.yaml",
+        "text": "# Funding rate thresholds"
+      },
+      {
+        "line": 290,
+        "path": "config/default_params.yaml",
+        "text": "thresholds:"
+      },
+      {
+        "line": 312,
+        "path": "config/default_params.yaml",
+        "text": "# Direction thresholds for final signal"
+      },
+      {
+        "line": 313,
+        "path": "config/default_params.yaml",
+        "text": "direction_thresholds:"
+      },
+      {
+        "line": 347,
+        "path": "config/default_params.yaml",
+        "text": "strategies: [\"skip\"]  # T\u0103ng risk thresholds, c\u00f3 th\u1ec3 skip"
+      },
+      {
+        "line": 453,
+        "path": "config/default_params.yaml",
+        "text": "# A/B test thresholds"
+      },
+      {
+        "line": 618,
+        "path": "config/default_params.yaml",
+        "text": "# Liquidity thresholds (24h quote volume in USDT)"
+      },
+      {
+        "line": 619,
+        "path": "config/default_params.yaml",
+        "text": "liquidity_thresholds:"
+      },
+      {
+        "line": 633,
+        "path": "config/default_params.yaml",
+        "text": "# Rating thresholds"
+      },
+      {
+        "line": 634,
+        "path": "config/default_params.yaml",
+        "text": "rating_thresholds:"
+      },
+      {
+        "line": 187,
+        "path": "scripts/test_parameter_sweep.py",
+        "text": "assert \"Best Config\" in content"
+      },
+      {
+        "line": 19,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "expected = [\"baseline\", \"tech_heavy\", \"deriv_heavy\", \"lower_thresholds\", \"higher_thresholds\", \"more_aggressive\", \"more_conservative\"]"
+      },
+      {
+        "line": 40,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {\"bullish_above\": 0.57, \"bearish_below\": 0.43}"
+      },
+      {
+        "line": 45,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {\"bullish_above\": 0.60}"
+      },
+      {
+        "line": 51,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "assert result[\"analyst_weights\"][\"direction_thresholds\"][\"bullish_above\"] == 0.60"
+      },
+      {
+        "line": 52,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "assert result[\"analyst_weights\"][\"direction_thresholds\"][\"bearish_below\"] == 0.43"
+      },
+      {
+        "line": 179,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "def test_baseline_does_not_mutate_thresholds():"
+      },
+      {
+        "line": 180,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "\"\"\"baseline variant must not change direction_thresholds.\"\"\""
+      },
+      {
+        "line": 183,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {"
+      },
+      {
+        "line": 191,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "assert merged[\"analyst_weights\"][\"direction_thresholds\"][\"bullish_above\"] == 0.57"
+      },
+      {
+        "line": 192,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "assert merged[\"analyst_weights\"][\"direction_thresholds\"][\"bearish_below\"] == 0.43"
+      },
+      {
+        "line": 193,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "print(\"PASS test_baseline_does_not_mutate_thresholds\")"
+      },
+      {
+        "line": 198,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "for name in [\"tech_heavy\", \"deriv_heavy\", \"lower_thresholds\", \"higher_thresholds\"]:"
+      },
+      {
+        "line": 216,
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "text": "test_baseline_does_not_mutate_thresholds()"
+      },
+      {
+        "line": 316,
+        "path": "scripts/generate_backtest_dashboard.py",
+        "text": "\"HOLD ratio is very high. Consider if thresholds/weights are too conservative before re-running.\""
+      },
+      {
+        "line": 199,
+        "path": "scripts/parameter_sweep.py",
+        "text": "lines.append(\"## Best Config\")"
+      },
+      {
+        "line": 257,
+        "path": "scripts/parameter_sweep.py",
+        "text": "base_config = cfg.load_default_params()"
+      },
+      {
+        "line": 90,
+        "path": "scripts/backtest_engine.py",
+        "text": "default_config = config.load_default_params()"
+      },
+      {
+        "line": 39,
+        "path": "scripts/trading_scheduler.py",
+        "text": "default_config = config.load_default_params()"
+      },
+      {
+        "line": 80,
+        "path": "scripts/trading_scheduler.py",
+        "text": "cfg = config.load_default_params()"
+      },
+      {
+        "line": 23,
+        "path": "scripts/validate_structure.py",
+        "text": "params = config.load_default_params()"
+      },
+      {
+        "line": 64,
+        "path": "scripts/validate_structure.py",
+        "text": "\"config/default_params.yaml\","
+      },
+      {
+        "line": 65,
+        "path": "scripts/validate_structure.py",
+        "text": "\"config/thresholds.yaml\","
+      },
+      {
+        "line": 90,
+        "path": "scripts/validate_structure.py",
+        "text": "results.append((\"Config Files\", test_config_files()))"
+      },
+      {
+        "line": 9,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "- The script reads `config/default_params.yaml` only to surface current"
+      },
+      {
+        "line": 17,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "config/default_params.yaml"
+      },
+      {
+        "line": 27,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "\"category\": \"data_quality|thresholds|exits|side_bias|risk|workflow\","
+      },
+      {
+        "line": 78,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "return yaml.safe_load(f)"
+      },
+      {
+        "line": 189,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "\"thresholds, weights, or funding/derivatives gates before changing \""
+      },
+      {
+        "line": 230,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "\"category\": \"thresholds\","
+      },
+      {
+        "line": 344,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "\"category\": \"thresholds\","
+      },
+      {
+        "line": 370,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "r[\"category\"] == \"thresholds\" for r in recs"
+      },
+      {
+        "line": 465,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "lines.append(\"| # | Priority | Category | Finding | Config | Suggested |\")"
+      },
+      {
+        "line": 488,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "lines.append(f\"**Config path:** `{r.get('config_path') or '\u2014'}`\")"
+      },
+      {
+        "line": 530,
+        "path": "scripts/generate_parameter_recommendations.py",
+        "text": "parser.add_argument(\"--config\", default=\"config/default_params.yaml\")"
+      },
+      {
+        "line": 62,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "\"direction_thresholds\": {\"bullish_above\": 0.57, \"bearish_below\": 0.43},"
+      },
+      {
+        "line": 174,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "neg = [r for r in recs if r[\"category\"] == \"thresholds\"]"
+      },
+      {
+        "line": 175,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "assert neg, \"expected thresholds recommendation for negative pnl\""
+      },
+      {
+        "line": 184,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "r[\"category\"] == \"thresholds\" and \"negative expectancy\" in r[\"finding\"].lower()"
+      },
+      {
+        "line": 241,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "\"variant\": \"lower_thresholds\","
+      },
+      {
+        "line": 250,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "if r[\"category\"] == \"thresholds\" and \"do not apply\" in r[\"recommendation\"].lower()"
+      },
+      {
+        "line": 361,
+        "path": "scripts/test_parameter_recommendations.py",
+        "text": "\"--config\", str(project_root_real / \"config/default_params.yaml\"),"
+      },
+      {
+        "line": 551,
+        "path": "scripts/simulate_trades.py",
+        "text": "sim_config = cfg.load_default_params()"
+      },
+      {
+        "line": 38,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 42,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = fake_loader"
+      },
+      {
+        "line": 48,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 64,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 65,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 71,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 99,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 100,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 107,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 125,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 126,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 132,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 163,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 164,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 173,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 194,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 195,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 200,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 233,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "real_loader = utils_config.config.load_default_params"
+      },
+      {
+        "line": 234,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 240,
+        "path": "scripts/test_scheduler_guard.py",
+        "text": "utils_config.config.load_default_params = real_loader"
+      },
+      {
+        "line": 51,
+        "path": "scripts/parameter_optimizer.py",
+        "text": "# Test different confidence thresholds"
+      },
+      {
+        "line": 201,
+        "path": "scripts/parameter_optimizer.py",
+        "text": "print(\"\\nTo apply these parameters, update config/default_params.yaml:\")"
+      },
+      {
+        "line": 279,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"scope_boundary\": \"production/runtime thresholds were not changed; StrategySignal remains observational-only.\","
+      },
+      {
+        "line": 308,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"- Scope: offline replay-only; production/runtime thresholds were not changed.\","
+      },
+      {
+        "line": 372,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"- Boundary: production/runtime thresholds were not changed; no live trading or execution mapping was introduced.\","
+      },
+      {
+        "line": 134,
+        "path": "scripts/generate_manual_trade_report.py",
+        "text": "cfg = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 124,
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "text": "assert_true(\"production/runtime thresholds were not changed\" in markdown)"
+      },
+      {
+        "line": 11,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "baseline                 - current default_params"
+      },
+      {
+        "line": 14,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "lower_thresholds         - more aggressive BUY/SELL"
+      },
+      {
+        "line": 15,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "higher_thresholds        - more conservative BUY/SELL"
+      },
+      {
+        "line": 64,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "\"lower_thresholds\": {"
+      },
+      {
+        "line": 66,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {"
+      },
+      {
+        "line": 73,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "\"higher_thresholds\": {"
+      },
+      {
+        "line": 75,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {"
+      },
+      {
+        "line": 84,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {"
+      },
+      {
+        "line": 93,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "\"direction_thresholds\": {"
+      },
+      {
+        "line": 370,
+        "path": "scripts/replay_parameter_sweep.py",
+        "text": "base_config = cfg.load_default_params()"
+      },
+      {
+        "line": 477,
+        "path": "scripts/test_runtime_control.py",
+        "text": "\"\"\"Monkey-patch the Config instance's load_default_params method.\"\"\""
+      },
+      {
+        "line": 487,
+        "path": "scripts/test_runtime_control.py",
+        "text": "self._real_loader = cfg_instance.load_default_params"
+      },
+      {
+        "line": 489,
+        "path": "scripts/test_runtime_control.py",
+        "text": "cfg_instance.load_default_params = lambda: cfg"
+      },
+      {
+        "line": 493,
+        "path": "scripts/test_runtime_control.py",
+        "text": "self._cfg_instance.load_default_params = self._real_loader"
+      },
+      {
+        "line": 435,
+        "path": "scripts/test_dynamic_watchlist.py",
+        "text": "\"\"\"Make sure the script doesn't touch default_params.yaml.\"\"\""
+      },
+      {
+        "line": 436,
+        "path": "scripts/test_dynamic_watchlist.py",
+        "text": "cfg_path = project_root / \"config/default_params.yaml\""
+      },
+      {
+        "line": 10,
+        "path": "scripts/update_dynamic_watchlist.py",
+        "text": "- Mutate `config/default_params.yaml` runtime watchlist"
+      },
+      {
+        "line": 304,
+        "path": "scripts/update_dynamic_watchlist.py",
+        "text": "default_config = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 369,
+        "path": "scripts/test_screening_agent.py",
+        "text": "# Config override"
+      },
+      {
+        "line": 382,
+        "path": "scripts/test_screening_agent.py",
+        "text": "def test_config_override_rating_thresholds():"
+      },
+      {
+        "line": 383,
+        "path": "scripts/test_screening_agent.py",
+        "text": "config = {\"rating_thresholds\": {\"strong_candidate\": 50, \"candidate\": 30, \"watch_only\": 10}}"
+      },
+      {
+        "line": 389,
+        "path": "scripts/test_screening_agent.py",
+        "text": "print(\"PASS test_config_override_rating_thresholds\")"
+      },
+      {
+        "line": 499,
+        "path": "scripts/test_screening_agent.py",
+        "text": "test_config_override_weights, test_config_override_rating_thresholds,"
+      },
+      {
+        "line": 35,
+        "path": "scripts/replay_signals.py",
+        "text": "default_config = config.load_default_params() or {}"
+      },
+      {
+        "line": 119,
+        "path": "scripts/check_runtime_health.py",
+        "text": "cfg = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 127,
+        "path": "scripts/check_runtime_health.py",
+        "text": "cfg = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 66,
+        "path": "scripts/runtime_control.py",
+        "text": "cfg = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 76,
+        "path": "scripts/runtime_control.py",
+        "text": "cfg = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 41,
+        "path": "scripts/lite_mode_monitor.py",
+        "text": "default_config = config.load_default_params()"
+      },
+      {
+        "line": 212,
+        "path": "scripts/run_calibration_workflow.py",
+        "text": "config_path = str(args.config or (project_root / \"config/default_params.yaml\"))"
+      },
+      {
+        "line": 501,
+        "path": "scripts/run_calibration_workflow.py",
+        "text": "parser.add_argument(\"--config\", default=None, help=\"Path to default_params.yaml\")"
+      },
+      {
+        "line": 44,
+        "path": "scripts/run_screening.py",
+        "text": "default_config = cfg_loader.load_default_params()"
+      },
+      {
+        "line": 296,
+        "path": "scripts/run_screening.py",
+        "text": "\"liquidity_thresholds\": agent.liquidity_thresholds,"
+      },
+      {
+        "line": 298,
+        "path": "scripts/run_screening.py",
+        "text": "\"rating_thresholds\": agent.ratings_cfg,"
+      },
+      {
+        "line": 128,
+        "path": "scripts/run_paper_trading.py",
+        "text": "default_config = config.load_default_params()"
+      },
+      {
+        "line": 13,
+        "path": "scripts/test_execution_modes.py",
+        "text": "default = config.load_default_params()"
+      },
+      {
+        "line": 395,
+        "path": "scripts/runtime_supervisor.py",
+        "text": "cfg = cfg_loader.load_default_params()"
+      }
+    ],
+    "strategy_flow_refs": [
+      {
+        "line": 473,
+        "path": "scripts/test_boundary_guardrails.py",
+        "text": "code = _leak_code(\"from strategies.registry import StrategyRegistry\", forbidden=_STRATEGY_EXEC_SUBSTR)"
+      },
+      {
+        "line": 478,
+        "path": "scripts/test_boundary_guardrails.py",
+        "text": "code = _leak_code(\"from strategies.attribution import build_strategy_signal\", forbidden=_STRATEGY_EXEC_SUBSTR)"
+      },
+      {
+        "line": 10,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 102,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 110,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 119,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 127,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 135,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 143,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 151,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry(config={\"min_action_confidence\": 0.95})"
+      },
+      {
+        "line": 160,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry(config={\"selection\": {\"min_action_confidence\": 0.95}})"
+      },
+      {
+        "line": 168,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry(config={"
+      },
+      {
+        "line": 193,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 203,
+        "path": "scripts/test_strategy_registry.py",
+        "text": "registry = StrategyRegistry()"
+      },
+      {
+        "line": 31,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "from strategies.attribution import build_strategy_signal  # noqa: E402"
+      },
+      {
+        "line": 47,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"strategy_config\": {"
+      },
+      {
+        "line": 64,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"strategy_config\": {"
+      },
+      {
+        "line": 82,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"strategy_config\": {"
+      },
+      {
+        "line": 96,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "\"strategy_config\": {"
+      },
+      {
+        "line": 130,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "def rebuild_replay_records(records: List[Dict], strategy_config: Dict, *, source: str) -> List[Dict]:"
+      },
+      {
+        "line": 135,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "signal = build_strategy_signal("
+      },
+      {
+        "line": 137,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "strategy_config=strategy_config,"
+      },
+      {
+        "line": 403,
+        "path": "scripts/run_volatility_skip_calibration.py",
+        "text": "variant[\"strategy_config\"],"
+      },
+      {
+        "line": 9,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "from strategies.attribution import build_strategy_signal, fallback_strategy_signal"
+      },
+      {
+        "line": 59,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "def test_build_strategy_signal_returns_serialized_dict():"
+      },
+      {
+        "line": 60,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "signal = build_strategy_signal("
+      },
+      {
+        "line": 62,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "strategy_config={\"selection\": {\"min_action_confidence\": 0.55}},"
+      },
+      {
+        "line": 73,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "def test_build_strategy_signal_degrades_when_states_missing():"
+      },
+      {
+        "line": 74,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "signal = build_strategy_signal({}, source=\"unit_test\")"
+      },
+      {
+        "line": 82,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "def test_build_strategy_signal_respects_disabled_config():"
+      },
+      {
+        "line": 83,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "signal = build_strategy_signal("
+      },
+      {
+        "line": 85,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "strategy_config={\"enabled\": False},"
+      },
+      {
+        "line": 108,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "(\"build_strategy_signal_returns_serialized_dict\", test_build_strategy_signal_returns_serialized_dict),"
+      },
+      {
+        "line": 109,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "(\"build_strategy_signal_degrades_when_states_missing\", test_build_strategy_signal_degrades_when_states_missing),"
+      },
+      {
+        "line": 110,
+        "path": "scripts/test_strategy_attribution.py",
+        "text": "(\"build_strategy_signal_respects_disabled_config\", test_build_strategy_signal_respects_disabled_config),"
+      },
+      {
+        "line": 132,
+        "path": "scripts/run_volatility_skip_broader_validation.py",
+        "text": "candidate_records = rebuild_replay_records(records, VARIANTS[candidate][\"strategy_config\"], source=f\"batch3j:{candidate}\")"
+      },
+      {
+        "line": 16,
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "text": "from strategies.registry import StrategyRegistry  # noqa: E402"
+      },
+      {
+        "line": 67,
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "text": "assert_true(\"strategy_config\" in variant, f\"missing strategy_config for {label}\")"
+      },
+      {
+        "line": 69,
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "text": "assert_eq(variant[\"strategy_config\"].get(\"calibration\", {}).get(\"replay_only\"), True)"
+      },
+      {
+        "line": 83,
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "text": "registry = StrategyRegistry(config={"
+      },
+      {
+        "line": 25,
+        "path": "scripts/replay_signals.py",
+        "text": "from strategies.attribution import build_strategy_signal"
+      },
+      {
+        "line": 38,
+        "path": "scripts/replay_signals.py",
+        "text": "strategy_config = default_config.get(\"strategy_layer\", {}) or {}"
+      },
+      {
+        "line": 39,
+        "path": "scripts/replay_signals.py",
+        "text": "if not isinstance(strategy_config, dict):"
+      },
+      {
+        "line": 41,
+        "path": "scripts/replay_signals.py",
+        "text": "return strategy_config"
+      },
+      {
+        "line": 142,
+        "path": "scripts/replay_signals.py",
+        "text": "strategy_signal = build_strategy_signal("
+      },
+      {
+        "line": 144,
+        "path": "scripts/replay_signals.py",
+        "text": "strategy_config=_load_strategy_layer_config(),"
+      },
+      {
+        "line": 118,
+        "path": "scripts/analyze_volatility_skip_zero_blocks.py",
+        "text": "return VARIANTS[candidate][\"strategy_config\"]"
+      },
+      {
+        "line": 484,
+        "path": "scripts/test_analysis_runner.py",
+        "text": "def test_strategy_registry_receives_nested_strategy_config():"
+      },
+      {
+        "line": 520,
+        "path": "scripts/test_analysis_runner.py",
+        "text": "(\"strategy_registry_receives_nested_strategy_config\", test_strategy_registry_receives_nested_strategy_config),"
+      },
+      {
+        "line": 11,
+        "path": "strategies/attribution.py",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 34,
+        "path": "strategies/attribution.py",
+        "text": "def build_strategy_signal("
+      },
+      {
+        "line": 36,
+        "path": "strategies/attribution.py",
+        "text": "strategy_config: Optional[Dict] = None,"
+      },
+      {
+        "line": 45,
+        "path": "strategies/attribution.py",
+        "text": "strategy_config = strategy_config or {}"
+      },
+      {
+        "line": 47,
+        "path": "strategies/attribution.py",
+        "text": "if strategy_config.get(\"enabled\") is False:"
+      },
+      {
+        "line": 64,
+        "path": "strategies/attribution.py",
+        "text": "signal = StrategyRegistry(strategy_config).select("
+      },
+      {
+        "line": 26,
+        "path": "strategies/registry.py",
+        "text": "class StrategyRegistry:"
+      },
+      {
+        "line": 20,
+        "path": "strategies/__init__.py",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 34,
+        "path": "strategies/__init__.py",
+        "text": "\"StrategyRegistry\","
+      },
+      {
+        "line": 27,
+        "path": "orchestration/analysis_runner.py",
+        "text": "from strategies.attribution import build_strategy_signal"
+      },
+      {
+        "line": 84,
+        "path": "orchestration/analysis_runner.py",
+        "text": "strategy_config = default_config.get(\"strategy_layer\", {}) or {}"
+      },
+      {
+        "line": 85,
+        "path": "orchestration/analysis_runner.py",
+        "text": "if not isinstance(strategy_config, dict):"
+      },
+      {
+        "line": 87,
+        "path": "orchestration/analysis_runner.py",
+        "text": "return strategy_config"
+      },
+      {
+        "line": 219,
+        "path": "orchestration/analysis_runner.py",
+        "text": "strategy_signal = build_strategy_signal("
+      },
+      {
+        "line": 221,
+        "path": "orchestration/analysis_runner.py",
+        "text": "strategy_config=_load_strategy_layer_config(),"
+      },
+      {
+        "line": 110,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"from strategies.attribution import build_strategy_signal  # noqa: E402\""
+      },
+      {
+        "line": 115,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"from strategies.attribution import build_strategy_signal, fallback_strategy_signal\""
+      },
+      {
+        "line": 160,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"from strategies.attribution import build_strategy_signal\""
+      },
+      {
+        "line": 175,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"def test_strategy_registry_receives_nested_strategy_config():\""
+      },
+      {
+        "line": 190,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"def build_strategy_signal(\""
+      },
+      {
+        "line": 210,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"text\": \"from strategies.attribution import build_strategy_signal\""
+      },
+      {
+        "line": 219,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"attribution_accepts_strategy_config\": true,"
+      },
+      {
+        "line": 222,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"replay_signals_strategy_config_reference\": true,"
+      },
+      {
+        "line": 223,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"run_paper_trading_strategy_config_reference\": false,"
+      },
+      {
+        "line": 241,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"strategy_config\": false,"
+      },
+      {
+        "line": 256,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+        "text": "\"strategy_config\": false,"
+      },
+      {
+        "line": 37,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| attribution_accepts_strategy_config | true |"
+      },
+      {
+        "line": 38,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| replay_signals_strategy_config_reference | true |"
+      },
+      {
+        "line": 39,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| run_paper_trading_strategy_config_reference | false |"
+      },
+      {
+        "line": 59,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| strategy_config | false |"
+      },
+      {
+        "line": 76,
+        "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+        "text": "| strategy_config | false |"
+      },
+      {
+        "line": 489,
+        "path": "docs/07-backtesting.md",
+        "text": "strategy_config = load_yaml(\"config/active_strategy.yaml\")"
+      },
+      {
+        "line": 493,
+        "path": "docs/07-backtesting.md",
+        "text": "strategy=strategy_config,"
+      },
+      {
+        "line": 500,
+        "path": "docs/07-backtesting.md",
+        "text": "output_file = f\"backtests/{datetime.now().strftime('%Y-%m-%d')}_{strategy_config['name']}.json\""
+      },
+      {
+        "line": 7,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "**Architecture:** `TechnicalAnalyst` already produces `technical_state` and `market_state`; `StrategyRegistry` already selects one pure `StrategySignal`. Batch 3 adds a thin seam in `orchestration/analysis_runner.py`: extract the states from the technical anal"
+      },
+      {
+        "line": 24,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "- `StrategyRegistry.select(technical_state, market_state, context=None)`"
+      },
+      {
+        "line": 53,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "- Do **not** make `StrategyRegistry` depend on orchestration/runtime."
+      },
+      {
+        "line": 217,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "**Objective:** Prove `analyze_symbol()` calls `StrategyRegistry` after `TechnicalAnalyst` and serializes signal into `FinalAnalysis.metadata`."
+      },
+      {
+        "line": 373,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 399,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "def _build_strategy_signal("
+      },
+      {
+        "line": 401,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "strategy_config: Optional[Dict] = None,"
+      },
+      {
+        "line": 417,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "signal = StrategyRegistry(strategy_config or {}).select("
+      },
+      {
+        "line": 433,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "strategy_signal = _build_strategy_signal("
+      },
+      {
+        "line": 435,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "strategy_config={},  # Task 5 wires real config"
+      },
+      {
+        "line": 464,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "**Objective:** Ensure `StrategyRegistry` uses the project\u2019s nested `strategy_layer` config rather than hardcoded defaults."
+      },
+      {
+        "line": 484,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "- If config loads: pass `config[\"strategy_layer\"]` into `StrategyRegistry`."
+      },
+      {
+        "line": 509,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "def test_strategy_registry_receives_nested_strategy_config():"
+      },
+      {
+        "line": 647,
+        "path": ".hermes/plans/2026-06-26_110228-batch3-strategy-signal-integration-seam.md",
+        "text": "- `FinalAnalysis.action` behavior remains sourced from `TraderAgent`, not `StrategyRegistry`."
+      },
+      {
+        "line": 7,
+        "path": ".hermes/plans/2026-06-26_144206-batch3b-strategy-attribution-surface.md",
+        "text": "**Architecture:** Batch 3A already added the core orchestration seam: `TechnicalAnalyst` state \u2192 `StrategyRegistry` \u2192 serialized `StrategySignal` \u2192 `FinalAnalysis.metadata[\"strategy_signal\"]`. Batch 3B should keep that as the single source of truth and only ex"
+      },
+      {
+        "line": 218,
+        "path": ".hermes/plans/opencode-strategy-layer-foundation-prompt.md",
+        "text": "- `from strategies.registry import StrategyRegistry` must not leak execution modules."
+      },
+      {
+        "line": 35,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "_build_strategy_signal(technical_analysis: dict, strategy_config: Optional[Dict] = None) -> Dict"
+      },
+      {
+        "line": 38,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "- `analyze_symbol()` calls `_build_strategy_signal()` and stores result in:"
+      },
+      {
+        "line": 118,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "def build_strategy_signal("
+      },
+      {
+        "line": 120,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config: Optional[Dict] = None,"
+      },
+      {
+        "line": 220,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "from strategies.attribution import build_strategy_signal, fallback_strategy_signal"
+      },
+      {
+        "line": 270,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "def test_build_strategy_signal_returns_serialized_dict():"
+      },
+      {
+        "line": 271,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "signal = build_strategy_signal("
+      },
+      {
+        "line": 273,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config={\"selection\": {\"min_action_confidence\": 0.55}},"
+      },
+      {
+        "line": 284,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "def test_build_strategy_signal_degrades_when_states_missing():"
+      },
+      {
+        "line": 285,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "signal = build_strategy_signal({}, source=\"unit_test\")"
+      },
+      {
+        "line": 293,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "def test_build_strategy_signal_respects_disabled_config():"
+      },
+      {
+        "line": 294,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "signal = build_strategy_signal("
+      },
+      {
+        "line": 296,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config={\"enabled\": False},"
+      },
+      {
+        "line": 319,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "(\"build_strategy_signal_returns_serialized_dict\", test_build_strategy_signal_returns_serialized_dict),"
+      },
+      {
+        "line": 320,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "(\"build_strategy_signal_degrades_when_states_missing\", test_build_strategy_signal_degrades_when_states_missing),"
+      },
+      {
+        "line": 321,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "(\"build_strategy_signal_respects_disabled_config\", test_build_strategy_signal_respects_disabled_config),"
+      },
+      {
+        "line": 387,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 410,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "def build_strategy_signal("
+      },
+      {
+        "line": 412,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config: Optional[Dict] = None,"
+      },
+      {
+        "line": 421,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config = strategy_config or {}"
+      },
+      {
+        "line": 423,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "if strategy_config.get(\"enabled\") is False:"
+      },
+      {
+        "line": 440,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "signal = StrategyRegistry(strategy_config).select("
+      },
+      {
+        "line": 482,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 488,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "from strategies.attribution import build_strategy_signal"
+      },
+      {
+        "line": 499,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "_build_strategy_signal(...)"
+      },
+      {
+        "line": 509,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_signal = _build_strategy_signal("
+      },
+      {
+        "line": 511,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config=_load_strategy_layer_config(),"
+      },
+      {
+        "line": 518,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_signal = build_strategy_signal("
+      },
+      {
+        "line": 520,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config=_load_strategy_layer_config(),"
+      },
+      {
+        "line": 967,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "from strategies.attribution import build_strategy_signal"
+      },
+      {
+        "line": 982,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config = default_config.get(\"strategy_layer\", {}) or {}"
+      },
+      {
+        "line": 983,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "if not isinstance(strategy_config, dict):"
+      },
+      {
+        "line": 985,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "return strategy_config"
+      },
+      {
+        "line": 999,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_signal = build_strategy_signal("
+      },
+      {
+        "line": 1001,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "strategy_config=_load_strategy_layer_config(),"
+      },
+      {
+        "line": 1206,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "- `orchestration/analysis_runner.py` uses `strategies.attribution.build_strategy_signal()` instead of local duplicate logic."
+      },
+      {
+        "line": 1266,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "2. Create strategies/attribution.py with fallback_strategy_signal() and build_strategy_signal()."
+      },
+      {
+        "line": 1267,
+        "path": ".hermes/plans/2026-06-26_150825-batch3c-replay-strategy-attribution.md",
+        "text": "3. Refactor orchestration/analysis_runner.py to use strategies.attribution.build_strategy_signal() and keep Batch 3A behavior unchanged."
+      },
+      {
+        "line": 149,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "2. Implement `StrategyRegistry`."
+      },
+      {
+        "line": 191,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "9. Export `TrendFollowingStrategy`, `BreakoutStrategy`, and `StrategyRegistry` from `strategies/__init__.py`."
+      },
+      {
+        "line": 268,
+        "path": ".hermes/plans/2026-06-16_opencode-strategy-layer-batch2-prompt.md",
+        "text": "code = _leak_code(\"from strategies.registry import StrategyRegistry\", forbidden=_STRATEGY_EXEC_SUBSTR)"
+      },
+      {
+        "line": 334,
+        "path": ".hermes/plans/2026-06-29_095700-batch3h-volatility-skip-calibration-review.md",
+        "text": "- Add a small calibration wrapper that passes explicit `strategy_config` to attribution, or"
+      },
+      {
+        "line": 835,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "code = _leak_code(\"from strategies.registry import StrategyRegistry\")"
+      },
+      {
+        "line": 900,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "from strategies.registry import StrategyRegistry"
+      },
+      {
+        "line": 904,
+        "path": ".hermes/plans/2026-06-16_120000-strategy-layer-foundation.md",
+        "text": "strategy_signal = StrategyRegistry().select("
+      }
+    ]
+  },
+  "strategy_code_knobs_supported": true
+}

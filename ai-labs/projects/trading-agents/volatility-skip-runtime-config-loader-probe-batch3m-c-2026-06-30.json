@@ -1,0 +1,1312 @@
+{
+  "authoritative_config_source": "config/default_params.yaml",
+  "batch": "3M-C",
+  "breakout_allow_volatile_safe": "not_present_defaults_to_strategy_behavior",
+  "config_only_implementation_feasible": "likely_after_approval",
+  "config_probe_results": [
+    {
+      "breakout_allow_volatile_current": null,
+      "exists": true,
+      "load_error": null,
+      "loaded": true,
+      "loader": "yaml.safe_load",
+      "path": "config/default_params.yaml",
+      "strategy_config_keys": [
+        "regime_strategy_order",
+        "selection"
+      ],
+      "strategy_config_location": "strategy_layer",
+      "strategy_locations_found": [
+        {
+          "keys": [
+            "default_confidence_floor",
+            "enabled",
+            "regime_strategy_order",
+            "selection"
+          ],
+          "location": "strategy_layer"
+        },
+        {
+          "keys": [
+            "regime_strategy_order",
+            "selection"
+          ],
+          "location": "strategy_layer"
+        }
+      ],
+      "top_level_keys": [
+        "analyst_weights",
+        "backtesting",
+        "confidence",
+        "data_quality",
+        "demo_trading",
+        "dynamic_watchlist",
+        "entry",
+        "fine_tuning",
+        "futures",
+        "lite_mode",
+        "market_regime",
+        "modes",
+        "notifications",
+        "parameter_sweep",
+        "parameter_tuning",
+        "position_manager",
+        "risk_management",
+        "risk_manager",
+        "runtime",
+        "scheduler",
+        "screening",
+        "simulation",
+        "stop_loss",
+        "strategy_layer",
+        "system",
+        "take_profit",
+        "technical_indicators",
+        "trade_watchlist",
+        "watchlist"
+      ],
+      "variant_d_key_presence": {
+        "breakout.allow_volatile": {
+          "current_value": null,
+          "future_target": false,
+          "present": false,
+          "receiver": "BreakoutStrategy"
+        },
+        "selection.min_action_confidence": {
+          "current_value": 0.55,
+          "future_target": 0.5,
+          "present": true,
+          "receiver": "StrategyRegistry"
+        },
+        "trend_following.allow_volatile_trend_down": {
+          "current_value": null,
+          "future_target": true,
+          "present": false,
+          "receiver": "TrendFollowingStrategy"
+        },
+        "trend_following.allow_volatile_trend_up": {
+          "current_value": null,
+          "future_target": true,
+          "present": false,
+          "receiver": "TrendFollowingStrategy"
+        },
+        "trend_following.min_regime_confidence": {
+          "current_value": null,
+          "future_target": 0.5,
+          "present": false,
+          "receiver": "TrendFollowingStrategy"
+        },
+        "volatility_skip.high_atr_pct": {
+          "current_value": null,
+          "future_target": 0.1,
+          "present": false,
+          "receiver": "VolatilitySkipStrategy"
+        },
+        "volatility_skip.volatile_confidence_floor": {
+          "current_value": null,
+          "future_target": 0.75,
+          "present": false,
+          "receiver": "VolatilitySkipStrategy"
+        }
+      }
+    },
+    {
+      "breakout_allow_volatile_current": null,
+      "exists": true,
+      "load_error": null,
+      "loaded": true,
+      "loader": "yaml.safe_load",
+      "path": "config/thresholds.yaml",
+      "strategy_config_keys": [],
+      "strategy_config_location": null,
+      "strategy_locations_found": [],
+      "top_level_keys": [
+        "confidence",
+        "cost",
+        "data_quality",
+        "drawdown",
+        "errors",
+        "exposure",
+        "liquidity",
+        "margin",
+        "notes",
+        "screening",
+        "system",
+        "timing",
+        "volatility"
+      ],
+      "variant_d_key_presence": {
+        "breakout.allow_volatile": {
+          "current_value": null,
+          "future_target": false,
+          "present": false,
+          "receiver": "BreakoutStrategy"
+        },
+        "selection.min_action_confidence": {
+          "current_value": null,
+          "future_target": 0.5,
+          "present": false,
+          "receiver": "StrategyRegistry"
+        },
+        "trend_following.allow_volatile_trend_down": {
+          "current_value": null,
+          "future_target": true,
+          "present": false,
+          "receiver": "TrendFollowingStrategy"
+        },
+        "trend_following.allow_volatile_trend_up": {
+          "current_value": null,
+          "future_target": true,
+          "present": false,
+          "receiver": "TrendFollowingStrategy"
+        },
+        "trend_following.min_regime_confidence": {
+          "current_value": null,
+          "future_target": 0.5,
+          "present": false,
+          "receiver": "TrendFollowingStrategy"
+        },
+        "volatility_skip.high_atr_pct": {
+          "current_value": null,
+          "future_target": 0.1,
+          "present": false,
+          "receiver": "VolatilitySkipStrategy"
+        },
+        "volatility_skip.volatile_confidence_floor": {
+          "current_value": null,
+          "future_target": 0.75,
+          "present": false,
+          "receiver": "VolatilitySkipStrategy"
+        }
+      }
+    }
+  ],
+  "config_sources_read": [
+    "config/default_params.yaml",
+    "config/thresholds.yaml"
+  ],
+  "dead_config_risk_after_probe": "low_to_medium",
+  "evidence": {
+    "batch3l_recommended_candidate": "variant-d",
+    "batch3m_b_dead_config_risk": "medium",
+    "batch3m_b_outcome": "Outcome B \u2014 strategy knobs are code-supported, but authoritative runtime YAML seam remains partially confirmed only."
+  },
+  "implementation_authorized": false,
+  "loader_candidates": [
+    {
+      "imports_sample": [
+        "asyncio",
+        "dotenv",
+        "os",
+        "pathlib",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "main.py",
+      "safe_to_import_confidence": "low",
+      "side_effect_risk_imports": [
+        "dotenv"
+      ]
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "datetime",
+        "json",
+        "pathlib",
+        "sys",
+        "yaml"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 72,
+          "name": "load_yaml"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 83,
+          "name": "get_config_value"
+        }
+      ],
+      "path": "scripts/generate_parameter_recommendations.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "asyncio",
+        "dataclasses",
+        "datetime",
+        "dotenv",
+        "itertools",
+        "pathlib",
+        "scripts.backtest_engine",
+        "sys",
+        "typing",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "ClassDef",
+          "line": 29,
+          "name": "ParameterSet"
+        },
+        {
+          "kind": "ClassDef",
+          "line": 38,
+          "name": "ParameterOptimizer"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 47,
+          "name": "generate_parameter_sets"
+        },
+        {
+          "kind": "AsyncFunctionDef",
+          "line": 69,
+          "name": "test_parameter_set"
+        }
+      ],
+      "path": "scripts/parameter_optimizer.py",
+      "safe_to_import_confidence": "low",
+      "side_effect_risk_imports": [
+        "dotenv"
+      ]
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "datetime",
+        "itertools",
+        "json",
+        "pathlib",
+        "scripts.simulate_trades",
+        "sys",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 32,
+          "name": "generate_sweep_configs"
+        }
+      ],
+      "path": "scripts/parameter_sweep.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "datetime",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "time"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "scripts/run_calibration_workflow.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "dataclasses",
+        "datetime",
+        "json",
+        "logging",
+        "os",
+        "pathlib",
+        "scripts.runtime_control",
+        "state.runtime_health",
+        "sys",
+        "time",
+        "typing",
+        "utils",
+        "utils.process_lock"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "scripts/runtime_supervisor.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "json",
+        "pathlib",
+        "scripts.update_dynamic_watchlist",
+        "subprocess",
+        "sys",
+        "tempfile"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 434,
+          "name": "test_does_not_mutate_config"
+        }
+      ],
+      "path": "scripts/test_dynamic_watchlist.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "json",
+        "pathlib",
+        "scripts.generate_parameter_recommendations",
+        "sys",
+        "tempfile"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 57,
+          "name": "_config"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 90,
+          "name": "test_load_yaml_valid"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 100,
+          "name": "test_get_config_value_present"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 106,
+          "name": "test_get_config_value_missing"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 112,
+          "name": "test_get_config_value_none_cfg"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 147,
+          "name": "test_side_bias_below_threshold_ignored"
+        }
+      ],
+      "path": "scripts/test_parameter_recommendations.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "json",
+        "pathlib",
+        "scripts.parameter_sweep",
+        "sys",
+        "tempfile"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 49,
+          "name": "test_generate_sweep_configs_count"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 65,
+          "name": "test_generate_sweep_configs_default"
+        }
+      ],
+      "path": "scripts/test_parameter_sweep.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "json",
+        "os",
+        "pathlib",
+        "scripts.runtime_control",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "scripts/test_runtime_control.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "agents.screening_agent",
+        "json",
+        "math",
+        "pathlib",
+        "random",
+        "subprocess",
+        "sys",
+        "tempfile"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 372,
+          "name": "test_config_override_weights"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 382,
+          "name": "test_config_override_rating_thresholds"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 463,
+          "name": "test_screen_does_not_mutate_config"
+        }
+      ],
+      "path": "scripts/test_screening_agent.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "argparse",
+        "datetime",
+        "json",
+        "pathlib",
+        "sys",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "scripts/update_dynamic_watchlist.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "os",
+        "pathlib",
+        "sys",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "FunctionDef",
+          "line": 59,
+          "name": "test_config_files"
+        }
+      ],
+      "path": "scripts/validate_structure.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "os",
+        "state",
+        "telegram",
+        "telegram.error",
+        "telegram.ext",
+        "trading",
+        "trading.base_trader",
+        "utils"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "AsyncFunctionDef",
+          "line": 330,
+          "name": "cmd_config"
+        }
+      ],
+      "path": "telegram_bot/bot.py",
+      "safe_to_import_confidence": "low",
+      "side_effect_risk_imports": [
+        "telegram",
+        "telegram.error",
+        "telegram.ext",
+        "trading",
+        "trading.base_trader"
+      ]
+    },
+    {
+      "imports_sample": [
+        "pathlib",
+        "typing",
+        "yaml"
+      ],
+      "loaderish_functions_or_classes": [
+        {
+          "kind": "ClassDef",
+          "line": 9,
+          "name": "Config"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 18,
+          "name": "load_default_params"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 26,
+          "name": "load_thresholds"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 34,
+          "name": "load_coin_params"
+        },
+        {
+          "kind": "FunctionDef",
+          "line": 62,
+          "name": "get_param"
+        }
+      ],
+      "path": "utils/config_loader.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "logging",
+        "logging.handlers",
+        "pathlib",
+        "sys"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "utils/logging_config.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    },
+    {
+      "imports_sample": [
+        "json",
+        "pathlib",
+        "typing"
+      ],
+      "loaderish_functions_or_classes": [],
+      "path": "utils/watchlist.py",
+      "safe_to_import_confidence": "medium",
+      "side_effect_risk_imports": []
+    }
+  ],
+  "loader_refs_sample": [
+    {
+      "line": 187,
+      "path": "scripts/test_parameter_sweep.py",
+      "text": "assert \"Best Config\" in content"
+    },
+    {
+      "line": 199,
+      "path": "scripts/parameter_sweep.py",
+      "text": "lines.append(\"## Best Config\")"
+    },
+    {
+      "line": 64,
+      "path": "scripts/validate_structure.py",
+      "text": "\"config/default_params.yaml\","
+    },
+    {
+      "line": 65,
+      "path": "scripts/validate_structure.py",
+      "text": "\"config/thresholds.yaml\","
+    },
+    {
+      "line": 90,
+      "path": "scripts/validate_structure.py",
+      "text": "results.append((\"Config Files\", test_config_files()))"
+    },
+    {
+      "line": 9,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "- The script reads `config/default_params.yaml` only to surface current"
+    },
+    {
+      "line": 17,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "config/default_params.yaml"
+    },
+    {
+      "line": 72,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "def load_yaml(path: Path):"
+    },
+    {
+      "line": 78,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "return yaml.safe_load(f)"
+    },
+    {
+      "line": 465,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "lines.append(\"| # | Priority | Category | Finding | Config | Suggested |\")"
+    },
+    {
+      "line": 488,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "lines.append(f\"**Config path:** `{r.get('config_path') or '\u2014'}`\")"
+    },
+    {
+      "line": 530,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "parser.add_argument(\"--config\", default=\"config/default_params.yaml\")"
+    },
+    {
+      "line": 546,
+      "path": "scripts/generate_parameter_recommendations.py",
+      "text": "default_config = load_yaml(resolve(args.config)) or {}"
+    },
+    {
+      "line": 15,
+      "path": "scripts/test_parameter_recommendations.py",
+      "text": "load_yaml,"
+    },
+    {
+      "line": 90,
+      "path": "scripts/test_parameter_recommendations.py",
+      "text": "def test_load_yaml_valid():"
+    },
+    {
+      "line": 94,
+      "path": "scripts/test_parameter_recommendations.py",
+      "text": "data = load_yaml(path)"
+    },
+    {
+      "line": 97,
+      "path": "scripts/test_parameter_recommendations.py",
+      "text": "print(\"PASS test_load_yaml_valid\")"
+    },
+    {
+      "line": 361,
+      "path": "scripts/test_parameter_recommendations.py",
+      "text": "\"--config\", str(project_root_real / \"config/default_params.yaml\"),"
+    },
+    {
+      "line": 382,
+      "path": "scripts/test_parameter_recommendations.py",
+      "text": "test_load_yaml_valid,"
+    },
+    {
+      "line": 201,
+      "path": "scripts/parameter_optimizer.py",
+      "text": "print(\"\\nTo apply these parameters, update config/default_params.yaml:\")"
+    },
+    {
+      "line": 477,
+      "path": "scripts/test_runtime_control.py",
+      "text": "\"\"\"Monkey-patch the Config instance's load_default_params method.\"\"\""
+    },
+    {
+      "line": 435,
+      "path": "scripts/test_dynamic_watchlist.py",
+      "text": "\"\"\"Make sure the script doesn't touch default_params.yaml.\"\"\""
+    },
+    {
+      "line": 436,
+      "path": "scripts/test_dynamic_watchlist.py",
+      "text": "cfg_path = project_root / \"config/default_params.yaml\""
+    },
+    {
+      "line": 10,
+      "path": "scripts/update_dynamic_watchlist.py",
+      "text": "- Mutate `config/default_params.yaml` runtime watchlist"
+    },
+    {
+      "line": 369,
+      "path": "scripts/test_screening_agent.py",
+      "text": "# Config override"
+    },
+    {
+      "line": 212,
+      "path": "scripts/run_calibration_workflow.py",
+      "text": "config_path = str(args.config or (project_root / \"config/default_params.yaml\"))"
+    },
+    {
+      "line": 501,
+      "path": "scripts/run_calibration_workflow.py",
+      "text": "parser.add_argument(\"--config\", default=None, help=\"Path to default_params.yaml\")"
+    },
+    {
+      "line": 425,
+      "path": "scripts/runtime_supervisor.py",
+      "text": "logging.basicConfig("
+    },
+    {
+      "line": 176,
+      "path": "utils/watchlist.py",
+      "text": "1. Static watchlist from `config.default_params.yaml -> watchlist`"
+    },
+    {
+      "line": 2,
+      "path": "utils/logging_config.py",
+      "text": "Logging Configuration"
+    },
+    {
+      "line": 2,
+      "path": "utils/config_loader.py",
+      "text": "Configuration Loader"
+    },
+    {
+      "line": 9,
+      "path": "utils/config_loader.py",
+      "text": "class Config:"
+    },
+    {
+      "line": 10,
+      "path": "utils/config_loader.py",
+      "text": "\"\"\"Configuration manager\"\"\""
+    },
+    {
+      "line": 21,
+      "path": "utils/config_loader.py",
+      "text": "config_file = self.config_dir / \"default_params.yaml\""
+    },
+    {
+      "line": 23,
+      "path": "utils/config_loader.py",
+      "text": "self._default_params = yaml.safe_load(f)"
+    },
+    {
+      "line": 29,
+      "path": "utils/config_loader.py",
+      "text": "config_file = self.config_dir / \"thresholds.yaml\""
+    },
+    {
+      "line": 31,
+      "path": "utils/config_loader.py",
+      "text": "self._thresholds = yaml.safe_load(f)"
+    },
+    {
+      "line": 44,
+      "path": "utils/config_loader.py",
+      "text": "coin_overrides = yaml.safe_load(f)"
+    },
+    {
+      "line": 83,
+      "path": "utils/config_loader.py",
+      "text": "config = Config()"
+    },
+    {
+      "line": 120,
+      "path": "README.md",
+      "text": "cp config/default_params.yaml.example config/default_params.yaml"
+    },
+    {
+      "line": 178,
+      "path": "README.md",
+      "text": "## Configuration"
+    },
+    {
+      "line": 181,
+      "path": "README.md",
+      "text": "- `default_params.yaml` \u2014 Global defaults"
+    },
+    {
+      "line": 183,
+      "path": "README.md",
+      "text": "- `thresholds.yaml` \u2014 Risk thresholds"
+    },
+    {
+      "line": 105,
+      "path": "volatility-skip-implementation-design-batch3l-2026-06-30.md",
+      "text": "| config/default_params.yaml or config/thresholds.yaml | Expose/adopt variant-d volatility-skip and strategy-selection parameters as runtime/default config values. | read/document only; no mutation |"
+    },
+    {
+      "line": 143,
+      "path": "volatility-skip-implementation-design-batch3l-2026-06-30.md",
+      "text": "- Config changes are isolated, explicit, and reversible."
+    },
+    {
+      "line": 91,
+      "path": "trading-agent-idea.md",
+      "text": "\u2502   \u2514\u2500\u2500 thresholds.yaml    # Risk thresholds, triggers"
+    },
+    {
+      "line": 30,
+      "path": "main.py",
+      "text": "logger.info(\"Configuration loaded successfully\")"
+    },
+    {
+      "line": 9,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+      "text": "\"path\": \"config/default_params.yaml or config/thresholds.yaml\","
+    },
+    {
+      "line": 214,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+      "text": "\"path\": \"config/default_params.yaml\","
+    },
+    {
+      "line": 231,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+      "text": "\"config/default_params.yaml\": {"
+    },
+    {
+      "line": 246,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.json",
+      "text": "\"config/thresholds.yaml\": {"
+    },
+    {
+      "line": 1,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "# Batch 3M-B \u2014 Authoritative Config Seam Confirmation"
+    },
+    {
+      "line": 16,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "| Config-only implementation feasible | partial |"
+    },
+    {
+      "line": 19,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "## Config Source Matrix"
+    },
+    {
+      "line": 23,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "| config/default_params.yaml | true | true | 97 | candidate_source_needs_confirmation |"
+    },
+    {
+      "line": 24,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "| config/thresholds.yaml | true | false | 22 | candidate_source_needs_confirmation |"
+    },
+    {
+      "line": 49,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "| docs/07-backtesting.md | 489 | strategy_config = load_yaml(\"config/active_strategy.yaml\") |"
+    },
+    {
+      "line": 70,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "## Dead Config Risk Assessment"
+    },
+    {
+      "line": 96,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.md",
+      "text": "- Config-only implementation feasible: partial"
+    },
+    {
+      "line": 1,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+      "text": "# Batch 3M-A \u2014 Read-only Runtime Config Seam Audit + Dry-run Patch Proposal"
+    },
+    {
+      "line": 43,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+      "text": "## YAML Config Surface Audit"
+    },
+    {
+      "line": 45,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+      "text": "### config/default_params.yaml"
+    },
+    {
+      "line": 62,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+      "text": "### config/thresholds.yaml"
+    },
+    {
+      "line": 103,
+      "path": "volatility-skip-runtime-readiness-batch3m-a-2026-06-30.md",
+      "text": "| config/default_params.yaml or config/thresholds.yaml | needs exact authoritative source confirmation | Wrong YAML source may create dead config or unintended runtime behavior |"
+    },
+    {
+      "line": 9,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"file\": \"config/default_params.yaml\","
+    },
+    {
+      "line": 18,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"config/default_params.yaml\","
+    },
+    {
+      "line": 38,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"file\": \"config/thresholds.yaml\","
+    },
+    {
+      "line": 42,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"config/thresholds.yaml\","
+    },
+    {
+      "line": 152,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"    logger.info(\\\"Configuration loaded successfully\\\")\""
+    },
+    {
+      "line": 462,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"config/default_params.yaml\\\",\""
+    },
+    {
+      "line": 467,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"config/thresholds.yaml\\\",\""
+    },
+    {
+      "line": 472,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- The script reads `config/default_params.yaml` only to surface current\""
+    },
+    {
+      "line": 477,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"config/default_params.yaml\""
+    },
+    {
+      "line": 482,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"parser.add_argument(\\\"--config\\\", default=\\\"config/default_params.yaml\\\")\""
+    },
+    {
+      "line": 487,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"--config\\\", str(project_root_real / \\\"config/default_params.yaml\\\"),\""
+    },
+    {
+      "line": 492,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"print(\\\"\\\\nTo apply these parameters, update config/default_params.yaml:\\\")\""
+    },
+    {
+      "line": 497,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"\\\"\\\"Make sure the script doesn't touch default_params.yaml.\\\"\\\"\\\"\""
+    },
+    {
+      "line": 502,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"cfg_path = project_root / \\\"config/default_params.yaml\\\"\""
+    },
+    {
+      "line": 507,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- Mutate `config/default_params.yaml` runtime watchlist\""
+    },
+    {
+      "line": 512,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"config_path = str(args.config or (project_root / \\\"config/default_params.yaml\\\"))\""
+    },
+    {
+      "line": 517,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"parser.add_argument(\\\"--config\\\", default=None, help=\\\"Path to default_params.yaml\\\")\""
+    },
+    {
+      "line": 522,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"1. Static watchlist from `config.default_params.yaml -> watchlist`\""
+    },
+    {
+      "line": 527,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"config_file = self.config_dir / \\\"default_params.yaml\\\"\""
+    },
+    {
+      "line": 532,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"config_file = self.config_dir / \\\"thresholds.yaml\\\"\""
+    },
+    {
+      "line": 537,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"cp config/default_params.yaml.example config/default_params.yaml\""
+    },
+    {
+      "line": 542,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- `default_params.yaml` \\u2014 Global defaults\""
+    },
+    {
+      "line": 547,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- `thresholds.yaml` \\u2014 Risk thresholds\""
+    },
+    {
+      "line": 552,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"| config/default_params.yaml or config/thresholds.yaml | Expose/adopt variant-d volatility-skip and strategy-selection parameters as runtime/default config values. | read/document only; no mutation |\""
+    },
+    {
+      "line": 557,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\u2502   \\u2514\\u2500\\u2500 thresholds.yaml    # Risk thresholds, triggers\""
+    },
+    {
+      "line": 562,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"path\\\": \\\"config/default_params.yaml or config/thresholds.yaml\\\",\""
+    },
+    {
+      "line": 567,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"path\\\": \\\"config/default_params.yaml\\\",\""
+    },
+    {
+      "line": 572,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"config/default_params.yaml\\\": {\""
+    },
+    {
+      "line": 577,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"config/thresholds.yaml\\\": {\""
+    },
+    {
+      "line": 582,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"### config/default_params.yaml\""
+    },
+    {
+      "line": 587,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"### config/thresholds.yaml\""
+    },
+    {
+      "line": 592,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"| config/default_params.yaml or config/thresholds.yaml | needs exact authoritative source confirmation | Wrong YAML source may create dead config or unintended runtime behavior |\""
+    },
+    {
+      "line": 597,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\\"path\\\": \\\"config/default_params.yaml or config/thresholds.yaml\\\"\""
+    },
+    {
+      "line": 602,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"| [config-promotion-checklist.md](config-promotion-checklist.md) | Gate before applying any config change. | Before editing `default_params.yaml`. |\""
+    },
+    {
+      "line": 607,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\u2514\\u2500\\u2500 default_params.yaml         # Added lite_mode, scheduler, watchlist\""
+    },
+    {
+      "line": 612,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"# config/default_params.yaml -> lite_mode.flash_threshold_pct\""
+    },
+    {
+      "line": 617,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"M\\u1ed7i coin c\\u00f3 file config ri\\u00eang, inherits t\\u1eeb `default_params.yaml`:\""
+    },
+    {
+      "line": 622,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"\\u251c\\u2500\\u2500 default_params.yaml       # Global defaults\""
+    },
+    {
+      "line": 627,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- `config/default_params.yaml`\""
+    },
+    {
+      "line": 632,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"> **Scope:** Mandatory steps before applying ANY change to `config/default_params.yaml` that affects live trading behavior.\""
+    },
+    {
+      "line": 637,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- [ ] Change can be reverted by editing one line in `default_params.yaml` and `runtime_control restart`\""
+    },
+    {
+      "line": 642,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"Run `git diff config/default_params.yaml` and confirm:\""
+    },
+    {
+      "line": 647,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"2. **Apply change** to `config/default_params.yaml`\""
+    },
+    {
+      "line": 652,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"./venv/bin/python -c \\\"import yaml; print(yaml.safe_load(open('config/default_params.yaml'))['analyst_weights'])\\\"\""
+    },
+    {
+      "line": 657,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"git add config/default_params.yaml\""
+    },
+    {
+      "line": 662,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"| Edit `default_params.yaml` while runtime running | Race condition with cycle reads |\""
+    },
+    {
+      "line": 667,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"2. `git diff HEAD~1 config/default_params.yaml` \\u2192 identify the change\""
+    },
+    {
+      "line": 672,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"# Edit config/default_params.yaml: runtime.supervisor.enabled: true\""
+    },
+    {
+      "line": 677,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"In `config/default_params.yaml`:\""
+    },
+    {
+      "line": 682,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"### Config File (config/default_params.yaml)\""
+    },
+    {
+      "line": 687,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"nano config/default_params.yaml\""
+    },
+    {
+      "line": 692,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"nano config/default_params.yaml\""
+    },
+    {
+      "line": 697,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"**Net effect on live config: ZERO changes.** `config/default_params.yaml` remains at the calibrated Phase 6B baseline.\""
+    },
+    {
+      "line": 702,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- **No signal-config recommendation.** `config/default_params.yaml` remains at the current baseline.\""
+    },
+    {
+      "line": 707,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"**Net effect on live config: ZERO changes.** `config/default_params.yaml` remains at the current baseline.\""
+    },
+    {
+      "line": 712,
+      "path": "volatility-skip-config-seam-confirmation-batch3m-b-2026-06-30.json",
+      "text": "\"text\": \"- `config/default_params.yaml`\""
+    }
+  ],
+  "mode": "side_effect_free_runtime_config_loader_probe",
+  "probe_ran": true,
+  "probe_side_effect_free": true,
+  "production_change_authorized": false,
+  "recommendation": {
+    "approval_required_before_mutation": "Approve Batch 3M runtime/default implementation for variant-d volatility-skip calibration.",
+    "next_batch": "Approved Batch 3M implementation may proceed cautiously after explicit approval phrase, preferably config-only with tests.",
+    "outcome": "Outcome A/B \u2014 side-effect-free YAML probe found strategy config shape, but runtime loader import was not invoked; implementation still requires explicit approval and final loader caution."
+  },
+  "runtime_default_config_change_performed": false,
+  "runtime_loader_imported": false,
+  "runtime_loop_started": false,
+  "strategy_config_location": "strategy_layer",
+  "strategy_config_shape_confirmed": true,
+  "strategy_config_sources": [
+    {
+      "keys": [
+        "regime_strategy_order",
+        "selection"
+      ],
+      "location": "strategy_layer",
+      "path": "config/default_params.yaml"
+    }
+  ],
+  "variant_d_key_presence": {
+    "config/default_params.yaml": {
+      "breakout.allow_volatile": {
+        "current_value": null,
+        "future_target": false,
+        "present": false,
+        "receiver": "BreakoutStrategy"
+      },
+      "selection.min_action_confidence": {
+        "current_value": 0.55,
+        "future_target": 0.5,
+        "present": true,
+        "receiver": "StrategyRegistry"
+      },
+      "trend_following.allow_volatile_trend_down": {
+        "current_value": null,
+        "future_target": true,
+        "present": false,
+        "receiver": "TrendFollowingStrategy"
+      },
+      "trend_following.allow_volatile_trend_up": {
+        "current_value": null,
+        "future_target": true,
+        "present": false,
+        "receiver": "TrendFollowingStrategy"
+      },
+      "trend_following.min_regime_confidence": {
+        "current_value": null,
+        "future_target": 0.5,
+        "present": false,
+        "receiver": "TrendFollowingStrategy"
+      },
+      "volatility_skip.high_atr_pct": {
+        "current_value": null,
+        "future_target": 0.1,
+        "present": false,
+        "receiver": "VolatilitySkipStrategy"
+      },
+      "volatility_skip.volatile_confidence_floor": {
+        "current_value": null,
+        "future_target": 0.75,
+        "present": false,
+        "receiver": "VolatilitySkipStrategy"
+      }
+    },
+    "config/thresholds.yaml": {
+      "breakout.allow_volatile": {
+        "current_value": null,
+        "future_target": false,
+        "present": false,
+        "receiver": "BreakoutStrategy"
+      },
+      "selection.min_action_confidence": {
+        "current_value": null,
+        "future_target": 0.5,
+        "present": false,
+        "receiver": "StrategyRegistry"
+      },
+      "trend_following.allow_volatile_trend_down": {
+        "current_value": null,
+        "future_target": true,
+        "present": false,
+        "receiver": "TrendFollowingStrategy"
+      },
+      "trend_following.allow_volatile_trend_up": {
+        "current_value": null,
+        "future_target": true,
+        "present": false,
+        "receiver": "TrendFollowingStrategy"
+      },
+      "trend_following.min_regime_confidence": {
+        "current_value": null,
+        "future_target": 0.5,
+        "present": false,
+        "receiver": "TrendFollowingStrategy"
+      },
+      "volatility_skip.high_atr_pct": {
+        "current_value": null,
+        "future_target": 0.1,
+        "present": false,
+        "receiver": "VolatilitySkipStrategy"
+      },
+      "volatility_skip.volatile_confidence_floor": {
+        "current_value": null,
+        "future_target": 0.75,
+        "present": false,
+        "receiver": "VolatilitySkipStrategy"
+      }
+    }
+  }
+}

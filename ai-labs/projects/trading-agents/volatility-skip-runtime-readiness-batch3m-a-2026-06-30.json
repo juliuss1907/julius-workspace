@@ -1,0 +1,262 @@
+{
+  "batch": "3M-A",
+  "dry_run_patch_applied": false,
+  "dry_run_patch_proposal": {
+    "applied": false,
+    "candidate": "variant-d",
+    "change_surface": [
+      {
+        "path": "config/default_params.yaml or config/thresholds.yaml",
+        "risk": "Wrong YAML source may create dead config or unintended runtime behavior",
+        "status": "needs exact authoritative source confirmation"
+      },
+      {
+        "path": "strategies/volatility_skip.py",
+        "risk": "Code change not preferred unless config support is incomplete",
+        "status": "appears to support high_atr_pct and volatile_confidence_floor"
+      },
+      {
+        "path": "strategies/trend_following.py",
+        "risk": "Volatile trend-following must remain explicit and reversible",
+        "status": "appears to support volatile allowances and min_regime_confidence"
+      },
+      {
+        "path": "strategies/breakout.py",
+        "risk": "Accidentally applying variant-b behavior",
+        "status": "allow_volatile exists but must remain false"
+      },
+      {
+        "path": "strategies/registry.py",
+        "risk": "Selection floor may alter all strategies if scoped incorrectly",
+        "status": "appears to support selection.min_action_confidence"
+      }
+    ],
+    "must_not_apply": {
+      "breakout.allow_volatile": true,
+      "variant-b": true
+    },
+    "proposed_values": {
+      "breakout.allow_volatile": false,
+      "selection.min_action_confidence": 0.5,
+      "trend_following.allow_volatile_trend_down": true,
+      "trend_following.allow_volatile_trend_up": true,
+      "trend_following.min_regime_confidence": 0.5,
+      "volatility_skip.high_atr_pct": 0.1,
+      "volatility_skip.volatile_confidence_floor": 0.75
+    }
+  },
+  "evidence": {
+    "batch3j_outcome": "Variant D remains the safer primary candidate for another review step.",
+    "batch3j_windows": 2,
+    "batch3k_baseline_blocks_reviewed": 86,
+    "batch3k_outcome": "Variant D zero-block behavior is mostly explained by the replay-only volatile confidence floor.",
+    "batch3l_recommended_candidate": "variant-d",
+    "batch3l_variant_e_required": false
+  },
+  "implementation_authorized": false,
+  "mode": "read_only_runtime_config_seam_audit_and_dry_run_patch_proposal",
+  "production_change_authorized": false,
+  "readiness": {
+    "approval_phrase": "Approve Batch 3M runtime/default implementation for variant-d volatility-skip calibration.",
+    "requires_explicit_batch3m_approval_phrase": true,
+    "safe_to_implement_now": false,
+    "strategy_knobs_supported_in_code": true,
+    "yaml_strategy_surface_detected": true
+  },
+  "recommendation": {
+    "next_batch": "Batch 3M-B or Batch 3M implementation, only after explicit approval phrase and final config seam confirmation",
+    "outcome": "Do not implement runtime/default changes yet. The next safe step is explicit approval plus final config seam confirmation before applying variant-d."
+  },
+  "recommended_candidate": "variant-d",
+  "requires_approval_before_runtime_change": true,
+  "runtime_default_config_change_performed": false,
+  "secondary_candidate": "variant-b_stress_test_only",
+  "stop_conditions": [
+    "No explicit approval phrase for Batch 3M runtime/default implementation.",
+    "Authoritative runtime config source is not yet proven.",
+    "Any implementation would require touching execution/order/trading/live paths.",
+    "Volatile breakout would need to be enabled by default.",
+    "Rollback path cannot be made simple and testable."
+  ],
+  "strategy_flow_sample": [
+    {
+      "line": 162,
+      "path": "scripts/test_final_analysis_contract.py",
+      "text": "{\"strategy_id\": \"volatility_skip\", \"action\": \"hold\", \"confidence\": 0.9},"
+    },
+    {
+      "line": 263,
+      "path": "scripts/test_boundary_guardrails.py",
+      "text": "def test_volatility_skip_calibration_cli_help_exits_zero_lightweight():"
+    },
+    {
+      "line": 7,
+      "path": "scripts/test_volatility_skip_broader_validation.py",
+      "text": "import run_volatility_skip_broader_validation as broader"
+    },
+    {
+      "line": 103,
+      "path": "scripts/test_strategy_registry.py",
+      "text": "assert_true(\"volatility_skip\" in registry._strategies)"
+    },
+    {
+      "line": 112,
+      "path": "scripts/analyze_replay_attribution.py",
+      "text": "def _is_volatility_skip_block(strategy_signal: Dict) -> bool:"
+    },
+    {
+      "line": 31,
+      "path": "scripts/run_volatility_skip_calibration.py",
+      "text": "from strategies.attribution import build_strategy_signal  # noqa: E402"
+    },
+    {
+      "line": 9,
+      "path": "scripts/test_strategy_attribution.py",
+      "text": "from strategies.attribution import build_strategy_signal, fallback_strategy_signal"
+    },
+    {
+      "line": 121,
+      "path": "scripts/test_manual_report_policy.py",
+      "text": "{\"strategy_id\": \"volatility_skip\", \"action\": \"hold\", \"confidence\": 0.90},"
+    },
+    {
+      "line": 80,
+      "path": "scripts/test_strategy_vs_trader_evaluator.py",
+      "text": "_record(\"SOLUSDT\", \"HOLD\", _strategy_signal(\"volatility-skip\", \"volatility_skip\", \"hold\", \"trend_down\")),"
+    },
+    {
+      "line": 23,
+      "path": "scripts/run_volatility_skip_broader_validation.py",
+      "text": "from scripts.run_volatility_skip_calibration import VARIANTS, rebuild_replay_records  # noqa: E402"
+    },
+    {
+      "line": 10,
+      "path": "scripts/test_volatility_skip_calibration.py",
+      "text": "from scripts.run_volatility_skip_calibration import (  # noqa: E402"
+    },
+    {
+      "line": 99,
+      "path": "scripts/evaluate_strategy_vs_trader.py",
+      "text": "def is_volatility_skip_block(strategy_signal: Dict) -> bool:"
+    },
+    {
+      "line": 47,
+      "path": "scripts/test_strategy_contracts.py",
+      "text": "assert_eq(StrategyFamily.VOLATILITY_SKIP.value, \"volatility_skip\")"
+    },
+    {
+      "line": 80,
+      "path": "scripts/test_replay_attribution_analyzer.py",
+      "text": "_strategy_signal(\"volatility-skip\", \"volatility_skip\", \"skip\", \"volatile\"),"
+    },
+    {
+      "line": 13,
+      "path": "scripts/test_strategy_playbooks.py",
+      "text": "from strategies.volatility_skip import VolatilitySkipStrategy"
+    },
+    {
+      "line": 25,
+      "path": "scripts/replay_signals.py",
+      "text": "from strategies.attribution import build_strategy_signal"
+    },
+    {
+      "line": 23,
+      "path": "scripts/analyze_volatility_skip_zero_blocks.py",
+      "text": "from scripts.evaluate_strategy_vs_trader import extract_trader_action, is_volatility_skip_block, load_replay_records, write_json, write_text  # noqa: E402"
+    },
+    {
+      "line": 95,
+      "path": "scripts/test_readonly_analyzer_cli.py",
+      "text": "{\"strategy_id\": \"volatility_skip\", \"action\": \"hold\", \"confidence\": 0.9},"
+    },
+    {
+      "line": 484,
+      "path": "scripts/test_analysis_runner.py",
+      "text": "def test_strategy_registry_receives_nested_strategy_config():"
+    },
+    {
+      "line": 7,
+      "path": "scripts/test_volatility_skip_zero_blocks.py",
+      "text": "import analyze_volatility_skip_zero_blocks as zero"
+    },
+    {
+      "line": 31,
+      "path": "strategies/contracts.py",
+      "text": "VOLATILITY_SKIP = \"volatility_skip\""
+    },
+    {
+      "line": 34,
+      "path": "strategies/attribution.py",
+      "text": "def build_strategy_signal("
+    },
+    {
+      "line": 13,
+      "path": "strategies/registry.py",
+      "text": "from strategies.volatility_skip import VolatilitySkipStrategy"
+    },
+    {
+      "line": 18,
+      "path": "strategies/volatility_skip.py",
+      "text": "family = \"volatility_skip\""
+    },
+    {
+      "line": 22,
+      "path": "strategies/__init__.py",
+      "text": "from strategies.volatility_skip import VolatilitySkipStrategy"
+    },
+    {
+      "line": 27,
+      "path": "orchestration/analysis_runner.py",
+      "text": "from strategies.attribution import build_strategy_signal"
+    },
+    {
+      "line": 231,
+      "path": "config/default_params.yaml",
+      "text": "trend_up: [\"volatility_skip\", \"trend_following\", \"breakout\"]"
+    }
+  ],
+  "strategy_support": {
+    "attribution_accepts_strategy_config": true,
+    "breakout_allow_volatile_config_exists": true,
+    "registry_selection_min_action_confidence": true,
+    "replay_signals_strategy_config_reference": true,
+    "run_paper_trading_strategy_config_reference": false,
+    "trend_following_allow_volatile_down": true,
+    "trend_following_allow_volatile_up": true,
+    "trend_following_min_regime_confidence": true,
+    "volatility_skip_configurable_confidence_floor": true,
+    "volatility_skip_configurable_high_atr_pct": true
+  },
+  "yaml_surface": {
+    "config/default_params.yaml": {
+      "allow_volatile": false,
+      "allow_volatile_trend_down": false,
+      "allow_volatile_trend_up": false,
+      "breakout": true,
+      "high_atr_pct": true,
+      "min_action_confidence": true,
+      "min_regime_confidence": false,
+      "selection": true,
+      "strategies": true,
+      "strategy_config": false,
+      "trend_following": true,
+      "volatile_confidence_floor": false,
+      "volatility_skip": true
+    },
+    "config/thresholds.yaml": {
+      "allow_volatile": false,
+      "allow_volatile_trend_down": false,
+      "allow_volatile_trend_up": false,
+      "breakout": false,
+      "high_atr_pct": false,
+      "min_action_confidence": false,
+      "min_regime_confidence": false,
+      "selection": false,
+      "strategies": false,
+      "strategy_config": false,
+      "trend_following": false,
+      "volatile_confidence_floor": false,
+      "volatility_skip": false
+    }
+  }
+}
