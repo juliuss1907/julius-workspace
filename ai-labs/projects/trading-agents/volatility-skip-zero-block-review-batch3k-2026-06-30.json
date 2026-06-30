@@ -1,0 +1,5152 @@
+{
+  "aggregate": {
+    "atr_pct": {
+      "count": 86,
+      "max": 0.022421511272193065,
+      "mean": 0.009317054734339985,
+      "min": 0.003722103202760044
+    },
+    "atr_pct_buckets": {
+      "10-12%": 0,
+      "8-10%": 0,
+      "<8%": 86,
+      ">=12%": 0,
+      "unknown": 0
+    },
+    "by_market_regime": {
+      "volatile": 86
+    },
+    "by_symbol": {
+      "ADAUSDT": 16,
+      "BTCUSDT": 21,
+      "ETHUSDT": 18,
+      "SOLUSDT": 14,
+      "XRPUSDT": 17
+    },
+    "by_trader_action": {
+      "BUY": 21,
+      "HOLD": 36,
+      "SELL": 29
+    },
+    "by_window": {
+      "replay_signals-batch3f-2026-06-28": 6,
+      "replay_signals-batch3g-2026-06-28": 80
+    },
+    "candidates": {
+      "variant-b": {
+        "direct_block_rate_on_baseline_block_subset": 0.0,
+        "direct_blocks": 0,
+        "hard_conflict_rate_on_baseline_block_subset": 0.0,
+        "hard_conflicts": 0,
+        "reason_counts": {
+          "atr_below_candidate_threshold": 86,
+          "breakout_allowed_volatile": 4,
+          "volatile_confidence_below_floor": 86
+        },
+        "selected_action": {
+          "hold": 82,
+          "long": 1,
+          "short": 3
+        },
+        "selected_strategy": {
+          "breakout": 4,
+          "volatility-skip": 82
+        }
+      },
+      "variant-d": {
+        "direct_block_rate_on_baseline_block_subset": 0.0,
+        "direct_blocks": 0,
+        "hard_conflict_rate_on_baseline_block_subset": 0.0,
+        "hard_conflicts": 0,
+        "reason_counts": {
+          "atr_below_candidate_threshold": 86,
+          "lower_action_confidence_floor": 85,
+          "trend_following_allowed_volatile": 1,
+          "volatile_confidence_below_floor": 86
+        },
+        "selected_action": {
+          "hold": 85,
+          "short": 1
+        },
+        "selected_strategy": {
+          "trend-following": 1,
+          "volatility-skip": 85
+        }
+      }
+    },
+    "confidence_buckets": {
+      "0.50-0.75": 86,
+      "0.75-0.95": 0,
+      "<0.50": 0,
+      ">=0.95": 0,
+      "unknown": 0
+    },
+    "market_confidence": {
+      "count": 86,
+      "max": 0.6928509770373988,
+      "mean": 0.6004341504204822,
+      "min": 0.5140427566785924
+    },
+    "total_baseline_direct_blocks": 86
+  },
+  "batch": "3K",
+  "cases": [
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 0,
+      "state": {
+        "adx": 436.8756859517765,
+        "atr": 347.58488202590263,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005523165204101472,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 62932.19,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 49.51575276557463,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 3,
+      "state": {
+        "adx": 248.51215550025097,
+        "atr": 549.4099822182831,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009165153468795473,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 59945.53,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 49.80315840191286,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 4,
+      "state": {
+        "adx": 162.10803948015848,
+        "atr": 324.9627701260925,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005396060957667992,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 60222.22,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 48.26906500227572,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 8,
+      "state": {
+        "adx": 292.5075119241988,
+        "atr": 17.179796395785292,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010900816870315095,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1576.01,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 51.146290198713416,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 9,
+      "state": {
+        "adx": 260.58148406309135,
+        "atr": 10.809928203605335,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006862967160138235,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1575.11,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 44.62702883160846,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 14,
+      "state": {
+        "adx": 317.1449851285426,
+        "atr": 0.6653216323884438,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009393218020449581,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 70.83,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 43.23407432176349,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "short",
+          "confidence": 0.6003,
+          "direct_block": false,
+          "family": "breakout",
+          "no_trade_reason": null,
+          "strategy_id": "breakout",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "breakout_allowed_volatile",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 0,
+      "state": {
+        "adx": 296.5471143015584,
+        "atr": 292.8182517714421,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0039951778667222165,
+        "breakout_down_20": true,
+        "breakout_up_20": false,
+        "close": 73292.92,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": true,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 37.71128380209567,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 7,
+      "state": {
+        "adx": 364.7575319030392,
+        "atr": 683.871254796517,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010818794499229125,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 63211.41,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 61.80137466496648,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 8,
+      "state": {
+        "adx": 285.0402820270511,
+        "atr": 528.2411881964979,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.00841630718299385,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 62764.01,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 44.698346123169884,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 9,
+      "state": {
+        "adx": 386.0549261405419,
+        "atr": 467.128568110823,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007569247952017743,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 61714.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": true,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 40.35161931375195,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 10,
+      "state": {
+        "adx": 250.44027883670356,
+        "atr": 535.0429630087328,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.008601145821902623,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 62206.01,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 55.86029606750611,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 11,
+      "state": {
+        "adx": 389.9794471484356,
+        "atr": 426.43561325559364,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0067233353607120344,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 63426.2,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.6019591869847,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 12,
+      "state": {
+        "adx": 252.76890709141315,
+        "atr": 346.3543349639218,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.00542552917967561,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 63837.89,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 56.85659687008312,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 13,
+      "state": {
+        "adx": 472.97847736451,
+        "atr": 240.31014907979673,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.003722103202760044,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 64563.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 67.22552728994091,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 14,
+      "state": {
+        "adx": 496.9877622431376,
+        "atr": 371.6985129964476,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005672621335313966,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 65525.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 69.65577097584182,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 16,
+      "state": {
+        "adx": 230.15135967308345,
+        "atr": 358.825261362185,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005441693378255763,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 65940.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 49.392725567487986,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 17,
+      "state": {
+        "adx": 315.9646248101155,
+        "atr": 497.41572893410785,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007706048622081668,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 64548.74,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 40.374618161484236,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 19,
+      "state": {
+        "adx": 306.83082834077175,
+        "atr": 341.81715169251163,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0053756431685028855,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 63586.28,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.911000061266606,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 20,
+      "state": {
+        "adx": 388.89638180835254,
+        "atr": 260.3062063220027,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.004051584583520152,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 64248.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 62.53785266900883,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 21,
+      "state": {
+        "adx": 310.35192249154846,
+        "atr": 367.99387832465766,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005695970626948854,
+        "breakout_down_20": false,
+        "breakout_up_20": true,
+        "close": 64606.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 61.20209377034568,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 22,
+      "state": {
+        "adx": 210.56084818960386,
+        "atr": 387.96576263464493,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006047224930398481,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 64156.0,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 46.46807511827995,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 23,
+      "state": {
+        "adx": 436.94093261250606,
+        "atr": 347.580215298949,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005523091049253951,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 62932.19,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 49.51544440155442,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 26,
+      "state": {
+        "adx": 248.51215550025097,
+        "atr": 549.4099822182831,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009165153468795473,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 59945.53,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 49.80315840191286,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 27,
+      "state": {
+        "adx": 162.10803948015848,
+        "atr": 324.9627701260925,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005396060957667992,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 60222.22,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 48.26906500227572,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "BTCUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 28,
+      "state": {
+        "adx": 335.5868568198015,
+        "atr": 11.299138905475811,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005664580591304863,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1994.7,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": true,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 36.31044639879031,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 29,
+      "state": {
+        "adx": 490.74387171325395,
+        "atr": 15.182650702404626,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007667424539759425,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1980.15,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 42.5112055512409,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 35,
+      "state": {
+        "adx": 426.7699833960378,
+        "atr": 23.40396770734372,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.013870333013704246,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1687.34,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 70.17020444676727,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 37,
+      "state": {
+        "adx": 296.85643911329385,
+        "atr": 16.378285126758733,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009992974366227004,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1638.98,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 40.15287027210447,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 38,
+      "state": {
+        "adx": 206.20184242826707,
+        "atr": 18.49180443640582,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01125606693109197,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1642.83,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": true,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 53.42254874214476,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 39,
+      "state": {
+        "adx": 323.3110564988833,
+        "atr": 15.431367527002992,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009256469372981059,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1667.09,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 53.513540917768374,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 40,
+      "state": {
+        "adx": 190.67449679641192,
+        "atr": 11.724115762639942,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0070035278714479085,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1674.03,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 54.27324513241029,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 41,
+      "state": {
+        "adx": 448.5115957497561,
+        "atr": 7.9288007626823385,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.004708341951366895,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1683.99,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.26934437374076,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 42,
+      "state": {
+        "adx": 463.8985447276971,
+        "atr": 11.6239705007004,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.00677470465540678,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1715.79,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 70.4464339427496,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 45,
+      "state": {
+        "adx": 324.09129014804057,
+        "atr": 18.473993554234685,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010526971915662642,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1754.92,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 45.20831231763651,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 47,
+      "state": {
+        "adx": 255.67052575019866,
+        "atr": 11.513784393400673,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006733640405757489,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1709.89,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 52.23755108008562,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 48,
+      "state": {
+        "adx": 326.48673740944486,
+        "atr": 9.510332702789855,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005475116840311716,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1737.01,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.39093845290521,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "long",
+          "confidence": 0.6001,
+          "direct_block": false,
+          "family": "breakout",
+          "no_trade_reason": null,
+          "strategy_id": "breakout",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "breakout_allowed_volatile",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 49,
+      "state": {
+        "adx": 283.0403666591575,
+        "atr": 13.262698221219152,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0076055431301505615,
+        "breakout_down_20": false,
+        "breakout_up_20": true,
+        "close": 1743.82,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": true,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 60.276206406976605,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 50,
+      "state": {
+        "adx": 199.40995033861782,
+        "atr": 13.178684983832415,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007615051908767669,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1730.61,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 45.293434929106006,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 54,
+      "state": {
+        "adx": 292.5075119241988,
+        "atr": 17.179796395785292,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010900816870315095,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1576.01,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 51.146290198713416,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 55,
+      "state": {
+        "adx": 260.58148406309135,
+        "atr": 10.809928203605335,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006862967160138235,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1575.11,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 44.62702883160846,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ETHUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 56,
+      "state": {
+        "adx": 258.0155596171487,
+        "atr": 0.536742736799638,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006564857348332167,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 81.76,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 41.24053590076342,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 57,
+      "state": {
+        "adx": 438.9901138136873,
+        "atr": 0.7235466204759861,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009031913874372563,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 80.11,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 39.48031568349287,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.514,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "short",
+          "confidence": 0.6659,
+          "direct_block": false,
+          "family": "trend_following",
+          "no_trade_reason": null,
+          "strategy_id": "trend-following",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "trend_following_allowed_volatile",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 58,
+      "state": {
+        "adx": 885.2773976165222,
+        "atr": 1.0954673624130096,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0146550817714115,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 74.75,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.5140427566785924,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 29.99446444874924,
+        "trend_direction": "down",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 63,
+      "state": {
+        "adx": 357.05721724703733,
+        "atr": 1.0767165113150745,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.016267057128192697,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 66.19,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 60.82522968133936,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 64,
+      "state": {
+        "adx": 334.0592539715718,
+        "atr": 0.8543934090612815,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01294731639735235,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 65.99,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 46.183756151483195,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 65,
+      "state": {
+        "adx": 308.48004695350903,
+        "atr": 0.7422650878433946,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.011403673188560372,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 65.09,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 44.02333055542248,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 66,
+      "state": {
+        "adx": 300.46339928667766,
+        "atr": 0.8741285698217122,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.013468853155958584,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 64.9,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": true,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 56.126557453262,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 67,
+      "state": {
+        "adx": 452.7618138836355,
+        "atr": 0.6843817348106027,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010260595724296892,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 66.7,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 60.304284150424465,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 68,
+      "state": {
+        "adx": 333.34479378911,
+        "atr": 0.6170938450145872,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009148908006146586,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 67.45,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 57.56036748823053,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 73,
+      "state": {
+        "adx": 265.23016436823076,
+        "atr": 0.8648793482651135,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.011977279438652729,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 72.21,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 44.736556035131684,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 75,
+      "state": {
+        "adx": 298.5328666062539,
+        "atr": 0.6214278412571407,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.008902977668440412,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 69.8,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 55.252569689021094,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 78,
+      "state": {
+        "adx": 252.49815774334107,
+        "atr": 0.7352898849450048,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010252229293711723,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 71.72,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 34.43301427683109,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 83,
+      "state": {
+        "adx": 317.1449851285426,
+        "atr": 0.6653216323884438,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009393218020449581,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 70.83,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 43.23407432176349,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "SOLUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 84,
+      "state": {
+        "adx": 253.97272556294095,
+        "atr": 0.0017948369062433262,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.0076899610378891444,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.2334,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 41.28394520639392,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 85,
+      "state": {
+        "adx": 460.3265892827699,
+        "atr": 0.0021888847704985043,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009634175926489895,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.2272,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 36.45639779863661,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6929,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "short",
+          "confidence": 0.6943,
+          "direct_block": false,
+          "family": "breakout",
+          "no_trade_reason": null,
+          "strategy_id": "breakout",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "breakout_allowed_volatile",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 87,
+      "state": {
+        "adx": 806.7052684820551,
+        "atr": 0.003710712694808814,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01928644851771733,
+        "breakout_down_20": true,
+        "breakout_up_20": false,
+        "close": 0.1924,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6928509770373988,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 19.55433556867638,
+        "trend_direction": "down",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6692,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "short",
+          "confidence": 0.67,
+          "direct_block": false,
+          "family": "breakout",
+          "no_trade_reason": null,
+          "strategy_id": "breakout",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "breakout_allowed_volatile",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 88,
+      "state": {
+        "adx": 745.7483360424164,
+        "atr": 0.0038632263921988654,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.022421511272193065,
+        "breakout_down_20": true,
+        "breakout_up_20": false,
+        "close": 0.1723,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.669167671456335,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 19.90583542913855,
+        "trend_direction": "down",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 91,
+      "state": {
+        "adx": 284.11997160771983,
+        "atr": 0.002888966564235815,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.017691160834267083,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1633,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 53.37710267908779,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 93,
+      "state": {
+        "adx": 187.16560553849288,
+        "atr": 0.0025108931918141884,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01523600237751328,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1648,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 44.613847095772854,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 94,
+      "state": {
+        "adx": 154.46647304974948,
+        "atr": 0.002767869515911751,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01692886554074465,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1635,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 52.78083425184336,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 96,
+      "state": {
+        "adx": 248.4738311502238,
+        "atr": 0.002277989514829998,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.013182809692303227,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1728,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.340461290105026,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 97,
+      "state": {
+        "adx": 215.48970112096782,
+        "atr": 0.001682186173522078,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009740510558900278,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1727,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 53.03988388751192,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6169,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 98,
+      "state": {
+        "adx": 506.7090269313456,
+        "atr": 0.002915810193078605,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01615407309184823,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1805,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6169003693963371,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 70.47454268748403,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 100,
+      "state": {
+        "adx": 308.51836788495166,
+        "atr": 0.0023689495904796747,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01364602298663407,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1736,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 42.373881857711055,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 104,
+      "state": {
+        "adx": 260.1060875306405,
+        "atr": 0.001271227091046857,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007798939208876423,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.163,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 54.5964132506001,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 105,
+      "state": {
+        "adx": 273.0425117667309,
+        "atr": 0.0017335094998725475,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010753781016579079,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1612,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 50.82199644991837,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 106,
+      "state": {
+        "adx": 166.2343232033893,
+        "atr": 0.0016625873816105538,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010463104981815945,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1589,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 45.30932400169954,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 110,
+      "state": {
+        "adx": 181.3478260825476,
+        "atr": 0.002104553108763722,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.014200763217029162,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1482,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.01992143892247,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 111,
+      "state": {
+        "adx": 287.83459405733703,
+        "atr": 0.0012870115519931613,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.00884544021988427,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 0.1455,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 42.85113611408409,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "ADAUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 112,
+      "state": {
+        "adx": 286.2754532905764,
+        "atr": 0.008308805289168018,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006286453271671346,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.3217,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": true,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 37.72730255771721,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 113,
+      "state": {
+        "adx": 620.564470207875,
+        "atr": 0.009614545311018505,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007512537358195424,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.2798,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 33.14178612937741,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 119,
+      "state": {
+        "adx": 344.15940499454956,
+        "atr": 0.016234910146825578,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01402826418977411,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1573,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 61.71656851553304,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 121,
+      "state": {
+        "adx": 256.38282968553267,
+        "atr": 0.01156001797054674,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010238258764101267,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1291,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 36.92763487691019,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 123,
+      "state": {
+        "adx": 348.3313688928677,
+        "atr": 0.010816210397986397,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009488736203163784,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1399,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 59.760046742308155,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 124,
+      "state": {
+        "adx": 343.51043499489555,
+        "atr": 0.008866673154250755,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007777783468641014,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.14,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 54.74498212713878,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 125,
+      "state": {
+        "adx": 505.6222646824843,
+        "atr": 0.00652124420127214,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005660310911615433,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1521,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 58.100761492273094,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 126,
+      "state": {
+        "adx": 467.3395137532233,
+        "atr": 0.009793167154423518,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.008281748122134051,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1825,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 73.85117714296581,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.5444,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 127,
+      "state": {
+        "adx": 452.9472116957134,
+        "atr": 0.01722615039767205,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.014022100445805496,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.2285,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.544375161592809,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 52.24565454530075,
+        "trend_direction": "up",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 128,
+      "state": {
+        "adx": 163.24408867240362,
+        "atr": 0.011909157243970328,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.009748020990398894,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.2217,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 48.77484592249613,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 129,
+      "state": {
+        "adx": 296.5628387880696,
+        "atr": 0.012455531663686983,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.010476517506675904,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1889,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 42.12188832704322,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 132,
+      "state": {
+        "adx": 270.8467144666583,
+        "atr": 0.0063539127677034015,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.005526583254504133,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1497,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 55.20930757495673,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "BUY",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 133,
+      "state": {
+        "adx": 256.47927281120747,
+        "atr": 0.008646106587764789,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007548547745560318,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1454,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 52.72372063344419,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 134,
+      "state": {
+        "adx": 151.96892422828543,
+        "atr": 0.00899626839880506,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.007969056957042307,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1289,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 42.262378405291585,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 135,
+      "state": {
+        "adx": 413.68982145422115,
+        "atr": 0.007334353065796696,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006614676285891681,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.1088,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 46.28807879743633,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "SELL",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 138,
+      "state": {
+        "adx": 227.23780446431084,
+        "atr": 0.011370557458741467,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.01080748736692469,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.0521,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 55.65782387683297,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    },
+    {
+      "baseline": {
+        "action": "skip",
+        "confidence": 0.6,
+        "family": "volatility_skip",
+        "no_trade_reason": "Volatile regime \u2014 avoid new directional exposure",
+        "strategy_id": "volatility-skip"
+      },
+      "candidates": {
+        "variant-b": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "volatile_confidence_below_floor"
+          ]
+        },
+        "variant-d": {
+          "action": "hold",
+          "confidence": 0.5,
+          "direct_block": false,
+          "family": "volatility_skip",
+          "no_trade_reason": null,
+          "strategy_id": "volatility-skip",
+          "unblock_reasons": [
+            "atr_below_candidate_threshold",
+            "lower_action_confidence_floor",
+            "volatile_confidence_below_floor"
+          ]
+        }
+      },
+      "record_index": 139,
+      "state": {
+        "adx": 206.6125440878667,
+        "atr": 0.007179797023408283,
+        "atr_bucket": "<8%",
+        "atr_pct": 0.006829446421961651,
+        "breakout_down_20": false,
+        "breakout_up_20": false,
+        "close": 1.0513,
+        "confidence_bucket": "0.50-0.75",
+        "macd_crossing_down": false,
+        "macd_crossing_up": false,
+        "market_confidence": 0.6,
+        "missing_state": false,
+        "regime": "volatile",
+        "rsi": 45.62872537256695,
+        "trend_direction": "neutral",
+        "trend_strength": 100.0
+      },
+      "symbol": "XRPUSDT",
+      "trader_action": "HOLD",
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    }
+  ],
+  "implementation_authorized": false,
+  "mode": "offline_replay_only",
+  "production_change_authorized": false,
+  "recommendation": {
+    "confidence": "medium",
+    "implementation_authorized": false,
+    "next_step": "Batch 3L \u2014 approval-gated implementation design or Variant E review, depending on Julius preference",
+    "outcome": "Variant D zero-block behavior is mostly explained by the replay-only volatile confidence floor.",
+    "primary_candidate": "variant-d",
+    "production_change_authorized": false,
+    "requires_approval_before_runtime_change": true,
+    "runtime_default_config_change_performed": false,
+    "secondary_candidate": "variant-b",
+    "zero_block_explanation": {
+      "variant-b_top_reasons": [
+        [
+          "atr_below_candidate_threshold",
+          86
+        ],
+        [
+          "volatile_confidence_below_floor",
+          86
+        ],
+        [
+          "breakout_allowed_volatile",
+          4
+        ]
+      ],
+      "variant-d_top_reasons": [
+        [
+          "atr_below_candidate_threshold",
+          86
+        ],
+        [
+          "volatile_confidence_below_floor",
+          86
+        ],
+        [
+          "lower_action_confidence_floor",
+          85
+        ]
+      ]
+    }
+  },
+  "requires_approval_before_runtime_change": true,
+  "runtime_default_config_change_performed": false,
+  "scope_boundary": "No live trading, order placement, StrategySignal-to-order mapping, production config/default changes, or runtime semantic changes.",
+  "variants": [
+    "variant-d",
+    "variant-b"
+  ],
+  "windows": [
+    {
+      "baseline_direct_blocks": 6,
+      "source": "logs/replay_signals-batch3f-2026-06-28.jsonl",
+      "total_records": 15,
+      "window_id": "replay_signals-batch3f-2026-06-28"
+    },
+    {
+      "baseline_direct_blocks": 80,
+      "source": "logs/replay_signals-batch3g-2026-06-28.jsonl",
+      "total_records": 140,
+      "window_id": "replay_signals-batch3g-2026-06-28"
+    }
+  ]
+}
