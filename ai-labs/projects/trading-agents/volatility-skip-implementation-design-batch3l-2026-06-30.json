@@ -1,0 +1,243 @@
+{
+  "approval_gate": "Approve Batch 3M runtime/default implementation for variant-d volatility-skip calibration.",
+  "batch": "3L",
+  "evidence": {
+    "batch3h": {
+      "outcome": "Promising replay-only variants identified: variant-b and variant-d.",
+      "source": "volatility-skip-calibration-review-batch3h-2026-06-29.md/json"
+    },
+    "batch3i": {
+      "outcome": "variant-d recommended as primary; variant-b retained as aggressive stress-test.",
+      "source": "volatility-skip-calibration-implementation-proposal-batch3i-2026-06-29.md/json"
+    },
+    "batch3j": {
+      "baseline": {
+        "directional_strategy_coverage_mean": 0.08333333333333334,
+        "skip_during_trader_action_mean": 0.20833333333333331,
+        "volatility_skip_direct_block_mean": 0.4857142857142857
+      },
+      "candidates": [
+        "baseline",
+        "variant-d",
+        "variant-b"
+      ],
+      "recommendation": {
+        "confidence": "medium",
+        "implementation_authorized": false,
+        "next_step": "Batch 3K \u2014 targeted review of zero volatility-skip block behavior before runtime/default changes",
+        "outcome": "Variant D remains the safer primary candidate for another review step.",
+        "primary_candidate": "variant-d",
+        "production_change_authorized": false,
+        "reason": "Validated 2 replay-only variants across 2 windows / 155 records. Variant D directional mean delta=0.0036; Variant D skip-during-action mean delta=-0.2083.",
+        "requires_approval_before_runtime_change": true,
+        "secondary_candidate": "variant-b"
+      },
+      "records": 155,
+      "variant-b": {
+        "directional_strategy_coverage_mean": 0.0976190476190476,
+        "skip_during_trader_action_mean": 0.0,
+        "volatility_skip_direct_block_mean": 0.0
+      },
+      "variant-d": {
+        "directional_strategy_coverage_mean": 0.0869047619047619,
+        "skip_during_trader_action_mean": 0.0,
+        "volatility_skip_direct_block_mean": 0.0
+      },
+      "windows": 2
+    },
+    "batch3k": {
+      "baseline_direct_blocks_reviewed": 86,
+      "recommendation": {
+        "confidence": "medium",
+        "implementation_authorized": false,
+        "next_step": "Batch 3L \u2014 approval-gated implementation design or Variant E review, depending on Julius preference",
+        "outcome": "Variant D zero-block behavior is mostly explained by the replay-only volatile confidence floor.",
+        "primary_candidate": "variant-d",
+        "production_change_authorized": false,
+        "requires_approval_before_runtime_change": true,
+        "runtime_default_config_change_performed": false,
+        "secondary_candidate": "variant-b",
+        "zero_block_explanation": {
+          "variant-b_top_reasons": [
+            [
+              "atr_below_candidate_threshold",
+              86
+            ],
+            [
+              "volatile_confidence_below_floor",
+              86
+            ],
+            [
+              "breakout_allowed_volatile",
+              4
+            ]
+          ],
+          "variant-d_top_reasons": [
+            [
+              "atr_below_candidate_threshold",
+              86
+            ],
+            [
+              "volatile_confidence_below_floor",
+              86
+            ],
+            [
+              "lower_action_confidence_floor",
+              85
+            ]
+          ]
+        }
+      },
+      "variant-b": {
+        "direct_block_rate_on_baseline_block_subset": 0.0,
+        "direct_blocks": 0,
+        "hard_conflict_rate_on_baseline_block_subset": 0.0,
+        "hard_conflicts": 0,
+        "reason_counts": {
+          "atr_below_candidate_threshold": 86,
+          "breakout_allowed_volatile": 4,
+          "volatile_confidence_below_floor": 86
+        },
+        "selected_action": {
+          "hold": 82,
+          "long": 1,
+          "short": 3
+        },
+        "selected_strategy": {
+          "breakout": 4,
+          "volatility-skip": 82
+        }
+      },
+      "variant-d": {
+        "direct_block_rate_on_baseline_block_subset": 0.0,
+        "direct_blocks": 0,
+        "hard_conflict_rate_on_baseline_block_subset": 0.0,
+        "hard_conflicts": 0,
+        "reason_counts": {
+          "atr_below_candidate_threshold": 86,
+          "lower_action_confidence_floor": 85,
+          "trend_following_allowed_volatile": 1,
+          "volatile_confidence_below_floor": 86
+        },
+        "selected_action": {
+          "hold": 85,
+          "short": 1
+        },
+        "selected_strategy": {
+          "trend-following": 1,
+          "volatility-skip": 85
+        }
+      },
+      "windows": 2
+    }
+  },
+  "future_change_surface": [
+    {
+      "batch3l_action": "read/document only; no mutation",
+      "future_action_if_approved": "Expose/adopt variant-d volatility-skip and strategy-selection parameters as runtime/default config values.",
+      "path": "config/default_params.yaml or config/thresholds.yaml"
+    },
+    {
+      "batch3l_action": "document existing support; no mutation",
+      "future_action_if_approved": "Confirm configured volatile_confidence_floor and high_atr_pct are wired safely; defaults must remain reversible.",
+      "path": "strategies/volatility_skip.py"
+    },
+    {
+      "batch3l_action": "document candidate-d allowances; no mutation",
+      "future_action_if_approved": "Confirm volatile trend-following allowances and min_regime_confidence can be configured without changing semantics unexpectedly.",
+      "path": "strategies/trend_following.py"
+    },
+    {
+      "batch3l_action": "document future change surface; no mutation",
+      "future_action_if_approved": "Confirm selection.min_action_confidence mapping and strategy order remain explicit and reversible.",
+      "path": "strategies/registry.py"
+    },
+    {
+      "batch3l_action": "document required test suite; no runtime mutation",
+      "future_action_if_approved": "Add/extend tests proving no execution leak, reversible defaults, and no StrategySignal-to-order mapping.",
+      "path": "scripts/test_boundary_guardrails.py and strategy tests"
+    }
+  ],
+  "implementation_authorized": false,
+  "mode": "design_only_approval_gated",
+  "monitoring_plan": [
+    "volatility_skip_direct_block_rate",
+    "skip_during_trader_action_rate",
+    "directional_strategy_coverage_rate",
+    "hard_conflict_count: BUY|short and SELL|long",
+    "selected_strategy_family_distribution",
+    "volatile trend-following selected cases",
+    "volatile breakout selected cases",
+    "fallback_or_missing_state_count",
+    "gate_status changes from Batch 4B evaluator"
+  ],
+  "production_change_authorized": false,
+  "proposed_parameters": {
+    "variant-b": {
+      "breakout": {
+        "allow_volatile": true
+      },
+      "selection": {
+        "min_action_confidence": 0.55
+      },
+      "trend_following": {
+        "allow_volatile_trend_down": true,
+        "allow_volatile_trend_up": true
+      },
+      "volatility_skip": {
+        "calibration": {
+          "replay_only": true
+        },
+        "high_atr_pct": 0.12,
+        "volatile_confidence_floor": 0.95
+      }
+    },
+    "variant-d": {
+      "breakout": {},
+      "selection": {
+        "min_action_confidence": 0.5
+      },
+      "trend_following": {
+        "allow_volatile_trend_down": true,
+        "allow_volatile_trend_up": true,
+        "min_regime_confidence": 0.5
+      },
+      "volatility_skip": {
+        "calibration": {
+          "replay_only": true
+        },
+        "high_atr_pct": 0.1,
+        "volatile_confidence_floor": 0.75
+      }
+    }
+  },
+  "recommendation": {
+    "next_batch": "Batch 3M approval-gated runtime/default implementation for variant-d, only after explicit approval",
+    "outcome": "Prepare Batch 3M only if Julius explicitly approves runtime/default implementation for variant-d.",
+    "reason": "Batch 3K explains variant-d zero-block behavior without hard conflicts, but Batch 3L performs no runtime/default changes."
+  },
+  "recommended_candidate": "variant-d",
+  "required_future_tests": [
+    "Default legacy behavior can still be restored.",
+    "Default volatile regime still skips when calibration is not enabled.",
+    "Default high ATR still skips when calibration is not enabled.",
+    "Volatile breakout remains disabled for production unless explicitly approved.",
+    "StrategySignal remains observational-only and is not mapped into orders.",
+    "No runtime/execution/order imports leak into strategy/evaluation tooling.",
+    "Config changes are isolated, explicit, and reversible.",
+    "Batch 4B/3J/3K replay metrics can be regenerated after implementation."
+  ],
+  "requires_approval_before_runtime_change": true,
+  "rollback_plan": [
+    "Restore prior volatility_skip HIGH_ATR_PCT/default high_atr_pct behavior.",
+    "Restore volatile_confidence_floor behavior to prior default-equivalent behavior.",
+    "Disable volatile trend-following allowances unless explicitly approved.",
+    "Restore selection.min_action_confidence to prior default behavior.",
+    "Keep volatile breakout disabled for production unless separately approved.",
+    "Rerun Batch 4B evaluator, Batch 3J broader validation, and Batch 3K zero-block review after rollback.",
+    "Confirm default volatile regime still skips and high ATR still skips via existing strategy tests."
+  ],
+  "runtime_default_config_change_performed": false,
+  "secondary_candidate": "variant-b",
+  "variant_e_required": false
+}
