@@ -1,0 +1,141 @@
+{
+  "batch": "3N",
+  "current_config_matches_expected_variant_d": true,
+  "current_config_verification": {
+    "breakout.allow_volatile": {
+      "actual": false,
+      "expected": false,
+      "matches": true
+    },
+    "regime_strategy_order.volatile": {
+      "actual": [
+        "volatility_skip",
+        "trend_following",
+        "breakout"
+      ],
+      "expected": [
+        "volatility_skip",
+        "trend_following",
+        "breakout"
+      ],
+      "matches": true
+    },
+    "selection.min_action_confidence": {
+      "actual": 0.5,
+      "expected": 0.5,
+      "matches": true
+    },
+    "trend_following.allow_volatile_trend_down": {
+      "actual": true,
+      "expected": true,
+      "matches": true
+    },
+    "trend_following.allow_volatile_trend_up": {
+      "actual": true,
+      "expected": true,
+      "matches": true
+    },
+    "trend_following.min_regime_confidence": {
+      "actual": 0.5,
+      "expected": 0.5,
+      "matches": true
+    },
+    "volatility_skip.high_atr_pct": {
+      "actual": 0.1,
+      "expected": 0.1,
+      "matches": true
+    },
+    "volatility_skip.volatile_confidence_floor": {
+      "actual": 0.75,
+      "expected": 0.75,
+      "matches": true
+    }
+  },
+  "evidence": {
+    "batch3j_recommendation": "Variant D remains the safer primary candidate for another review step.",
+    "batch3k_baseline_blocks_reviewed": 86,
+    "batch3k_recommendation": "Variant D zero-block behavior is mostly explained by the replay-only volatile confidence floor.",
+    "batch3m_candidate": "variant-d",
+    "batch3m_report_values_match_expected": true
+  },
+  "implementation_commit_reviewed": "11c65df",
+  "mode": "post_implementation_monitoring_and_rollback_drill",
+  "monitoring_checklist": [
+    {
+      "metric": "volatility_skip_direct_block_rate",
+      "why": "Detects whether volatility-skip collapses unexpectedly in risky regimes."
+    },
+    {
+      "metric": "skip_during_trader_action_rate",
+      "why": "Tracks StrategySignal-vs-TraderAgent disagreement."
+    },
+    {
+      "metric": "directional_strategy_coverage_rate",
+      "why": "Confirms variant-d increases useful coverage without implying execution."
+    },
+    {
+      "metric": "hard_conflict_count",
+      "why": "BUY|short and SELL|long must stay zero."
+    },
+    {
+      "metric": "volatile_trend_following_selected_count",
+      "why": "Tracks the new default behavior introduced by variant-d."
+    },
+    {
+      "metric": "volatile_breakout_selected_count",
+      "why": "Should remain zero/default-disabled."
+    },
+    {
+      "metric": "fallback_or_missing_state_count",
+      "why": "Detects data/config quality regressions."
+    },
+    {
+      "metric": "gate_status changes",
+      "why": "Keeps Batch 4B evaluator guardrails visible."
+    }
+  ],
+  "recommendation": {
+    "next_batch": "Batch 3O \u2014 broader replay/data collection or monitoring automation before any live/paper execution changes.",
+    "outcome": "Keep variant-d default config and monitor; no rollback recommended."
+  },
+  "rollback_drill": {
+    "manual_targets": {
+      "remove_or_disable": [
+        "strategy_layer.volatility_skip",
+        "strategy_layer.trend_following.allow_volatile_trend_up",
+        "strategy_layer.trend_following.allow_volatile_trend_down",
+        "strategy_layer.trend_following.min_regime_confidence",
+        "strategy_layer.breakout.allow_volatile"
+      ],
+      "strategy_layer.regime_strategy_order.volatile": [
+        "volatility_skip"
+      ],
+      "strategy_layer.selection.min_action_confidence": 0.55
+    },
+    "performed": false,
+    "post_rollback_validation": [
+      "python3 scripts/test_strategy_registry.py",
+      "python3 scripts/test_strategy_playbooks.py",
+      "python3 scripts/test_boundary_guardrails.py",
+      "python3 scripts/run_volatility_skip_broader_validation.py --overwrite",
+      "python3 scripts/analyze_volatility_skip_zero_blocks.py --overwrite"
+    ],
+    "preferred_method": "git revert 11c65df"
+  },
+  "rollback_performed": false,
+  "runtime_default_config_change_performed": false,
+  "test_results": {
+    "all_passed": true,
+    "summary": "All Batch 3N validation commands completed successfully before report generation."
+  },
+  "tests_run": [
+    "python3 scripts/test_strategy_registry.py",
+    "python3 scripts/test_strategy_playbooks.py",
+    "python3 scripts/test_boundary_guardrails.py",
+    "python3 scripts/test_volatility_skip_calibration.py",
+    "python3 scripts/test_volatility_skip_broader_validation.py",
+    "python3 scripts/test_volatility_skip_zero_blocks.py",
+    "python3 scripts/test_strategy_vs_trader_evaluator.py"
+  ],
+  "volatile_breakout_remains_disabled": true
+}
