@@ -344,6 +344,35 @@ def test_volatility_skip_zero_blocks_import_no_execution_leak():
     )
     _check_no_leak("volatility-skip zero-block analyzer import", code)
 
+
+
+def test_volatility_skip_monitoring_cli_help_exits_zero_lightweight():
+    """Batch 3O monitoring helper --help must work without runtime deps."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/run_volatility_skip_monitoring.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"monitoring helper --help rc={rv.returncode}: {rv.stderr.strip()[:300]}")
+    assert_true("--inputs" in rv.stdout and "--overwrite" in rv.stdout,
+                f"monitoring helper help missing expected flags: {rv.stdout[:300]}")
+
+
+def test_volatility_skip_monitoring_import_no_execution_leak():
+    """Loading Batch 3O monitoring helper must not import runtime/execution modules."""
+    code = (
+        "import runpy, sys\n"
+        "runpy.run_path('scripts/run_volatility_skip_monitoring.py', run_name='vol_skip_monitoring_test')\n"
+        "forbidden = ['dotenv', 'dataflows', 'state', 'trading', 'telegram_bot', "
+        "'risk_manager', 'position_manager', 'order_manager', 'entry_guard', "
+        "'runtime_health', 'reconciliation']\n"
+        "leaked = [m for m in sys.modules for kw in forbidden "
+        "if m == kw or m.startswith(kw + '.') or kw in m]\n"
+        "print('LEAKED:' + ','.join(sorted(set(leaked))) if leaked else 'CLEAN')\n"
+    )
+    _check_no_leak("volatility-skip monitoring import", code)
+
 def test_runtime_control_cli_help_exits_zero_lightweight():
     """runtime_control --help must work with system Python (no aiosqlite)."""
     rv = subprocess.run(
@@ -528,6 +557,8 @@ def run_tests():
         ("volatility_skip_broader_validation_import_no_execution_leak", test_volatility_skip_broader_validation_import_no_execution_leak),
         ("volatility_skip_zero_blocks_cli_help_exits_zero_lightweight", test_volatility_skip_zero_blocks_cli_help_exits_zero_lightweight),
         ("volatility_skip_zero_blocks_import_no_execution_leak", test_volatility_skip_zero_blocks_import_no_execution_leak),
+        ("volatility_skip_monitoring_cli_help_exits_zero_lightweight", test_volatility_skip_monitoring_cli_help_exits_zero_lightweight),
+        ("volatility_skip_monitoring_import_no_execution_leak", test_volatility_skip_monitoring_import_no_execution_leak),
         ("runtime_control_cli_help_exits_zero_lightweight", test_runtime_control_cli_help_exits_zero_lightweight),
         ("runtime_control_start_dry_run_exits_zero_lightweight", test_runtime_control_start_dry_run_exits_zero_lightweight),
         ("runtime_control_import_no_optional_deps", test_runtime_control_import_no_optional_deps),
