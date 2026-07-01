@@ -210,6 +210,53 @@ def test_registry_attribution_includes_evaluated():
     assert_true("trend-following" in ids)
 
 
+def test_registry_variant_d_config_allows_volatile_trend_following_without_breakout():
+    registry = StrategyRegistry(config={
+        "regime_strategy_order": {"volatile": ["volatility_skip", "trend_following", "breakout"]},
+        "volatility_skip": {"volatile_confidence_floor": 0.75, "high_atr_pct": 0.10},
+        "trend_following": {
+            "allow_volatile_trend_up": True,
+            "allow_volatile_trend_down": True,
+            "min_regime_confidence": 0.50,
+        },
+        "breakout": {"allow_volatile": False},
+        "selection": {"min_action_confidence": 0.50},
+    })
+    ts = TechnicalState(
+        close=106.0,
+        atr=9.0,
+        ema_20=103.0,
+        ema_50=100.0,
+        macd_histogram=1.2,
+        rsi=55.0,
+        breakout_up_20=True,
+        recent_high_20=105.0,
+    )
+    ms = MarketState(regime="volatile", confidence=0.60, trend_direction="up", trend_strength=70.0)
+    sig = registry.select(ts, ms)
+    assert_eq(sig.strategy_id, "trend-following")
+    assert_eq(sig.action, "long")
+    evaluated = sig.attribution.get("evaluated", [])
+    ids = [e["strategy_id"] for e in evaluated]
+    assert_true("volatility-skip" in ids)
+    assert_true("trend-following" in ids)
+    assert_true("breakout" not in ids, "breakout should not run after accepted trend-following action")
+
+
+def test_default_params_strategy_layer_matches_approved_variant_d_surface():
+    from utils.config_loader import Config
+
+    loaded = Config().load_default_params().get("strategy_layer", {})
+    assert_eq(loaded.get("regime_strategy_order", {}).get("volatile"), ["volatility_skip", "trend_following", "breakout"])
+    assert_eq(loaded.get("volatility_skip", {}).get("volatile_confidence_floor"), 0.75)
+    assert_eq(loaded.get("volatility_skip", {}).get("high_atr_pct"), 0.10)
+    assert_eq(loaded.get("trend_following", {}).get("allow_volatile_trend_up"), True)
+    assert_eq(loaded.get("trend_following", {}).get("allow_volatile_trend_down"), True)
+    assert_eq(loaded.get("trend_following", {}).get("min_regime_confidence"), 0.50)
+    assert_eq(loaded.get("selection", {}).get("min_action_confidence"), 0.50)
+    assert_eq(loaded.get("breakout", {}).get("allow_volatile"), False)
+
+
 def run_tests():
     tests = [
         test_registry_has_phase_one_families,
@@ -223,6 +270,8 @@ def run_tests():
         test_registry_custom_order_override,
         test_registry_all_skip_returns_valid_signal,
         test_registry_attribution_includes_evaluated,
+        test_registry_variant_d_config_allows_volatile_trend_following_without_breakout,
+        test_default_params_strategy_layer_matches_approved_variant_d_surface,
     ]
     for t in tests:
         _run_named(t)

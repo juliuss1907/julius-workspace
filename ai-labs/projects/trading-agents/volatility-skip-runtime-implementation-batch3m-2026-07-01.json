@@ -1,0 +1,95 @@
+{
+  "approval_phrase_received": "Approve Batch 3M runtime/default implementation for variant-d volatility-skip calibration.",
+  "authoritative_config_source": "config/default_params.yaml",
+  "batch": "3M",
+  "changed_files": [
+    "config/default_params.yaml",
+    "scripts/test_strategy_registry.py",
+    "volatility-skip-runtime-implementation-batch3m-2026-07-01.md",
+    "volatility-skip-runtime-implementation-batch3m-2026-07-01.json"
+  ],
+  "expected_values": {
+    "breakout.allow_volatile": false,
+    "regime_strategy_order.volatile": [
+      "volatility_skip",
+      "trend_following",
+      "breakout"
+    ],
+    "selection.min_action_confidence": 0.5,
+    "trend_following.allow_volatile_trend_down": true,
+    "trend_following.allow_volatile_trend_up": true,
+    "trend_following.min_regime_confidence": 0.5,
+    "volatility_skip.high_atr_pct": 0.1,
+    "volatility_skip.volatile_confidence_floor": 0.75
+  },
+  "implementation_candidate": "variant-d",
+  "live_trading_authorized": false,
+  "mode": "approval_gated_runtime_default_implementation",
+  "new_values": {
+    "breakout.allow_volatile": false,
+    "regime_strategy_order.volatile": [
+      "volatility_skip",
+      "trend_following",
+      "breakout"
+    ],
+    "selection.min_action_confidence": 0.5,
+    "trend_following.allow_volatile_trend_down": true,
+    "trend_following.allow_volatile_trend_up": true,
+    "trend_following.min_regime_confidence": 0.5,
+    "volatility_skip.high_atr_pct": 0.1,
+    "volatility_skip.volatile_confidence_floor": 0.75
+  },
+  "old_values": {
+    "breakout": "absent_from_strategy_layer_defaults",
+    "regime_strategy_order.volatile": [
+      "volatility_skip"
+    ],
+    "selection.min_action_confidence": 0.55,
+    "trend_following": "absent_from_strategy_layer_defaults",
+    "volatility_skip": "absent_from_strategy_layer_defaults"
+  },
+  "order_placement_authorized": false,
+  "post_implementation_replay_reports": {
+    "batch3j": {
+      "primary_candidate": "variant-d",
+      "recommendation": "Variant D remains the safer primary candidate for another review step.",
+      "windows": 2
+    },
+    "batch3k": {
+      "baseline_direct_blocks_reviewed": 86,
+      "primary_candidate": "variant-d",
+      "recommendation": "Variant D zero-block behavior is mostly explained by the replay-only volatile confidence floor."
+    }
+  },
+  "production_change_authorized": true,
+  "recommendation": {
+    "next_batch": "Batch 3N \u2014 post-implementation monitoring/rollback drill or broader replay collection before any live/paper execution changes.",
+    "outcome": "Variant-d runtime/default strategy_layer config implemented with approval; keep monitoring replay metrics before any further runtime expansion."
+  },
+  "rollback_plan": [
+    "Revert the Batch 3M commit, or restore strategy_layer volatile order to [volatility_skip].",
+    "Remove strategy_layer.volatility_skip, strategy_layer.trend_following, and strategy_layer.breakout overrides if reverting manually.",
+    "Restore strategy_layer.selection.min_action_confidence to 0.55.",
+    "Rerun strategy registry/playbook tests and boundary guardrails.",
+    "Rerun Batch 3J and Batch 3K replay validation reports."
+  ],
+  "runtime_default_config_change_performed": true,
+  "safety_notes": [
+    "Variant-b was not applied.",
+    "breakout.allow_volatile remains false.",
+    "StrategySignal remains observational-only.",
+    "No live trading, order placement, or StrategySignal-to-order mapping was introduced."
+  ],
+  "strategy_signal_to_order_mapping_introduced": false,
+  "stress_test_candidate_not_applied": "variant-b",
+  "tests_run": [
+    "python3 scripts/test_strategy_registry.py",
+    "python3 scripts/test_strategy_playbooks.py",
+    "python3 scripts/test_volatility_skip_calibration.py",
+    "python3 scripts/test_volatility_skip_broader_validation.py",
+    "python3 scripts/test_volatility_skip_zero_blocks.py",
+    "python3 scripts/test_strategy_vs_trader_evaluator.py",
+    "python3 scripts/test_boundary_guardrails.py"
+  ],
+  "values_match_expected": true
+}

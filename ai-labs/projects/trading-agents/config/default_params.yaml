@@ -227,14 +227,25 @@ technical_indicators:
 strategy_layer:
   enabled: true
   default_confidence_floor: 0.55
+  # Batch 3M approved variant-d volatility-skip calibration.
+  # StrategySignal remains observational-only; this does not authorize execution.
   regime_strategy_order:
     trend_up: ["volatility_skip", "trend_following", "breakout"]
     trend_down: ["volatility_skip", "trend_following", "breakout"]
     ranging: ["volatility_skip", "breakout"]
-    volatile: ["volatility_skip"]
+    volatile: ["volatility_skip", "trend_following", "breakout"]
+  volatility_skip:
+    volatile_confidence_floor: 0.75
+    high_atr_pct: 0.10
+  trend_following:
+    allow_volatile_trend_up: true
+    allow_volatile_trend_down: true
+    min_regime_confidence: 0.50
+  breakout:
+    allow_volatile: false
   selection:
     prefer_action_over_hold: true
-    min_action_confidence: 0.55
+    min_action_confidence: 0.50
 
 # =============================================================================
 # Stop Loss
