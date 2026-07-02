@@ -1,0 +1,99 @@
+{
+  "batch": "3T",
+  "commands": {
+    "dependency_check": "venv/bin/python scripts/check_replay_dependency_readiness.py --json",
+    "dry_run_template": "python3 scripts/run_readonly_monitoring_cadence.py --date-tag manual-YYYY-MM-DD-HHMM --symbols BTCUSDT ETHUSDT SOLUSDT --days 14 --window 200 --step 4",
+    "run_template": "python3 scripts/run_readonly_monitoring_cadence.py --run --date-tag manual-YYYY-MM-DD-HHMM --symbols BTCUSDT ETHUSDT SOLUSDT --days 14 --window 200 --step 4"
+  },
+  "created_at": "2026-07-02T20:22:00+07:00",
+  "cron_enabled": false,
+  "dry_run_output": "Batch 3R manual read-only monitoring cadence\nmode: DRY-RUN\ndate_tag: manual-dryrun-check\nsymbols: BTCUSDT ETHUSDT SOLUSDT\nraw_replay_log: logs/replay_signals-batch3r-manual-dryrun-check-core.jsonl  # local-only, do not commit\ncommittable_reports:\n  - volatility-skip-monitoring-cadence-batch3r-manual-dryrun-check.md\n  - volatility-skip-monitoring-cadence-batch3r-manual-dryrun-check.json\n  - volatility-skip-monitoring-combined-batch3r-manual-dryrun-check.md\n  - volatility-skip-monitoring-combined-batch3r-manual-dryrun-check.json\ncommands:\n  [readiness] venv/bin/python scripts/check_replay_dependency_readiness.py --json\n  [replay] venv/bin/python scripts/replay_signals.py --symbols BTCUSDT ETHUSDT SOLUSDT --days 14 --window 200 --step 4 --output logs/replay_signals-batch3r-manual-dryrun-check-core.jsonl\n  [fresh_monitoring] venv/bin/python scripts/run_volatility_skip_monitoring.py --inputs logs/replay_signals-batch3r-manual-dryrun-check-core.jsonl --output volatility-skip-monitoring-cadence-batch3r-manual-dryrun-check.md --json-output volatility-skip-monitoring-cadence-batch3r-manual-dryrun-check.json\n  [combined_monitoring] venv/bin/python scripts/run_volatility_skip_monitoring.py --inputs logs/replay_signals-batch3f-2026-06-28.jsonl logs/replay_signals-batch3g-2026-06-28.jsonl logs/replay_signals-batch3r-manual-dryrun-check-core.jsonl --output volatility-skip-monitoring-combined-batch3r-manual-dryrun-check.md --json-output volatility-skip-monitoring-combined-batch3r-manual-dryrun-check.json\nscheduler_enabled: false\nlive_trading_authorized: false\norder_placement_authorized: false\nDRY-RUN only. Re-run with --run to execute. Raw replay logs must not be committed.\n",
+  "escalation_conditions": [
+    "dependency readiness fails",
+    "fresh replay exits nonzero",
+    "fresh replay records == 0",
+    "fresh monitoring status == fail",
+    "combined monitoring status == fail",
+    "hard_conflict_count > 0",
+    "volatile_breakout_selected_count > 0",
+    "current_config.matches_variant_d == false",
+    "runner asks for .env/secret inspection",
+    "any step attempts live/simulate-live/order execution"
+  ],
+  "future_scheduler_gate": {
+    "approval_phrase": "Approve scheduled read-only monitoring cadence for trading-agents.",
+    "minimum_manual_runs_before_reconsideration": "2-3 successful manual cadence runs",
+    "not_blocked_by_option_a": true
+  },
+  "latest_evidence": {
+    "batch3q_combined_hard_conflict_count": 0,
+    "batch3q_combined_records": 296,
+    "batch3q_combined_status": "watch",
+    "batch3q_combined_volatile_breakout_selected_count": 0,
+    "batch3q_fresh_hard_conflict_count": 0,
+    "batch3q_fresh_records": 141,
+    "batch3q_fresh_status": "watch",
+    "batch3q_fresh_volatile_breakout_selected_count": 0,
+    "batch3s_raw_replay_records": 141,
+    "batch3s_scheduler_enabled": false,
+    "batch3s_status": "pass",
+    "known_watch_item": "volatility_skip_direct_block_rate == 0.0%"
+  },
+  "live_trading_authorized": false,
+  "manual_policy": {
+    "default_mode": "manual-on-demand",
+    "dry_run_required_first": true,
+    "explicit_run_required": true,
+    "operator": "Julius or Hermes, with Julius approval before Hermes runs --run in a session.",
+    "recommended_frequency": "After important strategy/config changes, or roughly weekly if Julius wants updated monitoring evidence."
+  },
+  "mode": "option_a_manual_on_demand_readonly_monitoring_cadence",
+  "order_placement_authorized": false,
+  "output_policy": {
+    "committable_report_patterns": [
+      "volatility-skip-monitoring-cadence-batch3r-manual-YYYY-MM-DD-HHMM.md/json",
+      "volatility-skip-monitoring-combined-batch3r-manual-YYYY-MM-DD-HHMM.md/json"
+    ],
+    "raw_replay_log_pattern": "logs/replay_signals-batch3r-manual-YYYY-MM-DD-HHMM-core.jsonl",
+    "raw_replay_log_policy": "Do not stage, commit, or push raw replay logs."
+  },
+  "raw_replay_logs_committable": false,
+  "recommendation": {
+    "next_step": "Run manual cadence only when Julius requests it; reconsider scheduler after 2-3 clean manual runs.",
+    "outcome": "Adopt manual-on-demand cadence as the default operating mode for now."
+  },
+  "runtime_default_config_change_performed": false,
+  "scheduler_enabled": false,
+  "selected_option": "Option A - Manual-on-demand only",
+  "simulate_live_execution_authorized": false,
+  "status": "pass",
+  "strategy_signal_to_order_mapping_introduced": false,
+  "systemd_timer_enabled": false,
+  "validation": [
+    {
+      "command": "python3 scripts/run_readonly_monitoring_cadence.py --help",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/run_readonly_monitoring_cadence.py --date-tag manual-dryrun-check",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/test_readonly_monitoring_cadence.py",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/test_volatility_skip_monitoring.py",
+      "returncode": 0,
+      "status": "pass"
+    }
+  ]
+}
