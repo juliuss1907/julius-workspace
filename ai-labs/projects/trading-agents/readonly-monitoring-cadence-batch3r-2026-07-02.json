@@ -1,0 +1,70 @@
+{
+  "actual_run_executed": false,
+  "batch": "3R",
+  "cadence_runner_implemented": true,
+  "created_at": "2026-07-02T19:52:00+07:00",
+  "dry_run_summary": "Batch 3R manual read-only monitoring cadence\nmode: DRY-RUN\ndate_tag: 2026-07-02-batch3r-dryrun\nsymbols: BTCUSDT ETHUSDT SOLUSDT\nraw_replay_log: logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl  # local-only, do not commit\ncommittable_reports:\n  - volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.md\n  - volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.json\n  - volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3r-dryrun.md\n  - volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3r-dryrun.json\ncommands:\n  [readiness] venv/bin/python scripts/check_replay_dependency_readiness.py --json\n  [replay] venv/bin/python scripts/replay_signals.py --symbols BTCUSDT ETHUSDT SOLUSDT --days 14 --window 200 --step 4 --output logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl\n  [fresh_monitoring] venv/bin/python scripts/run_volatility_skip_monitoring.py --inputs logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl --output volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.md --json-output volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.json\n  [combined_monitoring] venv/bin/python scripts/run_volatility_skip_monitoring.py --inputs logs/replay_signals-batch3f-2026-06-28.jsonl logs/replay_signals-batch3g-2026-06-28.jsonl logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl --output volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3r-dryrun.md --json-output volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3r-dryrun.json\nscheduler_enabled: false\nlive_trading_authorized: false\norder_placement_authorized: false\nDRY-RUN only. Re-run with --run to execute. Raw replay logs must not be committed.\n",
+  "files_changed": [
+    "scripts/run_readonly_monitoring_cadence.py",
+    "scripts/test_readonly_monitoring_cadence.py",
+    "scripts/test_boundary_guardrails.py",
+    "readonly-monitoring-cadence-batch3r-2026-07-02.md",
+    "readonly-monitoring-cadence-batch3r-2026-07-02.json"
+  ],
+  "live_trading_authorized": false,
+  "mode": "manual_readonly_monitoring_cadence",
+  "order_placement_authorized": false,
+  "raw_replay_log_committable": false,
+  "recommendation": {
+    "next_step": "Optionally run Batch 3R cadence with --run using a new date tag, or plan scheduler approval separately as a later batch.",
+    "outcome": "Manual read-only cadence runner is ready for on-demand dry-run or explicit --run execution."
+  },
+  "runtime_default_config_change_performed": false,
+  "scheduler_enabled": false,
+  "simulate_live_execution_authorized": false,
+  "status": "pass",
+  "validation": [
+    {
+      "command": "python3 -m py_compile scripts/run_readonly_monitoring_cadence.py scripts/test_readonly_monitoring_cadence.py scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": ""
+    },
+    {
+      "command": "python3 scripts/run_readonly_monitoring_cadence.py --help",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "usage: run_readonly_monitoring_cadence.py [-h] [--run] [--date-tag DATE_TAG]\n                                          [--symbols SYMBOLS [SYMBOLS ...]]\n                                          [--days DAYS] [--window WINDOW]\n                                          [--step STEP] [--python PYTHON]\n                                          [--overwrite]\n\nManual read-only replay plus volatility-skip monitoring cadence\n\noptions:\n  -h, --help            show this help message and exit\n  --run                 Actually execute replay and monitoring commands.\n                        Default is dry-run only.\n  --date-tag DATE_TAG   Date/run tag used in output filenames\n  --symbols SYMBOLS [SYMBOLS ...]\n                        Symbols for fresh replay collection\n  --days DAYS           Days of historical candles to replay\n  --window WINDOW       Replay candle window size\n  --step STEP           Replay candle step size\n  --python PYTHON       Python interpreter for replay/monitoring scripts\n  --overwrite           Allow overwriting generated raw replay/report\n                        artifacts\n"
+    },
+    {
+      "command": "python3 scripts/run_readonly_monitoring_cadence.py --date-tag 2026-07-02-batch3r-dryrun",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "Batch 3R manual read-only monitoring cadence\nmode: DRY-RUN\ndate_tag: 2026-07-02-batch3r-dryrun\nsymbols: BTCUSDT ETHUSDT SOLUSDT\nraw_replay_log: logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl  # local-only, do not commit\ncommittable_reports:\n  - volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.md\n  - volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.json\n  - volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3r-dryrun.md\n  - volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3r-dryrun.json\ncommands:\n  [readiness] venv/bin/python scripts/check_replay_dependency_readiness.py --json\n  [replay] venv/bin/python scripts/replay_signals.py --symbols BTCUSDT ETHUSDT SOLUSDT --days 14 --window 200 --step 4 --output logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl\n  [fresh_monitoring] venv/bin/python scripts/run_volatility_skip_monitoring.py --inputs logs/replay_signals-batch3r-2026-07-02-batch3r-dryrun-core.jsonl --output volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.md --json-output volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3r-dryrun.json\n  [combined_monitoring] "
+    },
+    {
+      "command": "python3 scripts/test_readonly_monitoring_cadence.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "PASS test_help_exits_zero\nPASS test_dry_run_exits_zero_and_does_not_create_files\nPASS test_build_paths_contains_date_tag\nPASS test_run_not_default_and_commands_use_venv_python\nPASS test_refuses_overwrite_when_outputs_exist\nPASS 5 readonly monitoring cadence tests\n"
+    },
+    {
+      "command": "python3 scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "PASS orchestration_contracts_no_execution_leak\nPASS orchestration_analyze_symbol_no_execution_leak\nPASS orchestration_init_no_policies_or_state\nPASS policies_init_no_execution_eager_import\nPASS reverse_planner_stdlib_only\nPASS manual_report_no_execution_leak\nPASS manual_report_cli_help_exits_zero_lightweight\nPASS readonly_analyzer_cli_help_exits_zero_lightweight\nPASS readonly_analyzer_module_import_no_execution_leak\nPASS replay_attribution_analyzer_cli_help_exits_zero_lightweight\nPASS replay_attribution_analyzer_import_no_execution_leak\nPASS strategy_vs_trader_evaluator_cli_help_exits_zero_lightweight\nPASS strategy_vs_trader_evaluator_import_no_execution_leak\nPASS volatility_skip_calibration_cli_help_exits_zero_lightweight\nPASS volatility_skip_calibration_import_no_execution_leak\nPASS volatility_skip_broader_validation_cli_help_exits_zero_lightweight\nPASS volatility_skip_broader_validation_import_no_execution_leak\nPASS volatility_skip_zero_blocks_cli_help_exits_zero_lightweight\nPASS volatility_skip_zero_blocks_import_no_execution_leak\nPASS volatility_skip_monitoring_cli_help_exits_zero_lightweight\nPASS volatility_skip_monitoring_import_no_execution_leak\nPASS readonly_monitoring_cad"
+    },
+    {
+      "command": "python3 scripts/test_volatility_skip_monitoring.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "PASS 7 volatility-skip monitoring tests\n"
+    }
+  ]
+}

@@ -375,6 +375,34 @@ def test_volatility_skip_monitoring_import_no_execution_leak():
 
 
 
+
+def test_readonly_monitoring_cadence_cli_help_exits_zero_lightweight():
+    """Batch 3R cadence runner --help must stay lightweight and dry-run first."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/run_readonly_monitoring_cadence.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"readonly cadence --help rc={rv.returncode}: {rv.stderr.strip()[:300]}")
+    assert_true("--run" in rv.stdout and "--date-tag" in rv.stdout,
+                f"readonly cadence help missing expected flags: {rv.stdout[:300]}")
+
+
+def test_readonly_monitoring_cadence_import_no_execution_leak():
+    """Importing Batch 3R cadence runner must not import runtime/execution modules."""
+    code = (
+        "import runpy, sys\n"
+        "runpy.run_path('scripts/run_readonly_monitoring_cadence.py', run_name='readonly_cadence_test')\n"
+        "forbidden = ['dotenv', 'dataflows', 'state', 'agents', 'trading', 'telegram_bot', "
+        "'risk_manager', 'position_manager', 'order_manager', 'entry_guard', "
+        "'runtime_health', 'reconciliation']\n"
+        "leaked = [m for m in sys.modules for kw in forbidden "
+        "if m == kw or m.startswith(kw + '.') or kw in m]\n"
+        "print('LEAKED:' + ','.join(sorted(set(leaked))) if leaked else 'CLEAN')\n"
+    )
+    _check_no_leak("readonly monitoring cadence import", code)
+
 def test_replay_dependency_readiness_cli_help_exits_zero_lightweight():
     """Replay dependency readiness checker --help must stay stdlib-only/lightweight."""
     rv = subprocess.run(
@@ -585,6 +613,8 @@ def run_tests():
         ("volatility_skip_zero_blocks_import_no_execution_leak", test_volatility_skip_zero_blocks_import_no_execution_leak),
         ("volatility_skip_monitoring_cli_help_exits_zero_lightweight", test_volatility_skip_monitoring_cli_help_exits_zero_lightweight),
         ("volatility_skip_monitoring_import_no_execution_leak", test_volatility_skip_monitoring_import_no_execution_leak),
+        ("readonly_monitoring_cadence_cli_help_exits_zero_lightweight", test_readonly_monitoring_cadence_cli_help_exits_zero_lightweight),
+        ("readonly_monitoring_cadence_import_no_execution_leak", test_readonly_monitoring_cadence_import_no_execution_leak),
         ("replay_dependency_readiness_cli_help_exits_zero_lightweight", test_replay_dependency_readiness_cli_help_exits_zero_lightweight),
         ("replay_signals_cli_help_exits_zero_lightweight", test_replay_signals_cli_help_exits_zero_lightweight),
         ("runtime_control_cli_help_exits_zero_lightweight", test_runtime_control_cli_help_exits_zero_lightweight),
