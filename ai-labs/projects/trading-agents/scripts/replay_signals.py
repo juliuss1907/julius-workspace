@@ -7,6 +7,7 @@ Produces logs/replay_signals.jsonl for analysis.
 """
 import argparse
 import asyncio
+import logging
 import sys
 from datetime import datetime, date, time as dt_time, timedelta
 from pathlib import Path
@@ -14,18 +15,18 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-from dotenv import load_dotenv
-load_dotenv()
+logger = logging.getLogger(__name__)
 
-from utils import setup_logging, get_logger
-from dataflows import BinanceClient
-from dataflows.data_manager import DataManager
-from state import db, SignalRecorder
-from agents import TechnicalAnalyst, TraderAgent, ResearchDebate
-from strategies.attribution import build_strategy_signal
 
-setup_logging("INFO")
-logger = get_logger(__name__)
+def _initialize_runtime_logging() -> None:
+    """Initialize runtime-only logging and environment loading after CLI parsing."""
+    from dotenv import load_dotenv
+    from utils import get_logger, setup_logging
+
+    load_dotenv()
+    setup_logging("INFO")
+    global logger
+    logger = get_logger(__name__)
 
 
 def _load_strategy_layer_config() -> dict:
@@ -63,12 +64,17 @@ class SignalReplay:
         self.step_candles = step_candles
         self.end_date = end_date
         self.config_override = config_override or {}
+        from agents import ResearchDebate, TechnicalAnalyst, TraderAgent
+        from state import SignalRecorder
+
         self.recorder = SignalRecorder(log_path=Path(output_path))
         self.technical = TechnicalAnalyst()
         self.trader = TraderAgent(config_override=self.config_override)
         self.debate = ResearchDebate(config_override=self.config_override)
 
     async def initialize(self):
+        from state import db
+
         await db.connect()
         await self.technical.initialize()
         await self.trader.initialize()
@@ -78,9 +84,13 @@ class SignalReplay:
         await self.technical.close()
         await self.trader.close()
         await self.debate.close()
+        from state import db
+
         await db.close()
 
     async def fetch_candles(self, symbol: str) -> list:
+        from dataflows import BinanceClient
+
         bc = BinanceClient()
         try:
             if self.end_date:
@@ -139,6 +149,8 @@ class SignalReplay:
         tech_c = technical_signal.confidence if technical_signal else 0.0
 
         technical_analysis = technical_signal.analysis if technical_signal else {}
+        from strategies.attribution import build_strategy_signal
+
         strategy_signal = build_strategy_signal(
             technical_analysis=technical_analysis,
             strategy_config=_load_strategy_layer_config(),
@@ -218,6 +230,7 @@ def parse_args():
 
 async def main():
     args = parse_args()
+    _initialize_runtime_logging()
     replay = SignalReplay(
         symbols=args.symbols,
         days=args.days,

@@ -373,6 +373,19 @@ def test_volatility_skip_monitoring_import_no_execution_leak():
     )
     _check_no_leak("volatility-skip monitoring import", code)
 
+
+def test_replay_signals_cli_help_exits_zero_lightweight():
+    """replay_signals --help must not require optional Telegram deps like Telethon."""
+    rv = subprocess.run(
+        [SYSTEM_PYTHON, f"{SCRIPT_DIR}/replay_signals.py", "--help"],
+        capture_output=True, text=True, timeout=15,
+        cwd=str(project_root),
+    )
+    assert_eq(rv.returncode, 0,
+              f"replay_signals --help rc={rv.returncode}: {rv.stderr.strip()[:300]}")
+    assert_true("--symbols" in rv.stdout and "--output" in rv.stdout and "--end-date" in rv.stdout,
+                f"replay_signals help missing expected flags: {rv.stdout[:300]}")
+
 def test_runtime_control_cli_help_exits_zero_lightweight():
     """runtime_control --help must work with system Python (no aiosqlite)."""
     rv = subprocess.run(
@@ -559,6 +572,7 @@ def run_tests():
         ("volatility_skip_zero_blocks_import_no_execution_leak", test_volatility_skip_zero_blocks_import_no_execution_leak),
         ("volatility_skip_monitoring_cli_help_exits_zero_lightweight", test_volatility_skip_monitoring_cli_help_exits_zero_lightweight),
         ("volatility_skip_monitoring_import_no_execution_leak", test_volatility_skip_monitoring_import_no_execution_leak),
+        ("replay_signals_cli_help_exits_zero_lightweight", test_replay_signals_cli_help_exits_zero_lightweight),
         ("runtime_control_cli_help_exits_zero_lightweight", test_runtime_control_cli_help_exits_zero_lightweight),
         ("runtime_control_start_dry_run_exits_zero_lightweight", test_runtime_control_start_dry_run_exits_zero_lightweight),
         ("runtime_control_import_no_optional_deps", test_runtime_control_import_no_optional_deps),

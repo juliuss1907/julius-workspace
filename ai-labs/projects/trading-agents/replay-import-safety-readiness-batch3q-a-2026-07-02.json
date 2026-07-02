@@ -1,0 +1,80 @@
+{
+  "batch": "3Q-A",
+  "boundaries": {
+    "env_contents_read_or_printed": false,
+    "live_trading_authorized": false,
+    "order_placement_authorized": false,
+    "raw_replay_logs_committed": false,
+    "raw_replay_logs_created": false,
+    "simulate_live_execution_authorized": false,
+    "strategy_signal_to_order_mapping_introduced": false
+  },
+  "created_at": "2026-07-02T10:30:00+07:00",
+  "mode": "replay_import_safety_dependency_readiness",
+  "patch": {
+    "approach": "lazy dataflows package exports plus replay_signals runtime import deferral",
+    "dependency_installed": false,
+    "files_changed": [
+      "dataflows/__init__.py",
+      "scripts/replay_signals.py",
+      "scripts/test_boundary_guardrails.py"
+    ],
+    "notes": [
+      "dataflows now eagerly imports only DataSource and lazy-loads concrete clients/scrapers via __getattr__",
+      "replay_signals defers dotenv, state, agents, dataflows, and strategy attribution imports until actual replay execution after CLI parsing",
+      "boundary guardrail now covers replay_signals --help readiness"
+    ],
+    "runtime_default_config_changed": false
+  },
+  "pre_patch_blocker": {
+    "command": "python3 scripts/replay_signals.py --help",
+    "errors": [
+      "ModuleNotFoundError: No module named 'telethon'",
+      "ModuleNotFoundError: No module named 'feedparser' after isolating telethon only"
+    ],
+    "root_cause": "dataflows package eagerly imported optional scraper/fetcher modules, and replay_signals loaded runtime dependencies before argparse help could exit."
+  },
+  "readiness": {
+    "fresh_replay_retry_recommended": true,
+    "next_step": "Retry Batch 3Q fresh non-variant replay collection for BTCUSDT/ETHUSDT/SOLUSDT.",
+    "replay_cli_help_ready": true
+  },
+  "status": "pass",
+  "validation": [
+    {
+      "command": "python3 -m py_compile scripts/replay_signals.py dataflows/__init__.py scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": ""
+    },
+    {
+      "command": "python3 scripts/replay_signals.py --help",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "usage: replay_signals.py [-h] [--symbols SYMBOLS [SYMBOLS ...]] [--days DAYS]\n                         [--window WINDOW] [--step STEP] [--output OUTPUT]\n                         [--end-date END_DATE]\n\nReplay agent stack on historical OHLCV\n\noptions:\n  -h, --help            show this help message and exit\n  --symbols SYMBOLS [SYMBOLS ...]\n  --days DAYS           Days of historical data\n  --window WINDOW       Candle window size\n  --step STEP           Step size in candles (4 = ~4h)\n  --output OUTPUT       Output JSONL path\n  --end-date END_DATE   End date for historical window (YYYY-MM-DD). When set,\n                        replay looks back --days from this date.\n"
+    },
+    {
+      "command": "python3 scripts/run_volatility_skip_monitoring.py --help",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "usage: run_volatility_skip_monitoring.py [-h] [--inputs INPUTS [INPUTS ...]]\n                                         [--output OUTPUT]\n                                         [--json-output JSON_OUTPUT]\n                                         [--overwrite]\n\nRun Batch 3O volatility-skip post-implementation monitoring\n\noptions:\n  -h, --help            show this help message and exit\n  --inputs INPUTS [INPUTS ...]\n                        Replay JSONL windows to monitor\n  --output OUTPUT\n  --json-output JSON_OUTPUT\n  --overwrite           Allow overwriting Batch 3O monitoring reports\n"
+    },
+    {
+      "command": "python3 scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "PASS orchestration_contracts_no_execution_leak\nPASS orchestration_analyze_symbol_no_execution_leak\nPASS orchestration_init_no_policies_or_state\nPASS policies_init_no_execution_eager_import\nPASS reverse_planner_stdlib_only\nPASS manual_report_no_execution_leak\nPASS manual_report_cli_help_exits_zero_lightweight\nPASS readonly_analyzer_cli_help_exits_zero_lightweight\nPASS readonly_analyzer_module_import_no_execution_leak\nPASS replay_attribution_analyzer_cli_help_exits_zero_lightweight\nPASS replay_attribution_analyzer_import_no_execution_leak\nPASS strategy_vs_trader_evaluator_cli_help_exits_zero_lightweight\nPASS strategy_vs_trader_evaluator_import_no_execution_leak\nPASS volatility_skip_calibration_cli_help_exits_zero_lightweight\nPASS volatility_skip_calibration_import_no_execution_leak\nPASS vola"
+    },
+    {
+      "command": "python3 scripts/test_volatility_skip_monitoring.py",
+      "returncode": 0,
+      "status": "pass",
+      "stderr_head": "",
+      "stdout_head": "PASS 7 volatility-skip monitoring tests\n"
+    }
+  ]
+}
