@@ -1,0 +1,168 @@
+{
+  "batch": "3Q-B",
+  "boundaries": {
+    "connects_database": false,
+    "installs_dependencies": false,
+    "opens_network": false,
+    "places_orders": false,
+    "reads_env_contents": false,
+    "runs_live_trading": false,
+    "runs_replay": false
+  },
+  "checker_report": {
+    "boundaries": {
+      "connects_database": false,
+      "loads_env": false,
+      "opens_network": false,
+      "places_orders": false,
+      "runs_live_trading": false,
+      "runs_replay": false
+    },
+    "missing_optional": [
+      "feedparser",
+      "telethon",
+      "vaderSentiment"
+    ],
+    "missing_required": [
+      "aiosqlite"
+    ],
+    "optional_modules": [
+      {
+        "available": false,
+        "module": "feedparser",
+        "origin": null,
+        "purpose": "RSS/news ingestion; not required for core OHLCV replay help",
+        "required": false
+      },
+      {
+        "available": false,
+        "module": "telethon",
+        "origin": null,
+        "purpose": "Telegram scraping; not required for core OHLCV replay help",
+        "required": false
+      },
+      {
+        "available": false,
+        "module": "vaderSentiment",
+        "origin": null,
+        "purpose": "news sentiment analysis; not required for core technical-only replay path",
+        "required": false
+      }
+    ],
+    "project_root": "/home/julius/julius-workspace/ai-labs/projects/trading-agents",
+    "python": {
+      "executable": "/usr/bin/python3",
+      "implementation": "CPython",
+      "version": "3.14.3"
+    },
+    "required_modules": [
+      {
+        "available": true,
+        "module": "aiohttp",
+        "origin": "/home/julius/.local/lib/python3.14/site-packages/aiohttp/__init__.py",
+        "purpose": "Binance REST client HTTP transport",
+        "required": true
+      },
+      {
+        "available": false,
+        "module": "aiosqlite",
+        "origin": null,
+        "purpose": "state database access used by replay SignalRecorder/db",
+        "required": true
+      },
+      {
+        "available": true,
+        "module": "dotenv",
+        "origin": "/home/julius/.local/lib/python3.14/site-packages/dotenv/__init__.py",
+        "purpose": "python-dotenv runtime environment loader",
+        "required": true
+      },
+      {
+        "available": true,
+        "module": "numpy",
+        "origin": "/usr/lib64/python3.14/site-packages/numpy/__init__.py",
+        "purpose": "technical indicators and market regime calculations",
+        "required": true
+      },
+      {
+        "available": true,
+        "module": "yaml",
+        "origin": "/usr/lib64/python3.14/site-packages/yaml/__init__.py",
+        "purpose": "YAML config loading via PyYAML",
+        "required": true
+      }
+    ],
+    "status": "blocked"
+  },
+  "created_at": "2026-07-02T11:19:00+07:00",
+  "declared_dependency_pins": [
+    "python-dotenv>=1.0.0",
+    "telethon>=1.34.0  # Telegram scraping",
+    "feedparser>=6.0.0  # RSS feeds",
+    "numpy>=1.24.0",
+    "vaderSentiment>=3.3.2  # Sentiment analysis",
+    "aiosqlite>=0.19.0",
+    "aiohttp>=3.9.0"
+  ],
+  "dependency_install_performed": false,
+  "environment": {
+    "pip_version": "pip 25.1.1 from /usr/lib/python3.14/site-packages/pip (python 3.14)",
+    "project_venv_listing": [
+      "drwxr-xr-x 5 julius julius 4096 14:27  4 Thg 6  venv",
+      "Python 3.14.3"
+    ],
+    "python_path": "/usr/bin/python3",
+    "python_version": "Python 3.14.3"
+  },
+  "live_trading_authorized": false,
+  "mode": "replay_runtime_dependency_environment_readiness",
+  "order_placement_authorized": false,
+  "raw_replay_log_created": false,
+  "recommendation": {
+    "existing_venv_command": "venv/bin/python -m pip install -r requirements.txt",
+    "minimal_unblock_command": "python3 -m pip install aiosqlite",
+    "next_step": "Ask Julius to approve dependency installation, then retry Batch 3Q fresh replay.",
+    "outcome": "Install declared project dependencies in an isolated project environment before retrying fresh replay.",
+    "preferred_approval_command": "python3 -m venv venv && venv/bin/python -m pip install -r requirements.txt"
+  },
+  "runtime_default_config_change_performed": false,
+  "simulate_live_execution_authorized": false,
+  "state_signal_recorder_import": {
+    "returncode": 0,
+    "stderr": "",
+    "stdout": "BLOCKED state.SignalRecorder import: ModuleNotFoundError: No module named 'aiosqlite'"
+  },
+  "status": "blocked",
+  "validation": [
+    {
+      "command": "python3 -m py_compile scripts/check_replay_dependency_readiness.py scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/check_replay_dependency_readiness.py --help",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/check_replay_dependency_readiness.py --json",
+      "returncode": 2,
+      "status": "blocked"
+    },
+    {
+      "command": "python3 scripts/replay_signals.py --help",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/test_boundary_guardrails.py",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "command": "python3 scripts/test_volatility_skip_monitoring.py",
+      "returncode": 0,
+      "status": "pass"
+    }
+  ]
+}
