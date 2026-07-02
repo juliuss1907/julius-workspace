@@ -1,0 +1,60 @@
+{
+  "batch": "3Q",
+  "batch3p_reference": {
+    "fallback_or_missing_state_count": 72,
+    "hard_conflict_count": 0,
+    "status": "watch",
+    "total_records": 227,
+    "volatile_breakout_selected_count": 0,
+    "volatility_skip_direct_block_rate": 0.0
+  },
+  "blockers": [
+    {
+      "component": "scripts/replay_signals.py",
+      "message": "ModuleNotFoundError: No module named telethon",
+      "resolution_required": "Do not install automatically. Julius approval is needed for dependency install or import-safety patch before fresh replay collection.",
+      "type": "dependency_import_readiness"
+    }
+  ],
+  "cadence_recommendation": {
+    "next_step": "Batch 3Q-A dependency readiness/import-safety patch, or approve dependency installation in the project environment.",
+    "outcome": "Resolve replay dependency/import readiness before enabling a scheduled cadence.",
+    "scheduler_enabled": false
+  },
+  "created_at": "2026-07-02T09:08:00+07:00",
+  "fresh_replay": {
+    "attempted": false,
+    "committable": false,
+    "days": 14,
+    "output": "logs/replay_signals-batch3q-2026-07-02-core.jsonl",
+    "records": 0,
+    "step": 4,
+    "symbols": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT"
+    ],
+    "window": 200
+  },
+  "live_trading_authorized": false,
+  "mode": "fresh_non_variant_replay_and_readonly_monitoring_cadence",
+  "monitoring": {
+    "combined_report": null,
+    "combined_status": "not_run",
+    "fresh_only_report": null,
+    "fresh_only_status": "not_run"
+  },
+  "order_placement_authorized": false,
+  "preflight": {
+    "monitoring_runner_help": "pass",
+    "py_compile_replay_signals": "pass",
+    "replay_signals_help": "fail",
+    "replay_signals_help_blocker": "ModuleNotFoundError: No module named telethon"
+  },
+  "raw_replay_log_committed": false,
+  "runtime_default_config_change_performed": false,
+  "scope_boundary": "Fresh replay/cadence readiness only: no runtime config changes, no live trading, no order placement, no simulate-live execution, no raw replay logs committed.",
+  "simulate_live_execution_authorized": false,
+  "status": "blocked",
+  "strategy_signal_to_order_mapping_introduced": false
+}
