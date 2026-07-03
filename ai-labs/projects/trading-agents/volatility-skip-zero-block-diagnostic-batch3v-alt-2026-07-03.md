@@ -3,17 +3,18 @@
 **Status:** `watch`
 **Mode:** read-only diagnostic, no runtime/default config changes
 
-## Correction Note
+## Final Correction Note
 
-This diagnostic uses `strategy_signal.strategy_id`, `strategy_signal.family`, and `strategy_signal.action` as the selected StrategySignal fields. It does not infer selected strategy from flattened attribution text.
+This diagnostic normalizes StrategySignal ids/families with hyphen/underscore equivalence, e.g. `volatility-skip` -> `volatility_skip`.
 
 ## Short Answer
 
-- Replay JSONL shows 0 records whose selected `strategy_signal.strategy_id` is `volatility_skip`, mostly HOLD/no-trade style signals.
-- Monitoring direct block rate remains 0.0 because the monitor metric is narrower than selected volatility-skip count: it counts volatility-skip directly blocking a TraderAgent action, not every volatility-skip HOLD selection.
-- All selected volatility-skip records are non-action/HOLD style; they do not create order intent and remain observational-only.
-- Recent monitoring summaries still show hard_conflict_count=0 and volatile_breakout_selected_count=0, so this is a watch/interpretation issue rather than a hard safety failure.
-- Replay JSONL does not expose a simple explicit regime field; deeper cause analysis would require candidate-level attribution instrumentation in a separately approved batch.
+- Across inspected replay files, `498` records selected volatility-skip as the StrategySignal family/strategy, and `412` of those are HOLD/no-trade style signals.
+- Volatility-skip was evaluated in `578` records and evaluated-but-not-selected in `80` records.
+- The monitoring metric `volatility_skip_direct_block_rate` is narrower than selected-volatility-skip frequency: it tracks direct blocks during TraderAgent action contexts. Therefore it can remain 0.0 even when volatility-skip is selected often as HOLD/no-trade.
+- ATR attribution is visible in `412` records, but only `0` meet high_atr_pct >= 0.1; most volatility-skip HOLDs appear below the high direct-block threshold.
+- Hard conflicts and volatile breakout selections remain zero in inspected monitoring reports, so this is a watch/interpretation issue rather than a hard safety failure.
+- Some records show trend-following/breakout selected after volatility-skip evaluation; prefer_action_over_hold may contribute when action confidence is available, but candidate-level causality remains only partially observable.
 
 ## Current Config Check
 
@@ -29,21 +30,22 @@ This diagnostic uses `strategy_signal.strategy_id`, `strategy_signal.family`, an
 
 - `total_records`: `650`
 - `records_with_strategy_signal`: `578`
-- `selected_volatility_skip_records`: `0`
-- `selected_trend_following_records`: `0`
+- `selected_volatility_skip_records`: `498`
+- `selected_trend_following_records`: `74`
 - `selected_breakout_records`: `6`
-- `volatility_skip_hold_records`: `0`
-- `volatility_skip_buy_sell_records`: `0`
-- `records_with_volatility_skip_in_attribution`: `0`
+- `volatility_skip_hold_records`: `412`
+- `volatility_skip_long_short_records`: `0`
+- `records_where_volatility_skip_was_evaluated`: `578`
+- `records_where_volatility_skip_was_evaluated_but_not_selected`: `80`
+- `records_with_volatile_regime_attribution`: `365`
+- `records_with_atr_pct_attribution`: `412`
+- `records_with_atr_pct_ge_high_atr_threshold`: `0`
 - `records_with_atr_or_volatility_numeric_fields`: `650`
-- `records_with_any_high_atr_pct_candidate_ge_config_threshold`: `650`
-- `records_with_market_snapshot`: `650`
-- `records_with_explicit_regime_field`: `0`
 
-## Strategy ID Counts
+## Canonical Strategy ID Counts
 
-- `volatility-skip`: `498`
-- `trend-following`: `74`
+- `volatility_skip`: `498`
+- `trend_following`: `74`
 - `unknown`: `72`
 - `breakout`: `6`
 
@@ -54,6 +56,13 @@ This diagnostic uses `strategy_signal.strategy_id`, `strategy_signal.family`, an
 - `unknown`: `72`
 - `short`: `43`
 - `long`: `37`
+
+## Attribution Regime Counts
+
+- `volatile`: `365`
+- `trend_down`: `133`
+- `trend_up`: `80`
+- `unknown`: `72`
 
 ## Monitoring Report Summaries
 
@@ -66,9 +75,9 @@ This diagnostic uses `strategy_signal.strategy_id`, `strategy_signal.family`, an
 
 ## Interpretation
 
-The zero direct-block watch flag does **not** mean volatility-skip never appears. It means the monitor did not observe volatility-skip directly blocking TraderAgent action records under its stricter definition. The replay artifacts show many selected volatility-skip HOLD/no-trade signals, while hard conflicts and volatile breakout selections remain zero.
+The zero direct-block watch flag does **not** mean volatility-skip never appears. It means the monitoring direct-block metric did not observe volatility-skip directly blocking TraderAgent action records under its stricter definition. The replay artifacts show many selected volatility-skip HOLD/no-trade signals, while hard conflicts and volatile breakout selections remain zero.
 
-This diagnostic should not be used to change config by itself. Candidate-level internals and confidence-floor failures are not fully exposed in current replay JSONL.
+This diagnostic should not be used to change config by itself. Candidate-level confidence-floor failures are only partially exposed in current replay JSONL.
 
 ## Safety Confirmation
 

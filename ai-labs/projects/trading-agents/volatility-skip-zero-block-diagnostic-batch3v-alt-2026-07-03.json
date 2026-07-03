@@ -21,9 +21,15 @@
     "final_signal.analysis.technical_state.scores.volatility": 578,
     "strategy_signal.attribution.atr_pct": 412
   },
+  "attribution_regime_counts": {
+    "trend_down": 133,
+    "trend_up": 80,
+    "unknown": 72,
+    "volatile": 365
+  },
   "batch": "3V-alt",
-  "correction_note": "Corrected extraction uses strategy_signal.strategy_id/family/action instead of flattened attribution text.",
-  "created_at": "2026-07-03T09:46:02",
+  "correction_note": "Final correction normalizes strategy ids/families with hyphen/underscore equivalence, e.g. volatility-skip -> volatility_skip.",
+  "created_at": "2026-07-03T09:49:25",
   "current_config": {
     "breakout_allow_volatile": false,
     "enabled": true,
@@ -54,175 +60,276 @@
     "volatility_skip_volatile_confidence_floor": 0.75
   },
   "examples": {
-    "high_atr_candidates": [
+    "high_atr_candidates": [],
+    "selected_volatility_skip": [
       {
-        "candidates": [
-          [
-            "analysts.technical.analysis.scores.volatility",
-            0.4
+        "action": "hold",
+        "attribution": {
+          "atr_pct": 0.007389508910452737,
+          "evaluated": [
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "volatility-skip"
+            },
+            {
+              "action": "skip",
+              "confidence": 0.6,
+              "strategy_id": "trend-following"
+            },
+            {
+              "action": "skip",
+              "confidence": 0.6,
+              "strategy_id": "breakout"
+            }
           ],
-          [
-            "analysts.technical.analysis.technical_state.scores.volatility",
-            0.4
-          ],
-          [
-            "draft_signal.analysis.scores.volatility",
-            0.4
-          ],
-          [
-            "draft_signal.analysis.technical_state.scores.volatility",
-            0.4
-          ],
-          [
-            "final_signal.analysis.scores.volatility",
-            0.4
-          ],
-          [
-            "final_signal.analysis.technical_state.scores.volatility",
-            0.4
-          ]
-        ],
+          "regime": "volatile",
+          "registry": true,
+          "source": "replay_signals"
+        },
+        "confidence": 0.5,
+        "family": "volatility_skip",
         "line": 1,
         "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
-        "strategy_id": "volatility-skip",
+        "strategy_id_raw": "volatility-skip",
         "symbol": "BTCUSDT",
         "timestamp": "2026-07-03T09:24:24.897484"
       },
       {
-        "candidates": [
-          [
-            "analysts.technical.analysis.scores.volatility",
-            0.4
+        "action": "hold",
+        "attribution": {
+          "atr_pct": 0.0073786008784774235,
+          "evaluated": [
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "volatility-skip"
+            },
+            {
+              "action": "skip",
+              "confidence": 0.6,
+              "strategy_id": "trend-following"
+            },
+            {
+              "action": "skip",
+              "confidence": 0.6,
+              "strategy_id": "breakout"
+            }
           ],
-          [
-            "analysts.technical.analysis.technical_state.scores.volatility",
-            0.4
-          ],
-          [
-            "draft_signal.analysis.scores.volatility",
-            0.4
-          ],
-          [
-            "draft_signal.analysis.technical_state.scores.volatility",
-            0.4
-          ],
-          [
-            "final_signal.analysis.scores.volatility",
-            0.4
-          ],
-          [
-            "final_signal.analysis.technical_state.scores.volatility",
-            0.4
-          ]
-        ],
+          "regime": "volatile",
+          "registry": true,
+          "source": "replay_signals"
+        },
+        "confidence": 0.5,
+        "family": "volatility_skip",
         "line": 2,
         "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
-        "strategy_id": "volatility-skip",
+        "strategy_id_raw": "volatility-skip",
         "symbol": "BTCUSDT",
         "timestamp": "2026-07-03T09:24:24.908877"
       },
       {
-        "candidates": [
-          [
-            "analysts.technical.analysis.scores.volatility",
-            0.5
+        "action": "hold",
+        "attribution": {
+          "atr_pct": 0.010683379151084334,
+          "evaluated": [
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "volatility-skip"
+            },
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "trend-following"
+            },
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "breakout"
+            }
           ],
-          [
-            "analysts.technical.analysis.technical_state.scores.volatility",
-            0.5
-          ],
-          [
-            "draft_signal.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "draft_signal.analysis.technical_state.scores.volatility",
-            0.5
-          ],
-          [
-            "final_signal.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "final_signal.analysis.technical_state.scores.volatility",
-            0.5
-          ]
-        ],
-        "line": 3,
-        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
-        "strategy_id": "trend-following",
-        "symbol": "BTCUSDT",
-        "timestamp": "2026-07-03T09:24:24.915598"
-      },
-      {
-        "candidates": [
-          [
-            "analysts.technical.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "analysts.technical.analysis.technical_state.scores.volatility",
-            0.5
-          ],
-          [
-            "draft_signal.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "draft_signal.analysis.technical_state.scores.volatility",
-            0.5
-          ],
-          [
-            "final_signal.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "final_signal.analysis.technical_state.scores.volatility",
-            0.5
-          ]
-        ],
-        "line": 4,
-        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
-        "strategy_id": "trend-following",
-        "symbol": "BTCUSDT",
-        "timestamp": "2026-07-03T09:24:24.921212"
-      },
-      {
-        "candidates": [
-          [
-            "analysts.technical.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "analysts.technical.analysis.technical_state.scores.volatility",
-            0.5
-          ],
-          [
-            "draft_signal.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "draft_signal.analysis.technical_state.scores.volatility",
-            0.5
-          ],
-          [
-            "final_signal.analysis.scores.volatility",
-            0.5
-          ],
-          [
-            "final_signal.analysis.technical_state.scores.volatility",
-            0.5
-          ]
-        ],
+          "regime": "trend_down",
+          "registry": true,
+          "source": "replay_signals"
+        },
+        "confidence": 0.5,
+        "family": "volatility_skip",
         "line": 5,
         "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
-        "strategy_id": "volatility-skip",
+        "strategy_id_raw": "volatility-skip",
         "symbol": "BTCUSDT",
         "timestamp": "2026-07-03T09:24:24.925921"
+      },
+      {
+        "action": "hold",
+        "attribution": {
+          "atr_pct": 0.012038552181322144,
+          "evaluated": [
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "volatility-skip"
+            },
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "trend-following"
+            },
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "breakout"
+            }
+          ],
+          "regime": "trend_down",
+          "registry": true,
+          "source": "replay_signals"
+        },
+        "confidence": 0.5,
+        "family": "volatility_skip",
+        "line": 6,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "strategy_id_raw": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.928529"
+      },
+      {
+        "action": "hold",
+        "attribution": {
+          "atr_pct": 0.011006455482942963,
+          "evaluated": [
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "volatility-skip"
+            },
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "trend-following"
+            },
+            {
+              "action": "hold",
+              "confidence": 0.5,
+              "strategy_id": "breakout"
+            }
+          ],
+          "regime": "trend_down",
+          "registry": true,
+          "source": "replay_signals"
+        },
+        "confidence": 0.5,
+        "family": "volatility_skip",
+        "line": 7,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "strategy_id_raw": "volatility-skip",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.931842"
       }
     ],
-    "selected_volatility_skip": [],
-    "volatility_skip_attribution_only": []
+    "volatility_skip_evaluated_not_selected": [
+      {
+        "action": "short",
+        "evaluated": [
+          {
+            "action": "hold",
+            "confidence": 0.5,
+            "strategy_id": "volatility-skip"
+          },
+          {
+            "action": "short",
+            "confidence": 0.95,
+            "strategy_id": "trend-following"
+          }
+        ],
+        "line": 3,
+        "regime": "trend_down",
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT"
+      },
+      {
+        "action": "short",
+        "evaluated": [
+          {
+            "action": "hold",
+            "confidence": 0.5,
+            "strategy_id": "volatility-skip"
+          },
+          {
+            "action": "short",
+            "confidence": 0.95,
+            "strategy_id": "trend-following"
+          }
+        ],
+        "line": 4,
+        "regime": "trend_down",
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT"
+      },
+      {
+        "action": "long",
+        "evaluated": [
+          {
+            "action": "hold",
+            "confidence": 0.5,
+            "strategy_id": "volatility-skip"
+          },
+          {
+            "action": "long",
+            "confidence": 0.95,
+            "strategy_id": "trend-following"
+          }
+        ],
+        "line": 45,
+        "regime": "trend_up",
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT"
+      },
+      {
+        "action": "short",
+        "evaluated": [
+          {
+            "action": "hold",
+            "confidence": 0.5,
+            "strategy_id": "volatility-skip"
+          },
+          {
+            "action": "short",
+            "confidence": 0.95,
+            "strategy_id": "trend-following"
+          }
+        ],
+        "line": 50,
+        "regime": "trend_down",
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "ETHUSDT"
+      },
+      {
+        "action": "short",
+        "evaluated": [
+          {
+            "action": "hold",
+            "confidence": 0.5,
+            "strategy_id": "volatility-skip"
+          },
+          {
+            "action": "short",
+            "confidence": 0.95,
+            "strategy_id": "trend-following"
+          }
+        ],
+        "line": 51,
+        "regime": "trend_down",
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "ETHUSDT"
+      }
+    ]
   },
   "family_counts": {
     "breakout": 6,
@@ -345,54 +452,55 @@
   "per_source": {
     "logs/replay_signals-batch3f-2026-06-28.jsonl": {
       "records": 15,
-      "strategy_id:trend-following": 1,
-      "strategy_id:volatility-skip": 14
+      "selected:trend_following": 1,
+      "selected:volatility_skip": 14
     },
     "logs/replay_signals-batch3g-2026-06-28.jsonl": {
       "records": 140,
-      "strategy_id:breakout": 4,
-      "strategy_id:trend-following": 10,
-      "strategy_id:volatility-skip": 126
+      "selected:breakout": 4,
+      "selected:trend_following": 10,
+      "selected:volatility_skip": 126
     },
     "logs/replay_signals-batch3q-2026-07-02-core.jsonl": {
       "records": 141,
-      "strategy_id:trend-following": 21,
-      "strategy_id:volatility-skip": 120
+      "selected:trend_following": 21,
+      "selected:volatility_skip": 120
     },
     "logs/replay_signals-batch3r-2026-07-02-batch3s-core.jsonl": {
       "records": 141,
-      "strategy_id:breakout": 2,
-      "strategy_id:trend-following": 20,
-      "strategy_id:volatility-skip": 119
+      "selected:breakout": 2,
+      "selected:trend_following": 20,
+      "selected:volatility_skip": 119
     },
     "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl": {
       "records": 141,
-      "strategy_id:trend-following": 22,
-      "strategy_id:volatility-skip": 119
+      "selected:trend_following": 22,
+      "selected:volatility_skip": 119
     },
     "logs/replay_signals.jsonl": {
       "records": 72,
-      "strategy_id:unknown": 72
+      "selected:unknown": 72
     }
   },
   "recommendation": {
     "do_not_change_config_based_on_this_report_alone": true,
-    "next_step": "Proceed to Batch 3V manual cadence run #3 only after committing this diagnostic correction, keeping scheduler disabled.",
+    "next_step": "Proceed to Batch 3V manual cadence run #3 after this diagnostic correction is committed, keeping scheduler disabled.",
     "optional_future_work": "If Julius wants deeper causality, add candidate-level strategy attribution instrumentation in a separate approval-gated batch."
   },
   "record_diagnostic": {
-    "records_with_any_high_atr_pct_candidate_ge_config_threshold": 650,
+    "records_where_volatility_skip_was_evaluated": 578,
+    "records_where_volatility_skip_was_evaluated_but_not_selected": 80,
     "records_with_atr_or_volatility_numeric_fields": 650,
-    "records_with_explicit_regime_field": 0,
-    "records_with_market_snapshot": 650,
+    "records_with_atr_pct_attribution": 412,
+    "records_with_atr_pct_ge_high_atr_threshold": 0,
     "records_with_strategy_signal": 578,
-    "records_with_volatility_skip_in_attribution": 0,
+    "records_with_volatile_regime_attribution": 365,
     "selected_breakout_records": 6,
-    "selected_trend_following_records": 0,
-    "selected_volatility_skip_records": 0,
+    "selected_trend_following_records": 74,
+    "selected_volatility_skip_records": 498,
     "total_records": 650,
-    "volatility_skip_buy_sell_records": 0,
-    "volatility_skip_hold_records": 0
+    "volatility_skip_hold_records": 412,
+    "volatility_skip_long_short_records": 0
   },
   "safety": {
     "cron_enabled": false,
@@ -405,7 +513,13 @@
     "systemd_timer_enabled": false
   },
   "status": "watch",
-  "strategy_id_counts": {
+  "strategy_id_canonical_counts": {
+    "breakout": 6,
+    "trend_following": 74,
+    "unknown": 72,
+    "volatility_skip": 498
+  },
+  "strategy_id_raw_counts": {
     "breakout": 6,
     "trend-following": 74,
     "unknown": 72,
@@ -413,19 +527,21 @@
   },
   "title": "Volatility-Skip Zero-Block Diagnostic",
   "zero_block_diagnostic": {
-    "candidate_level_evaluation_path": "not directly observable without extra instrumentation",
-    "confidence_floor_failed_records": "not directly observable from current replay JSONL attribution schema",
+    "candidate_level_evaluation_path": "partially visible through attribution.evaluated; full confidence-floor causality would need separate instrumentation",
     "direct_block_rate_observed_in_monitoring_reports": "0.0 in inspected recent monitoring reports",
     "likely_explanation": [
-      "Replay JSONL shows 0 records whose selected `strategy_signal.strategy_id` is `volatility_skip`, mostly HOLD/no-trade style signals.",
-      "Monitoring direct block rate remains 0.0 because the monitor metric is narrower than selected volatility-skip count: it counts volatility-skip directly blocking a TraderAgent action, not every volatility-skip HOLD selection.",
-      "All selected volatility-skip records are non-action/HOLD style; they do not create order intent and remain observational-only.",
-      "Recent monitoring summaries still show hard_conflict_count=0 and volatile_breakout_selected_count=0, so this is a watch/interpretation issue rather than a hard safety failure.",
-      "Replay JSONL does not expose a simple explicit regime field; deeper cause analysis would require candidate-level attribution instrumentation in a separately approved batch."
+      "Across inspected replay files, `498` records selected volatility-skip as the StrategySignal family/strategy, and `412` of those are HOLD/no-trade style signals.",
+      "Volatility-skip was evaluated in `578` records and evaluated-but-not-selected in `80` records.",
+      "The monitoring metric `volatility_skip_direct_block_rate` is narrower than selected-volatility-skip frequency: it tracks direct blocks during TraderAgent action contexts. Therefore it can remain 0.0 even when volatility-skip is selected often as HOLD/no-trade.",
+      "ATR attribution is visible in `412` records, but only `0` meet high_atr_pct >= 0.1; most volatility-skip HOLDs appear below the high direct-block threshold.",
+      "Hard conflicts and volatile breakout selections remain zero in inspected monitoring reports, so this is a watch/interpretation issue rather than a hard safety failure.",
+      "Some records show trend-following/breakout selected after volatility-skip evaluation; prefer_action_over_hold may contribute when action confidence is available, but candidate-level causality remains only partially observable."
     ],
-    "selected_volatility_skip_records": 0,
-    "threshold_eligible_records_conservative_proxy": 650,
-    "volatility_skip_buy_sell_records": 0,
-    "volatility_skip_hold_records": 0
+    "records_where_volatility_skip_was_evaluated": 578,
+    "records_where_volatility_skip_was_evaluated_but_not_selected": 80,
+    "selected_volatility_skip_records": 498,
+    "threshold_eligible_records_with_atr_pct_ge_high_atr_threshold": 0,
+    "volatility_skip_hold_records": 412,
+    "volatility_skip_long_short_records": 0
   }
 }
