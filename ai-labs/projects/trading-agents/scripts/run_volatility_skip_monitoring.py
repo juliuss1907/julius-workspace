@@ -128,9 +128,12 @@ def monitoring_counts(records: Sequence[Dict]) -> Dict:
     volatile_trend = 0
     volatile_breakout = 0
     fallback_or_missing = 0
+    candidate_counts = Counter()
     by_strategy = Counter()
     by_action = Counter()
     for record in records:
+        for key, value in candidate_level_counts(record).items():
+            candidate_counts[key] += value
         signal = record.get("strategy_signal") if isinstance(record, dict) else None
         if not isinstance(signal, dict) or not signal:
             fallback_or_missing += 1
@@ -150,6 +153,12 @@ def monitoring_counts(records: Sequence[Dict]) -> Dict:
         "volatile_trend_following_selected_count": volatile_trend,
         "volatile_breakout_selected_count": volatile_breakout,
         "fallback_or_missing_state_count": fallback_or_missing,
+        "volatility_skip_evaluated_count": candidate_counts.get("volatility_skip_evaluated_count", 0),
+        "volatility_skip_selected_hold_count": candidate_counts.get("volatility_skip_selected_hold_count", 0),
+        "volatility_skip_evaluated_not_selected_count": candidate_counts.get("volatility_skip_evaluated_not_selected_count", 0),
+        "volatility_skip_action_override_count": candidate_counts.get("volatility_skip_action_override_count", 0),
+        "volatility_skip_threshold_failed_count": candidate_counts.get("volatility_skip_threshold_failed_count", 0),
+        "volatility_skip_confidence_floor_failed_count": candidate_counts.get("volatility_skip_confidence_floor_failed_count", 0),
         "strategy_id_distribution": dict(sorted(by_strategy.items())),
         "strategy_action_distribution": dict(sorted(by_action.items())),
     }
@@ -244,6 +253,12 @@ def aggregate_windows(per_window: Sequence[Dict]) -> Dict:
         "volatile_trend_following_selected_count": volatile_trend,
         "volatile_breakout_selected_count": volatile_breakout,
         "fallback_or_missing_state_count": fallback_or_missing,
+        "volatility_skip_evaluated_count": sum(row["monitoring_counts"].get("volatility_skip_evaluated_count", 0) for row in per_window),
+        "volatility_skip_selected_hold_count": sum(row["monitoring_counts"].get("volatility_skip_selected_hold_count", 0) for row in per_window),
+        "volatility_skip_evaluated_not_selected_count": sum(row["monitoring_counts"].get("volatility_skip_evaluated_not_selected_count", 0) for row in per_window),
+        "volatility_skip_action_override_count": sum(row["monitoring_counts"].get("volatility_skip_action_override_count", 0) for row in per_window),
+        "volatility_skip_threshold_failed_count": sum(row["monitoring_counts"].get("volatility_skip_threshold_failed_count", 0) for row in per_window),
+        "volatility_skip_confidence_floor_failed_count": sum(row["monitoring_counts"].get("volatility_skip_confidence_floor_failed_count", 0) for row in per_window),
         "rates_weighted_by_records": weighted,
     }
 

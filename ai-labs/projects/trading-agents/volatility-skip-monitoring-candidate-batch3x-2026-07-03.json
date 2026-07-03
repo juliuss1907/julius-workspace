@@ -76,6 +76,12 @@
       "total_records": 141,
       "volatile_breakout_selected_count": 0,
       "volatile_trend_following_selected_count": 2,
+      "volatility_skip_action_override_count": 23,
+      "volatility_skip_confidence_floor_failed_count": 94,
+      "volatility_skip_evaluated_count": 141,
+      "volatility_skip_evaluated_not_selected_count": 23,
+      "volatility_skip_selected_hold_count": 118,
+      "volatility_skip_threshold_failed_count": 141,
       "windows": 1
     },
     "per_window": [
@@ -234,7 +240,13 @@
             "volatility-skip": 118
           },
           "volatile_breakout_selected_count": 0,
-          "volatile_trend_following_selected_count": 2
+          "volatile_trend_following_selected_count": 2,
+          "volatility_skip_action_override_count": 23,
+          "volatility_skip_confidence_floor_failed_count": 94,
+          "volatility_skip_evaluated_count": 141,
+          "volatility_skip_evaluated_not_selected_count": 23,
+          "volatility_skip_selected_hold_count": 118,
+          "volatility_skip_threshold_failed_count": 141
         },
         "record_count": 141,
         "source": "logs/replay_signals-batch3x-candidate-2026-07-03-1038-core.jsonl",

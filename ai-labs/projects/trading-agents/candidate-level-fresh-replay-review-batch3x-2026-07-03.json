@@ -63,20 +63,21 @@
     "total_records": 296,
     "volatile_breakout_selected_count": 0,
     "volatile_trend_following_selected_count": 3,
-    "volatility_skip_action_override_count": 0,
-    "volatility_skip_confidence_floor_failed_count": 0,
+    "volatility_skip_action_override_count": 39,
+    "volatility_skip_confidence_floor_failed_count": 180,
     "volatility_skip_direct_block_rate": 0.0,
-    "volatility_skip_evaluated_count": 0,
-    "volatility_skip_evaluated_not_selected_count": 0,
-    "volatility_skip_selected_hold_count": 0,
-    "volatility_skip_threshold_failed_count": 0
+    "volatility_skip_evaluated_count": 296,
+    "volatility_skip_evaluated_not_selected_count": 39,
+    "volatility_skip_selected_hold_count": 257,
+    "volatility_skip_threshold_failed_count": 296
   },
   "comparison_reference": {
     "batch_3v": "third manual cadence stayed watch with hard conflicts 0 and volatile breakout selected 0",
     "batch_3v_alt": "zero-block diagnostic found selected volatility-skip HOLD/no-trade frequency differs from direct-block metric",
     "batch_3w": "candidate-level attribution instrumentation added and validated"
   },
-  "created_at": "2026-07-03T10:47:52",
+  "correction_note": "Batch 3X monitoring reports were regenerated after wiring Batch 3W candidate_level_counts into monitoring_counts and aggregate_windows.",
+  "created_at": "2026-07-03T10:52:34",
   "fresh_monitoring": {
     "alerts": [
       {
@@ -98,13 +99,13 @@
     "total_records": 141,
     "volatile_breakout_selected_count": 0,
     "volatile_trend_following_selected_count": 2,
-    "volatility_skip_action_override_count": 0,
-    "volatility_skip_confidence_floor_failed_count": 0,
+    "volatility_skip_action_override_count": 23,
+    "volatility_skip_confidence_floor_failed_count": 94,
     "volatility_skip_direct_block_rate": 0.0,
-    "volatility_skip_evaluated_count": 0,
-    "volatility_skip_evaluated_not_selected_count": 0,
-    "volatility_skip_selected_hold_count": 0,
-    "volatility_skip_threshold_failed_count": 0
+    "volatility_skip_evaluated_count": 141,
+    "volatility_skip_evaluated_not_selected_count": 23,
+    "volatility_skip_selected_hold_count": 118,
+    "volatility_skip_threshold_failed_count": 141
   },
   "raw_replay_log": {
     "committable": false,
@@ -130,7 +131,7 @@
   "status": "watch",
   "status_reasons": [
     "candidate-level attribution is present on every fresh replay record",
-    "volatility_skip_direct_block_rate remains 0.0, but candidate-level counts now explain the condition",
+    "volatility_skip_direct_block_rate remains 0.0, but corrected monitoring now reports candidate-level volatility-skip counts",
     "hard_conflict_count and volatile_breakout_selected_count remain 0 with variant-D config intact",
     "scheduler remains disabled; Batch 3X does not authorize cron/systemd/scheduler"
   ],

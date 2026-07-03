@@ -96,6 +96,48 @@ def test_monitoring_report_schema_from_fixture():
     assert report["current_config"]["breakout_allow_volatile_default"] is False
 
 
+
+def test_candidate_level_counts_from_batch3w_schema():
+    record = _record(strategy_action="long", strategy_id="trend-following", family="trend_following")
+    record["strategy_signal"]["attribution"] = {
+        "candidate_schema_version": "batch3w-v1",
+        "evaluated": [
+            {
+                "strategy_id": "volatility-skip",
+                "family": "volatility_skip",
+                "action": "hold",
+                "confidence": 0.5,
+                "selected": False,
+                "eligible": True,
+                "selection_reason": None,
+                "rejection_reason": "hold_candidate_overridden_by_action_candidate",
+                "thresholds": {"high_atr_pct": 0.10, "volatile_confidence_floor": 0.75},
+                "observed": {"atr_pct": 0.05, "regime_confidence": 0.60},
+            },
+            {
+                "strategy_id": "trend-following",
+                "family": "trend_following",
+                "action": "long",
+                "confidence": 0.95,
+                "selected": True,
+                "eligible": True,
+                "selection_reason": "action_confidence_above_floor",
+                "rejection_reason": None,
+                "thresholds": {},
+                "observed": {},
+            },
+        ],
+    }
+    counts = monitoring.candidate_level_counts(record)
+    assert counts["volatility_skip_evaluated_count"] == 1
+    assert counts["volatility_skip_evaluated_not_selected_count"] == 1
+    assert counts["volatility_skip_action_override_count"] == 1
+    assert counts["volatility_skip_threshold_failed_count"] == 1
+    assert counts["volatility_skip_confidence_floor_failed_count"] == 1
+    aggregate_counts = monitoring.monitoring_counts([record])
+    assert aggregate_counts["volatility_skip_evaluated_count"] == 1
+    assert aggregate_counts["volatility_skip_action_override_count"] == 1
+
 def test_cli_help_is_lightweight():
     import subprocess, sys
     rv = subprocess.run([sys.executable, "scripts/run_volatility_skip_monitoring.py", "--help"], capture_output=True, text=True, timeout=15)
@@ -111,6 +153,7 @@ if __name__ == "__main__":
         test_alert_logic_fails_on_volatile_breakout,
         test_alert_logic_watches_zero_volatility_skip_block,
         test_monitoring_report_schema_from_fixture,
+        test_candidate_level_counts_from_batch3w_schema,
         test_cli_help_is_lightweight,
     ]
     for test in tests:

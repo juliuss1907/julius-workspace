@@ -3,6 +3,10 @@
 Status: watch
 Mode: read-only replay and monitoring; no config changes; no scheduler
 
+## Correction Note
+
+Batch 3X monitoring reports were regenerated after wiring Batch 3W candidate_level_counts into monitoring_counts and aggregate_windows.
+
 ## Summary
 
 Batch 3X ran fresh replay after Batch 3W candidate-level attribution instrumentation. The raw replay log remains local-only. Summary reports only are committable.
@@ -10,23 +14,23 @@ Batch 3X ran fresh replay after Batch 3W candidate-level attribution instrumenta
 ## Status Reasons
 
 - candidate-level attribution is present on every fresh replay record
-- volatility_skip_direct_block_rate remains 0.0, but candidate-level counts now explain the condition
+- volatility_skip_direct_block_rate remains 0.0, but corrected monitoring now reports candidate-level volatility-skip counts
 - hard_conflict_count and volatile_breakout_selected_count remain 0 with variant-D config intact
 - scheduler remains disabled; Batch 3X does not authorize cron/systemd/scheduler
 
 ## Candidate Schema Coverage
 
-- evaluated_candidate_count: 403
 - records: 141
+- records_with_strategy_signal: 141
 - records_with_candidate_schema_version: 141
 - records_with_evaluated_candidates: 141
-- records_with_strategy_signal: 141
-- volatility_skip_action_override_count: 23
-- volatility_skip_confidence_floor_failed_count: 94
+- evaluated_candidate_count: 403
 - volatility_skip_evaluated_count: 141
-- volatility_skip_evaluated_not_selected_count: 23
 - volatility_skip_selected_hold_count: 118
+- volatility_skip_evaluated_not_selected_count: 23
+- volatility_skip_action_override_count: 23
 - volatility_skip_threshold_failed_count: 141
+- volatility_skip_confidence_floor_failed_count: 94
 
 ## Fresh Monitoring
 
@@ -37,12 +41,12 @@ Batch 3X ran fresh replay after Batch 3W candidate-level attribution instrumenta
 - volatile_breakout_selected_count: 0
 - volatile_trend_following_selected_count: 2
 - fallback_or_missing_state_count: 0
-- volatility_skip_evaluated_count: 0
-- volatility_skip_selected_hold_count: 0
-- volatility_skip_evaluated_not_selected_count: 0
-- volatility_skip_action_override_count: 0
-- volatility_skip_threshold_failed_count: 0
-- volatility_skip_confidence_floor_failed_count: 0
+- volatility_skip_evaluated_count: 141
+- volatility_skip_selected_hold_count: 118
+- volatility_skip_evaluated_not_selected_count: 23
+- volatility_skip_action_override_count: 23
+- volatility_skip_threshold_failed_count: 141
+- volatility_skip_confidence_floor_failed_count: 94
 - alignment_rate: 0.41134751773049644
 - attribution_coverage_rate: 1.0
 - conflict_rate: 0.0
@@ -60,12 +64,12 @@ Batch 3X ran fresh replay after Batch 3W candidate-level attribution instrumenta
 - volatile_breakout_selected_count: 0
 - volatile_trend_following_selected_count: 3
 - fallback_or_missing_state_count: 0
-- volatility_skip_evaluated_count: 0
-- volatility_skip_selected_hold_count: 0
-- volatility_skip_evaluated_not_selected_count: 0
-- volatility_skip_action_override_count: 0
-- volatility_skip_threshold_failed_count: 0
-- volatility_skip_confidence_floor_failed_count: 0
+- volatility_skip_evaluated_count: 296
+- volatility_skip_selected_hold_count: 257
+- volatility_skip_evaluated_not_selected_count: 39
+- volatility_skip_action_override_count: 39
+- volatility_skip_threshold_failed_count: 296
+- volatility_skip_confidence_floor_failed_count: 180
 - alignment_rate: 0.4594594594594595
 - attribution_coverage_rate: 1.0
 - conflict_rate: 0.0
@@ -76,7 +80,7 @@ Batch 3X ran fresh replay after Batch 3W candidate-level attribution instrumenta
 
 ## Interpretation
 
-The direct-block rate can remain 0.0 while volatility-skip candidate activity is visible. Batch 3X uses candidate-level fields to separate volatility-skip evaluated, selected HOLD, evaluated-not-selected, action override, threshold-failed, and confidence-floor-failed counts.
+The direct-block rate remains 0.0, but corrected candidate-level monitoring now shows volatility-skip was evaluated in the fresh candidate replay, frequently selected as HOLD/no-trade, and sometimes overridden by action candidates. This supports the Batch 3V-alt interpretation without changing config or scheduler state.
 
 ## Safety Confirmation
 

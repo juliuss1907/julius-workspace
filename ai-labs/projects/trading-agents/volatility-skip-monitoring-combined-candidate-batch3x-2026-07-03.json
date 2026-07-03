@@ -76,6 +76,12 @@
       "total_records": 296,
       "volatile_breakout_selected_count": 0,
       "volatile_trend_following_selected_count": 3,
+      "volatility_skip_action_override_count": 39,
+      "volatility_skip_confidence_floor_failed_count": 180,
+      "volatility_skip_evaluated_count": 296,
+      "volatility_skip_evaluated_not_selected_count": 39,
+      "volatility_skip_selected_hold_count": 257,
+      "volatility_skip_threshold_failed_count": 296,
       "windows": 3
     },
     "per_window": [
@@ -224,7 +230,13 @@
             "volatility-skip": 14
           },
           "volatile_breakout_selected_count": 0,
-          "volatile_trend_following_selected_count": 0
+          "volatile_trend_following_selected_count": 0,
+          "volatility_skip_action_override_count": 1,
+          "volatility_skip_confidence_floor_failed_count": 6,
+          "volatility_skip_evaluated_count": 15,
+          "volatility_skip_evaluated_not_selected_count": 1,
+          "volatility_skip_selected_hold_count": 14,
+          "volatility_skip_threshold_failed_count": 15
         },
         "record_count": 15,
         "source": "logs/replay_signals-batch3f-2026-06-28.jsonl",
@@ -387,7 +399,13 @@
             "volatility-skip": 125
           },
           "volatile_breakout_selected_count": 0,
-          "volatile_trend_following_selected_count": 1
+          "volatile_trend_following_selected_count": 1,
+          "volatility_skip_action_override_count": 15,
+          "volatility_skip_confidence_floor_failed_count": 80,
+          "volatility_skip_evaluated_count": 140,
+          "volatility_skip_evaluated_not_selected_count": 15,
+          "volatility_skip_selected_hold_count": 125,
+          "volatility_skip_threshold_failed_count": 140
         },
         "record_count": 140,
         "source": "logs/replay_signals-batch3g-2026-06-28.jsonl",
@@ -548,7 +566,13 @@
             "volatility-skip": 118
           },
           "volatile_breakout_selected_count": 0,
-          "volatile_trend_following_selected_count": 2
+          "volatile_trend_following_selected_count": 2,
+          "volatility_skip_action_override_count": 23,
+          "volatility_skip_confidence_floor_failed_count": 94,
+          "volatility_skip_evaluated_count": 141,
+          "volatility_skip_evaluated_not_selected_count": 23,
+          "volatility_skip_selected_hold_count": 118,
+          "volatility_skip_threshold_failed_count": 141
         },
         "record_count": 141,
         "source": "logs/replay_signals-batch3x-candidate-2026-07-03-1038-core.jsonl",
