@@ -1,0 +1,441 @@
+{
+  "atr_or_volatility_numeric_key_counts_top20": {
+    "analysts.technical.analysis.indicators.atr": 650,
+    "analysts.technical.analysis.scores.volatility": 650,
+    "analysts.technical.analysis.technical_state.atr": 578,
+    "analysts.technical.analysis.technical_state.scores.volatility": 578,
+    "draft_signal.analysis.indicators.atr": 650,
+    "draft_signal.analysis.scores.volatility": 650,
+    "draft_signal.analysis.technical_state.atr": 578,
+    "draft_signal.analysis.technical_state.scores.volatility": 578,
+    "final_signal.analysis.indicators.atr": 650,
+    "final_signal.analysis.scores.volatility": 650,
+    "final_signal.analysis.technical_state.atr": 578,
+    "final_signal.analysis.technical_state.scores.volatility": 578,
+    "strategy_signal.attribution.atr_pct": 412
+  },
+  "batch": "3V-alt",
+  "created_at": "2026-07-03T09:43:02",
+  "current_config": {
+    "breakout_allow_volatile": false,
+    "enabled": true,
+    "matches_variant_d_core_expectations": true,
+    "prefer_action_over_hold": true,
+    "regime_strategy_order": {
+      "ranging": [
+        "volatility_skip",
+        "breakout"
+      ],
+      "trend_down": [
+        "volatility_skip",
+        "trend_following",
+        "breakout"
+      ],
+      "trend_up": [
+        "volatility_skip",
+        "trend_following",
+        "breakout"
+      ],
+      "volatile": [
+        "volatility_skip",
+        "trend_following",
+        "breakout"
+      ]
+    },
+    "volatility_skip_high_atr_pct": 0.1,
+    "volatility_skip_volatile_confidence_floor": 0.75
+  },
+  "examples": {
+    "high_atr_candidates": [
+      {
+        "candidates": [
+          [
+            "analysts.technical.analysis.scores.volatility",
+            0.4
+          ],
+          [
+            "analysts.technical.analysis.technical_state.scores.volatility",
+            0.4
+          ],
+          [
+            "draft_signal.analysis.scores.volatility",
+            0.4
+          ],
+          [
+            "draft_signal.analysis.technical_state.scores.volatility",
+            0.4
+          ],
+          [
+            "final_signal.analysis.scores.volatility",
+            0.4
+          ]
+        ],
+        "line": 1,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.897484"
+      },
+      {
+        "candidates": [
+          [
+            "analysts.technical.analysis.scores.volatility",
+            0.4
+          ],
+          [
+            "analysts.technical.analysis.technical_state.scores.volatility",
+            0.4
+          ],
+          [
+            "draft_signal.analysis.scores.volatility",
+            0.4
+          ],
+          [
+            "draft_signal.analysis.technical_state.scores.volatility",
+            0.4
+          ],
+          [
+            "final_signal.analysis.scores.volatility",
+            0.4
+          ]
+        ],
+        "line": 2,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.908877"
+      },
+      {
+        "candidates": [
+          [
+            "analysts.technical.analysis.scores.volatility",
+            0.5
+          ],
+          [
+            "analysts.technical.analysis.technical_state.scores.volatility",
+            0.5
+          ],
+          [
+            "draft_signal.analysis.scores.volatility",
+            0.5
+          ],
+          [
+            "draft_signal.analysis.technical_state.scores.volatility",
+            0.5
+          ],
+          [
+            "final_signal.analysis.scores.volatility",
+            0.5
+          ]
+        ],
+        "line": 3,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.915598"
+      },
+      {
+        "candidates": [
+          [
+            "analysts.technical.analysis.scores.volatility",
+            0.5
+          ],
+          [
+            "analysts.technical.analysis.technical_state.scores.volatility",
+            0.5
+          ],
+          [
+            "draft_signal.analysis.scores.volatility",
+            0.5
+          ],
+          [
+            "draft_signal.analysis.technical_state.scores.volatility",
+            0.5
+          ],
+          [
+            "final_signal.analysis.scores.volatility",
+            0.5
+          ]
+        ],
+        "line": 4,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.921212"
+      },
+      {
+        "candidates": [
+          [
+            "analysts.technical.analysis.scores.volatility",
+            0.5
+          ],
+          [
+            "analysts.technical.analysis.technical_state.scores.volatility",
+            0.5
+          ],
+          [
+            "draft_signal.analysis.scores.volatility",
+            0.5
+          ],
+          [
+            "draft_signal.analysis.technical_state.scores.volatility",
+            0.5
+          ],
+          [
+            "final_signal.analysis.scores.volatility",
+            0.5
+          ]
+        ],
+        "line": 5,
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.925921"
+      }
+    ],
+    "selected_strategies": [
+      {
+        "line": 1,
+        "selected_strategy": "volatility_skip",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.897484"
+      },
+      {
+        "line": 2,
+        "selected_strategy": "volatility_skip",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.908877"
+      },
+      {
+        "line": 3,
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.915598"
+      },
+      {
+        "line": 4,
+        "selected_strategy": "trend_following",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.921212"
+      },
+      {
+        "line": 5,
+        "selected_strategy": "volatility_skip",
+        "source": "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl",
+        "symbol": "BTCUSDT",
+        "timestamp": "2026-07-03T09:24:24.925921"
+      }
+    ],
+    "volatile_records": []
+  },
+  "inputs": {
+    "logs/replay_signals-batch3f-2026-06-28.jsonl": {
+      "exists": true,
+      "records": 15
+    },
+    "logs/replay_signals-batch3g-2026-06-28.jsonl": {
+      "exists": true,
+      "records": 140
+    },
+    "logs/replay_signals-batch3q-2026-07-02-core.jsonl": {
+      "exists": true,
+      "records": 141
+    },
+    "logs/replay_signals-batch3r-2026-07-02-batch3s-core.jsonl": {
+      "exists": true,
+      "records": 141
+    },
+    "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl": {
+      "exists": true,
+      "records": 141
+    },
+    "logs/replay_signals.jsonl": {
+      "exists": true,
+      "records": 72
+    }
+  },
+  "monitoring_report_summaries": [
+    {
+      "attribution_coverage_rate": 1.0,
+      "directional_strategy_coverage_rate": 0.15602836879432624,
+      "exists": true,
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "path": "volatility-skip-monitoring-cadence-batch3r-manual-2026-07-03-0917-batch3u.json",
+      "status": "watch",
+      "total_records": 141,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 2,
+      "volatility_skip_direct_block_rate": 0.0
+    },
+    {
+      "attribution_coverage_rate": 1.0,
+      "directional_strategy_coverage_rate": 0.12837837837837837,
+      "exists": true,
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "path": "volatility-skip-monitoring-combined-batch3r-manual-2026-07-03-0917-batch3u.json",
+      "status": "watch",
+      "total_records": 296,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 3,
+      "volatility_skip_direct_block_rate": 0.0
+    },
+    {
+      "attribution_coverage_rate": 1.0,
+      "directional_strategy_coverage_rate": 0.15602836879432624,
+      "exists": true,
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "path": "volatility-skip-monitoring-cadence-batch3r-2026-07-02-batch3s.json",
+      "status": "watch",
+      "total_records": 141,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 2,
+      "volatility_skip_direct_block_rate": 0.0
+    },
+    {
+      "attribution_coverage_rate": 1.0,
+      "directional_strategy_coverage_rate": 0.12837837837837837,
+      "exists": true,
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "path": "volatility-skip-monitoring-combined-batch3r-2026-07-02-batch3s.json",
+      "status": "watch",
+      "total_records": 296,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 3,
+      "volatility_skip_direct_block_rate": 0.0
+    },
+    {
+      "attribution_coverage_rate": 1.0,
+      "directional_strategy_coverage_rate": 0.14893617021276595,
+      "exists": true,
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "path": "volatility-skip-monitoring-cadence-batch3q-retry-2026-07-02.json",
+      "status": "watch",
+      "total_records": 141,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 2,
+      "volatility_skip_direct_block_rate": 0.0
+    },
+    {
+      "attribution_coverage_rate": 1.0,
+      "directional_strategy_coverage_rate": 0.125,
+      "exists": true,
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "path": "volatility-skip-monitoring-combined-batch3q-retry-2026-07-02.json",
+      "status": "watch",
+      "total_records": 296,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 3,
+      "volatility_skip_direct_block_rate": 0.0
+    }
+  ],
+  "per_source": {
+    "logs/replay_signals-batch3f-2026-06-28.jsonl": {
+      "records": 15,
+      "records_with_atr_or_volatility_numeric_fields": 15,
+      "selected_breakout_records": 0,
+      "selected_trend_following_records": 1,
+      "selected_volatility_skip_records": 14,
+      "volatile_regime_records": 0
+    },
+    "logs/replay_signals-batch3g-2026-06-28.jsonl": {
+      "records": 140,
+      "records_with_atr_or_volatility_numeric_fields": 140,
+      "selected_breakout_records": 4,
+      "selected_trend_following_records": 10,
+      "selected_volatility_skip_records": 126,
+      "volatile_regime_records": 0
+    },
+    "logs/replay_signals-batch3q-2026-07-02-core.jsonl": {
+      "records": 141,
+      "records_with_atr_or_volatility_numeric_fields": 141,
+      "selected_breakout_records": 0,
+      "selected_trend_following_records": 21,
+      "selected_volatility_skip_records": 120,
+      "volatile_regime_records": 0
+    },
+    "logs/replay_signals-batch3r-2026-07-02-batch3s-core.jsonl": {
+      "records": 141,
+      "records_with_atr_or_volatility_numeric_fields": 141,
+      "selected_breakout_records": 2,
+      "selected_trend_following_records": 20,
+      "selected_volatility_skip_records": 119,
+      "volatile_regime_records": 0
+    },
+    "logs/replay_signals-batch3r-manual-2026-07-03-0917-batch3u-core.jsonl": {
+      "records": 141,
+      "records_with_atr_or_volatility_numeric_fields": 141,
+      "selected_breakout_records": 0,
+      "selected_trend_following_records": 22,
+      "selected_volatility_skip_records": 119,
+      "volatile_regime_records": 0
+    },
+    "logs/replay_signals.jsonl": {
+      "records": 72,
+      "records_with_atr_or_volatility_numeric_fields": 72,
+      "selected_breakout_records": 0,
+      "selected_trend_following_records": 0,
+      "selected_volatility_skip_records": 0,
+      "volatile_regime_records": 0
+    }
+  },
+  "recommendation": {
+    "do_not_change_config_based_on_this_report_alone": true,
+    "next_step": "Proceed to Batch 3V manual cadence run #3 only after committing this diagnostic, keeping scheduler disabled.",
+    "optional_future_work": "If Julius wants deeper causality, add candidate-level strategy attribution instrumentation in a separate approval-gated batch."
+  },
+  "record_diagnostic": {
+    "final_action_records": 0,
+    "final_buy_sell_records": 0,
+    "final_hold_records": 0,
+    "parse_error_count": 0,
+    "records_with_any_high_atr_pct_candidate_ge_config_threshold": 650,
+    "records_with_atr_or_volatility_numeric_fields": 650,
+    "records_with_market_state": 0,
+    "records_with_strategy_attribution_text": 578,
+    "records_with_strategy_signal": 578,
+    "selected_breakout_records": 6,
+    "selected_trend_following_records": 74,
+    "selected_volatility_skip_records": 498,
+    "total_records": 650,
+    "volatile_regime_records": 0
+  },
+  "regime_counts": {
+    "unknown": 650
+  },
+  "safety": {
+    "cron_enabled": false,
+    "live_trading_authorized": false,
+    "order_placement_authorized": false,
+    "raw_replay_logs_committable": false,
+    "runtime_default_config_change_performed": false,
+    "scheduler_enabled": false,
+    "simulate_live_execution_authorized": false,
+    "systemd_timer_enabled": false
+  },
+  "selected_strategy_counts": {
+    "breakout": 6,
+    "trend_following": 74,
+    "unknown": 72,
+    "volatility_skip": 498
+  },
+  "status": "watch",
+  "title": "Volatility-Skip Zero-Block Diagnostic",
+  "zero_block_diagnostic": {
+    "confidence_floor_failed_records": "not directly observable from current replay JSONL attribution schema",
+    "direct_block_rate_observed_in_monitoring_reports": "0.0 in inspected recent monitoring reports",
+    "likely_explanation": [
+      "No explicit volatile regime records were detectable in replay JSONL schema; zero direct blocks may be sample/schema visibility driven.",
+      "Detected 650 records with numeric pct/ratio volatility candidates >= 0.10; inspect examples before changing config.",
+      "Action-oriented strategies are selected in some records; with prefer_action_over_hold=true, HOLD-like skip candidates may be less likely to become selected when action confidence is available.",
+      "Existing monitoring reports show hard_conflict_count=0 and volatile_breakout_selected_count=0, so zero-block is a watch item rather than an execution-safety failure."
+    ],
+    "selected_volatility_skip_records": 498,
+    "threshold_eligible_records_conservative_proxy": 650,
+    "volatility_skip_candidate_records": "not directly observable from current replay JSONL attribution schema"
+  }
+}
