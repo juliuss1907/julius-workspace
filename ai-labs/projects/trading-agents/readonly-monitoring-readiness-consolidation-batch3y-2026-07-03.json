@@ -1,0 +1,159 @@
+{
+  "batch": "3Y",
+  "created_at": "2026-07-03T20:17:15",
+  "current_state": {
+    "cron_enabled": false,
+    "current_config_matches_variant_d": true,
+    "live_trading_authorized": false,
+    "mode": "manual read-only monitoring",
+    "order_placement_authorized": false,
+    "runtime_default_config_change_performed_in_batch3y": false,
+    "scheduler_enabled": false,
+    "simulate_live_execution_authorized": false,
+    "strategy_signal_to_order_mapping_authorized": false,
+    "systemd_timer_enabled": false
+  },
+  "decision_recommendations": [
+    {
+      "name": "Stop and prepare push proposal",
+      "option": "A",
+      "reason": "Read-only monitoring phase has a clean consolidated snapshot and many local commits should be preserved remotely after Julius approval.",
+      "recommended": true
+    },
+    {
+      "name": "Continue manual cadence later",
+      "option": "B",
+      "reason": "Manual-only mode is safe; run cadence only when explicitly requested.",
+      "recommended": true
+    },
+    {
+      "name": "Scheduler proposal refresh, still disabled",
+      "option": "C",
+      "reason": "Technically discussable, but scheduler remains disabled without explicit approval phrase and stable-watch state still argues for caution.",
+      "recommended": false
+    }
+  ],
+  "evidence_table": [
+    {
+      "batch": "3M",
+      "commit": "see earlier pushed/local history",
+      "key_result": "variant-D strategy_layer surface applied; observational-only; no execution authorization",
+      "purpose": "Approved variant-D runtime/default config implementation",
+      "status": "done"
+    },
+    {
+      "batch": "3Q-B",
+      "commit": "088e798",
+      "key_result": "venv dependency readiness later passed after approved install",
+      "purpose": "Replay runtime dependency readiness",
+      "status": "pass"
+    },
+    {
+      "batch": "3R",
+      "commit": "be65b1b",
+      "key_result": "dry-run-first cadence runner added; scheduler disabled",
+      "purpose": "Manual read-only monitoring cadence runner",
+      "status": "pass"
+    },
+    {
+      "batch": "3U",
+      "commit": "a0b9460",
+      "key_result": "fresh 141 / combined 296 records; hard conflicts 0; volatile breakout selected 0",
+      "purpose": "Manual cadence run #2 evidence",
+      "status": "watch"
+    },
+    {
+      "batch": "3V-alt",
+      "commit": "e83cb5a",
+      "key_result": "zero-block explained as narrower direct-block metric vs volatility-skip HOLD/no-trade activity",
+      "purpose": "Volatility-skip zero-block diagnostic",
+      "status": "watch"
+    },
+    {
+      "batch": "3V",
+      "commit": "4b1028c",
+      "key_result": "keep_manual_only_for_now",
+      "purpose": "Manual cadence run #3 and scheduler decision review",
+      "status": "watch"
+    },
+    {
+      "batch": "3W",
+      "commit": "6d515ae",
+      "key_result": "candidate-level selected/eligible/rejection/threshold/observed fields added",
+      "purpose": "Candidate-level strategy attribution instrumentation",
+      "status": "pass"
+    },
+    {
+      "batch": "3X",
+      "commit": "4703a1f",
+      "key_result": "141 fresh records with full candidate schema coverage; candidate counts explain zero direct-block watch",
+      "purpose": "Fresh replay with candidate-level attribution",
+      "status": "watch"
+    }
+  ],
+  "key_findings": [
+    "Read-only replay and monitoring are operational in the project venv.",
+    "Manual cadence runner remains dry-run-first and scheduler-disabled.",
+    "Batch 3X fresh replay produced 141 records with candidate-level attribution coverage on all records.",
+    "Hard conflicts remain 0 and volatile breakout selected remains 0 in fresh and combined Batch 3X monitoring.",
+    "volatility_skip_direct_block_rate remains 0.0 but is now explainable through candidate-level evidence: volatility-skip evaluated on all fresh records, selected HOLD often, overridden by action candidates sometimes, and ATR threshold failed in all fresh records.",
+    "Auto-trading remains not ready and not authorized."
+  ],
+  "next_recommended_action": "Prepare push proposal for local trading-agents monitoring/cadence commits; do not push until Julius explicitly approves.",
+  "project_status": "stable-watch",
+  "readiness": {
+    "auto_trading": "not-ready-not-authorized",
+    "read_only_monitoring": "stable-watch",
+    "scheduler": "proposal-only-disabled"
+  },
+  "safety": {
+    "knowledge_base_writes_performed": false,
+    "protected_unrelated_paths_touched": false,
+    "raw_replay_logs_committable": false,
+    "runtime_default_config_change_performed": false,
+    "scheduler_enabled": false
+  },
+  "status": "pass",
+  "summary_metrics": {
+    "batch3x_combined": {
+      "hard_conflict_count": 0,
+      "status": "watch",
+      "total_records": 296,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 3,
+      "volatility_skip_action_override_count": 39,
+      "volatility_skip_direct_block_rate": 0.0,
+      "volatility_skip_evaluated_count": 296,
+      "volatility_skip_evaluated_not_selected_count": 39,
+      "volatility_skip_selected_hold_count": 257
+    },
+    "batch3x_fresh": {
+      "hard_conflict_count": 0,
+      "status": "watch",
+      "total_records": 141,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 2,
+      "volatility_skip_action_override_count": 23,
+      "volatility_skip_confidence_floor_failed_count": 94,
+      "volatility_skip_direct_block_rate": 0.0,
+      "volatility_skip_evaluated_count": 141,
+      "volatility_skip_evaluated_not_selected_count": 23,
+      "volatility_skip_selected_hold_count": 118,
+      "volatility_skip_threshold_failed_count": 141
+    },
+    "candidate_schema_coverage": {
+      "evaluated_candidate_count": 403,
+      "records": 141,
+      "records_with_candidate_schema_version": 141,
+      "records_with_evaluated_candidates": 141,
+      "records_with_strategy_signal": 141,
+      "volatility_skip_action_override_count": 23,
+      "volatility_skip_confidence_floor_failed_count": 94,
+      "volatility_skip_evaluated_count": 141,
+      "volatility_skip_evaluated_not_selected_count": 23,
+      "volatility_skip_selected_hold_count": 118,
+      "volatility_skip_threshold_failed_count": 141
+    }
+  },
+  "title": "Read-Only Monitoring Readiness Consolidation"
+}
