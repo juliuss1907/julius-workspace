@@ -3,16 +3,17 @@
 **Status:** `watch`
 **Mode:** read-only diagnostic, no runtime/default config changes
 
-## Question
+## Correction Note
 
-Why does `volatility_skip_direct_block_rate == 0.0` keep appearing across monitoring batches?
+This diagnostic uses `strategy_signal.strategy_id`, `strategy_signal.family`, and `strategy_signal.action` as the selected StrategySignal fields. It does not infer selected strategy from flattened attribution text.
 
 ## Short Answer
 
-- No explicit volatile regime records were detectable in replay JSONL schema; zero direct blocks may be sample/schema visibility driven.
-- Detected 650 records with numeric pct/ratio volatility candidates >= 0.10; inspect examples before changing config.
-- Action-oriented strategies are selected in some records; with prefer_action_over_hold=true, HOLD-like skip candidates may be less likely to become selected when action confidence is available.
-- Existing monitoring reports show hard_conflict_count=0 and volatile_breakout_selected_count=0, so zero-block is a watch item rather than an execution-safety failure.
+- Replay JSONL shows 0 records whose selected `strategy_signal.strategy_id` is `volatility_skip`, mostly HOLD/no-trade style signals.
+- Monitoring direct block rate remains 0.0 because the monitor metric is narrower than selected volatility-skip count: it counts volatility-skip directly blocking a TraderAgent action, not every volatility-skip HOLD selection.
+- All selected volatility-skip records are non-action/HOLD style; they do not create order intent and remain observational-only.
+- Recent monitoring summaries still show hard_conflict_count=0 and volatile_breakout_selected_count=0, so this is a watch/interpretation issue rather than a hard safety failure.
+- Replay JSONL does not expose a simple explicit regime field; deeper cause analysis would require candidate-level attribution instrumentation in a separately approved batch.
 
 ## Current Config Check
 
@@ -27,30 +28,32 @@ Why does `volatility_skip_direct_block_rate == 0.0` keep appearing across monito
 ## Record Diagnostic
 
 - `total_records`: `650`
-- `parse_error_count`: `0`
 - `records_with_strategy_signal`: `578`
-- `records_with_strategy_attribution_text`: `578`
-- `records_with_market_state`: `0`
-- `volatile_regime_records`: `0`
+- `selected_volatility_skip_records`: `0`
+- `selected_trend_following_records`: `0`
+- `selected_breakout_records`: `6`
+- `volatility_skip_hold_records`: `0`
+- `volatility_skip_buy_sell_records`: `0`
+- `records_with_volatility_skip_in_attribution`: `0`
 - `records_with_atr_or_volatility_numeric_fields`: `650`
 - `records_with_any_high_atr_pct_candidate_ge_config_threshold`: `650`
-- `selected_volatility_skip_records`: `498`
-- `selected_trend_following_records`: `74`
-- `selected_breakout_records`: `6`
-- `final_action_records`: `0`
-- `final_hold_records`: `0`
-- `final_buy_sell_records`: `0`
+- `records_with_market_snapshot`: `650`
+- `records_with_explicit_regime_field`: `0`
 
-## Selected Strategy Counts
+## Strategy ID Counts
 
-- `volatility_skip`: `498`
-- `trend_following`: `74`
+- `volatility-skip`: `498`
+- `trend-following`: `74`
 - `unknown`: `72`
 - `breakout`: `6`
 
-## Regime Counts
+## Action Counts
 
-- `unknown`: `650`
+- `hold`: `412`
+- `skip`: `86`
+- `unknown`: `72`
+- `short`: `43`
+- `long`: `37`
 
 ## Monitoring Report Summaries
 
@@ -63,9 +66,9 @@ Why does `volatility_skip_direct_block_rate == 0.0` keep appearing across monito
 
 ## Interpretation
 
-The current replay/monitoring artifacts are enough to confirm the repeated zero direct-block observation, but they do not expose every intermediate candidate that the strategy registry considered. Therefore this diagnostic should not be used to loosen or tighten config by itself.
+The zero direct-block watch flag does **not** mean volatility-skip never appears. It means the monitor did not observe volatility-skip directly blocking TraderAgent action records under its stricter definition. The replay artifacts show many selected volatility-skip HOLD/no-trade signals, while hard conflicts and volatile breakout selections remain zero.
 
-The safest interpretation is: **zero direct blocks are a watch signal, not a hard failure**, because hard conflicts remain zero, volatile breakout selections remain zero, and approved variant-D core config is intact.
+This diagnostic should not be used to change config by itself. Candidate-level internals and confidence-floor failures are not fully exposed in current replay JSONL.
 
 ## Safety Confirmation
 
@@ -79,4 +82,4 @@ The safest interpretation is: **zero direct blocks are a watch signal, not a har
 
 ## Recommendation
 
-Proceed to Batch 3V manual cadence run #3 only after committing this diagnostic. Keep scheduler disabled. If deeper causality is required, plan a separate candidate-level attribution instrumentation batch.
+Proceed to Batch 3V manual cadence run #3 after this diagnostic correction is committed. Keep scheduler disabled.
