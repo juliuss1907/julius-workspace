@@ -1,0 +1,256 @@
+{
+  "alerts": [
+    {
+      "level": "watch",
+      "message": "Volatility-skip direct block rate is 0.0%; continue watching for over-relaxation.",
+      "metric": "volatility_skip_direct_block_rate"
+    }
+  ],
+  "batch": "3O",
+  "current_config": {
+    "breakout_allow_volatile_default": false,
+    "checks": {
+      "breakout.allow_volatile": {
+        "actual": false,
+        "expected": false,
+        "matches": true
+      },
+      "regime_strategy_order.volatile": {
+        "actual": [
+          "volatility_skip",
+          "trend_following",
+          "breakout"
+        ],
+        "expected": [
+          "volatility_skip",
+          "trend_following",
+          "breakout"
+        ],
+        "matches": true
+      },
+      "selection.min_action_confidence": {
+        "actual": 0.5,
+        "expected": 0.5,
+        "matches": true
+      },
+      "trend_following.allow_volatile_trend_down": {
+        "actual": true,
+        "expected": true,
+        "matches": true
+      },
+      "trend_following.allow_volatile_trend_up": {
+        "actual": true,
+        "expected": true,
+        "matches": true
+      },
+      "trend_following.min_regime_confidence": {
+        "actual": 0.5,
+        "expected": 0.5,
+        "matches": true
+      },
+      "volatility_skip.high_atr_pct": {
+        "actual": 0.1,
+        "expected": 0.1,
+        "matches": true
+      },
+      "volatility_skip.volatile_confidence_floor": {
+        "actual": 0.75,
+        "expected": 0.75,
+        "matches": true
+      }
+    },
+    "matches_variant_d": true
+  },
+  "metrics": {
+    "aggregate": {
+      "fallback_or_missing_state_count": 0,
+      "hard_conflict_count": 0,
+      "rates_weighted_by_records": {
+        "alignment_rate": 0.41134751773049644,
+        "attribution_coverage_rate": 1.0,
+        "conflict_rate": 0.0,
+        "directional_strategy_coverage_rate": 0.16312056737588654,
+        "skip_during_trader_action_rate": 0.0,
+        "volatility_skip_direct_block_rate": 0.0
+      },
+      "total_records": 141,
+      "volatile_breakout_selected_count": 0,
+      "volatile_trend_following_selected_count": 2,
+      "windows": 1
+    },
+    "per_window": [
+      {
+        "evaluation": {
+          "action_matrix": {
+            "BUY|hold": 44,
+            "BUY|long": 12,
+            "HOLD|hold": 41,
+            "HOLD|short": 6,
+            "SELL|hold": 33,
+            "SELL|short": 5
+          },
+          "counts": {
+            "action_alignment": {
+              "aligned": 58,
+              "conflicted": 0,
+              "missing": 0,
+              "neutral_or_observational": 83
+            },
+            "action_matrix": {
+              "BUY|hold": 44,
+              "BUY|long": 12,
+              "HOLD|hold": 41,
+              "HOLD|short": 6,
+              "SELL|hold": 33,
+              "SELL|short": 5
+            },
+            "by_symbol": {
+              "BTCUSDT": 47,
+              "ETHUSDT": 47,
+              "SOLUSDT": 47
+            },
+            "by_timeframe": {
+              "1h": 141
+            },
+            "directional_strategy_signals": 23,
+            "market_regime": {
+              "trend_down": 20,
+              "trend_up": 29,
+              "volatile": 92
+            },
+            "skip_during_trader_action": 0,
+            "strategy_action": {
+              "hold": 118,
+              "long": 12,
+              "short": 11
+            },
+            "strategy_family": {
+              "breakout": 3,
+              "trend_following": 20,
+              "volatility_skip": 118
+            },
+            "strategy_id": {
+              "breakout": 3,
+              "trend-following": 20,
+              "volatility-skip": 118
+            },
+            "volatility_skip_direct_blocks": 0
+          },
+          "dataset": {
+            "records_missing_strategy_signal": 0,
+            "records_with_strategy_signal": 141,
+            "total_records": 141
+          },
+          "gate_status": {
+            "attribution_ready": {
+              "message": "All replay records include top-level strategy_signal.",
+              "status": "pass"
+            },
+            "conflict_review_ready": {
+              "message": "No hard BUY|short or SELL|long conflicts detected.",
+              "status": "pass"
+            },
+            "directional_sample_insufficient": {
+              "message": "Directional strategy sample is still sparse; collect more replay evidence before policy changes.",
+              "status": "warn"
+            },
+            "execution_not_authorized": {
+              "message": "Evaluation tooling does not authorize live trading, order routing, or strategy-to-execution mapping.",
+              "status": "blocked"
+            },
+            "skip_calibration_needed": {
+              "message": "Skip-during-action rate is below first-review warning threshold.",
+              "status": "pass"
+            }
+          },
+          "metrics": {
+            "alignment": {
+              "denominator": 141,
+              "numerator": 58,
+              "rate": 0.41134751773049644
+            },
+            "attribution_coverage": {
+              "denominator": 141,
+              "numerator": 141,
+              "rate": 1.0
+            },
+            "conflict": {
+              "denominator": 141,
+              "numerator": 0,
+              "rate": 0.0
+            },
+            "directional_strategy_coverage": {
+              "denominator": 141,
+              "numerator": 23,
+              "rate": 0.16312056737588654
+            },
+            "neutral_or_observational": {
+              "denominator": 141,
+              "numerator": 83,
+              "rate": 0.5886524822695035
+            },
+            "skip_during_trader_action": {
+              "denominator": 141,
+              "numerator": 0,
+              "rate": 0.0
+            },
+            "volatility_skip_direct_block": {
+              "denominator": 141,
+              "numerator": 0,
+              "rate": 0.0
+            }
+          },
+          "rates": {
+            "alignment_rate": 0.41134751773049644,
+            "attribution_coverage_rate": 1.0,
+            "conflict_rate": 0.0,
+            "directional_strategy_coverage_rate": 0.16312056737588654,
+            "missing_rate": 0.0,
+            "neutral_or_observational_rate": 0.5886524822695035,
+            "skip_during_trader_action_rate": 0.0,
+            "strategy_family_share": {
+              "breakout": 0.02127659574468085,
+              "trend_following": 0.14184397163120568,
+              "volatility_skip": 0.8368794326241135
+            },
+            "volatility_skip_direct_block_rate": 0.0
+          },
+          "recommendation": {
+            "next_batch": "Batch 3H \u2014 Volatility-Skip Calibration Review",
+            "reason": "Use repeatable Batch 4B metrics to compare replay-only calibration variants against the Batch 3G baseline before any threshold tuning."
+          }
+        },
+        "monitoring_counts": {
+          "fallback_or_missing_state_count": 0,
+          "hard_conflict_count": 0,
+          "strategy_action_distribution": {
+            "hold": 118,
+            "long": 12,
+            "short": 11
+          },
+          "strategy_id_distribution": {
+            "breakout": 3,
+            "trend-following": 20,
+            "volatility-skip": 118
+          },
+          "volatile_breakout_selected_count": 0,
+          "volatile_trend_following_selected_count": 2
+        },
+        "record_count": 141,
+        "source": "logs/replay_signals-batch3x-candidate-2026-07-03-1038-core.jsonl",
+        "window_id": "replay_signals-batch3x-candidate-2026-07-03-1038-core"
+      }
+    ]
+  },
+  "mode": "post_implementation_monitoring",
+  "monitoring_inputs": [
+    "logs/replay_signals-batch3x-candidate-2026-07-03-1038-core.jsonl"
+  ],
+  "recommendation": {
+    "next_batch": "Batch 3P \u2014 collect broader replay dataset and review watch alerts.",
+    "outcome": "Monitoring watch; keep variant-d but collect broader replay data before further runtime expansion."
+  },
+  "runtime_default_config_change_performed": false,
+  "scope_boundary": "Monitoring only: no live trading, order placement, StrategySignal-to-order mapping, or runtime/default config changes.",
+  "status": "watch"
+}
