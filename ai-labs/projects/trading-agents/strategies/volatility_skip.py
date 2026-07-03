@@ -73,6 +73,21 @@ class VolatilitySkipStrategy(StrategyPolicy):
                     "regime": regime,
                     "adx": market_state.adx,
                     "volatile_confidence_floor": self.volatile_confidence_floor,
+                    "high_atr_pct": self.high_atr_pct,
+                    "skip_volatile_regime": self.skip_volatile_regime,
+                    "thresholds": {
+                        "high_atr_pct": self.high_atr_pct,
+                        "volatile_confidence_floor": self.volatile_confidence_floor,
+                        "skip_volatile_regime": self.skip_volatile_regime,
+                    },
+                    "observed": {
+                        "atr_pct": atr_pct,
+                        "atr": atr,
+                        "close": close,
+                        "regime": regime,
+                        "regime_confidence": market_state.confidence,
+                        "adx": market_state.adx,
+                    },
                     "replay_only_calibration": bool(self.config.get("calibration", {}).get("replay_only")),
                 },
             )
@@ -93,7 +108,25 @@ class VolatilitySkipStrategy(StrategyPolicy):
                     f"atr_pct={atr_pct:.2%} exceeds {self.high_atr_pct:.0%} threshold.",
                     "Reduced edge and wider stops make directional trades unfavorable.",
                 ],
-                attribution={"atr_pct": atr_pct, "atr": atr, "close": close},
+                attribution={
+                    "atr_pct": atr_pct,
+                    "atr": atr,
+                    "close": close,
+                    "high_atr_pct": self.high_atr_pct,
+                    "volatile_confidence_floor": self.volatile_confidence_floor,
+                    "thresholds": {
+                        "high_atr_pct": self.high_atr_pct,
+                        "volatile_confidence_floor": self.volatile_confidence_floor,
+                        "skip_volatile_regime": self.skip_volatile_regime,
+                    },
+                    "observed": {
+                        "atr_pct": atr_pct,
+                        "atr": atr,
+                        "close": close,
+                        "regime": regime,
+                        "regime_confidence": market_state.confidence,
+                    },
+                },
             )
 
         return StrategySignal(
@@ -108,5 +141,22 @@ class VolatilitySkipStrategy(StrategyPolicy):
             exit_plan="n/a",
             no_trade_reason=None,
             risk_notes=["Volatility skip not active — normal evaluation continues."],
-            attribution={"atr_pct": atr_pct, "regime": regime},
+            attribution={
+                "atr_pct": atr_pct,
+                "regime": regime,
+                "high_atr_pct": self.high_atr_pct,
+                "volatile_confidence_floor": self.volatile_confidence_floor,
+                "thresholds": {
+                    "high_atr_pct": self.high_atr_pct,
+                    "volatile_confidence_floor": self.volatile_confidence_floor,
+                    "skip_volatile_regime": self.skip_volatile_regime,
+                },
+                "observed": {
+                    "atr_pct": atr_pct,
+                    "atr": atr,
+                    "close": close,
+                    "regime": regime,
+                    "regime_confidence": market_state.confidence,
+                },
+            },
         )

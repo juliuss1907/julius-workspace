@@ -171,6 +171,50 @@ def evaluate_window(path: Path, strategy_config: Dict) -> Dict:
     }
 
 
+
+def candidate_level_counts(record: Dict) -> Dict:
+    """Return additive Batch 3W candidate-level counts from strategy attribution."""
+    counts = {
+        "volatility_skip_evaluated_count": 0,
+        "volatility_skip_selected_hold_count": 0,
+        "volatility_skip_evaluated_not_selected_count": 0,
+        "volatility_skip_action_override_count": 0,
+        "volatility_skip_threshold_failed_count": 0,
+        "volatility_skip_confidence_floor_failed_count": 0,
+    }
+    strategy = record.get("strategy_signal") or {}
+    attribution = strategy.get("attribution") or {}
+    evaluated = attribution.get("evaluated") or []
+    if not isinstance(evaluated, list):
+        return counts
+    for candidate in evaluated:
+        if not isinstance(candidate, dict):
+            continue
+        family = str(candidate.get("family") or "").replace("-", "_")
+        strategy_id = str(candidate.get("strategy_id") or "").replace("-", "_")
+        if family != "volatility_skip" and strategy_id != "volatility_skip":
+            continue
+        counts["volatility_skip_evaluated_count"] += 1
+        selected = candidate.get("selected") is True
+        action = candidate.get("action")
+        if selected and action == "hold":
+            counts["volatility_skip_selected_hold_count"] += 1
+        if not selected:
+            counts["volatility_skip_evaluated_not_selected_count"] += 1
+        if candidate.get("rejection_reason") == "hold_candidate_overridden_by_action_candidate":
+            counts["volatility_skip_action_override_count"] += 1
+        observed = candidate.get("observed") or {}
+        thresholds = candidate.get("thresholds") or {}
+        atr_pct = observed.get("atr_pct")
+        high_atr_pct = thresholds.get("high_atr_pct")
+        if isinstance(atr_pct, (int, float)) and isinstance(high_atr_pct, (int, float)) and atr_pct < high_atr_pct:
+            counts["volatility_skip_threshold_failed_count"] += 1
+        regime_confidence = observed.get("regime_confidence")
+        confidence_floor = thresholds.get("volatile_confidence_floor")
+        if isinstance(regime_confidence, (int, float)) and isinstance(confidence_floor, (int, float)) and regime_confidence < confidence_floor:
+            counts["volatility_skip_confidence_floor_failed_count"] += 1
+    return counts
+
 def aggregate_windows(per_window: Sequence[Dict]) -> Dict:
     total_records = sum(row.get("record_count", 0) for row in per_window)
     hard_conflicts = sum(row["monitoring_counts"].get("hard_conflict_count", 0) for row in per_window)
