@@ -1,0 +1,132 @@
+{
+  "batch": "4B",
+  "content_audit": {
+    "env_or_secret_files": [],
+    "forbidden_file_count": 0,
+    "forbidden_files": [],
+    "post_filter_file_count": 0,
+    "pre_filter_file_count": 0,
+    "project_local_skills_path_count": 0,
+    "project_local_skills_paths": [],
+    "raw_replay_logs": [],
+    "temp_repo_status": [],
+    "top_level_entries": []
+  },
+  "created_at": "2026-07-04T09:49:05",
+  "extraction": {
+    "filter_method": "none",
+    "filter_rc": 1,
+    "filtered_head": null,
+    "method": "git subtree split",
+    "push_executed": false,
+    "repo_created": false,
+    "split_branch": null,
+    "split_hash": null,
+    "split_rc": 1,
+    "subtree_available": false,
+    "subtree_error": "git: 'subtree' kh\u00f4ng ph\u1ea3i l\u00e0 m\u1ed9t l\u1ec7nh c\u1ee7a git. Xem 'git --help'.",
+    "temp_repo": null
+  },
+  "github_cli": {
+    "auth_status_summary": [
+      "gh not found"
+    ],
+    "available": false,
+    "path": null,
+    "version": [
+      "gh not found"
+    ]
+  },
+  "push_proposal": {
+    "proposal_text": null,
+    "push_command_if_approved": null,
+    "push_executed": false,
+    "ready": false
+  },
+  "safety": {
+    "env_or_secret_files_included": false,
+    "force_push_used": false,
+    "live_trading_authorized": false,
+    "order_placement_authorized": false,
+    "push_executed": false,
+    "raw_replay_logs_included": false,
+    "repo_created": false,
+    "runtime_default_config_change_performed": false,
+    "scheduler_enabled": false,
+    "source_repo_history_rewritten": false
+  },
+  "source": {
+    "git_top_level": "/home/julius/julius-workspace",
+    "project_is_nested_in_workspace_repo": true,
+    "project_path": "/home/julius/julius-workspace/ai-labs/projects/trading-agents",
+    "recent_commits": [
+      "485225b docs(trading-agents): add standalone repo split audit",
+      "7cb8e10 docs(trading-agents): add push release readiness audit",
+      "005b4ac docs(trading-agents): consolidate read-only monitoring readiness",
+      "4703a1f fix(trading-agents): include candidate counts in monitoring reports",
+      "a9ccee1 docs(trading-agents): add candidate-level fresh replay review",
+      "6d515ae feat(trading-agents): add candidate-level strategy attribution",
+      "4b1028c docs(trading-agents): add third manual cadence scheduler review",
+      "e83cb5a docs(trading-agents): normalize zero-block diagnostic strategy ids",
+      "6d9573b docs(trading-agents): correct volatility skip zero-block diagnostic",
+      "680c036 docs(trading-agents): add volatility skip zero-block diagnostic"
+    ],
+    "workspace_branch": "main"
+  },
+  "source_worktree_exclusions": [
+    "A  ai-labs/projects/trading-agents/.agent/README.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/atr.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/bollinger-bands.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/donchian.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/ema.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/funding-rate.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/macd.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/obv.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/open-interest.md",
+    "A  ai-labs/projects/trading-agents/.agent/indicators/rsi.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-0-screening-agent.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-1-derivatives-analyst.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-1-fundamentals-analyst.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-1-news-analyst.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-1-sentiment-analyst.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-1-technical-analyst.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-2-bear-researcher.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-2-bull-researcher.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-3-trader-agent.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-4-portfolio-manager.md",
+    "A  ai-labs/projects/trading-agents/.agent/roles/layer-4-risk-manager.md",
+    "R  ai-labs/projects/trading-agents/skills/README.md -> ai-labs/projects/trading-agents/.agent/skills/README.md",
+    "R  ai-labs/projects/trading-agents/skills/backtest-analysis/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/backtest-analysis/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/exposure-coach/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/exposure-coach/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/market-structure/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/market-structure/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/position-sizing/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/position-sizing/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/regime-review/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/regime-review/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/signal-postmortem/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/signal-postmortem/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/smart-money-signal-audit/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/smart-money-signal-audit/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/strategy-designer/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/strategy-designer/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/strategy-review/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/strategy-review/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/thesis-builder/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/thesis-builder/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/token-risk-audit/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/token-risk-audit/SKILL.md",
+    "R  ai-labs/projects/trading-agents/skills/trading-plan/SKILL.md -> ai-labs/projects/trading-agents/.agent/skills/trading-plan/SKILL.md",
+    "?? ai-labs/projects/trading-agents/.agent/skills/handoff/",
+    "?? ai-labs/projects/trading-agents/ai-agent-trading-report.md",
+    "?? ai-labs/projects/trading-agents/outputs/",
+    "?? ai-labs/projects/trading-agents/researchs.md"
+  ],
+  "status": "blocked",
+  "status_reasons": [
+    "git subtree is unavailable; history-preserving split could not run.",
+    "Temp-repo filtering failed; do not push.",
+    "Source working-tree .agent/outputs/report noise remains excluded; split/filter used committed history only."
+  ],
+  "target": {
+    "accessible_by_ls_remote": true,
+    "ls_remote_error": "",
+    "ls_remote_rc": 0,
+    "owner_repo": "juliuss1907/the-trading-guy",
+    "recommended_visibility": "private",
+    "repo_name": "the-trading-guy",
+    "ssh_url": "git@github.com:juliuss1907/the-trading-guy.git"
+  },
+  "title": "History-Preserving Split for the-trading-guy"
+}
