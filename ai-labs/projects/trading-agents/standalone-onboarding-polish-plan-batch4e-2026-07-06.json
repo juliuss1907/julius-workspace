@@ -1,0 +1,40 @@
+{
+  "batch": "4E",
+  "title": "Standalone Repo Onboarding Polish Plan for the-trading-guy",
+  "date": "2026-07-06",
+  "remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "current_single_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "goal": "Polish README and safety/monitoring docs for standalone repo onboarding.",
+  "recommended_working_location": "dedicated clone of the-trading-guy, not julius-workspace source copy unless source-of-truth decision changes",
+  "target_files_minimum": [
+    "README.md",
+    "docs/SAFETY.md",
+    "docs/MONITORING.md"
+  ],
+  "optional_files": [
+    "docs/SETUP.md",
+    "docs/REPO_HISTORY.md"
+  ],
+  "non_goals": [
+    "no live trading behavior",
+    "no order placement",
+    "no simulate-live execution",
+    "no StrategySignal-to-order mapping",
+    "no runtime/default config changes",
+    "no secrets or .env files",
+    "no raw logs or replay JSONL files",
+    "no cron/systemd/scheduler enablement"
+  ],
+  "pass_criteria": [
+    "README clearly explains project",
+    "safety boundaries visible near top",
+    "setup instructions do not require secrets",
+    "no .env.example added unless explicitly approved and sanitized",
+    "no live trading instructions",
+    "manual-only cadence documented",
+    "docs commit created locally in standalone repo",
+    "no push without approval"
+  ],
+  "proposed_commit_message": "docs: polish standalone repo onboarding",
+  "recommended_next_command": "Build Batch 4E \u2014 Standalone Repo Onboarding Polish"
+}
