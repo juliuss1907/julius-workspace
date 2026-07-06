@@ -1,0 +1,123 @@
+{
+  "title": "Next Batches Plan — the-trading-guy Batch 4D–4F",
+  "date": "2026-07-06",
+  "repo": "git@github.com:juliuss1907/the-trading-guy.git",
+  "current_single_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "global_safety_boundaries": [
+    "no live trading",
+    "no order placement",
+    "no simulate-live execution",
+    "no StrategySignal-to-order mapping",
+    "no runtime/default config changes unless explicitly approved",
+    "no raw replay logs committed",
+    "no .env files read, printed, staged, or committed",
+    "no unrelated/protected paths touched",
+    "no auto-push without explicit approval",
+    "no force-push by agent"
+  ],
+  "batches": [
+    {
+      "id": "4D-A",
+      "name": "Preserve Batch 4C Audit Evidence",
+      "goal": "Commit the Batch 4C rewrite audit reports in julius-workspace.",
+      "outputs": [
+        "local workspace commit: docs(trading-agents): record clean repo rewrite audit"
+      ],
+      "pass_criteria": [
+        "2 report files committed",
+        "no unrelated files staged",
+        "no raw logs committed",
+        "no .env committed",
+        "no remote push"
+      ]
+    },
+    {
+      "id": "4D-B",
+      "name": "Fresh Clone Integrity Audit",
+      "goal": "Verify the-trading-guy from a fresh clone is single-commit and clean.",
+      "expected_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+      "expected_commit_count": 1,
+      "expected_file_count": 341,
+      "outputs": [
+        "fresh-clone-integrity-audit-the-trading-guy-batch4d-2026-07-06.md",
+        "fresh-clone-integrity-audit-the-trading-guy-batch4d-2026-07-06.json"
+      ],
+      "pass_criteria": [
+        "remote HEAD equals expected commit",
+        "commit count equals 1",
+        "forbidden files equals 0",
+        "forbidden history paths equals 0",
+        "no raw replay logs",
+        "no .env",
+        "no .hermes"
+      ]
+    },
+    {
+      "id": "4D-C",
+      "name": "Safe Read-Only Sanity Checks",
+      "goal": "Run safe syntax/import/test checks from the fresh clone without live/simulate-live execution.",
+      "outputs": [
+        "fresh-clone-sanity-checks-the-trading-guy-batch4d-2026-07-06.md",
+        "fresh-clone-sanity-checks-the-trading-guy-batch4d-2026-07-06.json"
+      ],
+      "allowed_checks": [
+        "python compileall on safe source directories",
+        "import-light strategy probe after inspection",
+        "candidate-level attribution tests if dependencies are available and network-free",
+        "dependency readiness checker only if confirmed safe"
+      ],
+      "forbidden_checks": [
+        "paper trading scripts",
+        "readonly monitoring cadence if it may call live data",
+        "replay scripts if they may call external APIs",
+        "telegram bot",
+        "trading execution scripts",
+        "anything with order placement",
+        "anything simulate-live",
+        "anything that mutates state"
+      ]
+    },
+    {
+      "id": "4E",
+      "name": "Standalone Repo Onboarding Polish",
+      "goal": "Improve README and safety/monitoring docs for standalone use.",
+      "target_files": [
+        "README.md",
+        "docs/SAFETY.md",
+        "docs/MONITORING.md"
+      ],
+      "pass_criteria": [
+        "README clearly explains project",
+        "safety boundaries visible near top",
+        "setup instructions do not require secrets",
+        "no unapproved .env.example added",
+        "no live trading instructions",
+        "manual-only cadence documented"
+      ]
+    },
+    {
+      "id": "4F",
+      "name": "Source-of-Truth Workflow Decision",
+      "goal": "Decide whether future development happens in standalone repo or workspace copy.",
+      "recommendation": "Option B: the-trading-guy becomes source of truth after Batch 4D passes.",
+      "outputs": [
+        "source-of-truth-decision-the-trading-guy-batch4f-2026-07-06.md"
+      ],
+      "pass_criteria": [
+        "decision documented",
+        "future workflow clear",
+        "no deletion executed",
+        "no remote rewrite",
+        "no push without approval"
+      ]
+    }
+  ],
+  "recommended_order": [
+    "4D-A",
+    "4D-B",
+    "4D-C",
+    "4E",
+    "4F"
+  ],
+  "recommended_next_command": "Build Batch 4D-A — Commit Batch 4C audit reports"
+}
