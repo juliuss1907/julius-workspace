@@ -1,0 +1,41 @@
+{
+  "batch": "4F",
+  "title": "Source-of-Truth Workflow Decision for the-trading-guy",
+  "date": "2026-07-06",
+  "decision": "Option B \u2014 the-trading-guy becomes source of truth",
+  "source_of_truth": "git@github.com:juliuss1907/the-trading-guy.git",
+  "remote_main_at_decision_time": "a8bf806e0a8e733b9937e737d49abe4408a0ab21",
+  "workspace_copy": "/home/julius/julius-workspace/ai-labs/projects/trading-agents",
+  "workspace_copy_status": "historical_audit_reference_copy",
+  "active_development_location": "dedicated clone of git@github.com:juliuss1907/the-trading-guy.git",
+  "future_workflow": [
+    "use standalone repo for active project code and standalone docs changes",
+    "push from standalone repo only after Julius approval",
+    "keep workspace reports as audit evidence when needed",
+    "avoid subtree/filter flows unless explicitly requested",
+    "do not copy workspace-local artifacts into standalone repo"
+  ],
+  "completed_prerequisites": {
+    "batch_4c_clean_single_commit_rewrite": "completed",
+    "batch_4d_fresh_clone_integrity": "passed",
+    "batch_4d_safe_sanity_checks": "passed",
+    "batch_4d_staging_cleanup": "completed",
+    "batch_4e_onboarding_polish": "pushed_and_verified"
+  },
+  "safety_boundaries": {
+    "live_trading": "not_executed",
+    "order_placement": "not_executed",
+    "simulate_live": "not_executed",
+    "strategy_signal_to_order_mapping": "not_added",
+    "runtime_default_config_changes": "not_changed",
+    "scheduler_enabled": "no",
+    "raw_replay_logs_committed": "none",
+    "env_files_read_or_printed": "none",
+    "knowledge_base_changes": "none",
+    "deletion_executed": false,
+    "repo_rewrite_executed": false,
+    "push_executed": false
+  },
+  "future_cleanup_note": "If Julius wants to archive/delete the old workspace copy, handle it in a separate explicit Batch 4G or delete/archive request.",
+  "status": "decision_documented_ready_for_local_commit"
+}
