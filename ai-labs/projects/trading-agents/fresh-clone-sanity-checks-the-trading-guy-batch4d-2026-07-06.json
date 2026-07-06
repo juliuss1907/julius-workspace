@@ -1,0 +1,71 @@
+{
+  "batch": "4D-C",
+  "title": "Safe read-only sanity checks from fresh clone for the-trading-guy",
+  "date": "2026-07-06",
+  "remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "expected_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "fresh_clone_dir": "/tmp/batch4d-fresh-clone-the-trading-guy-20260706-143256/the-trading-guy",
+  "branch": "main",
+  "head_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "commit_count": 1,
+  "safe_dirs": [
+    "agents",
+    "config",
+    "dataflows",
+    "policies",
+    "scripts",
+    "strategies",
+    "trading",
+    "utils",
+    "telegram_bot",
+    "orchestration",
+    "ops"
+  ],
+  "syntax_ast_check": {
+    "python_files_checked": 178,
+    "exit_code": 0,
+    "syntax_errors": "0",
+    "output": [
+      "python_files_checked=178",
+      "syntax_errors=0"
+    ]
+  },
+  "import_inspection": [
+    "strategies/registry.py: strategies.base, strategies.breakout, strategies.contracts, strategies.trend_following, strategies.volatility_skip, typing",
+    "strategies/volatility_skip.py: strategies.base, strategies.contracts, typing",
+    "strategies/trend_following.py: strategies.base, strategies.contracts, typing",
+    "strategies/breakout.py: strategies.base, strategies.contracts, typing"
+  ],
+  "import_light_strategy_probe": {
+    "exit_code": 0,
+    "output": [
+      "import_light_strategy_probe=ok"
+    ]
+  },
+  "pytest_candidate_level_attribution": {
+    "pytest_available": "no",
+    "exit_code": "skipped",
+    "output": [
+      "pytest command not available; test skipped without installing dependencies"
+    ]
+  },
+  "dependency_readiness_checker": {
+    "status": "skipped_after_scope_review",
+    "reason": "checker exists but was not executed in 4D-C to avoid runtime/dependency side effects; can be run in a dedicated dry audit batch after inspection"
+  },
+  "post_check_forbidden_file_count": 0,
+  "post_check_forbidden_file_sample": "none",
+  "status": "passed",
+  "remote_mutation": false,
+  "push_executed": false,
+  "safety_boundaries": {
+    "live_trading": "not_executed",
+    "order_placement": "not_executed",
+    "simulate_live": "not_executed",
+    "strategy_signal_to_order_mapping": "not_added",
+    "runtime_default_config_changes": "not_changed",
+    "raw_replay_logs_committed": "none",
+    "env_files_committed": "none",
+    "remote_history_rewrite": "not_executed"
+  }
+}
