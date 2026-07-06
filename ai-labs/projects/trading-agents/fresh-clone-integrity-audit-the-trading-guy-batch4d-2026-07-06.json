@@ -1,0 +1,40 @@
+{
+  "batch": "4D-B",
+  "title": "Fresh clone integrity audit for the-trading-guy",
+  "date": "2026-07-06",
+  "remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "expected_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "temp_root": "/tmp/batch4d-fresh-clone-the-trading-guy-20260706-143256",
+  "fresh_clone_dir": "/tmp/batch4d-fresh-clone-the-trading-guy-20260706-143256/the-trading-guy",
+  "remote_urls": [
+    "origin\tgit@github.com:juliuss1907/the-trading-guy.git (fetch)",
+    "origin\tgit@github.com:juliuss1907/the-trading-guy.git (push)"
+  ],
+  "branch": "main",
+  "head_commit": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "remote_main": "89194f3009d7c0eabb91d505be4adea834d5d94d",
+  "short_log": "89194f3 (HEAD -> main, origin/main, origin/HEAD) chore: initial standalone trading agents snapshot",
+  "commit_count": 1,
+  "file_count": 341,
+  "expected_file_count": 341,
+  "forbidden_head_file_count": 0,
+  "forbidden_head_file_sample": "none",
+  "history_unique_path_count": 341,
+  "forbidden_history_path_count": 0,
+  "forbidden_history_path_sample": "none",
+  "secret_marker_file_count": 21,
+  "secret_marker_file_sample": "trading/trade_notifier.py,trading/spot_demo_trader.py trading/futures_testnet_trader.py,telegram_bot/bot.py scripts/test_data_fetchers.py,scripts/test_binance_futures_history.py scripts/sync_futures_positions_to_db.py,scripts/run_paper_trading.py scripts/reconcile_positions.py,scripts/reconcile_futures_positions.py scripts/notify_synced_closes.py,scripts/build_sync_correction_report.py scripts/auth_telegram_step2.py,scripts/auth_telegram_step1.py scripts/auth_telegram_cli.py,scripts/apply_sync_corrections.py docs/TELEGRAM_BOT.md,docs/PAPER_TRADING.md docs/02-data-sources.md,dataflows/data_manager.py agents/news_sentiment.py",
+  "status": "passed",
+  "remote_mutation": false,
+  "push_executed": false,
+  "safety_boundaries": {
+    "live_trading": "not_executed",
+    "order_placement": "not_executed",
+    "simulate_live": "not_executed",
+    "strategy_signal_to_order_mapping": "not_added",
+    "runtime_default_config_changes": "not_changed",
+    "raw_replay_logs_committed": "none",
+    "env_files_committed": "none",
+    "remote_history_rewrite": "not_executed"
+  }
+}
