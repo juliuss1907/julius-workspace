@@ -1,0 +1,48 @@
+{
+  "batch": "5B-plan",
+  "title": "CI / Safety Workflow Proposal Plan for the-trading-guy",
+  "date": "2026-07-07",
+  "source_of_truth_remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "working_clone": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "working_clone_status": "exists",
+  "working_clone_branch": "main",
+  "working_clone_head": "a8bf806e0a8e733b9937e737d49abe4408a0ab21",
+  "working_clone_commit_count": 2,
+  "working_clone_status_lines": 0,
+  "remote_main_at_plan_time": "a8bf806e0a8e733b9937e737d49abe4408a0ab21",
+  "scope_decision": "proposal/design first; implementation only after approval",
+  "proposed_blocking_checks": [
+    "forbidden files / repo hygiene",
+    "required docs presence and safety phrases",
+    "python AST syntax check without bytecode"
+  ],
+  "proposed_warning_checks": [
+    "secret-marker awareness scan, filenames only, no matched values"
+  ],
+  "deferred_until_batch_5c": [
+    "full pytest enablement",
+    "safe test subset selection",
+    "dependency installation or dev requirements changes"
+  ],
+  "future_implementation_files_after_approval": [
+    ".github/workflows/safety-checks.yml",
+    "scripts/ci_forbidden_files_check.py",
+    "scripts/ci_syntax_check.py",
+    "scripts/ci_required_docs_check.py"
+  ],
+  "non_goals": [
+    "no live trading",
+    "no order placement",
+    "no simulate-live",
+    "no StrategySignal-to-order mapping",
+    "no runtime/default config changes",
+    "no dependency install without approval",
+    "no secrets or .env files",
+    "no raw replay logs or jsonl files",
+    "no scheduler/cron/systemd automation",
+    "no push without approval"
+  ],
+  "recommended_next_command": "Build Batch 5B \u2014 CI Safety Workflow Proposal",
+  "implementation_approval_phrase": "Approve Batch 5B implementation \u2014 add hygiene/docs/syntax CI only",
+  "status": "plan_created_awaiting_review"
+}
