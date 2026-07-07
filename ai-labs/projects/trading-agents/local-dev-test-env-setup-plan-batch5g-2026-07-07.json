@@ -1,0 +1,176 @@
+{
+  "batch": "5G",
+  "title": "Local Dev Test Environment Setup Plan",
+  "option": "Option A \u2014 Minimal local venv",
+  "created_at_local": "2026-07-07 20:49",
+  "workspace_path": "/home/julius/julius-workspace",
+  "source_repo_path": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "source_repo_remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "goal": "Create a repo-local Python virtual environment for safe local pytest execution without global installs or runtime config changes.",
+  "approved_scope": {
+    "allowed": [
+      "Create .venv/ inside the-trading-guy as local-only development environment",
+      "Install requirements-dev.txt into .venv only",
+      "Run the already-approved safe pytest subset only",
+      "Write and commit workspace audit evidence under ai-labs/projects/trading-agents/"
+    ],
+    "not_allowed": [
+      "Global package install",
+      "sudo usage",
+      "pip install --user",
+      "pip install outside .venv",
+      "pip upgrade unless separately approved",
+      "Read, print, or commit .env files",
+      "Live trading",
+      "Order placement",
+      "simulate-live",
+      "StrategySignal-to-order bridge work",
+      "Runtime/default config mutation",
+      "Scheduler/cron/systemd enablement",
+      "Raw replay log staging or committing",
+      "Running the full test suite before separate safe-test audit"
+    ]
+  },
+  "commands_planned": [
+    "cd /home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+    "git status --short --branch",
+    "git rev-parse HEAD && git rev-parse origin/main && git ls-remote origin refs/heads/main",
+    "python -m venv .venv",
+    ".venv/bin/python -m pip install -r requirements-dev.txt",
+    ".venv/bin/python -m pytest -q -p no:cacheprovider scripts/test_candidate_level_attribution.py",
+    "git status --short --branch",
+    "git ls-files .venv .pytest_cache",
+    "git ls-files '*.pyc' '*.jsonl'"
+  ],
+  "explicitly_not_planned": [
+    ".venv/bin/python -m pip install --upgrade pip",
+    "python -m pytest without a file subset",
+    "Any replay or monitoring command",
+    "Any command that needs exchange/network credentials",
+    "Any .env inspection command"
+  ],
+  "stop_conditions": [
+    "Source repo is not clean before setup",
+    "Source repo HEAD, origin/main, and remote main are not aligned",
+    "requirements-dev.txt is missing or contains unexpected broad/runtime dependencies",
+    ".venv/ is not ignored or would be tracked",
+    "python -m venv is unavailable",
+    "pip install tries to escape .venv or requires sudo/global permissions",
+    "Safe test requires .env, network, exchange access, or runtime mutation",
+    "Test creates raw replay logs or tracked generated files",
+    "Post-test git status shows source/config changes beyond ignored local cache/venv artifacts"
+  ],
+  "expected_outcome": {
+    "source_repo": "clean or only ignored local .venv/cache artifacts",
+    "local_test_command": ".venv/bin/python -m pytest -q -p no:cacheprovider scripts/test_candidate_level_attribution.py",
+    "workspace_evidence": [
+      "ai-labs/projects/trading-agents/local-dev-test-env-setup-batch5g-2026-07-07.md",
+      "ai-labs/projects/trading-agents/local-dev-test-env-setup-batch5g-2026-07-07.json"
+    ],
+    "workspace_commit_message": "docs(trading-agents): record local dev test env setup",
+    "push_policy": "No push without explicit Julius approval"
+  },
+  "preflight_snapshot": {
+    "workspace_head": {
+      "cmd": [
+        "git",
+        "log",
+        "-1",
+        "--oneline"
+      ],
+      "returncode": 0,
+      "stdout": "2d4faf8 docs(trading-agents): add workspace audit push proposal",
+      "stderr": ""
+    },
+    "workspace_status_sample": {
+      "cmd": [
+        "bash",
+        "-lc",
+        "git status --short --branch | sed -n \"1,80p\""
+      ],
+      "returncode": 0,
+      "stdout": "## main...origin/main\n M .gitignore\n M .hermes/.restart_last_processed.json\n D .hermes/.skills_prompt_snapshot.json\n M .hermes/MEMORY.md\n M .hermes/auth.json\n D .hermes/cache/documents/doc_1ef5d708cb56_message.txt\n D .hermes/cache/documents/doc_310b06b59f2c_news-brief-setup\n M .hermes/cache/model_catalog.json\n D .hermes/cache/screenshots/browser_screenshot_a818e7b2b81d4146a32d144643fcef04.png\n M .hermes/channel_directory.json\n M .hermes/config.yaml\n M .hermes/context_length_cache.yaml\n M .hermes/cron/jobs.json\n M .hermes/gateway.lock\n M .hermes/gateway.pid\n M .hermes/gateway_state.json\n M .hermes/kanban.db\n M .hermes/lsp/node_modules/.package-lock.json\n M .hermes/lsp/package-lock.json\n M .hermes/lsp/package.json\n M .hermes/memories/MEMORY.md\n M .hermes/memories/USER.md\n M .hermes/models_dev_cache.json\n M .hermes/ollama_cloud_models_cache.json\n M .hermes/sessions/20260524_064610_a3fb761e.jsonl\n M .hermes/sessions/session_20260524_064610_a3fb761e.json\n M .hermes/sessions/sessions.json\n M .hermes/skills/.bundled_manifest\n M .hermes/skills/.curator_state\n M .hermes/skills/.usage.json\n D .hermes/skills/apple/apple-notes/SKILL.md\n D .hermes/skills/apple/apple-reminders/SKILL.md\n D .hermes/skills/apple/findmy/SKILL.md\n D .hermes/skills/apple/imessage/SKILL.md\n D .hermes/skills/apple/macos-computer-use/SKILL.md\n D .hermes/skills/autonomous-ai-agents/claude-code/SKILL.md\n D .hermes/skills/autonomous-ai-agents/codex/SKILL.md\n D .hermes/skills/autonomous-ai-agents/feynman/SKILL.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/interactive-only.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/oom-debug.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/pexpect-runner.py\n D .hermes/skills/autonomous-ai-agents/feynman/references/plan-discovery.md\n M .hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md\n M .hermes/skills/autonomous-ai-agents/hermes-agent/references/mempalace-setup.md\n D .hermes/skills/autonomous-ai-agents/opencode/SKILL.md\n D .hermes/skills/autonomous-ai-agents/opencode/references/open-claude-config.md\n D .hermes/skills/autonomous-ai-agents/opencode/references/open-claude-provider.md\n M .hermes/skills/coin68-writer/SKILL.md\n M .hermes/skills/coin68-writer/references/article-structure.md\n D .hermes/skills/creative/ascii-art/SKILL.md\n M .hermes/skills/creative/ascii-video/SKILL.md\n M .hermes/skills/creative/comfyui/scripts/fetch_logs.py\n M .hermes/skills/creative/comfyui/tests/test_common.py\n M .hermes/skills/creative/comfyui/tests/test_extract_schema.py\n M .hermes/skills/creative/comfyui/tests/test_run_workflow.py\n D .hermes/skills/devops/kanban-orchestrator/SKILL.md\n D .hermes/skills/devops/kanban-worker/SKILL.md\n M .hermes/skills/email/himalaya/SKILL.md\n M .hermes/skills/github/codebase-inspection/SKILL.md\n D .hermes/skills/github/github-auth/SKILL.md\n D .hermes/skills/github/github-auth/scripts/gh-env.sh\n D .hermes/skills/github/github-code-review/SKILL.md\n D .hermes/skills/github/github-code-review/references/review-output-template.md\n D .hermes/skills/github/github-issues/SKILL.md\n D .hermes/skills/github/github-issues/templates/bug-report.md\n D .hermes/skills/github/github-issues/templates/feature-request.md\n D .hermes/skills/github/github-pr-workflow/SKILL.md\n D .hermes/skills/github/github-pr-workflow/references/ci-troubleshooting.md\n D .hermes/skills/github/github-pr-workflow/references/conventional-commits.md\n D .hermes/skills/github/github-pr-workflow/templates/pr-body-bugfix.md\n D .hermes/skills/github/github-pr-workflow/templates/pr-body-feature.md\n D .hermes/skills/github/github-repo-management/SKILL.md\n D .hermes/skills/github/github-repo-management/references/github-api-cheatsheet.md\n M .hermes/skills/media/spotify/SKILL.md\n M .hermes/skills/media/youtube-content/SKILL.md\n M .hermes/skills/note-taking/obsidian/SKILL.md\n M .hermes/skills/productivity/airtable/SKILL.md\n M .hermes/skills/productivity/google-workspace/scripts/google_api.py\n M .hermes/skills/productivity/google-workspace/scripts/gws_bridge.py",
+      "stderr": ""
+    },
+    "source_repo_status": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "returncode": 0,
+      "stdout": "## main...origin/main",
+      "stderr": ""
+    },
+    "source_repo_head": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "source_repo_origin_main": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "source_repo_remote_main": {
+      "cmd": [
+        "bash",
+        "-lc",
+        "git ls-remote origin refs/heads/main | awk '{print $1}'"
+      ],
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "python_version": {
+      "cmd": [
+        "python",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "Python 3.14.3",
+      "stderr": ""
+    },
+    "venv_help": {
+      "cmd": [
+        "python",
+        "-m",
+        "venv",
+        "--help"
+      ],
+      "returncode": 0,
+      "stdout": "usage: python -m venv [-h] [--system-site-packages] [--symlinks | --copies]\n                      [--clear] [--upgrade] [--without-pip] [--prompt PROMPT]\n                      [--upgrade-deps] [--without-scm-ignore-files]\n                      ENV_DIR [ENV_DIR ...]\n\nCreates virtual Python environments in one or more target directories.\n\npositional arguments:\n  ENV_DIR               A directory to create the environment in.\n\noptions:\n  -h, --help            show this help message and exit\n  --system-site-packages\n                        Give the virtual environment access to the system\n                        site-packages dir.\n  --symlinks            Try to use symlinks rather than copies, when symlinks\n                        are not the default for the platform.\n  --copies              Try to use copies rather than symlinks, even when\n                        symlinks are the default for the platform.\n  --clear               Delete the contents of the environment directory if it\n                        already exists, before environment creation.\n  --upgrade             Upgrade the environment directory to use this version\n                        of Python, assuming Python has been upgraded in-place.\n  --without-pip         Skips installing or upgrading pip in the virtual\n                        environment (pip is bootstrapped by default)\n  --prompt PROMPT       Provides an alternative prompt prefix for this\n                        environment.\n  --upgrade-deps        Upgrade core dependencies (pip) to the latest version\n                        in PyPI\n  --without-scm-ignore-files\n                        Skips adding SCM ignore files to the environment\n                        directory (Git is supported by default).\n\nOnce an environment has been created, you may wish to activate it, e.g. by\nsourcing an activate script in its bin directory.",
+      "stderr": ""
+    },
+    "requirements_dev": {
+      "cmd": [
+        "cat",
+        "requirements-dev.txt"
+      ],
+      "returncode": 0,
+      "stdout": "pytest\npytest-asyncio",
+      "stderr": ""
+    },
+    "gitignore_relevant": {
+      "cmd": [
+        "bash",
+        "-lc",
+        "grep -nE '(^|/)(\\.venv|venv|\\.pytest_cache|__pycache__|\\*.pyc|\\*.jsonl)' .gitignore || true"
+      ],
+      "returncode": 0,
+      "stdout": "8:__pycache__/\n14:venv/\n16:.venv\n40:logs/*.jsonl\n86:.pytest_cache/",
+      "stderr": ""
+    }
+  }
+}
