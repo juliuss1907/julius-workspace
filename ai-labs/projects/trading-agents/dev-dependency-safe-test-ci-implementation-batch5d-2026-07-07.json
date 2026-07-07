@@ -1,0 +1,74 @@
+{
+  "batch": "5D",
+  "title": "Dev Dependency / Safe Test CI Implementation",
+  "date": "2026-07-07",
+  "source_repo": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "base_head_before_commit": "60eec5639f6fcb9c49eef70947908fb1803b449c",
+  "base_log_before_commit": "60eec56 ci: add repository safety checks",
+  "new_source_commit": "b83fb38292a24f260f7372ab557326b2ba50093d",
+  "new_source_commit_short": "b83fb38",
+  "new_source_commit_log": "b83fb38 ci: add safe pytest subset",
+  "source_commit_count_after": 4,
+  "source_committed_file_count": 2,
+  "source_committed_files": [
+    ".github/workflows/safety-checks.yml",
+    "requirements-dev.txt"
+  ],
+  "pre_change_ci_results": {
+    "forbidden_files_check": "forbidden_files_check=ok",
+    "required_docs_check": "required_docs_check=ok",
+    "syntax_check_output": [
+      "python_files_checked=181",
+      "syntax_check=ok"
+    ],
+    "python_files_checked": 181
+  },
+  "post_change_ci_results": {
+    "forbidden_files_check": "forbidden_files_check=ok",
+    "required_docs_check": "required_docs_check=ok",
+    "syntax_check_output": [
+      "python_files_checked=181",
+      "syntax_check=ok"
+    ],
+    "python_files_checked": 181
+  },
+  "dev_dependency_file_added": "requirements-dev.txt",
+  "dev_dependency_file_contents": [
+    "pytest",
+    "pytest-asyncio"
+  ],
+  "safe_pytest_subset_added_to_ci": [
+    "scripts/test_candidate_level_attribution.py"
+  ],
+  "pytest_available_locally": false,
+  "pytest_version_exit": "1",
+  "pytest_version_output": "/usr/bin/python: No module named pytest",
+  "local_safe_pytest_run": {
+    "status": "skipped_pytest_unavailable",
+    "exit_code": "skipped",
+    "output": [
+      "pytest unavailable locally; dependency install intentionally not executed in Batch 5D"
+    ]
+  },
+  "dependency_install_executed": false,
+  "push_executed": false,
+  "remote_mutation": false,
+  "forbidden_worktree_file_count_after": 0,
+  "source_status_line_count_after_commit": 0,
+  "status": "completed_local_ci_commit_ready_for_push_proposal",
+  "safety_boundaries": {
+    "live_trading": "not_executed",
+    "order_placement": "not_executed",
+    "simulate_live": "not_executed",
+    "strategy_signal_to_order_mapping": "not_added",
+    "runtime_default_config_changes": "not_changed",
+    "dependency_install": "not_executed",
+    "external_api_calls": "not_executed",
+    "secrets_printed": "none",
+    "env_files_read_or_printed": "none",
+    "raw_replay_logs_committed": "none",
+    "scheduler_enabled": "no",
+    "push": "no"
+  }
+}
