@@ -1,0 +1,53 @@
+{
+  "batch": "5D-plan",
+  "title": "Dev Dependency / Safe Test CI Proposal",
+  "date": "2026-07-07",
+  "source_of_truth_remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "working_clone": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "working_clone_exists": true,
+  "working_clone_branch": "main",
+  "working_clone_head": "60eec5639f6fcb9c49eef70947908fb1803b449c",
+  "working_clone_commit_count": 3,
+  "working_clone_status_lines": 0,
+  "remote_main_at_plan_time": "60eec5639f6fcb9c49eef70947908fb1803b449c",
+  "batch_5c_findings": {
+    "requirements_txt_exists": true,
+    "requirements_dev_txt_missing": true,
+    "pytest_declared_in_requirements_txt": true,
+    "pytest_asyncio_declared_in_requirements_txt": true,
+    "local_pytest_available": false,
+    "test_files_discovered": 67,
+    "safe_candidate_test": "scripts/test_candidate_level_attribution.py"
+  },
+  "options": {
+    "A_install_requirements_txt_in_ci": "not_recommended_too_broad",
+    "B_add_minimal_requirements_dev_txt": "recommended",
+    "C_install_pytest_directly_in_workflow": "acceptable_short_term_but_less_clean"
+  },
+  "recommendation": "Option B \u2014 add minimal requirements-dev.txt and run only scripts/test_candidate_level_attribution.py in CI",
+  "proposed_files_if_implemented": [
+    "requirements-dev.txt",
+    ".github/workflows/safety-checks.yml"
+  ],
+  "safe_test_subset_v1": [
+    "scripts/test_candidate_level_attribution.py"
+  ],
+  "non_goals": [
+    "no dependency install without approval",
+    "no full pytest suite in CI",
+    "no live trading",
+    "no order placement",
+    "no simulate-live",
+    "no external API scripts",
+    "no exchange account calls",
+    "no Telegram bot runtime",
+    "no state mutation scripts",
+    "no runtime/default config changes",
+    "no scheduler/cron/systemd",
+    "no .env read/print/commit",
+    "no raw replay logs",
+    "no push without approval"
+  ],
+  "recommended_approval_phrase": "Approve Batch 5D implementation \u2014 add minimal requirements-dev and safe candidate attribution test to CI",
+  "status": "plan_created_awaiting_implementation_approval"
+}
