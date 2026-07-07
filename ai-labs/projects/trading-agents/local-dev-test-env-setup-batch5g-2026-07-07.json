@@ -1,0 +1,263 @@
+{
+  "batch": "5G",
+  "title": "Local Dev Test Environment Setup",
+  "option": "Option A \u2014 Minimal local venv",
+  "created_at_local": "2026-07-07 20:55",
+  "workspace_path": "/home/julius/julius-workspace",
+  "source_repo_path": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "expected_commit": "b83fb38292a24f260f7372ab557326b2ba50093d",
+  "status": "completed",
+  "stop_reasons": [],
+  "venv_path": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/.venv",
+  "commands_intentionally_not_run": [
+    ".venv/bin/python -m pip install --upgrade pip",
+    "python -m pytest without file subset",
+    "any replay command",
+    "any monitoring command",
+    "any command reading .env",
+    "any live trading/order command"
+  ],
+  "safety_boundaries": [
+    "No live trading executed",
+    "No order placement executed",
+    "No simulate-live execution",
+    "No StrategySignal-to-order bridge added or touched",
+    "No runtime/default config mutated",
+    "No .env files read, printed, or committed",
+    "No global package install",
+    "No sudo usage",
+    "No pip install --user",
+    "No pip upgrade",
+    "No full test suite execution",
+    "No replay/monitoring jobs executed",
+    "No raw replay logs staged or committed",
+    "No scheduler/cron/systemd enablement",
+    "No push executed"
+  ],
+  "results": {
+    "batch": "5G",
+    "option": "Option A \u2014 Minimal local venv",
+    "pre_status": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "## main...origin/main",
+      "stderr": ""
+    },
+    "pre_head": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "pre_origin_main": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "pre_remote_main": {
+      "cmd": "git ls-remote origin refs/heads/main | awk '{print $1}'",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "python_version": {
+      "cmd": [
+        "python",
+        "--version"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "Python 3.14.3",
+      "stderr": ""
+    },
+    "venv_help": {
+      "cmd": [
+        "python",
+        "-m",
+        "venv",
+        "--help"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "usage: python -m venv [-h] [--system-site-packages] [--symlinks | --copies]\n                      [--clear] [--upgrade] [--without-pip] [--prompt PROMPT]\n                      [--upgrade-deps] [--without-scm-ignore-files]\n                      ENV_DIR [ENV_DIR ...]\n\nCreates virtual Python environments in one or more target directories.\n\npositional arguments:\n  ENV_DIR               A directory to create the environment in.\n\noptions:\n  -h, --help            show this help message and exit\n  --system-site-packages\n                        Give the virtual environment access to the system\n                        site-packages dir.\n  --symlinks            Try to use symlinks rather than copies, when symlinks\n                        are not the default for the platform.\n  --copies              Try to use copies rather than symlinks, even when\n                        symlinks are the default for the platform.\n  --clear               Delete the contents of the environment directory if it\n                        already exists, before environment creation.\n  --upgrade             Upgrade the environment directory to use this version\n                        of Python, assuming Python has been upgraded in-place.\n  --without-pip         Skips installing or upgrading pip in the virtual\n                        environment (pip is bootstrapped by default)\n  --prompt PROMPT       Provides an alternative prompt prefix for this\n                        environment.\n  --upgrade-deps        Upgrade core dependencies (pip) to the latest version\n                        in PyPI\n  --without-scm-ignore-files\n                        Skips adding SCM ignore files to the environment\n                        directory (Git is supported by default).\n\nOnce an environment has been created, you may wish to activate it, e.g. by\nsourcing an activate script in its bin directory.",
+      "stderr": ""
+    },
+    "requirements_dev": {
+      "cmd": [
+        "cat",
+        "requirements-dev.txt"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "pytest\npytest-asyncio",
+      "stderr": ""
+    },
+    "gitignore_relevant": {
+      "cmd": "grep -nE '(^|/)(\\.venv|venv|\\.pytest_cache|__pycache__|\\*.pyc|\\*.jsonl)' .gitignore || true",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "8:__pycache__/\n14:venv/\n16:.venv\n40:logs/*.jsonl\n86:.pytest_cache/",
+      "stderr": ""
+    },
+    "check_ignore_venv": {
+      "cmd": [
+        "git",
+        "check-ignore",
+        "-v",
+        ".venv/"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": ".gitignore:16:.venv\t.venv/",
+      "stderr": ""
+    },
+    "check_ignore_pytest_cache": {
+      "cmd": [
+        "git",
+        "check-ignore",
+        "-v",
+        ".pytest_cache/"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": ".gitignore:86:.pytest_cache/\t.pytest_cache/",
+      "stderr": ""
+    },
+    "pre_venv_exists": {
+      "exists": false,
+      "is_dir": false
+    },
+    "create_venv": {
+      "cmd": [
+        "python",
+        "-m",
+        "venv",
+        ".venv"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "venv_python_version": {
+      "cmd": [
+        ".venv/bin/python",
+        "--version"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "Python 3.14.3",
+      "stderr": ""
+    },
+    "venv_pip_version_before_install": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "--version"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "pip 25.1.1 from /home/julius/julius-workspace/ai-labs/projects/the-trading-guy/.venv/lib64/python3.14/site-packages/pip (python 3.14)",
+      "stderr": ""
+    },
+    "pip_install_requirements_dev": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pip",
+        "install",
+        "-r",
+        "requirements-dev.txt"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "Collecting pytest (from -r requirements-dev.txt (line 1))\n  Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)\nCollecting pytest-asyncio (from -r requirements-dev.txt (line 2))\n  Using cached pytest_asyncio-1.4.0-py3-none-any.whl.metadata (4.1 kB)\nCollecting iniconfig>=1.0.1 (from pytest->-r requirements-dev.txt (line 1))\n  Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)\nCollecting packaging>=22 (from pytest->-r requirements-dev.txt (line 1))\n  Using cached packaging-26.2-py3-none-any.whl.metadata (3.5 kB)\nCollecting pluggy<2,>=1.5 (from pytest->-r requirements-dev.txt (line 1))\n  Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)\nCollecting pygments>=2.7.2 (from pytest->-r requirements-dev.txt (line 1))\n  Using cached pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)\nDownloading pytest-9.1.1-py3-none-any.whl (386 kB)\nUsing cached pluggy-1.6.0-py3-none-any.whl (20 kB)\nUsing cached pytest_asyncio-1.4.0-py3-none-any.whl (16 kB)\nUsing cached iniconfig-2.3.0-py3-none-any.whl (7.5 kB)\nUsing cached packaging-26.2-py3-none-any.whl (100 kB)\nUsing cached pygments-2.20.0-py3-none-any.whl (1.2 MB)\nInstalling collected packages: pygments, pluggy, packaging, iniconfig, pytest, pytest-asyncio\n\nSuccessfully installed iniconfig-2.3.0 packaging-26.2 pluggy-1.6.0 pygments-2.20.0 pytest-9.1.1 pytest-asyncio-1.4.0",
+      "stderr": "[notice] A new release of pip is available: 25.1.1 -> 26.1.2\n[notice] To update, run: /home/julius/julius-workspace/ai-labs/projects/the-trading-guy/.venv/bin/python -m pip install --upgrade pip"
+    },
+    "venv_pip_freeze_dev_subset": {
+      "cmd": ".venv/bin/python -m pip freeze | grep -E '^(pytest|pytest-asyncio|iniconfig|packaging|pluggy)=' || true",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "iniconfig==2.3.0\npackaging==26.2\npluggy==1.6.0\npytest==9.1.1\npytest-asyncio==1.4.0",
+      "stderr": ""
+    },
+    "safe_pytest_subset": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_candidate_level_attribution.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "....                                                                     [100%]\n4 passed in 0.03s",
+      "stderr": ""
+    },
+    "post_status": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "## main...origin/main",
+      "stderr": ""
+    },
+    "tracked_venv_pytest": {
+      "cmd": [
+        "git",
+        "ls-files",
+        ".venv",
+        ".pytest_cache"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "tracked_generated": {
+      "cmd": "git ls-files '*.pyc' '*.jsonl'",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "ignored_venv_sample": {
+      "cmd": "git status --ignored --short .venv .pytest_cache | sed -n '1,40p'",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "!! .venv/",
+      "stderr": ""
+    },
+    "status": "completed",
+    "post_checks": {
+      "source_repo_clean": true,
+      "safe_pytest_subset_passed": true,
+      "no_tracked_venv_pytest_cache_or_generated_files": true
+    }
+  }
+}
