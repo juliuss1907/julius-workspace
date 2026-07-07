@@ -27,8 +27,8 @@
   },
   "forbidden_worktree_file_count_after": 0,
   "source_status_line_count_after_commit": 0,
-  "push_executed": false,
-  "remote_mutation": false,
+  "push_executed": true,
+  "remote_mutation": true,
   "dependency_install_executed": false,
   "safety_boundaries": {
     "live_trading": "not_executed",
@@ -38,7 +38,25 @@
     "runtime_default_config_changes": "not_changed",
     "external_api_calls": "not_executed",
     "secrets_printed": "none",
-    "scheduler_enabled": "no"
+    "scheduler_enabled": "no",
+    "push": "executed_after_user_approval"
   },
-  "status": "completed_local_ci_commit_ready_for_push_proposal"
+  "status": "pushed_and_verified",
+  "push_approval_received": "Push the-trading-guy Batch 5B",
+  "push_executed_by_agent_after_user_approval": true,
+  "pushed_commit": "60eec5639f6fcb9c49eef70947908fb1803b449c",
+  "remote_main_after_push": "60eec5639f6fcb9c49eef70947908fb1803b449c",
+  "origin_main_after_fetch": "60eec5639f6fcb9c49eef70947908fb1803b449c",
+  "remote_log_after_push": "60eec56 ci: add repository safety checks",
+  "remote_commit_count_after_push": 3,
+  "post_push_local_ci_results": {
+    "forbidden_files_check": "forbidden_files_check=ok",
+    "required_docs_check": "required_docs_check=ok",
+    "syntax_check_output": [
+      "python_files_checked=181",
+      "syntax_check=ok"
+    ],
+    "python_files_checked": 181
+  },
+  "forbidden_worktree_file_count_after_push_verification": 0
 }
