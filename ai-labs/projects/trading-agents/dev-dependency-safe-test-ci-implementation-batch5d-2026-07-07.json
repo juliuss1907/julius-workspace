@@ -52,23 +52,50 @@
     ]
   },
   "dependency_install_executed": false,
-  "push_executed": false,
-  "remote_mutation": false,
+  "push_executed": true,
+  "remote_mutation": true,
   "forbidden_worktree_file_count_after": 0,
   "source_status_line_count_after_commit": 0,
-  "status": "completed_local_ci_commit_ready_for_push_proposal",
+  "status": "pushed_and_verified",
   "safety_boundaries": {
     "live_trading": "not_executed",
     "order_placement": "not_executed",
     "simulate_live": "not_executed",
     "strategy_signal_to_order_mapping": "not_added",
     "runtime_default_config_changes": "not_changed",
-    "dependency_install": "not_executed",
+    "dependency_install": "not_executed_locally",
     "external_api_calls": "not_executed",
     "secrets_printed": "none",
     "env_files_read_or_printed": "none",
     "raw_replay_logs_committed": "none",
     "scheduler_enabled": "no",
-    "push": "no"
-  }
+    "push": "executed_after_user_approval"
+  },
+  "push_approval_received": "Push the-trading-guy Batch 5D",
+  "push_executed_by_agent_after_user_approval": true,
+  "pushed_commit": "b83fb38292a24f260f7372ab557326b2ba50093d",
+  "remote_main_after_push": "b83fb38292a24f260f7372ab557326b2ba50093d",
+  "origin_main_after_fetch": "b83fb38292a24f260f7372ab557326b2ba50093d",
+  "remote_log_after_push": "b83fb38 ci: add safe pytest subset",
+  "remote_commit_count_after_push": 4,
+  "post_push_local_ci_results": {
+    "forbidden_files_check": "forbidden_files_check=ok",
+    "required_docs_check": "required_docs_check=ok",
+    "syntax_check_output": [
+      "python_files_checked=181",
+      "syntax_check=ok"
+    ],
+    "python_files_checked": 181
+  },
+  "post_push_pytest_available_locally": false,
+  "post_push_pytest_version_exit": "1",
+  "post_push_pytest_version_output": "/usr/bin/python: No module named pytest",
+  "post_push_safe_pytest_run": {
+    "status": "skipped_pytest_unavailable",
+    "exit_code": "skipped",
+    "output": [
+      "pytest unavailable locally; dependency install intentionally not executed during push verification"
+    ]
+  },
+  "forbidden_worktree_file_count_after_push_verification": 0
 }

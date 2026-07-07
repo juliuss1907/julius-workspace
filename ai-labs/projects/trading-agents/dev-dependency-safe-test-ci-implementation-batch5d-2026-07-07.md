@@ -9,21 +9,29 @@ Add a minimal dev dependency strategy and extend CI to run one safe pytest subse
 ## Source Repo
 
 - Path: `/home/julius/julius-workspace/ai-labs/projects/the-trading-guy`
-- Remote: `git@github.com:juliuss1907/the-trading-guy.git`
-- Base HEAD before commit: `60eec5639f6fcb9c49eef70947908fb1803b449c`
-- Base log before commit: `60eec56 ci: add repository safety checks`
-
-## Local Source Commit
-
 - Commit: `b83fb38292a24f260f7372ab557326b2ba50093d`
-- Log: `b83fb38 ci: add safe pytest subset`
-- Push executed: **no**
+- Commit log: `b83fb38 ci: add safe pytest subset`
 
-Files changed:
+## Push
+
+Julius approved:
 
 ```text
-.github/workflows/safety-checks.yml
+Push the-trading-guy Batch 5D
+```
+
+Push executed: **yes**
+
+- Remote `main` after push: `b83fb38292a24f260f7372ab557326b2ba50093d`
+- `origin/main` after fetch: `b83fb38292a24f260f7372ab557326b2ba50093d`
+- Remote log after push: `b83fb38 ci: add safe pytest subset`
+- Remote commit count after push: `4`
+
+## Files Changed
+
+```text
 requirements-dev.txt
+.github/workflows/safety-checks.yml
 ```
 
 ## Changes Made
@@ -37,9 +45,7 @@ requirements-dev.txt
 python -m pytest -q -p no:cacheprovider scripts/test_candidate_level_attribution.py
 ```
 
-## Local Validation
-
-Existing safety checks after change:
+## Post-Push Local Validation
 
 ```text
 forbidden_files_check=ok
@@ -61,10 +67,10 @@ Safe pytest subset local run:
 ```text
 status=skipped_pytest_unavailable
 exit=skipped
-pytest unavailable locally; dependency install intentionally not executed in Batch 5D
+pytest unavailable locally; dependency install intentionally not executed during push verification
 ```
 
-Note: dependency install was intentionally not executed locally in Batch 5D.
+Note: dependency install was intentionally not executed locally. GitHub Actions will install `requirements-dev.txt` in CI.
 
 ## Safety Boundaries
 
@@ -79,12 +85,8 @@ Note: dependency install was intentionally not executed locally in Batch 5D.
 - `.env` files read/printed/committed: none
 - Raw replay logs committed: none
 - Scheduler/cron/systemd enabled: no
-- Push: no
+- Push: executed only after Julius approval
 
 ## Status
 
-`completed_local_ci_commit_ready_for_push_proposal`
-
-## Push Proposal Required
-
-The source repo commit is local. Push requires Julius approval.
+`pushed_and_verified`
