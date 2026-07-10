@@ -1,0 +1,1745 @@
+{
+  "batch": "5H",
+  "title": "Safe Test Subset Expansion Audit",
+  "created_at_local": "2026-07-10 11:22",
+  "source_repo_path": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "source_repo_remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "baseline_result": {
+    "cmd": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "scripts/test_candidate_level_attribution.py"
+    ],
+    "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+    "returncode": 0,
+    "stdout": "....                                                                     [100%]\n4 passed in 0.02s",
+    "stderr": ""
+  },
+  "execution_policy": "Targeted execution only; no full test suite; no replay/monitoring jobs.",
+  "executed_files": [
+    "scripts/test_strategy_contracts.py",
+    "scripts/test_strategy_attribution.py",
+    "scripts/test_strategy_playbooks.py",
+    "scripts/test_strategy_registry.py",
+    "scripts/test_execution_modes.py",
+    "scripts/test_technical_config.py",
+    "scripts/test_risk_manager.py"
+  ],
+  "execution_results": {
+    "scripts/test_strategy_contracts.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_strategy_contracts.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "......                                                                   [100%]\n6 passed in 0.02s",
+      "stderr": ""
+    },
+    "scripts/test_strategy_attribution.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_strategy_attribution.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+      "stderr": ""
+    },
+    "scripts/test_strategy_playbooks.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_strategy_playbooks.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "..................                                                       [100%]\n18 passed in 0.03s",
+      "stderr": ""
+    },
+    "scripts/test_strategy_registry.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_strategy_registry.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 1,
+      "stdout": "............F                                                            [100%]\n=================================== FAILURES ===================================\n____ test_default_params_strategy_layer_matches_approved_variant_d_surface _____\n\n    def test_default_params_strategy_layer_matches_approved_variant_d_surface():\n>       from utils.config_loader import Config\n\nscripts/test_strategy_registry.py:247: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nutils/__init__.py:5: in <module>\n    from .config_loader import config\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    \"\"\"\n    Configuration Loader\n    \"\"\"\n>   import yaml\nE   ModuleNotFoundError: No module named 'yaml'\n\nutils/config_loader.py:4: ModuleNotFoundError\n=========================== short test summary info ============================\nFAILED scripts/test_strategy_registry.py::test_default_params_strategy_layer_matches_approved_variant_d_surface\n1 failed, 12 passed in 0.05s",
+      "stderr": ""
+    },
+    "scripts/test_execution_modes.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_execution_modes.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 2,
+      "stdout": "==================================== ERRORS ====================================\n_______________ ERROR collecting scripts/test_execution_modes.py _______________\nImportError while importing test module '/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/scripts/test_execution_modes.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib64/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nscripts/test_execution_modes.py:9: in <module>\n    from utils import config\nutils/__init__.py:5: in <module>\n    from .config_loader import config\nutils/config_loader.py:4: in <module>\n    import yaml\nE   ModuleNotFoundError: No module named 'yaml'\n=========================== short test summary info ============================\nERROR scripts/test_execution_modes.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.07s",
+      "stderr": ""
+    },
+    "scripts/test_technical_config.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_technical_config.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 2,
+      "stdout": "==================================== ERRORS ====================================\n______________ ERROR collecting scripts/test_technical_config.py _______________\nImportError while importing test module '/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/scripts/test_technical_config.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib64/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nscripts/test_technical_config.py:10: in <module>\n    from agents.technical_analyst import TechnicalAnalyst\nagents/technical_analyst.py:7: in <module>\n    from agents.indicators import Indicators\nagents/indicators.py:4: in <module>\n    import numpy as np\nE   ModuleNotFoundError: No module named 'numpy'\n=========================== short test summary info ============================\nERROR scripts/test_technical_config.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.11s",
+      "stderr": ""
+    },
+    "scripts/test_risk_manager.py": {
+      "cmd": [
+        ".venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "scripts/test_risk_manager.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 2,
+      "stdout": "==================================== ERRORS ====================================\n________________ ERROR collecting scripts/test_risk_manager.py _________________\nImportError while importing test module '/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/scripts/test_risk_manager.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib64/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nscripts/test_risk_manager.py:12: in <module>\n    from agents.risk_manager import RiskManager\nagents/risk_manager.py:11: in <module>\n    from utils import get_logger, config\nutils/__init__.py:5: in <module>\n    from .config_loader import config\nutils/config_loader.py:4: in <module>\n    import yaml\nE   ModuleNotFoundError: No module named 'yaml'\n=========================== short test summary info ============================\nERROR scripts/test_risk_manager.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.11s",
+      "stderr": ""
+    }
+  },
+  "classification_counts": {
+    "needs_mocking_or_refactor": 15,
+    "unsafe_deferred": 40,
+    "safe_now_candidate": 4,
+    "needs_dependency_or_fixture": 8
+  },
+  "safe_shortlist_for_ci_review": [
+    "scripts/test_candidate_level_attribution.py",
+    "scripts/test_strategy_attribution.py",
+    "scripts/test_strategy_contracts.py",
+    "scripts/test_strategy_playbooks.py"
+  ],
+  "new_safe_candidates_for_possible_batch5i": [
+    "scripts/test_strategy_attribution.py",
+    "scripts/test_strategy_contracts.py",
+    "scripts/test_strategy_playbooks.py"
+  ],
+  "classifications": [
+    {
+      "path": "scripts/test_analysis_runner.py",
+      "loc": 551,
+      "import_count": 8,
+      "imports_sample": [
+        "import sys",
+        "from unittest.mock import MagicMock, AsyncMock, patch",
+        "import asyncio",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from orchestration.contracts import FinalAnalysis, AnalystSignalSummary",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from orchestration.analysis_runner import analyze_symbol"
+      ],
+      "risk_keyword_hits": [
+        "binance",
+        "ccxt",
+        "order",
+        "telegram"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Uses mocks but touches analysis runner, Binance/order/Telegram vocabulary; needs detailed mock-boundary audit before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_backtest_dashboard.py",
+      "loc": 332,
+      "import_count": 5,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.generate_backtest_dashboard import ("
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "replay",
+        "simulate"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, replay, simulate",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_binance_futures_history.py",
+      "loc": 79,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import os",
+        "import sys",
+        "from pathlib import Path",
+        "from typing import List, Dict, Any",
+        "from dotenv import load_dotenv",
+        "from dataflows.binance_futures_client import BinanceFuturesClient"
+      ],
+      "risk_keyword_hits": [
+        ".env",
+        "api_key",
+        "binance",
+        "dotenv",
+        "order",
+        "secret"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Uses dotenv/API-key/Binance client; unsafe until mocked and credential-free.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_boundary_guardrails.py",
+      "loc": 673,
+      "import_count": 6,
+      "imports_sample": [
+        "import os",
+        "import subprocess",
+        "import sys",
+        "from pathlib import Path",
+        "import ast",
+        "import ast"
+      ],
+      "risk_keyword_hits": [
+        ".env",
+        "dotenv",
+        "open(",
+        "order",
+        "os.environ",
+        "replay",
+        "subprocess",
+        "telegram"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .env, dotenv, open(, order, os.environ, replay, subprocess, telegram",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_calibration_workflow.py",
+      "loc": 461,
+      "import_count": 11,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.run_calibration_workflow import (",
+        "from datetime import date",
+        "from datetime import date",
+        "import subprocess",
+        "import subprocess",
+        "import subprocess"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "replay",
+        "simulate",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, replay, simulate, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_candidate_level_attribution.py",
+      "loc": 76,
+      "import_count": 4,
+      "imports_sample": [
+        "from pathlib import Path",
+        "import sys",
+        "from strategies.contracts import MarketState, TechnicalState",
+        "from strategies.registry import StrategyRegistry"
+      ],
+      "risk_keyword_hits": [
+        "order"
+      ],
+      "category": "safe_now_candidate",
+      "reason": "Already in CI and re-confirmed passing locally.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_candidate_level_attribution.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 0,
+        "stdout": "....                                                                     [100%]\n4 passed in 0.02s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_coingecko.py",
+      "loc": 161,
+      "import_count": 5,
+      "imports_sample": [
+        "import sys",
+        "import asyncio",
+        "from pathlib import Path",
+        "from utils import setup_logging, get_logger",
+        "from dataflows import CoinGeckoClient, data_manager"
+      ],
+      "risk_keyword_hits": [
+        "binance"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Data fetcher test; static Binance/dataflows adjacency; should mock network/client behavior before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_data_fetchers.py",
+      "loc": 203,
+      "import_count": 7,
+      "imports_sample": [
+        "import os",
+        "import sys",
+        "import asyncio",
+        "from pathlib import Path",
+        "from dotenv import load_dotenv",
+        "from utils import setup_logging, get_logger",
+        "from dataflows import BinanceClient, ParallelFetcher, cache"
+      ],
+      "risk_keyword_hits": [
+        "api_key",
+        "binance",
+        "dotenv",
+        "order",
+        "secret"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Uses dotenv/API-key/client imports; defer until fully mocked and credential-free.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_demo_execution_policy.py",
+      "loc": 522,
+      "import_count": 10,
+      "imports_sample": [
+        "import sys",
+        "from unittest.mock import AsyncMock, MagicMock",
+        "import asyncio",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from orchestration.analysis_runner import AnalysisBundle",
+        "from orchestration.contracts import FinalAnalysis, AnalystSignalSummary",
+        "from policies.demo_execution import (",
+        "from policies.reverse_planner import ("
+      ],
+      "risk_keyword_hits": [
+        "binance",
+        "order",
+        "telegram"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Mocks trading policy paths but contains order/Binance/Telegram concepts; needs detailed mock-boundary audit before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_derivatives_analyst.py",
+      "loc": 43,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from dotenv import load_dotenv",
+        "from agents.derivatives_analyst import DerivativesAnalyst",
+        "from dataflows import data_manager",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [
+        "dotenv"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Uses dotenv and data_manager; needs dependency/fixture/mocking review.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_dynamic_watchlist.py",
+      "loc": 498,
+      "import_count": 10,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.update_dynamic_watchlist import (",
+        "import subprocess",
+        "import subprocess",
+        "import subprocess",
+        "import subprocess",
+        "import subprocess"
+      ],
+      "risk_keyword_hits": [
+        "default_params.yaml",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: default_params.yaml, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_entry_guard.py",
+      "loc": 192,
+      "import_count": 5,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from typing import Any, Dict, List",
+        "from state.entry_guard import EntryGuard"
+      ],
+      "risk_keyword_hits": [
+        "open("
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Ambiguous test path; needs detailed review before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_execution_mode_gate.py",
+      "loc": 198,
+      "import_count": 13,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "import time",
+        "import uuid",
+        "from pathlib import Path",
+        "from typing import Any, Dict, List, Optional",
+        "from scripts import run_paper_trading as rpt",
+        "import importlib",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from scripts import run_paper_trading as rpt"
+      ],
+      "risk_keyword_hits": [
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_execution_modes.py",
+      "loc": 60,
+      "import_count": 3,
+      "imports_sample": [
+        "import sys",
+        "from pathlib import Path",
+        "from utils import config"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports utils.config_loader via utils.config and requires PyYAML; targeted collection failed due missing yaml.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_execution_modes.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 2,
+        "stdout": "==================================== ERRORS ====================================\n_______________ ERROR collecting scripts/test_execution_modes.py _______________\nImportError while importing test module '/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/scripts/test_execution_modes.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib64/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nscripts/test_execution_modes.py:9: in <module>\n    from utils import config\nutils/__init__.py:5: in <module>\n    from .config_loader import config\nutils/config_loader.py:4: in <module>\n    import yaml\nE   ModuleNotFoundError: No module named 'yaml'\n=========================== short test summary info ============================\nERROR scripts/test_execution_modes.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.07s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_final_analysis_contract.py",
+      "loc": 246,
+      "import_count": 5,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "from dataclasses import asdict",
+        "from pathlib import Path",
+        "from orchestration import FinalAnalysis, AnalystSignalSummary"
+      ],
+      "risk_keyword_hits": [
+        "replay"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: replay",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_guarded_reverse_flow.py",
+      "loc": 362,
+      "import_count": 4,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_health_cli.py",
+      "loc": 280,
+      "import_count": 8,
+      "imports_sample": [
+        "import json",
+        "import os",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "import time as _t",
+        "from pathlib import Path",
+        "from scripts.check_runtime_health import _resolve, _print_health"
+      ],
+      "risk_keyword_hits": [
+        "live",
+        "logs/",
+        "open(",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: live, logs/, open(, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_log_rotation.py",
+      "loc": 299,
+      "import_count": 5,
+      "imports_sample": [
+        "import os",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from utils.log_rotation import ("
+      ],
+      "risk_keyword_hits": [
+        "logs/"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: logs/",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_manual_report_policy.py",
+      "loc": 879,
+      "import_count": 15,
+      "imports_sample": [
+        "import asyncio",
+        "import subprocess",
+        "import sys",
+        "from pathlib import Path",
+        "from datetime import datetime",
+        "from orchestration.contracts import FinalAnalysis, AnalystSignalSummary",
+        "from policies.manual_report import (",
+        "import json",
+        "from policies.manual_report import final_analysis_to_report_item",
+        "from scripts.generate_manual_trade_report import _default_output_path"
+      ],
+      "risk_keyword_hits": [
+        "order",
+        "replay",
+        "simulate",
+        "subprocess",
+        "telegram"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order, replay, simulate, subprocess, telegram",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_news_analyst.py",
+      "loc": 33,
+      "import_count": 5,
+      "imports_sample": [
+        "import asyncio, sys",
+        "from pathlib import Path",
+        "from dotenv import load_dotenv; load_dotenv()",
+        "from utils import setup_logging, get_logger",
+        "from agents import NewsAnalyst; setup_logging(\"INFO\"); logger = get_logger(__name__)"
+      ],
+      "risk_keyword_hits": [
+        "dotenv",
+        "telegram"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Loads dotenv and Telegram-adjacent news agent; unsafe until refactored/mocked.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_order_manager_close_notify.py",
+      "loc": 320,
+      "import_count": 12,
+      "imports_sample": [
+        "import asyncio",
+        "import os",
+        "import sys",
+        "import time",
+        "import uuid",
+        "from pathlib import Path",
+        "from typing import Dict, Any, List, Optional",
+        "import state.database as db_module",
+        "import trading.order_manager as om_module",
+        "from trading.order_manager import OrderManager"
+      ],
+      "risk_keyword_hits": [
+        "binance",
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: binance, order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_paper_trading.py",
+      "loc": 215,
+      "import_count": 9,
+      "imports_sample": [
+        "import sys",
+        "import asyncio",
+        "from pathlib import Path",
+        "from dotenv import load_dotenv",
+        "from utils import setup_logging, get_logger",
+        "from dataflows import data_manager, BinanceClient, BinanceFuturesClient",
+        "from trading import OrderManager, PositionMonitor, TradeNotifier",
+        "from trading.base_trader import TradeSide, CloseReason",
+        "from trading import SpotDemoTrader, FuturesTestnetTrader"
+      ],
+      "risk_keyword_hits": [
+        "binance",
+        "dotenv",
+        "order",
+        "telegram"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: binance, dotenv, order, telegram",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_parameter_recommendations.py",
+      "loc": 426,
+      "import_count": 5,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.generate_parameter_recommendations import ("
+      ],
+      "risk_keyword_hits": [
+        "default_params.yaml",
+        "logs/",
+        "replay",
+        "simulate"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: default_params.yaml, logs/, replay, simulate",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_parameter_sweep.py",
+      "loc": 204,
+      "import_count": 5,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.parameter_sweep import ("
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "open(",
+        "replay",
+        "simulate"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, open(, replay, simulate",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_phase4b_risk_gate.py",
+      "loc": 179,
+      "import_count": 12,
+      "imports_sample": [
+        "import asyncio",
+        "import json",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "import trading.order_manager as order_manager_module",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.risk_manager import RiskManager",
+        "from state.signal_recorder import SignalRecorder",
+        "from trading.base_trader import MarketType, TradeResult, TradeSide"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_phase5c_position_aware_risk.py",
+      "loc": 329,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.risk_manager import RiskManager",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports RiskManager/utils.config and likely requires PyYAML; not executed after dependency pattern identified.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_portfolio_context.py",
+      "loc": 111,
+      "import_count": 8,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.risk_manager import RiskManager",
+        "from state.portfolio_context import PortfolioContextBuilder",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports RiskManager/utils.config and likely requires PyYAML; not executed after dependency pattern identified.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_position_event_analytics.py",
+      "loc": 430,
+      "import_count": 6,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from collections import Counter, defaultdict",
+        "from pathlib import Path",
+        "from scripts.analyze_signal_logs import load_records, avg, pct"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_position_group_close.py",
+      "loc": 113,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "import trading.order_manager as om_module",
+        "from state.database import Database",
+        "from trading.base_trader import CloseReason, ClosedPosition, MarketType, TradeSide",
+        "from trading.order_manager import OrderManager"
+      ],
+      "risk_keyword_hits": [
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_position_manager.py",
+      "loc": 111,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.position_manager import PositionManager",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports PositionManager/utils.config and likely requires PyYAML; not executed after dependency pattern identified.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_position_notifications.py",
+      "loc": 239,
+      "import_count": 4,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [
+        "telegram"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: telegram",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_position_reduce.py",
+      "loc": 181,
+      "import_count": 10,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "import state.database as db_module",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.position_manager import PositionManager",
+        "from trading.base_trader import CloseReason, MarketType, TradeResult, TradeSide",
+        "from trading.order_manager import OrderManager",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_process_lock.py",
+      "loc": 399,
+      "import_count": 8,
+      "imports_sample": [
+        "import json",
+        "import os",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from utils.process_lock import ProcessLock, LockHeldError, lock_or_exit, _pid_alive",
+        "import time as _t"
+      ],
+      "risk_keyword_hits": [
+        "live",
+        "open(",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: live, open(, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_readonly_analyzer_cli.py",
+      "loc": 173,
+      "import_count": 5,
+      "imports_sample": [
+        "import runpy",
+        "from pathlib import Path",
+        "from types import SimpleNamespace",
+        "import sys",
+        "from orchestration.contracts import AnalystSignalSummary"
+      ],
+      "risk_keyword_hits": [
+        "replay"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: replay",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_readonly_monitoring_cadence.py",
+      "loc": 107,
+      "import_count": 5,
+      "imports_sample": [
+        "import importlib.util",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "logs/",
+        "replay",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, logs/, replay, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_reconciliation.py",
+      "loc": 357,
+      "import_count": 11,
+      "imports_sample": [
+        "import asyncio",
+        "import os",
+        "import shutil",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from typing import List, Dict, Any",
+        "import state.database as db_module",
+        "from state import db as db_state",
+        "from state.database import Database"
+      ],
+      "risk_keyword_hits": [
+        "binance",
+        "order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: binance, order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_replay_attribution_analyzer.py",
+      "loc": 263,
+      "import_count": 6,
+      "imports_sample": [
+        "import json",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.analyze_replay_attribution import ("
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "replay",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, replay, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_replay_parameter_sweep.py",
+      "loc": 218,
+      "import_count": 6,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.replay_parameter_sweep import (",
+        "from collections import Counter"
+      ],
+      "risk_keyword_hits": [
+        "open(",
+        "replay",
+        "simulate"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: open(, replay, simulate",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_replay_strategy_attribution.py",
+      "loc": 175,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "import sys",
+        "from unittest.mock import AsyncMock",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from scripts.replay_signals import SignalReplay"
+      ],
+      "risk_keyword_hits": [
+        "order",
+        "replay"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order, replay",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_research_debate.py",
+      "loc": 91,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.research_debate import ResearchDebate",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports research agents through utils/config path and likely requires PyYAML; not executed after dependency pattern identified.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_risk_manager.py",
+      "loc": 116,
+      "import_count": 7,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from datetime import datetime",
+        "from pathlib import Path",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from agents.risk_manager import RiskManager",
+        "from utils import setup_logging"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports RiskManager/utils.config and requires PyYAML; targeted collection failed due missing yaml.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_risk_manager.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 2,
+        "stdout": "==================================== ERRORS ====================================\n________________ ERROR collecting scripts/test_risk_manager.py _________________\nImportError while importing test module '/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/scripts/test_risk_manager.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib64/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nscripts/test_risk_manager.py:12: in <module>\n    from agents.risk_manager import RiskManager\nagents/risk_manager.py:11: in <module>\n    from utils import get_logger, config\nutils/__init__.py:5: in <module>\n    from .config_loader import config\nutils/config_loader.py:4: in <module>\n    import yaml\nE   ModuleNotFoundError: No module named 'yaml'\n=========================== short test summary info ============================\nERROR scripts/test_risk_manager.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.11s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_rss_fetcher.py",
+      "loc": 140,
+      "import_count": 5,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from dataflows import RSSFetcher",
+        "from utils import setup_logging, get_logger"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_mocking_or_refactor",
+      "reason": "No static risk hits, but imports RSSFetcher/dataflows; should be reviewed/mocked before CI because fetchers are external-data-adjacent.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_run_paper_trading_dry_run.py",
+      "loc": 380,
+      "import_count": 6,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from types import SimpleNamespace",
+        "from unittest.mock import AsyncMock, MagicMock, patch",
+        "from scripts.run_paper_trading import ("
+      ],
+      "risk_keyword_hits": [
+        "open(",
+        "order",
+        "telegram"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Dry-run/paper trading path with order/Telegram concepts; needs detailed mock-boundary audit before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_runtime_control.py",
+      "loc": 559,
+      "import_count": 10,
+      "imports_sample": [
+        "import argparse",
+        "import json",
+        "import os",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "import time as _t",
+        "from pathlib import Path",
+        "from scripts.runtime_control import (",
+        "from utils import config as cfg_instance"
+      ],
+      "risk_keyword_hits": [
+        "live",
+        "logs/",
+        "open(",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: live, logs/, open(, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_runtime_health.py",
+      "loc": 278,
+      "import_count": 7,
+      "imports_sample": [
+        "import json",
+        "import os",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from state.runtime_health import RuntimeHealth, read_health",
+        "import subprocess"
+      ],
+      "risk_keyword_hits": [
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_runtime_supervisor.py",
+      "loc": 566,
+      "import_count": 14,
+      "imports_sample": [
+        "import argparse",
+        "import json",
+        "import logging",
+        "import os",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "import time as _t",
+        "from datetime import datetime, timedelta",
+        "from pathlib import Path"
+      ],
+      "risk_keyword_hits": [
+        "live",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: live, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_runtime_watchlist_loader.py",
+      "loc": 430,
+      "import_count": 7,
+      "imports_sample": [
+        "import json",
+        "import logging",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from utils.watchlist import (",
+        "import subprocess"
+      ],
+      "risk_keyword_hits": [
+        "order",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_scheduler_guard.py",
+      "loc": 284,
+      "import_count": 17,
+      "imports_sample": [
+        "import json",
+        "import logging",
+        "import os",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "import time as _t",
+        "from pathlib import Path",
+        "from scripts.trading_scheduler import TradingScheduler",
+        "from utils.process_lock import ProcessLock"
+      ],
+      "risk_keyword_hits": [
+        "live",
+        "logs/",
+        "open(",
+        "scheduler",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: live, logs/, open(, scheduler, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_screening_agent.py",
+      "loc": 523,
+      "import_count": 9,
+      "imports_sample": [
+        "import json",
+        "import math",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from agents.screening_agent import (",
+        "import random",
+        "import subprocess",
+        "import subprocess"
+      ],
+      "risk_keyword_hits": [
+        "subprocess"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Uses subprocess and screening workflow; needs separate CLI/mock audit.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_sentiment_classifier.py",
+      "loc": 142,
+      "import_count": 6,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from agents.news_sentiment import NewsSentimentClassifier",
+        "from dataflows import RSSFetcher",
+        "from utils import setup_logging, get_logger"
+      ],
+      "risk_keyword_hits": [
+        "exchange"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Imports RSSFetcher/news sentiment; external-feed adjacent; needs mocking.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_signal_recorder_strategy_signal.py",
+      "loc": 138,
+      "import_count": 7,
+      "imports_sample": [
+        "import json",
+        "import tempfile",
+        "from pathlib import Path",
+        "import sys",
+        "from datetime import datetime",
+        "from agents.base_agent import AgentResult, SignalDirection",
+        "from state.signal_recorder import SignalRecorder"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "order",
+        "replay"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, order, replay",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_spot_close_balance_cap.py",
+      "loc": 121,
+      "import_count": 6,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "import state.database as db_module",
+        "from trading.base_trader import CloseReason",
+        "from trading.spot_demo_trader import SpotDemoTrader"
+      ],
+      "risk_keyword_hits": [
+        "order",
+        "place_order"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order, place_order",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_spot_futures_notifications.py",
+      "loc": 269,
+      "import_count": 6,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from trading.trade_notifier import TradeNotifier",
+        "from utils import setup_logging",
+        "import state.database as db_module"
+      ],
+      "risk_keyword_hits": [
+        "telegram"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: telegram",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_storage.py",
+      "loc": 210,
+      "import_count": 7,
+      "imports_sample": [
+        "import sys",
+        "import asyncio",
+        "from pathlib import Path",
+        "from datetime import datetime",
+        "from utils import setup_logging, get_logger",
+        "from dataflows import data_manager",
+        "from state import db"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_mocking_or_refactor",
+      "reason": "No static risk hits, but touches data_manager/state db; needs isolated temp DB fixture before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_strategy_attribution.py",
+      "loc": 142,
+      "import_count": 3,
+      "imports_sample": [
+        "from pathlib import Path",
+        "import sys",
+        "from strategies.attribution import build_strategy_signal, fallback_strategy_signal"
+      ],
+      "risk_keyword_hits": [],
+      "category": "safe_now_candidate",
+      "reason": "Pure strategy attribution shaping tests; no external services; passed targeted pytest.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_strategy_attribution.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 0,
+        "stdout": "....                                                                     [100%]\n4 passed in 0.01s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_strategy_contracts.py",
+      "loc": 180,
+      "import_count": 4,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "from pathlib import Path",
+        "from strategies.contracts import ("
+      ],
+      "risk_keyword_hits": [],
+      "category": "safe_now_candidate",
+      "reason": "Pure dataclass/enum/JSON serialization contract tests; local-only; passed targeted pytest.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_strategy_contracts.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 0,
+        "stdout": "......                                                                   [100%]\n6 passed in 0.02s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_strategy_playbooks.py",
+      "loc": 332,
+      "import_count": 7,
+      "imports_sample": [
+        "import sys",
+        "from pathlib import Path",
+        "from strategies.base import StrategyPolicy",
+        "from strategies.breakout import BreakoutStrategy",
+        "from strategies.contracts import MarketState, StrategyAction, StrategySignal, TechnicalState",
+        "from strategies.trend_following import TrendFollowingStrategy",
+        "from strategies.volatility_skip import VolatilitySkipStrategy"
+      ],
+      "risk_keyword_hits": [],
+      "category": "safe_now_candidate",
+      "reason": "Pure strategy policy tests with synthetic market states; passed targeted pytest.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_strategy_playbooks.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 0,
+        "stdout": "..................                                                       [100%]\n18 passed in 0.03s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_strategy_registry.py",
+      "loc": 290,
+      "import_count": 5,
+      "imports_sample": [
+        "import sys",
+        "from pathlib import Path",
+        "from strategies.contracts import MarketState, StrategySignal, TechnicalState",
+        "from strategies.registry import StrategyRegistry",
+        "from utils.config_loader import Config"
+      ],
+      "risk_keyword_hits": [
+        "order"
+      ],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Mostly pure strategy registry tests, but one default params assertion imports Config and needs PyYAML in requirements-dev or a narrower test split.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_strategy_registry.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 1,
+        "stdout": "............F                                                            [100%]\n=================================== FAILURES ===================================\n____ test_default_params_strategy_layer_matches_approved_variant_d_surface _____\n\n    def test_default_params_strategy_layer_matches_approved_variant_d_surface():\n>       from utils.config_loader import Config\n\nscripts/test_strategy_registry.py:247: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \nutils/__init__.py:5: in <module>\n    from .config_loader import config\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    \"\"\"\n    Configuration Loader\n    \"\"\"\n>   import yaml\nE   ModuleNotFoundError: No module named 'yaml'\n\nutils/config_loader.py:4: ModuleNotFoundError\n=========================== short test summary info ============================\nFAILED scripts/test_strategy_registry.py::test_default_params_strategy_layer_matches_approved_variant_d_surface\n1 failed, 12 passed in 0.05s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_strategy_vs_trader_evaluator.py",
+      "loc": 262,
+      "import_count": 6,
+      "imports_sample": [
+        "import json",
+        "import subprocess",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.evaluate_strategy_vs_trader import ("
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "replay",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, replay, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_technical_analyst.py",
+      "loc": 183,
+      "import_count": 6,
+      "imports_sample": [
+        "import sys",
+        "import asyncio",
+        "from pathlib import Path",
+        "from utils import setup_logging, get_logger",
+        "from dataflows import data_manager",
+        "from agents import TechnicalAnalyst"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Imports dataflows/TechnicalAnalyst and likely needs numeric/data dependencies; should be dependency/fixture audited before CI.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_technical_config.py",
+      "loc": 209,
+      "import_count": 4,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from agents.technical_analyst import TechnicalAnalyst"
+      ],
+      "risk_keyword_hits": [],
+      "category": "needs_dependency_or_fixture",
+      "reason": "Imports TechnicalAnalyst/Indicators and requires numpy; targeted collection failed due missing numpy.",
+      "targeted_execution": {
+        "cmd": [
+          ".venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "-p",
+          "no:cacheprovider",
+          "scripts/test_technical_config.py"
+        ],
+        "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+        "returncode": 2,
+        "stdout": "==================================== ERRORS ====================================\n______________ ERROR collecting scripts/test_technical_config.py _______________\nImportError while importing test module '/home/julius/julius-workspace/ai-labs/projects/the-trading-guy/scripts/test_technical_config.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\n/usr/lib64/python3.14/importlib/__init__.py:88: in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nscripts/test_technical_config.py:10: in <module>\n    from agents.technical_analyst import TechnicalAnalyst\nagents/technical_analyst.py:7: in <module>\n    from agents.indicators import Indicators\nagents/indicators.py:4: in <module>\n    import numpy as np\nE   ModuleNotFoundError: No module named 'numpy'\n=========================== short test summary info ============================\nERROR scripts/test_technical_config.py\n!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!\n1 error in 0.11s",
+        "stderr": ""
+      }
+    },
+    {
+      "path": "scripts/test_telegram_scraper.py",
+      "loc": 123,
+      "import_count": 6,
+      "imports_sample": [
+        "import asyncio",
+        "import sys",
+        "from pathlib import Path",
+        "from dotenv import load_dotenv",
+        "from dataflows import TelegramScraper",
+        "from utils import setup_logging, get_logger"
+      ],
+      "risk_keyword_hits": [
+        "dotenv",
+        "telegram"
+      ],
+      "category": "needs_mocking_or_refactor",
+      "reason": "Uses dotenv/Telegram scraper; unsafe until mocked and credential-free.",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_trade_simulation.py",
+      "loc": 537,
+      "import_count": 5,
+      "imports_sample": [
+        "import json",
+        "import sys",
+        "import tempfile",
+        "from pathlib import Path",
+        "from scripts.simulate_trades import ("
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "open(",
+        "replay",
+        "simulate"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, open(, replay, simulate",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_volatility_skip_broader_validation.py",
+      "loc": 108,
+      "import_count": 4,
+      "imports_sample": [
+        "import json",
+        "import tempfile",
+        "from pathlib import Path",
+        "import run_volatility_skip_broader_validation as broader"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "logs/",
+        "replay"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, logs/, replay",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_volatility_skip_calibration.py",
+      "loc": 177,
+      "import_count": 7,
+      "imports_sample": [
+        "import subprocess",
+        "import sys",
+        "from pathlib import Path",
+        "from scripts.run_volatility_skip_calibration import (  # noqa: E402",
+        "from strategies.contracts import MarketState, TechnicalState  # noqa: E402",
+        "from strategies.registry import StrategyRegistry  # noqa: E402",
+        "from strategies.volatility_skip import VolatilitySkipStrategy  # noqa: E402"
+      ],
+      "risk_keyword_hits": [
+        "order",
+        "replay",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: order, replay, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_volatility_skip_monitoring.py",
+      "loc": 161,
+      "import_count": 5,
+      "imports_sample": [
+        "import json",
+        "import tempfile",
+        "from pathlib import Path",
+        "import run_volatility_skip_monitoring as monitoring",
+        "import subprocess, sys"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl",
+        "order",
+        "subprocess"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl, order, subprocess",
+      "targeted_execution": null
+    },
+    {
+      "path": "scripts/test_volatility_skip_zero_blocks.py",
+      "loc": 116,
+      "import_count": 4,
+      "imports_sample": [
+        "import json",
+        "import tempfile",
+        "from pathlib import Path",
+        "import analyze_volatility_skip_zero_blocks as zero"
+      ],
+      "risk_keyword_hits": [
+        ".jsonl"
+      ],
+      "category": "unsafe_deferred",
+      "reason": "Conservative defer due static risk signals: .jsonl",
+      "targeted_execution": null
+    }
+  ],
+  "preflight": {
+    "source_status": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "## main...origin/main",
+      "stderr": ""
+    },
+    "source_head": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "source_origin_main": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "source_remote_main": {
+      "cmd": "git ls-remote origin refs/heads/main | awk '{print $1}'",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "workspace_status_sample": {
+      "cmd": "git status --short --branch | sed -n \"1,80p\"",
+      "cwd": "/home/julius/julius-workspace",
+      "returncode": 0,
+      "stdout": "## main...origin/main [\u0111\u1ee9ng tr\u01b0\u1edbc 1]\n M .gitignore\n M .hermes/.restart_last_processed.json\n D .hermes/.skills_prompt_snapshot.json\n M .hermes/MEMORY.md\n M .hermes/auth.json\n D .hermes/cache/documents/doc_1ef5d708cb56_message.txt\n D .hermes/cache/documents/doc_310b06b59f2c_news-brief-setup\n M .hermes/cache/model_catalog.json\n D .hermes/cache/screenshots/browser_screenshot_a818e7b2b81d4146a32d144643fcef04.png\n M .hermes/channel_directory.json\n M .hermes/config.yaml\n M .hermes/context_length_cache.yaml\n M .hermes/cron/jobs.json\n M .hermes/gateway.lock\n M .hermes/gateway.pid\n M .hermes/gateway_state.json\n M .hermes/kanban.db\n M .hermes/lsp/node_modules/.package-lock.json\n M .hermes/lsp/package-lock.json\n M .hermes/lsp/package.json\n M .hermes/memories/MEMORY.md\n M .hermes/memories/USER.md\n M .hermes/models_dev_cache.json\n M .hermes/ollama_cloud_models_cache.json\n M .hermes/sessions/20260524_064610_a3fb761e.jsonl\n M .hermes/sessions/session_20260524_064610_a3fb761e.json\n M .hermes/sessions/sessions.json\n M .hermes/skills/.bundled_manifest\n M .hermes/skills/.curator_state\n M .hermes/skills/.usage.json\n D .hermes/skills/apple/apple-notes/SKILL.md\n D .hermes/skills/apple/apple-reminders/SKILL.md\n D .hermes/skills/apple/findmy/SKILL.md\n D .hermes/skills/apple/imessage/SKILL.md\n D .hermes/skills/apple/macos-computer-use/SKILL.md\n D .hermes/skills/autonomous-ai-agents/claude-code/SKILL.md\n D .hermes/skills/autonomous-ai-agents/codex/SKILL.md\n D .hermes/skills/autonomous-ai-agents/feynman/SKILL.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/interactive-only.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/oom-debug.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/pexpect-runner.py\n D .hermes/skills/autonomous-ai-agents/feynman/references/plan-discovery.md\n M .hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md\n M .hermes/skills/autonomous-ai-agents/hermes-agent/references/mempalace-setup.md\n D .hermes/skills/autonomous-ai-agents/opencode/SKILL.md\n D .hermes/skills/autonomous-ai-agents/opencode/references/open-claude-config.md\n D .hermes/skills/autonomous-ai-agents/opencode/references/open-claude-provider.md\n M .hermes/skills/coin68-writer/SKILL.md\n M .hermes/skills/coin68-writer/references/article-structure.md\n D .hermes/skills/creative/ascii-art/SKILL.md\n M .hermes/skills/creative/ascii-video/SKILL.md\n M .hermes/skills/creative/comfyui/scripts/fetch_logs.py\n M .hermes/skills/creative/comfyui/tests/test_common.py\n M .hermes/skills/creative/comfyui/tests/test_extract_schema.py\n M .hermes/skills/creative/comfyui/tests/test_run_workflow.py\n D .hermes/skills/devops/kanban-orchestrator/SKILL.md\n D .hermes/skills/devops/kanban-worker/SKILL.md\n M .hermes/skills/email/himalaya/SKILL.md\n M .hermes/skills/github/codebase-inspection/SKILL.md\n D .hermes/skills/github/github-auth/SKILL.md\n D .hermes/skills/github/github-auth/scripts/gh-env.sh\n D .hermes/skills/github/github-code-review/SKILL.md\n D .hermes/skills/github/github-code-review/references/review-output-template.md\n D .hermes/skills/github/github-issues/SKILL.md\n D .hermes/skills/github/github-issues/templates/bug-report.md\n D .hermes/skills/github/github-issues/templates/feature-request.md\n D .hermes/skills/github/github-pr-workflow/SKILL.md\n D .hermes/skills/github/github-pr-workflow/references/ci-troubleshooting.md\n D .hermes/skills/github/github-pr-workflow/references/conventional-commits.md\n D .hermes/skills/github/github-pr-workflow/templates/pr-body-bugfix.md\n D .hermes/skills/github/github-pr-workflow/templates/pr-body-feature.md\n D .hermes/skills/github/github-repo-management/SKILL.md\n D .hermes/skills/github/github-repo-management/references/github-api-cheatsheet.md\n M .hermes/skills/media/spotify/SKILL.md\n M .hermes/skills/media/youtube-content/SKILL.md\n M .hermes/skills/note-taking/obsidian/SKILL.md\n M .hermes/skills/productivity/airtable/SKILL.md\n M .hermes/skills/productivity/google-workspace/scripts/google_api.py\n M .hermes/skills/productivity/google-workspace/scripts/gws_bridge.py",
+      "stderr": ""
+    },
+    "workspace_ahead_count_before_audit_commit": {
+      "cmd": "git rev-list --count origin/main..HEAD",
+      "cwd": "/home/julius/julius-workspace",
+      "returncode": 0,
+      "stdout": "1",
+      "stderr": ""
+    }
+  },
+  "post_checks": {
+    "source_status": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "## main...origin/main",
+      "stderr": ""
+    },
+    "tracked_local_generated": {
+      "cmd": "git ls-files '*.pyc' '*.jsonl' .pytest_cache .venv",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    "ignored_artifact_sample": {
+      "cmd": "git status --ignored --short .venv .pytest_cache | sed -n \"1,80p\"",
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "!! .venv/",
+      "stderr": ""
+    }
+  },
+  "safety_boundaries": [
+    "No live trading executed",
+    "No order placement executed",
+    "No simulate-live execution",
+    "No StrategySignal-to-order bridge work",
+    "No runtime/default config mutation",
+    "No .env files read, printed, or committed",
+    "No global package install",
+    "No new dependency install in Batch 5H",
+    "No full test suite execution",
+    "No replay or monitoring jobs executed",
+    "No raw replay logs staged or committed",
+    "No scheduler/cron/systemd enablement",
+    "No source repo changes committed",
+    "No push executed"
+  ],
+  "recommendation": "Batch 5I can add the four safe_now_candidate files to CI, or add only the three new safe files while keeping the existing candidate-level test. Defer dependency-expanding tests until a separate requirements-dev review."
+}
