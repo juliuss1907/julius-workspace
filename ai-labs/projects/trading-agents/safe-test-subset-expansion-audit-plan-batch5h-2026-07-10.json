@@ -1,0 +1,1365 @@
+{
+  "batch": "5H",
+  "title": "Safe Test Subset Expansion Audit Plan",
+  "created_at_local": "2026-07-10 10:11",
+  "workspace_path": "/home/julius/julius-workspace",
+  "source_repo_path": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+  "source_repo_remote": "git@github.com:juliuss1907/the-trading-guy.git",
+  "goal": "Audit test files in the source-of-truth repo and identify additional safe pytest files that may be eligible for CI after review.",
+  "not_goal": "This batch does not modify CI, source code, requirements, runtime config, or test logic.",
+  "preflight_snapshot": {
+    "workspace_status_short_branch": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "cwd": "/home/julius/julius-workspace",
+      "returncode": 0,
+      "stdout": "## main...origin/main\n M .gitignore\n M .hermes/.restart_last_processed.json\n D .hermes/.skills_prompt_snapshot.json\n M .hermes/MEMORY.md\n M .hermes/auth.json\n D .hermes/cache/documents/doc_1ef5d708cb56_message.txt\n D .hermes/cache/documents/doc_310b06b59f2c_news-brief-setup\n M .hermes/cache/model_catalog.json\n D .hermes/cache/screenshots/browser_screenshot_a818e7b2b81d4146a32d144643fcef04.png\n M .hermes/channel_directory.json\n M .hermes/config.yaml\n M .hermes/context_length_cache.yaml\n M .hermes/cron/jobs.json\n M .hermes/gateway.lock\n M .hermes/gateway.pid\n M .hermes/gateway_state.json\n M .hermes/kanban.db\n M .hermes/lsp/node_modules/.package-lock.json\n M .hermes/lsp/package-lock.json\n M .hermes/lsp/package.json\n M .hermes/memories/MEMORY.md\n M .hermes/memories/USER.md\n M .hermes/models_dev_cache.json\n M .hermes/ollama_cloud_models_cache.json\n M .hermes/sessions/20260524_064610_a3fb761e.jsonl\n M .hermes/sessions/session_20260524_064610_a3fb761e.json\n M .hermes/sessions/sessions.json\n M .hermes/skills/.bundled_manifest\n M .hermes/skills/.curator_state\n M .hermes/skills/.usage.json\n D .hermes/skills/apple/apple-notes/SKILL.md\n D .hermes/skills/apple/apple-reminders/SKILL.md\n D .hermes/skills/apple/findmy/SKILL.md\n D .hermes/skills/apple/imessage/SKILL.md\n D .hermes/skills/apple/macos-computer-use/SKILL.md\n D .hermes/skills/autonomous-ai-agents/claude-code/SKILL.md\n D .hermes/skills/autonomous-ai-agents/codex/SKILL.md\n D .hermes/skills/autonomous-ai-agents/feynman/SKILL.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/interactive-only.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/oom-debug.md\n D .hermes/skills/autonomous-ai-agents/feynman/references/pexpect-runner.py\n D .hermes/skills/autonomous-ai-agents/feynman/references/plan-discovery.md\n M .hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md\n M .hermes/skills/autonomous-ai-agents/hermes-agent/references/mempalace-setup.md\n D .hermes/skills/autonomous-ai-agents/opencode/SKILL.md\n D .hermes/skills/autonomous-ai-agents/opencode/references/open-claude-config.md\n D .hermes/skills/autonomous-ai-agents/opencode/references/open-claude-provider.md\n M .hermes/skills/coin68-writer/SKILL.md\n M .hermes/skills/coin68-writer/references/article-structure.md\n D .hermes/skills/creative/ascii-art/SKILL.md\n M .hermes/skills/creative/ascii-video/SKILL.md\n M .hermes/skills/creative/comfyui/scripts/fetch_logs.py\n M .hermes/skills/creative/comfyui/tests/test_common.py\n M .hermes/skills/creative/comfyui/tests/test_extract_schema.py\n M .hermes/skills/creative/comfyui/tests/test_run_workflow.py\n D .hermes/skills/devops/kanban-orchestrator/SKILL.md\n D .hermes/skills/devops/kanban-worker/SKILL.md\n M .hermes/skills/email/himalaya/SKILL.md\n M .hermes/skills/github/codebase-inspection/SKILL.md\n D .hermes/skills/github/github-auth/SKILL.md\n D .hermes/skills/github/github-auth/scripts/gh-env.sh\n D .hermes/skills/github/github-code-review/SKILL.md\n D .hermes/skills/github/github-code-review/references/review-output-template.md\n D .hermes/skills/github/github-issues/SKILL.md\n D .hermes/skills/github/github-issues/templates/bug-report.md\n D .hermes/skills/github/github-issues/templates/feature-request.md\n D .hermes/skills/github/github-pr-workflow/SKILL.md\n D .hermes/skills/github/github-pr-workflow/references/ci-troubleshooting.md\n D .hermes/skills/github/github-pr-workflow/references/conventional-commits.md\n D .hermes/skills/github/github-pr-workflow/templates/pr-body-bugfix.md\n D .hermes/skills/github/github-pr-workflow/templates/pr-body-feature.md\n D .hermes/skills/github/github-repo-management/SKILL.md\n D .hermes/skills/github/github-repo-management/references/github-api-cheatsheet.md\n M .hermes/skills/media/spotify/SKILL.md\n M .hermes/skills/media/youtube-content/SKILL.md\n M .hermes/skills/note-taking/obsidian/SKILL.md\n M .hermes/skills/productivity/airtable/SKILL.md\n M .hermes/skills/productivity/google-workspace/scripts/google_api.py\n M .hermes/skills/productivity/google-workspace/scripts/gws_bridge.py\n M .hermes/skills/productivity/google-workspace/scripts/setup.py\n M .hermes/skills/productivity/maps/scripts/maps_client.py\n M .hermes/skills/productivity/notion/SKILL.md\n M .hermes/skills/productivity/ocr-and-documents/SKILL.md\n M .hermes/skills/productivity/teams-meeting-pipeline/SKILL.md\n D .hermes/skills/research/crypto-sentiment-scanner/SKILL.md\n D .hermes/skills/research/crypto-sentiment-scanner/references/sentinel-config-example.yaml\n M .hermes/skills/research/deep-research/SKILL.md\n D .hermes/skills/research/feynman-cli/SKILL.md\n D .hermes/skills/research/feynman-cli/references/vietnamese-workflow-session-2026-05-22.md\n M .hermes/skills/research/llm-wiki/SKILL.md\n M .hermes/skills/research/research-paper-writing/templates/acl/acl_lualatex.tex\n M .hermes/skills/social-media/xurl/SKILL.md\n M .hermes/skills/software-development/hermes-agent-skill-authoring/SKILL.md\n D .hermes/skills/software-development/node-inspect-debugger/SKILL.md\n M .hermes/skills/software-development/plan/SKILL.md\n D .hermes/skills/software-development/python-debugpy/SKILL.md\n M .hermes/skills/software-development/requesting-code-review/SKILL.md\n M .hermes/skills/software-development/spike/SKILL.md\n M .hermes/skills/software-development/subagent-driven-development/SKILL.md\n M .hermes/skills/software-development/systematic-debugging/SKILL.md\n M .hermes/skills/software-development/test-driven-development/SKILL.md\n M .hermes/skills/software-development/writing-plans/SKILL.md\n D .hermes/skills/workflows/news-brief-system/SKILL.md\n D .hermes/skills/workflows/news-brief-system/references/keyword-prioritization-algorithm.md\n M .hermes/skills/x-writer-skills/article-writer/SKILL.md\n M .hermes/skills/x-writer-skills/post-writer/SKILL.md\n M .hermes/skills/x-writer-skills/thread-writer/SKILL.md\n D .hermes/state-snapshots/20260518-085348-pre-update/auth.json\n D .hermes/state-snapshots/20260518-085348-pre-update/config.yaml\n D .hermes/state-snapshots/20260518-085348-pre-update/manifest.json\n M .hermes/state.db\n M .hermes/state.db-shm\n M .hermes/state.db-wal\n M AGENTS.md\n D ai-labs/projects/trading-agents/skills/README.md\n D ai-labs/projects/trading-agents/skills/backtest-analysis/SKILL.md\n D ai-labs/projects/trading-agents/skills/exposure-coach/SKILL.md\n D ai-labs/projects/trading-agents/skills/market-structure/SKILL.md\n D ai-labs/projects/trading-agents/skills/position-sizing/SKILL.md\n D ai-labs/projects/trading-agents/skills/regime-review/SKILL.md\n D ai-labs/projects/trading-agents/skills/signal-postmortem/SKILL.md\n D ai-labs/projects/trading-agents/skills/smart-money-signal-audit/SKILL.md\n D ai-labs/projects/trading-agents/skills/strategy-designer/SKILL.md\n D ai-labs/projects/trading-agents/skills/strategy-review/SKILL.md\n D ai-labs/projects/trading-agents/skills/thesis-builder/SKILL.md\n D ai-labs/projects/trading-agents/skills/token-risk-audit/SKILL.md\n D ai-labs/projects/trading-agents/skills/trading-plan/SKILL.md\n M ai-labs/resource/skills/news-brief-skill/README.md\n M ai-labs/resource/skills/news-brief-skill/SKILL.md\n M ai-labs/resource/skills/news-brief-skill/config.py\n M ai-labs/resource/skills/news-brief-skill/examples.md\n M ai-labs/resource/skills/news-brief-skill/format.py\n M ai-labs/resource/skills/news-brief-skill/scrape_telegram.py\n M ai-labs/resource/skills/news-brief-skill/scrape_thefeed.py\n M ai-labs/resource/skills/news-brief-skill/workflow.md\n M knowledge-base\n D \"learning/Obsidian/X\\303\\242y d\\341\\273\\261ng h\\341\\273\\207 th\\341\\273\\221ng ghi ch\\303\\272 Obsidian b\\341\\272\\261ng ph\\306\\260\\306\\241ng ph\\303\\241p Zettelkasten.md\"\n D learning/good-taste-writing/.gitkeep\n M learning/process.md\n D learning/prompt-engineering/.gitkeep\n D learning/python/git-github/git-github.md\n D learning/python/git-github/knowledge/knowledge.md\n D learning/python/mini-project/mini-projects.md\n D learning/python/oop/knowledge/knowlegde.md\n D learning/python/oop/oop.md\n D learning/python/python.md\n D personal/mindsets/mindsets.md\n D personal/notes/notes.md\n D personal/researchs/ai-agent-trading-report.md\n D personal/researchs/outputs/.plans/ai-agent-trading.md\n D personal/researchs/researchs.md\n M working/Coin68/AGENTS.md\n M working/Coin68/Coin68.md\n D working/Coin68/contents/drafts/apyx.md\n D working/Coin68/contents/drafts/orbs-network.md\n D working/Coin68/contents/drafts/stitch.md\n D working/Coin68/contents/drafts/turnkey.md\n D working/Coin68/contents/drafts/variational.md\n M working/Coin68/contents/published/Shelby.md\n M working/Coin68/contents/published/Turnkey.md\n D working/Coin68/contents/published/published.md\n M working/X/AGENTS.md\n M working/X/X.md\n D working/X/contents/contents.md\n D working/X/contents/draft/github-breach-thread.md\n D working/X/contents/draft/post-zcash-zkp-pioneer.md\n D working/X/contents/posts/meme-coin-opinion.md\n D working/X/contents/posts/orbs-thread.md\n M working/X/contents/published/posts/posts.md\n M working/X/contents/published/threads/threads.md\n D working/X/report/daily/20-05-2026-daily-report.md\n D working/X/report/daily/20-05-2026-data.json\n D working/X/report/daily/21-05-2026-daily-report.md\n D working/X/report/daily/21-05-2026-data.json\n D working/X/report/daily/22-05-2026-daily-report.md\n D working/X/report/daily/22-05-2026-data.json\n D working/X/report/daily/23-05-2026-daily-report.md\n D working/X/report/daily/23-05-2026-data.json\n D working/X/report/research/airdrop-crypto-2026-21-05-2026.md\n D working/X/report/research/perp-dex-2026-21-05-2026.md\n?? .hermes/.hermes_history\n?? .hermes/.update_check\n?? .hermes/bin/uv\n?? .hermes/bin/uvx\n?? .hermes/cache/openrouter_model_metadata.json\n?? .hermes/cache/screenshots/browser_screenshot_0869234b1e9b477da0c9f520572f1cf5.png\n?? .hermes/config.yaml.bak.20260612_082206\n?? .hermes/config.yaml.bak.20260616_102128\n?? .hermes/config.yaml.bak.20260616_155331\n?? .hermes/config.yaml.bak.20260616_155718\n?? .hermes/config.yaml.bak.20260623_151822\n?? .hermes/config.yaml.bak.20260626_074935\n?? .hermes/cron/.jobs.lock\n?? .hermes/cron/output/\n?? .hermes/cron/ticker_heartbeat\n?? .hermes/cron/ticker_last_success\n?? .hermes/hermes-agent/\n?? .hermes/kanban.db.dispatch.lock\n?? .hermes/kanban.db.init.lock\n?? .hermes/kanban/\n?? .hermes/logs/\n?? .hermes/lsp/bin/bash-language-server\n?? .hermes/lsp/node_modules/.bin/bash-language-server\n?? .hermes/lsp/node_modules/.bin/editorconfig\n?? .hermes/lsp/node_modules/.bin/semver\n?? .hermes/lsp/node_modules/@mixmark-io/\n?? .hermes/lsp/node_modules/@nodelib/\n?? .hermes/lsp/node_modules/@one-ini/\n?? .hermes/lsp/node_modules/balanced-match/\n?? .hermes/lsp/node_modules/bash-language-server/\n?? .hermes/lsp/node_modules/brace-expansion/\n?? .hermes/lsp/node_modules/braces/\n?? .hermes/lsp/node_modules/commander/\n?? .hermes/lsp/node_modules/editorconfig/\n?? .hermes/lsp/node_modules/fast-glob/\n?? .hermes/lsp/node_modules/fastq/\n?? .hermes/lsp/node_modules/fill-range/\n?? .hermes/lsp/node_modules/fuzzy-search/\n?? .hermes/lsp/node_modules/glob-parent/\n?? .hermes/lsp/node_modules/is-extglob/\n?? .hermes/lsp/node_modules/is-glob/\n?? .hermes/lsp/node_modules/is-number/\n?? .hermes/lsp/node_modules/merge2/\n?? .hermes/lsp/node_modules/micromatch/\n?? .hermes/lsp/node_modules/minimatch/\n?? .hermes/lsp/node_modules/node-fetch/\n?? .hermes/lsp/node_modules/picomatch/\n?? .hermes/lsp/node_modules/queue-microtask/\n?? .hermes/lsp/node_modules/reusify/\n?? .hermes/lsp/node_modules/run-parallel/\n?? .hermes/lsp/node_modules/semver/\n?? .hermes/lsp/node_modules/to-regex-range/\n?? .hermes/lsp/node_modules/tr46/\n?? .hermes/lsp/node_modules/turndown/\n?? .hermes/lsp/node_modules/web-tree-sitter/\n?? .hermes/lsp/node_modules/webidl-conversions/\n?? .hermes/lsp/node_modules/whatwg-url/\n?? .hermes/lsp/node_modules/zod/\n?? .hermes/pets/\n?? .hermes/provider_models_cache.json\n?? .hermes/sessions/20260524_081154_5bce16.jsonl\n?? .hermes/sessions/20260524_143522_bdb73c.jsonl\n?? .hermes/sessions/20260524_145456_7bc736.jsonl\n?? .hermes/sessions/20260525_073419_b56ae5d9.jsonl\n?? .hermes/sessions/20260525_082553_d6d67ce0.jsonl\n?? .hermes/sessions/20260526_074911_b18a49c3.jsonl\n?? .hermes/sessions/20260526_193659_ab1e39.jsonl\n?? .hermes/sessions/20260527_073128_f5c06f3f.jsonl\n?? .hermes/sessions/20260528_080102_751e8d9c.jsonl\n?? .hermes/sessions/20260529_184825_fab3dcac.jsonl\n?? .hermes/sessions/20260530_105440_758cffc4.jsonl\n?? .hermes/sessions/20260530_154920_911eaf35.jsonl\n?? .hermes/sessions/20260531_073619_3b89372f.jsonl\n?? .hermes/sessions/20260601_084447_47c80458.jsonl\n?? .hermes/sessions/20260602_083606_cfe5e6cc.jsonl\n?? .hermes/sessions/20260603_083102_24ec08b9.jsonl\n?? .hermes/sessions/20260604_081714_8cd0c29f.jsonl\n?? .hermes/sessions/20260605_080718_0df4ba29.jsonl\n?? .hermes/sessions/20260606_085730_075010cb.jsonl\n?? .hermes/sessions/20260607_154741_e0b553cf.jsonl\n?? .hermes/sessions/20260608_083406_74fee623.jsonl\n?? .hermes/sessions/20260609_080936_46879e6a.jsonl\n?? .hermes/sessions/20260610_080553_7f902357.jsonl\n?? .hermes/sessions/20260610_202847_ecbd38.jsonl\n?? .hermes/sessions/20260611_082810_d1dc4981.jsonl\n?? .hermes/sessions/20260611_120201_fe20a9.jsonl\n?? .hermes/sessions/20260611_145031_e79c1a.jsonl\n?? .hermes/sessions/20260611_155055_fbb239.jsonl\n?? .hermes/sessions/20260611_160325_a9680a.jsonl\n?? .hermes/sessions/20260611_161830_3f49a3.jsonl\n?? .hermes/sessions/20260611_195546_5a244e.jsonl\n?? .hermes/sessions/20260612_083051_9abe19c0.jsonl\n?? .hermes/sessions/20260612_090632_0255bd.jsonl\n?? .hermes/sessions/20260612_100130_7aaa45.jsonl\n?? .hermes/sessions/20260612_101041_0f9dd02f.jsonl\n?? .hermes/sessions/20260612_135902_7f5c96a9.jsonl\n?? .hermes/sessions/20260612_184235_0192dd.jsonl\n?? .hermes/sessions/20260612_194002_61de41.jsonl\n?? .hermes/sessions/20260612_201305_1d9e53.jsonl\n?? .hermes/sessions/20260613_090243_1355f2d8.jsonl\n?? .hermes/sessions/20260613_091747_331834.jsonl\n?? .hermes/sessions/20260613_095533_c2a534.jsonl\n?? .hermes/sessions/20260613_102722_009324.jsonl\n?? .hermes/sessions/20260614_085933_a49265e3.jsonl\n?? .hermes/sessions/20260615_084913_bc38eea9.jsonl\n?? .hermes/sessions/20260615_091208_8913e03a.jsonl\n?? .hermes/sessions/20260615_141404_07e9b7cc.jsonl\n?? .hermes/sessions/20260615_152037_b8ab16.jsonl\n?? .hermes/sessions/20260616_092148_c134cf1a.jsonl\n?? .hermes/sessions/request_dump_20260524_081154_5bce16_20260524_134740_594234.json\n?? .hermes/sessions/request_dump_20260524_081154_5bce16_20260524_134801_754230.json\n?? .hermes/sessions/request_dump_20260525_073419_b56ae5d9_20260525_073431_607085.json\n?? .hermes/sessions/request_dump_20260525_073419_b56ae5d9_20260525_075405_011838.json\n?? .hermes/sessions/request_dump_20260525_082553_d6d67ce0_20260525_091543_037273.json\n?? .hermes/sessions/request_dump_20260525_082553_d6d67ce0_20260525_135313_351498.json\n?? .hermes/sessions/request_dump_20260525_082553_d6d67ce0_20260525_135359_379292.json\n?? .hermes/sessions/request_dump_20260525_082553_d6d67ce0_20260525_135417_130414.json\n?? .hermes/sessions/request_dump_20260525_100224_bb7067_20260525_100236_295578.json\n?? .hermes/sessions/request_dump_20260526_074911_b18a49c3_20260526_074923_479744.json\n?? .hermes/sessions/request_dump_20260526_074911_b18a49c3_20260526_074941_792598.json\n?? .hermes/sessions/request_dump_20260526_074911_b18a49c3_20260526_075029_509209.json\n?? .hermes/sessions/request_dump_20260526_074911_b18a49c3_20260526_150646_609817.json\n?? .hermes/sessions/request_dump_20260526_193659_ab1e39_20260526_193727_005012.json\n?? .hermes/sessions/request_dump_20260605_080718_0df4ba29_20260605_115226_536794.json\n?? .hermes/sessions/request_dump_20260606_085730_075010cb_20260606_085735_406709.json\n?? .hermes/sessions/request_dump_20260606_085730_075010cb_20260606_092921_895224.json\n?? .hermes/sessions/request_dump_20260606_085730_075010cb_20260606_093032_574652.json\n?? .hermes/sessions/request_dump_20260606_085730_075010cb_20260606_093229_141063.json\n?? .hermes/sessions/request_dump_20260608_083136_81e94b_20260608_083302_415421.json\n?? .hermes/sessions/request_dump_20260608_083406_74fee623_20260608_083407_442080.json\n?? .hermes/sessions/request_dump_20260608_083406_74fee623_20260608_145146_053152.json\n?? .hermes/sessions/request_dump_20260608_083406_74fee623_20260608_184719_975308.json\n?? .hermes/sessions/request_dump_20260608_110407_b5d346_20260608_110409_305136.json\n?? .hermes/sessions/request_dump_20260610_200901_3bceff_20260610_200903_014217.json\n?? .hermes/sessions/request_dump_20260610_202710_7b9599_20260610_202711_000863.json\n?? .hermes/sessions/request_dump_20260612_135902_7f5c96a9_20260612_142416_864552.json\n?? .hermes/sessions/request_dump_20260612_135902_7f5c96a9_20260612_182804_390124.json\n?? .hermes/sessions/request_dump_20260612_135902_7f5c96a9_20260612_182940_954706.json\n?? .hermes/sessions/request_dump_20260612_182723_9cfe03_20260612_182726_090602.json\n?? .hermes/sessions/request_dump_20260615_084913_bc38eea9_20260615_090917_348266.json\n?? .hermes/sessions/request_dump_20260615_084913_bc38eea9_20260615_091048_360288.json\n?? .hermes/sessions/request_dump_20260615_091208_8913e03a_20260615_091215_021551.json\n?? .hermes/sessions/request_dump_20260616_092148_c134cf1a_20260616_101739_361530.json\n?? .hermes/sessions/request_dump_20260623_081656_65347521_20260623_151729_190464.json\n?? .hermes/sessions/request_dump_20260624_084839_990de642_20260624_103017_809222.json\n?? .hermes/sessions/request_dump_20260624_113623_0d585e_20260624_144917_728067.json\n?? .hermes/sessions/request_dump_20260707_075303_61003797_20260707_092850_505059.json\n?? .hermes/sessions/request_dump_cron_ad70fe60bc4f_20260608_083039_20260608_083303_327643.json\n?? .hermes/sessions/session_20260524_074450_5249c4.json\n?? .hermes/sessions/session_20260524_075807_9a8377.json\n?? .hermes/sessions/session_20260524_080107_7b4164.json\n?? .hermes/sessions/session_20260524_081154_5bce16.json\n?? .hermes/sessions/session_20260524_085542_377dfe.json\n?? .hermes/sessions/session_20260524_090622_817ea8.json\n?? .hermes/sessions/session_20260524_090936_9448c9.json\n?? .hermes/sessions/session_20260524_091736_05fb60.json\n?? .hermes/sessions/session_20260524_135525_4230ea.json\n?? .hermes/sessions/session_20260524_141627_af16d2.json\n?? .hermes/sessions/session_20260524_142558_b4ef98.json\n?? .hermes/sessions/session_20260524_143522_bdb73c.json\n?? .hermes/sessions/session_20260524_143924_6a7547.json\n?? .hermes/sessions/session_20260524_144502_64a0f8.json\n?? .hermes/sessions/session_20260524_145456_7bc736.json\n?? .hermes/sessions/session_20260524_145615_cbf120.json\n?? .hermes/sessions/session_20260525_073419_b56ae5d9.json\n?? .hermes/sessions/session_20260525_082553_d6d67ce0.json\n?? .hermes/sessions/session_20260525_085812_7b1d73.json\n?? .hermes/sessions/session_20260525_100224_bb7067.json\n?? .hermes/sessions/session_20260525_135534_b07121.json\n?? .hermes/sessions/session_20260526_074911_b18a49c3.json\n?? .hermes/sessions/session_20260526_080603_40e8cd.json\n?? .hermes/sessions/session_20260526_085710_f64214.json\n?? .hermes/sessions/session_20260526_092505_3d4d84.json\n?? .hermes/sessions/session_20260526_155014_0e0a48.json\n?? .hermes/sessions/session_20260526_193659_ab1e39.json\n?? .hermes/sessions/session_20260527_073128_f5c06f3f.json\n?? .hermes/sessions/session_20260527_091234_0d0a8f.json\n?? .hermes/sessions/session_20260527_092254_08dec1.json\n?? .hermes/sessions/session_20260527_142055_7fa4ad.json\n?? .hermes/sessions/session_20260527_151118_882f49.json\n?? .hermes/sessions/session_20260528_080102_751e8d9c.json\n?? .hermes/sessions/session_20260528_083442_bcda41.json\n?? .hermes/sessions/session_20260528_083959_3f9e25.json\n?? .hermes/sessions/session_20260528_202253_c0a8ce.json\n?? .hermes/sessions/session_20260529_083755_a75847.json\n?? .hermes/sessions/session_20260529_084413_d19edc.json\n?? .hermes/sessions/session_20260529_184825_fab3dcac.json\n?? .hermes/sessions/session_20260530_105440_758cffc4.json\n?? .hermes/sessions/session_20260530_143138_72d658.json\n?? .hermes/sessions/session_20260530_144824_56693d.json\n?? .hermes/sessions/session_20260530_145259_4b5734.json\n?? .hermes/sessions/session_20260530_150143_bb029d.json\n?? .hermes/sessions/session_20260530_150656_35fa85.json\n?? .hermes/sessions/session_20260530_151200_3eac9a.json\n?? .hermes/sessions/session_20260530_152252_461adc.json\n?? .hermes/sessions/session_20260530_152418_82adf1.json\n?? .hermes/sessions/session_20260530_153506_a3084e.json\n?? .hermes/sessions/session_20260530_154335_22b64d.json\n?? .hermes/sessions/session_20260530_154920_911eaf35.json\n?? .hermes/sessions/session_20260530_160207_d6d466.json\n?? .hermes/sessions/session_20260530_162611_36402e.json\n?? .hermes/sessions/session_20260530_162744_4eae43.json\n?? .hermes/sessions/session_20260530_182134_07e368.json\n?? .hermes/sessions/session_20260530_182707_239874.json\n?? .hermes/sessions/session_20260531_073619_3b89372f.json\n?? .hermes/sessions/session_20260601_083442_1d7b21.json\n?? .hermes/sessions/session_20260601_084447_47c80458.json\n?? .hermes/sessions/session_20260601_084540_7148b3.json\n?? .hermes/sessions/session_20260601_090727_991617.json\n?? .hermes/sessions/session_20260601_101942_48d4b2.json\n?? .hermes/sessions/session_20260601_114616_c89fb5.json\n?? .hermes/sessions/session_20260601_145146_e239ef.json\n?? .hermes/sessions/session_20260601_185851_0c4be3.json\n?? .hermes/sessions/session_20260601_190457_15f8d7.json\n?? .hermes/sessions/session_20260602_083258_d81b54.json\n?? .hermes/sessions/session_20260602_083606_cfe5e6cc.json\n?? .hermes/sessions/session_20260602_083640_7cb16b.json\n?? .hermes/sessions/session_20260602_105047_2b7a6f.json\n?? .hermes/sessions/session_20260602_105442_d0b1f5.json\n?? .hermes/sessions/session_20260603_083102_24ec08b9.json\n?? .hermes/sessions/session_20260603_083529_4a5b96.json\n?? .hermes/sessions/session_20260603_083843_a61557.json\n?? .hermes/sessions/session_20260603_113540_0004c1.json\n?? .hermes/sessions/session_20260603_114120_c3af9f.json\n?? .hermes/sessions/session_20260603_190642_b59c32.json\n?? .hermes/sessions/session_20260604_081714_8cd0c29f.json\n?? .hermes/sessions/session_20260604_083617_4499e4.json\n?? .hermes/sessions/session_20260604_083638_0b8d68.json\n?? .hermes/sessions/session_20260604_084028_7646cf.json\n?? .hermes/sessions/session_20260604_101825_7ebd7f.json\n?? .hermes/sessions/session_20260604_102723_723271.json\n?? .hermes/sessions/session_20260604_183928_b7bdb6.json\n?? .hermes/sessions/session_20260605_080718_0df4ba29.json\n?? .hermes/sessions/session_20260605_084043_1bf609.json\n?? .hermes/sessions/session_20260605_084812_8b0552.json\n?? .hermes/sessions/session_20260605_090041_a2e85d.json\n?? .hermes/sessions/session_20260605_105434_8b2bfe.json\n?? .hermes/sessions/session_20260606_085730_075010cb.json\n?? .hermes/sessions/session_20260606_190631_0b7a09.json\n?? .hermes/sessions/session_20260607_154741_e0b553cf.json\n?? .hermes/sessions/session_20260608_083136_81e94b.json\n?? .hermes/sessions/session_20260608_083406_74fee623.json\n?? .hermes/sessions/session_20260608_083959_87d5f2.json\n?? .hermes/sessions/session_20260608_110407_b5d346.json\n?? .hermes/sessions/session_20260608_145703_a7e957.json\n?? .hermes/sessions/session_20260609_080936_46879e6a.json\n?? .hermes/sessions/session_20260609_083215_c7c157.json\n?? .hermes/sessions/session_20260609_085439_4578ce.json\n?? .hermes/sessions/session_20260609_091948_12acdf.json\n?? .hermes/sessions/session_20260609_093804_7a48fe.json\n?? .hermes/sessions/session_20260609_100621_9a90c6.json\n?? .hermes/sessions/session_20260609_112536_da5263.json\n?? .hermes/sessions/session_20260609_120739_0287de.json\n?? .hermes/sessions/session_20260609_145242_1d9959.json\n?? .hermes/sessions/session_20260610_080553_7f902357.json\n?? .hermes/sessions/session_20260610_085926_37a94a.json\n?? .hermes/sessions/session_20260610_101516_b56b1e.json\n?? .hermes/sessions/session_20260610_110246_94f19a.json\n?? .hermes/sessions/session_20260610_200901_3bceff.json\n?? .hermes/sessions/session_20260610_202710_7b9599.json\n?? .hermes/sessions/session_20260610_202847_ecbd38.json\n?? .hermes/sessions/session_20260611_082810_d1dc4981.json\n?? .hermes/sessions/session_20260611_113727_9d4c88.json\n?? .hermes/sessions/session_20260611_115725_6e6843.json\n?? .hermes/sessions/session_20260611_120201_fe20a9.json\n?? .hermes/sessions/session_20260611_120249_1089ed.json\n?? .hermes/sessions/session_20260611_124212_63917d.json\n?? .hermes/sessions/session_20260611_144257_5145f7.json\n?? .hermes/sessions/session_20260611_144513_6f7e48.json\n?? .hermes/sessions/session_20260611_145031_e79c1a.json\n?? .hermes/sessions/session_20260611_145044_e0338f.json\n?? .hermes/sessions/session_20260611_155055_fbb239.json\n?? .hermes/sessions/session_20260611_155139_ca9c1c.json\n?? .hermes/sessions/session_20260611_160325_a9680a.json\n?? .hermes/sessions/session_20260611_160445_6b25bb.json\n?? .hermes/sessions/session_20260611_161830_3f49a3.json\n?? .hermes/sessions/session_20260611_161909_81cb2e.json\n?? .hermes/sessions/session_20260611_195546_5a244e.json\n?? .hermes/sessions/session_20260611_202120_9fec10.json\n?? .hermes/sessions/session_20260612_083051_9abe19c0.json\n?? .hermes/sessions/session_20260612_083948_5a0d51.json\n?? .hermes/sessions/session_20260612_090632_0255bd.json\n?? .hermes/sessions/session_20260612_091712_367d70.json\n?? .hermes/sessions/session_20260612_092545_b2379b.json\n?? .hermes/sessions/session_20260612_100130_7aaa45.json\n?? .hermes/sessions/session_20260612_100254_8325a4.json\n?? .hermes/sessions/session_20260612_101041_0f9dd02f.json\n?? .hermes/sessions/session_20260612_135902_7f5c96a9.json\n?? .hermes/sessions/session_20260612_140339_be9f8b.json\n?? .hermes/sessions/session_20260612_140948_09ce0c.json\n?? .hermes/sessions/session_20260612_182723_9cfe03.json\n?? .hermes/sessions/session_20260612_184235_0192dd.json\n?? .hermes/sessions/session_20260612_184339_9b260d.json\n?? .hermes/sessions/session_20260612_185454_e4c594.json\n?? .hermes/sessions/session_20260612_193319_558f93.json\n?? .hermes/sessions/session_20260612_194002_61de41.json\n?? .hermes/sessions/session_20260612_194025_fe5c3d.json\n?? .hermes/sessions/session_20260612_195846_368fa3.json\n?? .hermes/sessions/session_20260612_200500_81274a.json\n?? .hermes/sessions/session_20260612_200810_7a4b75.json\n?? .hermes/sessions/session_20260612_201104_71e16a.json\n?? .hermes/sessions/session_20260612_201305_1d9e53.json\n?? .hermes/sessions/session_20260612_201600_e2ab1c.json\n?? .hermes/sessions/session_20260612_203424_e88ecd.json\n?? .hermes/sessions/session_20260612_204157_1da4a0.json\n?? .hermes/sessions/session_20260613_090243_1355f2d8.json\n?? .hermes/sessions/session_20260613_091330_90f958.json\n?? .hermes/sessions/session_20260613_091747_331834.json\n?? .hermes/sessions/session_20260613_094141_90b7e8.json\n?? .hermes/sessions/session_20260613_095533_c2a534.json\n?? .hermes/sessions/session_20260613_095619_f2146c.json\n?? .hermes/sessions/session_20260613_100339_8843eb.json\n?? .hermes/sessions/session_20260613_101611_73592e.json\n?? .hermes/sessions/session_20260613_102722_009324.json\n?? .hermes/sessions/session_20260613_102906_3cffa9.json\n?? .hermes/sessions/session_20260614_085933_a49265e3.json\n?? .hermes/sessions/session_20260615_084913_bc38eea9.json\n?? .hermes/sessions/session_20260615_085033_b14f69.json\n?? .hermes/sessions/session_20260615_085120_252e1c.json\n?? .hermes/sessions/session_20260615_091208_8913e03a.json\n?? .hermes/sessions/session_20260615_101455_e71be7.json\n?? .hermes/sessions/session_20260615_111848_343a82.json\n?? .hermes/sessions/session_20260615_141404_07e9b7cc.json\n?? .hermes/sessions/session_20260615_151639_90036f.json\n?? .hermes/sessions/session_20260615_152037_b8ab16.json\n?? .hermes/sessions/session_20260615_154813_0eae7d.json\n?? .hermes/sessions/session_20260615_160230_6f7077.json\n?? .hermes/sessions/session_20260615_194321_93f825.json\n?? .hermes/sessions/session_20260615_195436_9a8ad7.json\n?? .hermes/sessions/session_20260615_202359_0c1a3e.json\n?? .hermes/sessions/session_20260615_204333_a9e11d.json\n?? .hermes/sessions/session_20260616_083519_d17d49.json\n?? .hermes/sessions/session_20260616_084340_ade30a.json\n?? .hermes/sessions/session_20260616_092148_c134cf1a.json\n?? .hermes/sessions/session_20260616_093339_1b72c9.json\n?? .hermes/sessions/session_20260616_093902_9d8c6a.json\n?? .hermes/sessions/session_20260616_101147_ae7cb0.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260528_083015.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260529_083039.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260530_083016.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260531_083000.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260601_083048.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260602_083040.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260603_083049.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260604_083029.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260605_083007.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260608_083039.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260609_083036.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260610_083057.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260611_083032.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260612_083010.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260613_090020.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260614_083041.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260615_085014.json\n?? .hermes/sessions/session_cron_ad70fe60bc4f_20260616_083042.json\n?? .hermes/skills/.archive/\n?? .hermes/skills/.curator_backups/\n?? .hermes/skills/.hub/\n?? .hermes/skills/autonomous-ai-agents/external-agent-orchestration/\n?? .hermes/skills/autonomous-ai-agents/hermes-agent/references/telegram-gateway-diagnosis.md\n?? .hermes/skills/coin68-writer/references/accessible-financial-writing.md\n?? .hermes/skills/coin68-writer/references/concept-article-structure.md\n?? .hermes/skills/coin68-writer/references/content-extraction.md\n?? .hermes/skills/coin68-writer/references/cron-pipeline-execution.md\n?? .hermes/skills/coin68-writer/references/delegate-task-context-template.md\n?? .hermes/skills/coin68-writer/references/extraction-persistence.md\n?? .hermes/skills/coin68-writer/references/fomo-social-trading-app.md\n?? .hermes/skills/coin68-writer/references/julius-coin68-style.md\n?? .hermes/skills/coin68-writer/references/kamino-publish-review.md\n?? .hermes/skills/coin68-writer/references/manual-pipeline-trigger.md\n?? .hermes/skills/coin68-writer/references/post-cron-recovery.md\n?? .hermes/skills/coin68-writer/references/research-depth.md\n?? .hermes/skills/coin68-writer/references/research-methodology.md\n?? .hermes/skills/coin68-writer/references/stablecoin-concept-article.md\n?? .hermes/skills/coin68-writer/references/stablecoin-market-2026.md\n?? .hermes/skills/computer-use/\n?? .hermes/skills/devops/kanban-workflows/\n?? .hermes/skills/education/\n?? .hermes/skills/github/codebase-inspection/references/\n?? .hermes/skills/github/github-workflows/\n?? .hermes/skills/media/spotify/references/\n?? .hermes/skills/media/terminal-music/\n?? .hermes/skills/media/youtube-content/references/expert-video-to-coach.md\n?? .hermes/skills/note-taking/obsidian/references/\n?? .hermes/skills/note-taking/socratic-tutor/\n?? .hermes/skills/productivity/apple-automation/\n?? .hermes/skills/productivity/petdex/\n?? .hermes/skills/research/deep-research/references/sentinel-scanner-config.yaml\n?? .hermes/skills/research/trading-system-design/\n?? .hermes/skills/self-reflect/\n?? .hermes/skills/social-media/xurl/references/julius-x-published-archive.md\n?? .hermes/skills/social-media/xurl/references/non-english-long-post-analysis.md\n?? .hermes/skills/social-media/xurl/references/twitter-cli-fallback.md\n?? .hermes/skills/social-media/xurl/references/x-article-and-post-fallbacks.md\n?? .hermes/skills/software-development/boundary-hardening/\n?? .hermes/skills/software-development/browser-use/\n?? .hermes/skills/software-development/handoff/\n?? .hermes/skills/software-development/simplify-code/\n?? .hermes/skills/software-development/writing-plans/references/\n?? .hermes/skills/x-writer-skills/post-writer/references/\n?? .hermes/skills/x-writer-skills/thread-writer/references/\n?? .hermes/state-snapshots/20260624-011628-pre-update/\n?? ai-labs/pipelines/coin68-pipeline/.env.example\n?? ai-labs/pipelines/coin68-pipeline/CRON_JOB.md\n?? ai-labs/pipelines/coin68-pipeline/README.md\n?? ai-labs/pipelines/coin68-pipeline/coin68-workflow.svg\n?? ai-labs/pipelines/coin68-pipeline/config.yaml\n?? ai-labs/pipelines/coin68-pipeline/logs/\n?? ai-labs/pipelines/coin68-pipeline/requirements.txt\n?? ai-labs/pipelines/coin68-pipeline/scripts/\n?? ai-labs/projects/peaclock/\n?? ai-labs/projects/tacos-terminal-lyrics/\n?? ai-labs/projects/the-trading-guy/\n?? ai-labs/projects/trading-agents-runtime-control-plan.md\n?? ai-labs/projects/trading-agents/.agent/\n?? ai-labs/projects/trading-agents/ai-agent-trading-report.md\n?? ai-labs/projects/trading-agents/outputs/\n?? ai-labs/projects/trading-agents/post-migration-report-plan-batch4d-4f-2026-07-07.json\n?? ai-labs/projects/trading-agents/post-migration-report-plan-batch4d-4f-2026-07-07.md\n?? ai-labs/projects/trading-agents/researchs.md\n?? ai-labs/projects/x-news-brief/\n?? ai-labs/resource/skills/coin68-contents/\n?? ai-labs/resource/skills/coin68-writer/DEPRECATED.md\n?? ai-labs/resource/skills/news-brief-skill/auth_telegram.py\n?? ai-labs/resource/skills/news-brief-skill/authenticate_telegram.py\n?? ai-labs/resource/skills/news-brief-skill/references/\n?? ai-labs/resource/skills/news-brief-skill/run_scrape.sh\n?? ai-labs/resource/skills/news-brief-skill/test_scrape_simple.py\n?? ai-labs/resource/skills/news-brief-skill/test_with_rss.py\n?? ai-labs/resource/skills/news-brief-skill/venv-3.11/\n?? ai-labs/resource/skills/news-brief-skill/watch_and_run.sh\n?? ai-labs/resource/skills/obsidian-desmos-graph/\n?? ai-labs/systems/trading-agent/\n?? knowledge-base.zip\n?? learning/.venv.md\n?? learning/AI_Engineering_Roadmap_v3.docx\n?? learning/LESSON_TEMPLATE.md\n?? \"learning/Pasted image 20260703090835.png\"\n?? learning/ai-engineering-learning/\n?? learning/learning.md\n?? \"learning/linear dependence.md\"\n?? personal-context/\n?? tasks/inbox/escalation-2026-05-24-0730.md\n?? working/Coin68/assets/projects-images/Canopy/\n?? working/Coin68/assets/projects-images/Catena/\n?? working/Coin68/assets/projects-images/Fasset/\n?? working/Coin68/assets/projects-images/Fomo/\n?? working/Coin68/assets/projects-images/Hibachi/\n?? working/Coin68/assets/projects-images/Kamino/\n?? \"working/Coin68/assets/projects-images/Open Standard/\"\n?? working/Coin68/assets/projects-images/Ornn/\n?? working/Coin68/assets/projects-images/Thea/\n?? working/Coin68/assets/projects-images/Tori/\n?? working/Coin68/assets/projects-images/alt.fun/\n?? working/Coin68/assets/projects-images/axis/\n?? working/Coin68/assets/projects-images/chronicle/\n?? working/Coin68/assets/projects-images/defituna/\n?? working/Coin68/assets/projects-images/extended/\n?? working/Coin68/assets/projects-images/neobank/\n?? working/Coin68/assets/projects-images/nest/\n?? \"working/Coin68/assets/projects-images/ondo perps/\"\n?? working/Coin68/assets/projects-images/osero/\n?? working/Coin68/assets/projects-images/outcome/\n?? working/Coin68/assets/projects-images/popdex/\n?? \"working/Coin68/assets/projects-images/quip network/\"\n?? working/Coin68/assets/projects-images/rip.fun/\n?? \"working/Coin68/assets/projects-images/robinhood chain/\"\n?? working/Coin68/assets/projects-images/stablecoin/\n?? \"working/Coin68/assets/projects-images/the beacon/\"\n?? \"working/Coin68/assets/projects-images/tokenized trading cards/\"\n?? working/Coin68/assets/projects-images/ton/\n?? working/Coin68/assets/projects-images/town/\n?? working/Coin68/assets/projects-images/xeffy/\n?? working/Coin68/assets/projects-images/zoth/\n?? working/Coin68/contents/drafts/canopy-network.md\n?? working/Coin68/contents/drafts/chronicle.md\n?? working/Coin68/contents/drafts/extended.md\n?? working/Coin68/contents/drafts/fomo.md\n?? working/Coin68/contents/drafts/hibachi.md\n?? working/Coin68/contents/drafts/neobank.md\n?? working/Coin68/contents/drafts/open-standard.md\n?? working/Coin68/contents/drafts/ornn.md\n?? working/Coin68/contents/drafts/reactor.md\n?? working/Coin68/contents/drafts/robinhood-chain.md\n?? working/Coin68/contents/drafts/stablecoin.md\n?? working/Coin68/contents/drafts/thea.md\n?? working/Coin68/contents/published/Catena.md\n?? working/Coin68/contents/published/Coin68-published.md\n?? working/Coin68/contents/published/Fasset.md\n?? working/Coin68/contents/published/Kamino.md\n?? working/Coin68/contents/published/Nest.md\n?? working/Coin68/contents/published/Osero.md\n?? working/Coin68/contents/published/Outcome.md\n?? working/Coin68/contents/published/PopDEX.md\n?? working/Coin68/contents/published/Quip.md\n?? working/Coin68/contents/published/RIP.FUN.md\n?? \"working/Coin68/contents/published/Tokenized Trading Cards.md\"\n?? working/Coin68/contents/published/Town.md\n?? working/Coin68/contents/published/Variational.md\n?? working/Coin68/contents/published/Xeffy.md\n?? working/Coin68/contents/published/alt.fun.md\n?? working/Coin68/context/lessons-learned.md\n?? working/Substack/contents/drafts/\n?? working/X/contents/X-contents.md\n?? working/X/contents/draft/article-humanity-hack.md\n?? working/X/contents/draft/article-sahara-dump.md\n?? working/X/contents/draft/article-wwdc-2026.md\n?? working/X/contents/draft/post-cursor-origin.md\n?? working/X/contents/draft/post-okx-binance-aster-drama.md\n?? working/X/contents/draft/post-xeffy.md\n?? working/X/contents/draft/thread-okx-binance-aster-hyperliquid-drama.md\n?? working/X/contents/published/posts/crypto-ai-nghich-ly-ha-tang-qua-som.md\n?? working/X/contents/published/posts/cursor-origin-git-forge-agentic-era.md\n?? working/X/contents/published/posts/vercel-eve-agent-framework.md\n?? working/X/contents/published/threads/thread-ai-labs-l1-blockchain-comparison.md\n?? working/X/images/",
+      "stderr": ""
+    },
+    "workspace_ahead_count": {
+      "cmd": [
+        "bash",
+        "-lc",
+        "git rev-list --count origin/main..HEAD"
+      ],
+      "cwd": "/home/julius/julius-workspace",
+      "returncode": 0,
+      "stdout": "0",
+      "stderr": ""
+    },
+    "source_repo_status": {
+      "cmd": [
+        "git",
+        "status",
+        "--short",
+        "--branch"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "## main...origin/main",
+      "stderr": ""
+    },
+    "source_repo_head": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "source_repo_origin_main": {
+      "cmd": [
+        "git",
+        "rev-parse",
+        "origin/main"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "source_repo_remote_main": {
+      "cmd": [
+        "bash",
+        "-lc",
+        "git ls-remote origin refs/heads/main | awk '{print $1}'"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "b83fb38292a24f260f7372ab557326b2ba50093d",
+      "stderr": ""
+    },
+    "venv_python_version": {
+      "cmd": [
+        ".venv/bin/python",
+        "--version"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "Python 3.14.3",
+      "stderr": ""
+    },
+    "baseline_safe_test_available": {
+      "cmd": [
+        "test",
+        "-f",
+        "scripts/test_candidate_level_attribution.py"
+      ],
+      "cwd": "/home/julius/julius-workspace/ai-labs/projects/the-trading-guy",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  },
+  "read_only_test_discovery": {
+    "test_file_count": 67,
+    "risk_free_static_keyword_count": 13,
+    "risk_keyword_hit_count": 54,
+    "test_files": [
+      {
+        "path": "scripts/test_analysis_runner.py",
+        "loc": 551,
+        "import_count": 8,
+        "imports_sample": [
+          "import sys",
+          "from unittest.mock import MagicMock, AsyncMock, patch",
+          "import asyncio",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from orchestration.contracts import FinalAnalysis, AnalystSignalSummary",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from orchestration.analysis_runner import analyze_symbol"
+        ],
+        "risk_keyword_hits": [
+          "binance",
+          "ccxt",
+          "order",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_backtest_dashboard.py",
+        "loc": 332,
+        "import_count": 5,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.generate_backtest_dashboard import ("
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "replay",
+          "simulate"
+        ]
+      },
+      {
+        "path": "scripts/test_binance_futures_history.py",
+        "loc": 79,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import os",
+          "import sys",
+          "from pathlib import Path",
+          "from typing import List, Dict, Any",
+          "from dotenv import load_dotenv",
+          "from dataflows.binance_futures_client import BinanceFuturesClient"
+        ],
+        "risk_keyword_hits": [
+          ".env",
+          "api_key",
+          "binance",
+          "dotenv",
+          "order",
+          "secret"
+        ]
+      },
+      {
+        "path": "scripts/test_boundary_guardrails.py",
+        "loc": 673,
+        "import_count": 6,
+        "imports_sample": [
+          "import os",
+          "import subprocess",
+          "import sys",
+          "from pathlib import Path",
+          "import ast",
+          "import ast"
+        ],
+        "risk_keyword_hits": [
+          ".env",
+          "dotenv",
+          "open(",
+          "order",
+          "os.environ",
+          "replay",
+          "subprocess",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_calibration_workflow.py",
+        "loc": 461,
+        "import_count": 11,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.run_calibration_workflow import (",
+          "from datetime import date",
+          "from datetime import date",
+          "import subprocess",
+          "import subprocess",
+          "import subprocess",
+          "import subprocess"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "replay",
+          "simulate",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_candidate_level_attribution.py",
+        "loc": 76,
+        "import_count": 4,
+        "imports_sample": [
+          "from pathlib import Path",
+          "import sys",
+          "from strategies.contracts import MarketState, TechnicalState",
+          "from strategies.registry import StrategyRegistry"
+        ],
+        "risk_keyword_hits": [
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_coingecko.py",
+        "loc": 161,
+        "import_count": 5,
+        "imports_sample": [
+          "import sys",
+          "import asyncio",
+          "from pathlib import Path",
+          "from utils import setup_logging, get_logger",
+          "from dataflows import CoinGeckoClient, data_manager"
+        ],
+        "risk_keyword_hits": [
+          "binance"
+        ]
+      },
+      {
+        "path": "scripts/test_data_fetchers.py",
+        "loc": 203,
+        "import_count": 7,
+        "imports_sample": [
+          "import os",
+          "import sys",
+          "import asyncio",
+          "from pathlib import Path",
+          "from dotenv import load_dotenv",
+          "from utils import setup_logging, get_logger",
+          "from dataflows import BinanceClient, ParallelFetcher, cache"
+        ],
+        "risk_keyword_hits": [
+          "api_key",
+          "binance",
+          "dotenv",
+          "order",
+          "secret"
+        ]
+      },
+      {
+        "path": "scripts/test_demo_execution_policy.py",
+        "loc": 522,
+        "import_count": 10,
+        "imports_sample": [
+          "import sys",
+          "from unittest.mock import AsyncMock, MagicMock",
+          "import asyncio",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from orchestration.analysis_runner import AnalysisBundle",
+          "from orchestration.contracts import FinalAnalysis, AnalystSignalSummary",
+          "from policies.demo_execution import (",
+          "from policies.reverse_planner import ("
+        ],
+        "risk_keyword_hits": [
+          "binance",
+          "order",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_derivatives_analyst.py",
+        "loc": 43,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from dotenv import load_dotenv",
+          "from agents.derivatives_analyst import DerivativesAnalyst",
+          "from dataflows import data_manager",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": [
+          "dotenv"
+        ]
+      },
+      {
+        "path": "scripts/test_dynamic_watchlist.py",
+        "loc": 498,
+        "import_count": 10,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.update_dynamic_watchlist import (",
+          "import subprocess",
+          "import subprocess",
+          "import subprocess",
+          "import subprocess",
+          "import subprocess"
+        ],
+        "risk_keyword_hits": [
+          "default_params.yaml",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_entry_guard.py",
+        "loc": 192,
+        "import_count": 5,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from typing import Any, Dict, List",
+          "from state.entry_guard import EntryGuard"
+        ],
+        "risk_keyword_hits": [
+          "open("
+        ]
+      },
+      {
+        "path": "scripts/test_execution_mode_gate.py",
+        "loc": 198,
+        "import_count": 13,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "import time",
+          "import uuid",
+          "from pathlib import Path",
+          "from typing import Any, Dict, List, Optional",
+          "from scripts import run_paper_trading as rpt",
+          "import importlib",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from scripts import run_paper_trading as rpt",
+          "from agents.base_agent import SignalDirection",
+          "from scripts import run_paper_trading as rpt"
+        ],
+        "risk_keyword_hits": [
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_execution_modes.py",
+        "loc": 60,
+        "import_count": 3,
+        "imports_sample": [
+          "import sys",
+          "from pathlib import Path",
+          "from utils import config"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_final_analysis_contract.py",
+        "loc": 246,
+        "import_count": 5,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "from dataclasses import asdict",
+          "from pathlib import Path",
+          "from orchestration import FinalAnalysis, AnalystSignalSummary"
+        ],
+        "risk_keyword_hits": [
+          "replay"
+        ]
+      },
+      {
+        "path": "scripts/test_guarded_reverse_flow.py",
+        "loc": 362,
+        "import_count": 4,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": [
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_health_cli.py",
+        "loc": 280,
+        "import_count": 8,
+        "imports_sample": [
+          "import json",
+          "import os",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "import time as _t",
+          "from pathlib import Path",
+          "from scripts.check_runtime_health import _resolve, _print_health"
+        ],
+        "risk_keyword_hits": [
+          "live",
+          "logs/",
+          "open(",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_log_rotation.py",
+        "loc": 299,
+        "import_count": 5,
+        "imports_sample": [
+          "import os",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from utils.log_rotation import ("
+        ],
+        "risk_keyword_hits": [
+          "logs/"
+        ]
+      },
+      {
+        "path": "scripts/test_manual_report_policy.py",
+        "loc": 879,
+        "import_count": 15,
+        "imports_sample": [
+          "import asyncio",
+          "import subprocess",
+          "import sys",
+          "from pathlib import Path",
+          "from datetime import datetime",
+          "from orchestration.contracts import FinalAnalysis, AnalystSignalSummary",
+          "from policies.manual_report import (",
+          "import json",
+          "from policies.manual_report import final_analysis_to_report_item",
+          "from scripts.generate_manual_trade_report import _default_output_path",
+          "import tempfile",
+          "from scripts.generate_manual_trade_report import _write_output"
+        ],
+        "risk_keyword_hits": [
+          "order",
+          "replay",
+          "simulate",
+          "subprocess",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_news_analyst.py",
+        "loc": 33,
+        "import_count": 5,
+        "imports_sample": [
+          "import asyncio, sys",
+          "from pathlib import Path",
+          "from dotenv import load_dotenv; load_dotenv()",
+          "from utils import setup_logging, get_logger",
+          "from agents import NewsAnalyst; setup_logging(\"INFO\"); logger = get_logger(__name__)"
+        ],
+        "risk_keyword_hits": [
+          "dotenv",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_order_manager_close_notify.py",
+        "loc": 320,
+        "import_count": 12,
+        "imports_sample": [
+          "import asyncio",
+          "import os",
+          "import sys",
+          "import time",
+          "import uuid",
+          "from pathlib import Path",
+          "from typing import Dict, Any, List, Optional",
+          "import state.database as db_module",
+          "import trading.order_manager as om_module",
+          "from trading.order_manager import OrderManager",
+          "from trading.base_trader import (",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": [
+          "binance",
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_paper_trading.py",
+        "loc": 215,
+        "import_count": 9,
+        "imports_sample": [
+          "import sys",
+          "import asyncio",
+          "from pathlib import Path",
+          "from dotenv import load_dotenv",
+          "from utils import setup_logging, get_logger",
+          "from dataflows import data_manager, BinanceClient, BinanceFuturesClient",
+          "from trading import OrderManager, PositionMonitor, TradeNotifier",
+          "from trading.base_trader import TradeSide, CloseReason",
+          "from trading import SpotDemoTrader, FuturesTestnetTrader"
+        ],
+        "risk_keyword_hits": [
+          "binance",
+          "dotenv",
+          "order",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_parameter_recommendations.py",
+        "loc": 426,
+        "import_count": 5,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.generate_parameter_recommendations import ("
+        ],
+        "risk_keyword_hits": [
+          "default_params.yaml",
+          "logs/",
+          "replay",
+          "simulate"
+        ]
+      },
+      {
+        "path": "scripts/test_parameter_sweep.py",
+        "loc": 204,
+        "import_count": 5,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.parameter_sweep import ("
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "open(",
+          "replay",
+          "simulate"
+        ]
+      },
+      {
+        "path": "scripts/test_phase4b_risk_gate.py",
+        "loc": 179,
+        "import_count": 12,
+        "imports_sample": [
+          "import asyncio",
+          "import json",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "import trading.order_manager as order_manager_module",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.risk_manager import RiskManager",
+          "from state.signal_recorder import SignalRecorder",
+          "from trading.base_trader import MarketType, TradeResult, TradeSide",
+          "from trading.order_manager import OrderManager",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_phase5c_position_aware_risk.py",
+        "loc": 329,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.risk_manager import RiskManager",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_portfolio_context.py",
+        "loc": 111,
+        "import_count": 8,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.risk_manager import RiskManager",
+          "from state.portfolio_context import PortfolioContextBuilder",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_position_event_analytics.py",
+        "loc": 430,
+        "import_count": 6,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from collections import Counter, defaultdict",
+          "from pathlib import Path",
+          "from scripts.analyze_signal_logs import load_records, avg, pct"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl"
+        ]
+      },
+      {
+        "path": "scripts/test_position_group_close.py",
+        "loc": 113,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "import trading.order_manager as om_module",
+          "from state.database import Database",
+          "from trading.base_trader import CloseReason, ClosedPosition, MarketType, TradeSide",
+          "from trading.order_manager import OrderManager"
+        ],
+        "risk_keyword_hits": [
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_position_manager.py",
+        "loc": 111,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.position_manager import PositionManager",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_position_notifications.py",
+        "loc": 239,
+        "import_count": 4,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": [
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_position_reduce.py",
+        "loc": 181,
+        "import_count": 10,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "import state.database as db_module",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.position_manager import PositionManager",
+          "from trading.base_trader import CloseReason, MarketType, TradeResult, TradeSide",
+          "from trading.order_manager import OrderManager",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": [
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_process_lock.py",
+        "loc": 399,
+        "import_count": 8,
+        "imports_sample": [
+          "import json",
+          "import os",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from utils.process_lock import ProcessLock, LockHeldError, lock_or_exit, _pid_alive",
+          "import time as _t"
+        ],
+        "risk_keyword_hits": [
+          "live",
+          "open(",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_readonly_analyzer_cli.py",
+        "loc": 173,
+        "import_count": 5,
+        "imports_sample": [
+          "import runpy",
+          "from pathlib import Path",
+          "from types import SimpleNamespace",
+          "import sys",
+          "from orchestration.contracts import AnalystSignalSummary"
+        ],
+        "risk_keyword_hits": [
+          "replay"
+        ]
+      },
+      {
+        "path": "scripts/test_readonly_monitoring_cadence.py",
+        "loc": 107,
+        "import_count": 5,
+        "imports_sample": [
+          "import importlib.util",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "logs/",
+          "replay",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_reconciliation.py",
+        "loc": 357,
+        "import_count": 11,
+        "imports_sample": [
+          "import asyncio",
+          "import os",
+          "import shutil",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from typing import List, Dict, Any",
+          "import state.database as db_module",
+          "from state import db as db_state",
+          "from state.database import Database",
+          "from state.reconciliation import FuturesReconciler"
+        ],
+        "risk_keyword_hits": [
+          "binance",
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_replay_attribution_analyzer.py",
+        "loc": 263,
+        "import_count": 6,
+        "imports_sample": [
+          "import json",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.analyze_replay_attribution import ("
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "replay",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_replay_parameter_sweep.py",
+        "loc": 218,
+        "import_count": 6,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.replay_parameter_sweep import (",
+          "from collections import Counter"
+        ],
+        "risk_keyword_hits": [
+          "open(",
+          "replay",
+          "simulate"
+        ]
+      },
+      {
+        "path": "scripts/test_replay_strategy_attribution.py",
+        "loc": 175,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "import sys",
+          "from unittest.mock import AsyncMock",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from scripts.replay_signals import SignalReplay"
+        ],
+        "risk_keyword_hits": [
+          "order",
+          "replay"
+        ]
+      },
+      {
+        "path": "scripts/test_research_debate.py",
+        "loc": 91,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.research_debate import ResearchDebate",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_risk_manager.py",
+        "loc": 116,
+        "import_count": 7,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from datetime import datetime",
+          "from pathlib import Path",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from agents.risk_manager import RiskManager",
+          "from utils import setup_logging"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_rss_fetcher.py",
+        "loc": 140,
+        "import_count": 5,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from dataflows import RSSFetcher",
+          "from utils import setup_logging, get_logger"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_run_paper_trading_dry_run.py",
+        "loc": 380,
+        "import_count": 6,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from types import SimpleNamespace",
+          "from unittest.mock import AsyncMock, MagicMock, patch",
+          "from scripts.run_paper_trading import ("
+        ],
+        "risk_keyword_hits": [
+          "open(",
+          "order",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_runtime_control.py",
+        "loc": 559,
+        "import_count": 10,
+        "imports_sample": [
+          "import argparse",
+          "import json",
+          "import os",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "import time as _t",
+          "from pathlib import Path",
+          "from scripts.runtime_control import (",
+          "from utils import config as cfg_instance"
+        ],
+        "risk_keyword_hits": [
+          "live",
+          "logs/",
+          "open(",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_runtime_health.py",
+        "loc": 278,
+        "import_count": 7,
+        "imports_sample": [
+          "import json",
+          "import os",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from state.runtime_health import RuntimeHealth, read_health",
+          "import subprocess"
+        ],
+        "risk_keyword_hits": [
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_runtime_supervisor.py",
+        "loc": 566,
+        "import_count": 14,
+        "imports_sample": [
+          "import argparse",
+          "import json",
+          "import logging",
+          "import os",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "import time as _t",
+          "from datetime import datetime, timedelta",
+          "from pathlib import Path",
+          "from scripts.runtime_supervisor import (",
+          "import scripts.runtime_supervisor as sup_mod"
+        ],
+        "risk_keyword_hits": [
+          "live",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_runtime_watchlist_loader.py",
+        "loc": 430,
+        "import_count": 7,
+        "imports_sample": [
+          "import json",
+          "import logging",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from utils.watchlist import (",
+          "import subprocess"
+        ],
+        "risk_keyword_hits": [
+          "order",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_scheduler_guard.py",
+        "loc": 284,
+        "import_count": 17,
+        "imports_sample": [
+          "import json",
+          "import logging",
+          "import os",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "import time as _t",
+          "from pathlib import Path",
+          "from scripts.trading_scheduler import TradingScheduler",
+          "from utils.process_lock import ProcessLock",
+          "import importlib",
+          "import importlib"
+        ],
+        "risk_keyword_hits": [
+          "live",
+          "logs/",
+          "open(",
+          "scheduler",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_screening_agent.py",
+        "loc": 523,
+        "import_count": 9,
+        "imports_sample": [
+          "import json",
+          "import math",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from agents.screening_agent import (",
+          "import random",
+          "import subprocess",
+          "import subprocess"
+        ],
+        "risk_keyword_hits": [
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_sentiment_classifier.py",
+        "loc": 142,
+        "import_count": 6,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from agents.news_sentiment import NewsSentimentClassifier",
+          "from dataflows import RSSFetcher",
+          "from utils import setup_logging, get_logger"
+        ],
+        "risk_keyword_hits": [
+          "exchange"
+        ]
+      },
+      {
+        "path": "scripts/test_signal_recorder_strategy_signal.py",
+        "loc": 138,
+        "import_count": 7,
+        "imports_sample": [
+          "import json",
+          "import tempfile",
+          "from pathlib import Path",
+          "import sys",
+          "from datetime import datetime",
+          "from agents.base_agent import AgentResult, SignalDirection",
+          "from state.signal_recorder import SignalRecorder"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "order",
+          "replay"
+        ]
+      },
+      {
+        "path": "scripts/test_spot_close_balance_cap.py",
+        "loc": 121,
+        "import_count": 6,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "import state.database as db_module",
+          "from trading.base_trader import CloseReason",
+          "from trading.spot_demo_trader import SpotDemoTrader"
+        ],
+        "risk_keyword_hits": [
+          "order",
+          "place_order"
+        ]
+      },
+      {
+        "path": "scripts/test_spot_futures_notifications.py",
+        "loc": 269,
+        "import_count": 6,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from trading.trade_notifier import TradeNotifier",
+          "from utils import setup_logging",
+          "import state.database as db_module"
+        ],
+        "risk_keyword_hits": [
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_storage.py",
+        "loc": 210,
+        "import_count": 7,
+        "imports_sample": [
+          "import sys",
+          "import asyncio",
+          "from pathlib import Path",
+          "from datetime import datetime",
+          "from utils import setup_logging, get_logger",
+          "from dataflows import data_manager",
+          "from state import db"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_strategy_attribution.py",
+        "loc": 142,
+        "import_count": 3,
+        "imports_sample": [
+          "from pathlib import Path",
+          "import sys",
+          "from strategies.attribution import build_strategy_signal, fallback_strategy_signal"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_strategy_contracts.py",
+        "loc": 180,
+        "import_count": 4,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "from pathlib import Path",
+          "from strategies.contracts import ("
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_strategy_playbooks.py",
+        "loc": 332,
+        "import_count": 7,
+        "imports_sample": [
+          "import sys",
+          "from pathlib import Path",
+          "from strategies.base import StrategyPolicy",
+          "from strategies.breakout import BreakoutStrategy",
+          "from strategies.contracts import MarketState, StrategyAction, StrategySignal, TechnicalState",
+          "from strategies.trend_following import TrendFollowingStrategy",
+          "from strategies.volatility_skip import VolatilitySkipStrategy"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_strategy_registry.py",
+        "loc": 290,
+        "import_count": 5,
+        "imports_sample": [
+          "import sys",
+          "from pathlib import Path",
+          "from strategies.contracts import MarketState, StrategySignal, TechnicalState",
+          "from strategies.registry import StrategyRegistry",
+          "from utils.config_loader import Config"
+        ],
+        "risk_keyword_hits": [
+          "order"
+        ]
+      },
+      {
+        "path": "scripts/test_strategy_vs_trader_evaluator.py",
+        "loc": 262,
+        "import_count": 6,
+        "imports_sample": [
+          "import json",
+          "import subprocess",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.evaluate_strategy_vs_trader import ("
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "replay",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_technical_analyst.py",
+        "loc": 183,
+        "import_count": 6,
+        "imports_sample": [
+          "import sys",
+          "import asyncio",
+          "from pathlib import Path",
+          "from utils import setup_logging, get_logger",
+          "from dataflows import data_manager",
+          "from agents import TechnicalAnalyst"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_technical_config.py",
+        "loc": 209,
+        "import_count": 4,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from agents.technical_analyst import TechnicalAnalyst"
+        ],
+        "risk_keyword_hits": []
+      },
+      {
+        "path": "scripts/test_telegram_scraper.py",
+        "loc": 123,
+        "import_count": 6,
+        "imports_sample": [
+          "import asyncio",
+          "import sys",
+          "from pathlib import Path",
+          "from dotenv import load_dotenv",
+          "from dataflows import TelegramScraper",
+          "from utils import setup_logging, get_logger"
+        ],
+        "risk_keyword_hits": [
+          "dotenv",
+          "telegram"
+        ]
+      },
+      {
+        "path": "scripts/test_trade_simulation.py",
+        "loc": 537,
+        "import_count": 5,
+        "imports_sample": [
+          "import json",
+          "import sys",
+          "import tempfile",
+          "from pathlib import Path",
+          "from scripts.simulate_trades import ("
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "open(",
+          "replay",
+          "simulate"
+        ]
+      },
+      {
+        "path": "scripts/test_volatility_skip_broader_validation.py",
+        "loc": 108,
+        "import_count": 4,
+        "imports_sample": [
+          "import json",
+          "import tempfile",
+          "from pathlib import Path",
+          "import run_volatility_skip_broader_validation as broader"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "logs/",
+          "replay"
+        ]
+      },
+      {
+        "path": "scripts/test_volatility_skip_calibration.py",
+        "loc": 177,
+        "import_count": 7,
+        "imports_sample": [
+          "import subprocess",
+          "import sys",
+          "from pathlib import Path",
+          "from scripts.run_volatility_skip_calibration import (  # noqa: E402",
+          "from strategies.contracts import MarketState, TechnicalState  # noqa: E402",
+          "from strategies.registry import StrategyRegistry  # noqa: E402",
+          "from strategies.volatility_skip import VolatilitySkipStrategy  # noqa: E402"
+        ],
+        "risk_keyword_hits": [
+          "order",
+          "replay",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_volatility_skip_monitoring.py",
+        "loc": 161,
+        "import_count": 5,
+        "imports_sample": [
+          "import json",
+          "import tempfile",
+          "from pathlib import Path",
+          "import run_volatility_skip_monitoring as monitoring",
+          "import subprocess, sys"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl",
+          "order",
+          "subprocess"
+        ]
+      },
+      {
+        "path": "scripts/test_volatility_skip_zero_blocks.py",
+        "loc": 116,
+        "import_count": 4,
+        "imports_sample": [
+          "import json",
+          "import tempfile",
+          "from pathlib import Path",
+          "import analyze_volatility_skip_zero_blocks as zero"
+        ],
+        "risk_keyword_hits": [
+          ".jsonl"
+        ]
+      }
+    ]
+  },
+  "planned_phases": [
+    {
+      "phase": "5H-A Preflight",
+      "actions": [
+        "Verify source repo is clean and synced with origin/main and remote main.",
+        "Verify .venv exists and can run Python.",
+        "Run existing baseline safe test only to confirm local test harness still works."
+      ]
+    },
+    {
+      "phase": "5H-B Test discovery",
+      "actions": [
+        "Enumerate Python test files by filename and tests/ path conventions.",
+        "Capture path, LOC, imports, and static risk keyword hits.",
+        "Do not execute the full test suite."
+      ]
+    },
+    {
+      "phase": "5H-C Static safety classification",
+      "actions": [
+        "Classify each test file as safe_now_candidate, safe_local_only, needs_dependency_or_fixture, needs_mocking_or_refactor, or unsafe_deferred.",
+        "Flag any file referencing .env, network clients, exchange/order concepts, live/simulate-live paths, replay/log output, default config mutation, subprocess, scheduler, or external APIs.",
+        "Prefer conservative classification when ambiguous."
+      ]
+    },
+    {
+      "phase": "5H-D Optional targeted execution",
+      "actions": [
+        "Run only tests classified as safe_now_candidate, one file at a time or as a tiny explicit list.",
+        "Use .venv/bin/python -m pytest -q -p no:cacheprovider <file>.",
+        "Stop if a test attempts to require .env, network, external credentials, live execution, or creates suspicious generated artifacts."
+      ]
+    },
+    {
+      "phase": "5H-E Evidence write-up",
+      "actions": [
+        "Write audit report JSON/Markdown under ai-labs/projects/trading-agents/.",
+        "Commit workspace audit evidence locally with a path-limited commit.",
+        "Do not push without explicit approval."
+      ]
+    }
+  ],
+  "classification_categories": {
+    "safe_now_candidate": "Pure/local unit-style test with no credentials, network, live trading, replay output, config mutation, or external service dependency. Eligible for optional targeted local execution in 5H.",
+    "safe_local_only": "Probably safe but not ideal for CI yet due local filesystem assumptions or non-critical generated ignored cache/output.",
+    "needs_dependency_or_fixture": "Requires package, fixture, or path setup not currently covered by requirements-dev.txt or CI.",
+    "needs_mocking_or_refactor": "Touches network/exchange/telegram/scheduler/replay-like integration paths but could become safe with mocks or refactor.",
+    "unsafe_deferred": "Mentions or invokes live trading, order placement, simulate-live, credentials, .env dependence, destructive mutation, or broad replay/output behavior."
+  },
+  "safety_boundaries": [
+    "No live trading",
+    "No order placement",
+    "No simulate-live",
+    "No StrategySignal-to-order bridge work",
+    "No runtime/default config mutation",
+    "No .env file read, print, or commit",
+    "No global package install",
+    "No new dependency install in Batch 5H",
+    "No full test suite execution",
+    "No replay or monitoring jobs",
+    "No raw replay logs staged or committed",
+    "No scheduler/cron/systemd enablement",
+    "No source repo changes unless a later implementation batch is explicitly approved",
+    "No push without explicit approval"
+  ],
+  "planned_output_files": [
+    "ai-labs/projects/trading-agents/safe-test-subset-expansion-audit-batch5h-2026-07-10.md",
+    "ai-labs/projects/trading-agents/safe-test-subset-expansion-audit-batch5h-2026-07-10.json"
+  ],
+  "planned_commit_message": "docs(trading-agents): add safe test subset expansion audit",
+  "possible_follow_up": "Batch 5I \u2014 Add Expanded Safe Pytest Subset to CI, only after Julius approves the 5H shortlist."
+}
