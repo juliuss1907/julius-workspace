@@ -1,0 +1,19 @@
+# Only skills/ is tracked; everything else under .agent stays local.
+api-keys/
+
+# Generated or runtime files inside skills.
+skills/**/venv*/
+skills/**/.venv/
+skills/**/node_modules/
+skills/**/__pycache__/
+skills/**/*.pyc
+skills/**/.state/
+skills/**/logs/
+skills/**/*.log
+skills/**/*.session
+skills/**/*.session-journal
+
+# config.py hardcodes the Telegram API hash and bot token as getenv defaults, and
+# SKILL.md and the references repeat the hash, API ID and chat ID. Keep the whole
+# skill local until those values move to an untracked .env.
+skills/news-brief-skill/

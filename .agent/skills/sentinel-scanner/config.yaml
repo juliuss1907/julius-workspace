@@ -1,0 +1,294 @@
+---
+# Sentinel Scanner Configuration
+# 
+# This file defines accounts to track and keywords to search for sentiment analysis.
+# Update this file to customize scanning behavior without modifying code.
+#
+# Structure:
+# kols:
+#   individuals:
+#     tier1:  # High-impact influencers (100K+ followers)
+#     tier2:  # Sector experts (10K-100K followers)
+#     tier3:  # Emerging voices (1K-10K followers)
+#   organizations_crypto:  # Crypto/Research orgs
+#   organizations_ai:      # AI/Tech orgs
+#
+# keywords:
+#   evergreen:  # Always-relevant topics
+#   trending:   # Current hot topics (update weekly)
+
+kols:
+  individuals:
+    tier1:
+      # L1/L2 Infrastructure Leaders
+      - "VitalikButerin"      # Ethereum founder
+      - "sassal0x"            # Ethereum community, beacon chain
+      - "drakefjustin"        # Ethereum researcher
+      - "ryansadams"          # Ethereum, Bankless
+      - "el33th4xor"          # Cornell blockchain professor
+      - "balajis"             # Network states, crypto macro
+      - "naval"               # Crypto philosophy, investing
+      
+      # DeFi Pioneers
+      - "rleshner"            # Compound founder
+      - "StaniKulechov"       # Aave founder
+      - "haydenzadams"        # Uniswap founder
+      - "AndreCronjeTech"     # DeFi architect (when active)
+      - "zhusu"               # Three Arrows (market sentiment)
+      - "KyleSamani"          # Multicoin Capital
+      
+      # Macro & Trading
+      - "RaoulGMI"            # Real Vision, macro crypto
+      - "LynAldenContact"     # Macro, Bitcoin/Ethereum
+      - "woonomic"            # On-chain analysis
+      - "MuradMahmudov"       # High-conviction calls
+      
+      # Crypto Twitter Culture
+      - "Punk9059"            # NFT, market psychology
+      - "cobie"               # Trading, market commentary
+      - "CryptoCobain"        # OG, market cycles
+      
+      # Traditional Finance & Exchange Leaders
+      - "pmarca"              # Marc Andreessen, a16z, tech/crypto macro
+      - "matthuang"           # Matt Huang, Paradigm co-founder
+      - "star_okx"            # OKX CEO
+      - "benbybit"            # Bybit personality
+      - "vladtenev"           # Robinhood CEO, crypto expansion
+      - "CryptoHayes"         # Arthur Hayes, BitMEX, derivatives god
+      - "a1lon9"              # NFT/Crypto culture, alpha
+      
+      # Bitcoin & Exchange Leaders
+      - "saylor"              # Michael Saylor, MicroStrategy, Bitcoin maximalist
+      - "brian_armstrong"     # Coinbase CEO, institutional crypto
+      - "justinsuntron"       # Justin Sun, Tron founder, crypto marketing
+      - "ErikVoorhees"        # OG Bitcoiner, ShapeShift founder
+      - "zachxbt"             # On-chain investigator, scam hunter
+      - "blknoiz06"           # NFT/Crypto culture, Web3 builder
+
+    tier2:
+      # NFT & Community Builders
+      - "mztacat"             # NFT alpha, community
+      - "0xSunNFT"            # NFT analysis, mint strategies
+      - "Zeneca"              # NFT founder, thought leader
+      - "CrashiusClay69"      # NFT/Crypto culture
+      - "stacy_muur"          # NFT community builder
+      - "frankdegods"         # DeGods founder, NFT culture
+      - "Slappjakke"          # NFT alpha, market analysis
+      - "Only1temmy"          # Crypto/NFT trader
+      - "the_smart_ape"       # NFT/Crypto insights
+      - "Louround_"           # NFT analyst
+      - "crypto_linn"         # Crypto/NFT research
+      - "k1rallik"            # NFT/Crypto trader
+      - "Zun2025"             # NFT alpha hunter
+      - "katexbt"             # Trader, market analysis
+      - "exploraX_"           # Crypto explorer
+      - "AmirOrmu"            # Crypto/NFT content
+      - "jussy_world"         # NFT/Crypto community
+      - "Adam_Tehc"           # Tech/Crypto analyst
+      - "cometwtf"            # NFT/Culture
+      - "0xleegenz"           # NFT/Web3 builder
+      - "info_insightful"     # Crypto research, data
+
+    tier3:
+      # Emerging DeFi Analysts
+      - "0xJeffrey"           # DeFi user experience
+      - "ThorHarcourt"        # DeFi mechanisms
+      - "0xngmi"              # LlamaRisk, protocol analysis
+      - "UwU_Delta"           # Options, derivatives
+      
+      # Emerging Technical Voices
+      - "0xPhillip"           # Smart contract dev
+      - "0xCygaar"            # Solidity patterns
+      - "mollyrosecoin"       # Technical education
+      - "0xMorgana"           # Governance
+      
+      # Emerging Macro & Trading
+      - "0xFinish"            # Macro crypto
+      - "smyyguy"             # Trading psychology
+      - "notthreadguy"        # Market cycles
+      
+      # Emerging NFT & Culture
+      - "beaniemaxi"          # NFT analysis
+      - "dingalingts"         # NFT collector
+      
+      # Emerging Builders
+      - "iamdcinvestor"       # Product analysis
+      - "0xMikko"             # DeFi growth
+      - "ShrutiGandhi"        # Early stage crypto
+      
+      # Contrarian/Meme Accounts (low signal but high cultural relevance)
+      - "H提供帮助"             # Chinese CT, early signals
+      - "Techmeme"            # Tech news, sometimes crypto
+      - "donk_enby"           # Data leaks, transparency
+
+  organizations_crypto:
+    # Crypto/Blockchain/Data Organizations
+    - "arkham"                # On-chain analytics platform
+    - "MessariCrypto"         # Crypto research & data
+    - "binance"               # Exchange, market data
+    - "openclaw"              # Alternative data & research
+
+  organizations_ai:
+    # AI/Tech Organizations
+    - "huggingface"           # ML platform, open models
+    - "Google"                # AI announcements, Bard/Gemini
+    - "AnthropicAI"           # Claude, AI safety
+    - "github"                # Dev tools, Copilot
+    - "Kimi_Moonshot"         # Chinese LLM (Moonshot AI)
+    - "NVIDIAAI"              # AI hardware, announcements
+    - "arena"                 # Chatbot arena, model comparisons
+    - "Kalshi"                # Prediction markets (regulated)
+    - "Zai_org"               # AI research organization
+    - "Alibaba_Qwen"          # Qwen LLM models
+    - "MiniMax_AI"            # Chinese AI startup
+    - "OpenAI"                # ChatGPT, GPT-4, research
+    - "NousResearch"          # Decentralized AI research
+    - "xai"                   # xAI, Grok, Elon
+
+  fundrasing:
+   # Crypto funding raises
+    - "Crypto_Dealflow"
+    - "CryptoRank_VCs"
+
+keywords:
+  evergreen:
+    # Blue-chip & ecosystem
+    - "Bitcoin"
+    - "Ethereum"
+    - "Hyperliquid"
+    - "Solana"
+    - "Zcash"
+    - "BNB"
+    - "TON"
+    - "Base"
+    - "Sui"
+    - "Aptos"
+
+    # DeFi
+    - "DeFi"
+    - "Morpho"
+    - "Aave"
+    - "Jupiter"
+    - "Pumpfun"
+    
+    # Narratives
+    - "Real World Assets"
+    - "RWAs"
+    - "tokenization"
+    - "institutional adoption"
+    - "decentralized AI"
+    - "DeAI"
+    - "stablecoin"
+    - "Perp DEXs"
+    - "Prediction Markets"
+    - "AI"
+    - "Privacy"
+
+    # Events
+    - "hack"
+    - "halving"
+
+
+  trending:
+    # (Update weekly based on market conditions)
+    # Q2 2026 Examples:
+    - "CLARITY Act"
+    - "Polymarket"
+    - "Solana meme coins"
+    - "Pump.fun"
+    - "Regulatory clarity"
+    - "SEC crypto"
+    - "MiCA"
+    - "Web3 gaming"
+    - "GameFi"
+
+# Scanning parameters
+scan:
+  # How many recent tweets to fetch per KOL
+  tweets_per_kol: 10
+  
+  # How many tweets to fetch per keyword search
+  tweets_per_keyword: 20
+  
+  # Minimum engagement to consider a tweet "significant"
+  min_engagement: 20  # likes + retweets
+  
+  # Lookback window (hours)
+  max_age_hours: 24
+  
+  # Maximum number of tweets to analyze before summarizing
+  max_tweets_to_analyze: 300
+
+# Output settings
+output:
+  # Format: "telegram" (for briefs) or "markdown" (for detailed)
+  format: "telegram"
+  
+  # Length limit for output
+  max_length_chars: 4000  # Telegram message limit
+  
+  # Include sections:
+  include_narratives: true
+  include_kol_insights: true
+  include_contrarian_takes: true
+  include_emerging_trends: true
+
+# View thresholds per tier for KOL Summary (tweets below threshold are filtered out)
+view_thresholds:
+  T1: 30000    # Tier 1: only show tweets with >= 30k views
+  T2: 5000     # Tier 2: only show tweets with >= 5k views
+  T3: 5000     # Tier 3: only show tweets with >= 5k views
+
+# Enable/disable scanning categories
+enabled_tiers:
+  individuals_tier1: true
+  individuals_tier2: true
+  individuals_tier3: true
+  organizations_crypto: true
+  organizations_ai: true
+
+# Quick mode: true = scan limited accounts/keywords for faster runs
+quick-mode: false
+
+# Enable/disable keyword categories to scan
+enabled_categories:
+  evergreen: true
+  trending: true
+
+# Sentiment analysis keywords (case-insensitive)
+sentiment:
+  positive_keywords:
+    - "bullish"
+    - "optimistic"
+    - "buy"
+    - "long"
+    - "support"
+    - "breakout"
+    - "accumulate"
+    - "undervalued"
+    - "opportunity"
+    - "growth"
+  
+  negative_keywords:
+    - "bearish"
+    - "pessimistic"
+    - "sell"
+    - "short"
+    - "resistance"
+    - "breakdown"
+    - "overvalued"
+    - "bubble"
+    - "crash"
+    - "decline"
+  
+  neutral_keywords:
+    - "hold"
+    - "neutral"
+    - "consolidate"
+    - "range"
+    - "sideways"
+    - "wait"
+    - "observe"
+    - "analysis"
+    - "update"
+    - "report"
