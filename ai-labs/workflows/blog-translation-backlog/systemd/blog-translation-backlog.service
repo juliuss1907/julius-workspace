@@ -1,0 +1,8 @@
+[Unit]
+Description=Translate the next batch of untranslated blog articles through the local router
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/julius/julius-workspace/ai-labs/workflows/blog-translation-backlog/run-batch.sh
+TimeoutStartSec=4h

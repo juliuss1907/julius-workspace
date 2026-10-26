@@ -1,0 +1,10 @@
+[Unit]
+Description=Run blog-translation-backlog every 5 hours until the backlog is empty
+
+[Timer]
+OnActiveSec=2min
+OnUnitActiveSec=5h
+Unit=blog-translation-backlog.service
+
+[Install]
+WantedBy=timers.target
